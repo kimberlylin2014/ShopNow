@@ -14,17 +14,15 @@ const getAllProducts = (req, res) => {
 
 // getOneProduct func
 const getOneProduct = (req, res) => {
-  // var id = req.query.product_id;
   var id = req.params.product_id;
-  console.log(id);
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${id}`, {
     headers:
       { 'Authorization' : `${KEY}` }
+  }).then((resp) => {
+    res.send(resp.data);
+  }).catch((err) => {
+    res.status(400).send('Can not get this product')
   })
-    .then((resp) => {
-      res.send(resp.data);
-    })
-    .catch((err) => res.status(400).send('Can not get one product'))
 }
 
 

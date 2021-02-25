@@ -2,16 +2,16 @@ var express = require('express');
 var router = express.Router();
 const reviewsController = require('../controllers/reviewsController.js');
 
-// base endpoint: '/api/reviews'
-// /reviews?product_id=14931&count=10&sort='helpful'
-// router.get('?product_id=id&count=countNum&sort=sortType', reviewsController.getAllReviews);
+// Route sent from  Client: /api/reviews?product_id=14931&count=10&sort='helpful'
+router.get('/', reviewsController.getAllReviews);
 
+// Route sent from  Client: /api/reviews/product_id
+router.get('/meta/:product_id', reviewsController.getReviewMetaData);
 
-router.get('/meta', reviewsController.getReviewMetaData);
-
+// Route sent from  Client: /api/reviews/:product_id
 router.post('/' , reviewsController.postReview);
 
-// not working
-router.put('/:review_id/report', reviewsController.updateReviewHelpful);
+//Route sent from Client: /api/123/helpful
+router.put('/:review_id/helpful', reviewsController.updateReviewHelpful);
 
 module.exports = router;
