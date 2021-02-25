@@ -2,27 +2,64 @@ const KEY = require('./index.js').KEY;
 const axios = require('axios');
 
 const getAllProducts = (req, res) => {
-  // let options = {
-  //   method: 'get',
-  //   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products',
-  //   headers: {
-  //     'Authorization':`${KEY}`
-  //   }
-  // };
-
   axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products', {
     headers:
       { 'Authorization' : `${KEY}` }
-  }).then((data) => {
-    console.log(data.data);
-    res.send('Hi');
+  }).then((resp) => {
+    res.send(resp.data);
+  }).catch((err) => {
+    console.log('ERR', err);
+  })
+};
+
+// getOneProduct func
+const getOneProduct = (req, res) => {
+  // var id = req.query.product_id;
+  var id = req.params.product_id;
+  console.log(id);
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${id}`, {
+    headers:
+      { 'Authorization' : `${KEY}` }
+  })
+    .then((resp) => {
+      res.send(resp.data);
+    })
+    .catch((err) => res.status(400).send('Can not get one product'))
+}
+
+
+
+// getProductStyles funcs
+const getProductStyles = (req, res) => {
+  let id = req.params.product_id;
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${id}/styles`, {
+    headers:
+      { 'Authorization' : `${KEY}` }
+  }).then((resp) => {
+    res.send(resp.data);
+  }).catch((err) => {
+    console.log('ERR', err);
+  })
+}
+
+
+// getRelatedProducts funcs
+const getRelatedProducts = (req, res) => {
+  let id = req.params.product_id;
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${id}/related`, {
+    headers:
+      { 'Authorization' : `${KEY}` }
+  }).then((resp) => {
+    res.send(resp.data);
   }).catch((err) => {
     console.log('ERR', err);
   })
 };
 
 
-
 module.exports = {
-  getAllProducts
+  getAllProducts,
+  getOneProduct,
+  getProductStyles,
+  getRelatedProducts
 };
