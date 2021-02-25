@@ -21,7 +21,8 @@ const getOneProduct = (req, res) => {
   }).then((resp) => {
     res.send(resp.data);
   }).catch((err) => {
-    res.status(400).send('Can not get this product')
+    console.log('Err', err);
+    res.status(400).send(err)
   })
 }
 
