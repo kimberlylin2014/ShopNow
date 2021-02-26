@@ -1,7 +1,7 @@
 import React from 'react';
 
-class Related extends React.Component {
 
+class Related extends React.Component {
   render() {
     return (
       <div>Related Items and Comparisons</div>
