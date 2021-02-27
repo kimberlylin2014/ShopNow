@@ -1,3 +1,3 @@
-const KEY = require('../../configAPI.js');
+const KEY = require('../../config.js');
 
 module.exports.KEY = KEY;
