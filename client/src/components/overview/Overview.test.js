@@ -6,13 +6,7 @@ describe('Overview', () => {
   it('should render correctly with no props', () => {
     const component = shallow(<Overview/>);
 
-    expect(component).toMatchSnapshot();
-  });
-
-  it('should render correctly in "debug" mode', () => {
-    const component = shallow(<Overview debug />);
-
-    expect(component).toMatchSnapshot();
+    expect(component.find('div').text()).toContain('Overview');
   });
 
 });
