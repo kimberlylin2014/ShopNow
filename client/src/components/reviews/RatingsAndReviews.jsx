@@ -9,7 +9,6 @@ class RatingsAndReviews extends React.Component {
     return (
       <div>
         THIS IS THE RATINGS AND REVIEWS MODULE.
-        Testing.
       </div>
     )
   }
