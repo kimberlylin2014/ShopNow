@@ -1,32 +1,19 @@
 import React from 'react';
+import Summary from '../summary/summary.jsx';
+import Body from '../body/Body.jsx';
+import ReviewHeader from '../reviewHeader/reviewHeader.jsx';
+import IRecommend from '../iRecommend/iRecommend.jsx';
+import Response from '../response/response.jsx';
+import Helpfulness from '../helpfulness/helpfulness.jsx';
 
-const ReviewTile = () => (
+const ReviewTile = ({review}) => (
   <div>
-    <div>
-      <div>
-        STAR STAR STAR STAR
-      </div>
-      <div>
-        USERNAME, Jan 1, 2019
-      </div>
-    </div>
-    <div>
-      SUMMARY
-    </div>
-    <div>
-      Body
-    </div>
-    <div>
-      I recommend this product
-    </div>
-    <div>
-      Response
-    </div>
-    <div>
-      <div>
-        Helpful
-      </div>
-    </div>
+    <ReviewHeader />
+    <Summary summary={review.summary} />
+    <Body body={review.body} />
+    <IRecommend />
+    <Response />
+    <Helpfulness helpfulness={review.helpfulness} />
   </div>
 );
 

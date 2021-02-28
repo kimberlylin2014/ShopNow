@@ -33,9 +33,12 @@ const mockData = [
 ];
 
 const RatingsAndReviews = () => (
-  <div className={styles.moduleColumns}>
-    <ContainerBreakdown />
-    <ContainerList reviews={mockData} />
+  <div className={styles.ratingsAndReviews}>
+    <h4>Ratings & Reviews</h4>
+    <div className={styles.moduleColumns}>
+      <ContainerBreakdown />
+      <ContainerList reviews={mockData} />
+    </div>
   </div>
 );
 

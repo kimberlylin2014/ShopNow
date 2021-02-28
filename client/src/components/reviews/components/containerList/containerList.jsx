@@ -1,10 +1,10 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import ReviewsList from '../reviewsList/reviewsList.jsx';
-
+import styles from './containerList.css';
 
 const ContainerList = ({ reviews }) => (
-  <div>
+  <div className={styles.containerList}>
     <p>SORT BY</p>
     <ReviewsList reviews={reviews} />
     <button> MORE REVIEWS </button>
@@ -16,7 +16,7 @@ ContainerList.defaultProps = {
 };
 
 // ContainerList.propTypes = {
-//   reviews: PropTypes.array,
+//   reviews: PropTypes.arrayOf(Proptypes.object),
 // };
 
 export default ContainerList;
