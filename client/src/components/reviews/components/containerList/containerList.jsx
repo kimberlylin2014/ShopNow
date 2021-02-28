@@ -1,11 +1,22 @@
 import React from 'react';
+// import PropTypes from 'prop-types';
+import ReviewsList from '../reviewsList/reviewsList.jsx';
 
-const ContainerList = () => (
+
+const ContainerList = ({ reviews }) => (
   <div>
-    <h1>
-      CONTAINER LIST
-    </h1>
+    <p>SORT BY</p>
+    <ReviewsList reviews={reviews} />
+    <button> MORE REVIEWS </button>
   </div>
 );
+
+ContainerList.defaultProps = {
+  reviews: [],
+};
+
+// ContainerList.propTypes = {
+//   reviews: PropTypes.array,
+// };
 
 export default ContainerList;
