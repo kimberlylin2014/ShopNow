@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Feature from './Feature/Feature.jsx';
 
 function ProductFeatures({ features }) {
-  const listFeatures = features.map((feat) => <Feature key={feat.toString()} feature={feat} />);
+  const listFeatures = features.map((feat) => <Feature key={feat.toString().length * Math.random()} feature={feat} />);
   return (
     <ul>
       {listFeatures}
@@ -11,8 +11,8 @@ function ProductFeatures({ features }) {
   );
 }
 
-ProductFeatures.propTypes = {
-  features: PropTypes.arrayOf.isRequired,
-};
+// ProductFeatures.propTypes = {
+//  features: PropTypes.object.isRequired,
+// };
 
 export default ProductFeatures;

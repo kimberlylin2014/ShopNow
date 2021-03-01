@@ -6,6 +6,7 @@ import Category from './Category/Category.jsx';
 import ProductTitle from './ProductTitle/ProductTitle.jsx';
 import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import ProductFeatures from './ProductFeatures/ProductFeatures.jsx';
+import AddToCart from './AddToCart/AddToCart.jsx';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -48,6 +49,7 @@ class Overview extends React.Component {
         <ProductTitle title={this.state.title} />
         <ProductOverview slogan={this.state.slogan} desciprtion={this.state.desciprtion} />
         <ProductFeatures features={this.state.features} />
+        <AddToCart />
         <h1 className={styles.title}>Overview </h1>
       </div>
     );

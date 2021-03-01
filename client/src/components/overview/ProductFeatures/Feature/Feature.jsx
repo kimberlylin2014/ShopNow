@@ -8,8 +8,8 @@ const Features = ({ feature }) => (
   </li>
 );
 
-Features.propTypes = {
-  feature: PropTypes.shape.isRequired,
-};
+// Features.propTypes = {
+//   feature: PropTypes.shape.isRequired,
+// };
 
 export default Features;
