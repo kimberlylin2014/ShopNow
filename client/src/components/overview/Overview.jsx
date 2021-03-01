@@ -3,6 +3,7 @@ import axios from 'axios';
 import styles from './style.css';
 import API from '../../../../config';
 import Category from './Category/Category.jsx';
+import ProductTitle from './ProductTitle/ProductTitle.jsx';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class Overview extends React.Component {
     return (
       <div>
         <Category category={this.state.category} />
+        <ProductTitle title={this.state.title} />
         <h1 className={styles.title}>Overview </h1>
       </div>
     );

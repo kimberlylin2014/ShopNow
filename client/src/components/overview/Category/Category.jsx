@@ -1,7 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Catagory = (props) => {
-  return <div className='title'>{props.category}</div>
+const Catagory = ({ category }) => <div className="category">{category}</div>;
+
+Catagory.propTypes = {
+  category: PropTypes.string.isRequired,
 };
 
 export default Catagory;
