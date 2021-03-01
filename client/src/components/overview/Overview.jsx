@@ -8,6 +8,7 @@ import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import ProductFeatures from './ProductFeatures/ProductFeatures.jsx';
 import AddToCart from './AddToCart/AddToCart.jsx';
 import Price from './Price/Price.jsx';
+import DefaultImages from './DefaultImages/DefaultImages.jsx';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -19,13 +20,16 @@ class Overview extends React.Component {
       desciprtion: '',
       features: ['features'],
       styles: [],
-      defaultstyle: '',
-      defaultOriginalPrice: '',
-      defaultSalePrice: '',
+      styleId: '',
+      originalPrice: '',
+      salePrice: '',
+      photos: [],
     };
     this.getProductInfo = this.getProductInfo.bind(this);
     this.getProductStyles = this.getProductStyles.bind(this);
     this.defaultStyle = this.defaultStyle.bind(this);
+    this.getPrice = this.getPrice.bind(this);
+    this.getPhotos = this.getPhotos.bind(this);
   }
 
   componentDidMount() {
@@ -62,24 +66,47 @@ class Overview extends React.Component {
       .catch((err) => console.log('Err', err));
   }
 
-  defaultStyle() {
-    for (let i = 0; i < this.state.styles.length; i++ ) {
-      if (this.state.styles[i]['default?']) {
+  getPrice(styleId) {
+    for (let i = 0; i < this.state.styles.length; i++) {
+      if (this.state.styles[i].style_id === styleId) {
         this.setState({
-          defaultstyle: this.state.styles[i].style_id,
-          defaultOriginalPrice: this.state.styles[i].original_price,
-          defaultSalePrice: this.state.styles[i].sale_price,
+          originalPrice: this.state.styles[i].original_price,
+          salePrice: this.state.styles[i].sale_price,
         });
       }
     }
   }
+
+  getPhotos(styleId) {
+    for (let i = 0; i < this.state.styles.length; i++) {
+      if (this.state.styles[i].style_id === styleId) {
+        this.setState({
+          photos: this.state.styles[i].photos,
+        });
+      }
+    }
+  }
+
+  defaultStyle() {
+    for (let i = 0; i < this.state.styles.length; i++) {
+      if (this.state.styles[i]['default?']) {
+        this.setState({
+          styleId: this.state.styles[i].style_id,
+        });
+        this.getPrice(this.state.styleId);
+        this.getPhotos(this.state.styleId);
+      }
+    }
+  }
+
 
   render() {
     return (
       <div>
         <Category category={this.state.category} />
         <ProductTitle title={this.state.title} />
-        <Price originalPrice={this.state.defaultOriginalPrice} salePrice={this.state.defaultSalePrice}/>
+        <Price originalPrice={this.state.originalPrice} salePrice={this.state.salePrice} />
+        <DefaultImages photos={this.state.photos} alt={this.state.title} />
         <ProductOverview slogan={this.state.slogan} desciprtion={this.state.desciprtion} />
         <ProductFeatures features={this.state.features} />
         <AddToCart />
