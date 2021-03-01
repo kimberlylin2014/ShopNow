@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Star = () => (
-  <span>Star</span>
+  <span>&#9733;</span>
 );
 
 export default Star;
