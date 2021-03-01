@@ -5,6 +5,7 @@ import ReviewsList from '../reviewsList/reviewsList.jsx';
 import SortBy from '../sortBy/sortBy.jsx';
 import MoreReviewsButton from '../moreReviewsButton/moreReviewsButton.jsx';
 import AddReviewButton from '../addReviewButton/addReviewButton.jsx';
+import FormPostReview from '../formPostReview/formPostReview.jsx';
 
 const ContainerList = ({ reviews }) => (
   <div className={styles.containerList}>
@@ -12,6 +13,7 @@ const ContainerList = ({ reviews }) => (
     <ReviewsList reviews={reviews} />
     <MoreReviewsButton />
     <AddReviewButton />
+    <FormPostReview />
   </div>
 );
 
