@@ -1,0 +1,9 @@
+.reviewHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.reviewHeader .usernameAndDate{
+  display: flex;
+  justify-content: end;
+}
