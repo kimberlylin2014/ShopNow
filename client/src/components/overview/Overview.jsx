@@ -4,6 +4,7 @@ import styles from './style.css';
 import API from '../../../../config';
 import Category from './Category/Category.jsx';
 import ProductTitle from './ProductTitle/ProductTitle.jsx';
+import ProductOverview from './ProductOverview/ProductOverview.jsx';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class Overview extends React.Component {
     this.state = {
       title: '',
       category: '',
-      desciprtion: '',
+      slogan: '',
+      desciprtion: ''
     };
     this.getProductInfo = this.getProductInfo.bind(this);
   }
@@ -24,7 +26,8 @@ class Overview extends React.Component {
       this.setState({
         title: data.data.name,
         category: data.data.category,
-        desciprtion: data.data.description,
+        slogan: data.data.slogan,
+        desciprtion: data.data.description
       });
     })
       .catch((err) => console.log('Err', err));
@@ -39,6 +42,7 @@ class Overview extends React.Component {
       <div>
         <Category category={this.state.category} />
         <ProductTitle title={this.state.title} />
+        <ProductOverview slogan={this.state.slogan} desciprtion={this.state.desciprtion}/>
         <h1 className={styles.title}>Overview </h1>
       </div>
     );
