@@ -38,8 +38,7 @@
     "jest-enzyme": "^7.1.2",
     "nodemon": "^2.0.7",
     "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12",
-    "prop-types": "^15.7.2"
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {
     "@babel/plugin-syntax-jsx": "^7.12.13",
@@ -49,6 +48,7 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "style-loader": "^2.0.0",
-    "yarn": "^1.22.10"
+    "yarn": "^1.22.10",
+    "prop-types": "^15.7.2"
   }
 }

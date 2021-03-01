@@ -1,0 +1,23 @@
+.card {
+  display: grid;
+  grid-template-rows: 2fr 1fr;
+  border: 1px solid black;
+  margin: 20px;
+  height: 300px;
+  width: 175px;
+}
+
+.cardTop {
+  grid-row: 1 / 2;
+}
+
+.image {
+  max-width: 100%;
+  max-height: auto;
+}
+
+.cardBottom {
+  grid-row: 2 / 3;
+  background-color: lightgrey;
+}
+

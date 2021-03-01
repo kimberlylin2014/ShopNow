@@ -32,7 +32,7 @@ class App extends React.Component {
     return (
       <div>
         <Overview />
-        <Related />
+        <Related productID={ this.state.product_id } />
         <Reviews />
       </div>
 
