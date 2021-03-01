@@ -7,6 +7,7 @@ import ProductTitle from './ProductTitle/ProductTitle.jsx';
 import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import ProductFeatures from './ProductFeatures/ProductFeatures.jsx';
 import AddToCart from './AddToCart/AddToCart.jsx';
+import Price from './Price/Price.jsx';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -17,13 +18,19 @@ class Overview extends React.Component {
       slogan: '',
       desciprtion: '',
       features: ['features'],
+      styles: [],
+      defaultstyle: '',
+      defaultOriginalPrice: '',
+      defaultSalePrice: '',
     };
     this.getProductInfo = this.getProductInfo.bind(this);
+    this.getProductStyles = this.getProductStyles.bind(this);
+    this.defaultStyle = this.defaultStyle.bind(this);
   }
-
 
   componentDidMount() {
     this.getProductInfo();
+    this.getProductStyles();
   }
 
   getProductInfo() {
@@ -42,11 +49,37 @@ class Overview extends React.Component {
       .catch((err) => console.log('Err', err));
   }
 
+  getProductStyles() {
+    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/14931/styles', {
+      headers:
+        { Authorization: `${API}` },
+    }).then((data) => {
+      this.setState({
+        styles: data.data.results,
+      });
+      this.defaultStyle();
+    })
+      .catch((err) => console.log('Err', err));
+  }
+
+  defaultStyle() {
+    for (let i = 0; i < this.state.styles.length; i++ ) {
+      if (this.state.styles[i]['default?']) {
+        this.setState({
+          defaultstyle: this.state.styles[i].style_id,
+          defaultOriginalPrice: this.state.styles[i].original_price,
+          defaultSalePrice: this.state.styles[i].sale_price,
+        });
+      }
+    }
+  }
+
   render() {
     return (
       <div>
         <Category category={this.state.category} />
         <ProductTitle title={this.state.title} />
+        <Price originalPrice={this.state.defaultOriginalPrice} salePrice={this.state.defaultSalePrice}/>
         <ProductOverview slogan={this.state.slogan} desciprtion={this.state.desciprtion} />
         <ProductFeatures features={this.state.features} />
         <AddToCart />
