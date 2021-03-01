@@ -5,6 +5,7 @@ import API from '../../../../config';
 import Category from './Category/Category.jsx';
 import ProductTitle from './ProductTitle/ProductTitle.jsx';
 import ProductOverview from './ProductOverview/ProductOverview.jsx';
+import ProductFeatures from './ProductFeatures/ProductFeatures.jsx';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -13,9 +14,15 @@ class Overview extends React.Component {
       title: '',
       category: '',
       slogan: '',
-      desciprtion: ''
+      desciprtion: '',
+      features: ['features'],
     };
     this.getProductInfo = this.getProductInfo.bind(this);
+  }
+
+
+  componentDidMount() {
+    this.getProductInfo();
   }
 
   getProductInfo() {
@@ -27,14 +34,11 @@ class Overview extends React.Component {
         title: data.data.name,
         category: data.data.category,
         slogan: data.data.slogan,
-        desciprtion: data.data.description
+        desciprtion: data.data.description,
+        features: data.data.features,
       });
     })
       .catch((err) => console.log('Err', err));
-  }
-
-  componentDidMount() {
-    this.getProductInfo();
   }
 
   render() {
@@ -42,7 +46,8 @@ class Overview extends React.Component {
       <div>
         <Category category={this.state.category} />
         <ProductTitle title={this.state.title} />
-        <ProductOverview slogan={this.state.slogan} desciprtion={this.state.desciprtion}/>
+        <ProductOverview slogan={this.state.slogan} desciprtion={this.state.desciprtion} />
+        <ProductFeatures features={this.state.features} />
         <h1 className={styles.title}>Overview </h1>
       </div>
     );
