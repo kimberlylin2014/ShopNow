@@ -24,7 +24,6 @@ class StyleSelector extends React.Component {
         photos={style.photos}
         name={style.name}
         styleId={style.style_id}
-        key={Math.random() * style.style_id}
         changeStyle={this.changeStyle}
       />
     ));

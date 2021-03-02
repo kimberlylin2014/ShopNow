@@ -11,6 +11,7 @@ import Price from './Price/Price.jsx';
 import Rating from './Rating/Rating.jsx';
 import DefaultImages from './DefaultImages/DefaultImages.jsx';
 import StyleSelector from './StyleSelector/StyleSelector.jsx';
+import Share from './Share/Share.jsx';
 
 class Overview extends React.Component {
   constructor() {
@@ -164,6 +165,7 @@ class Overview extends React.Component {
         </div>
         <div className={Styles.rowcontainer}>
           <ProductOverview slogan={this.state.slogan} desciprtion={this.state.description} />
+          <Share />
           <ProductFeatures features={this.state.features} />
         </div>
       </div>

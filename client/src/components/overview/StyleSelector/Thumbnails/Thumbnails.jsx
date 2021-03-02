@@ -9,7 +9,7 @@ const Thumbnails = ({ photos, name, styleId, changeStyle}) => {
       url={thumbnail.thumbnail_url}
       alt={name}
       styleId={styleId}
-      key={Math.random() * styleId}
+      key={thumbnail.thumbnail_url}
       changeStyle={changeStyle}
     />
   ));

@@ -5,10 +5,16 @@ import Styles from './Thumbnail.css';
 class Thumbnail extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isToggleOn: false,
+    };
     this.onClick = this.onClick.bind(this);
   }
 
   onClick(e) {
+    this.setState({
+      isToggleOn:!this.state.isToggleOn,
+    });
     this.props.changeStyle(e.target.alt);
   }
 
@@ -19,7 +25,6 @@ class Thumbnail extends React.Component {
         className={Styles.thumbnail}
         alt={this.props.alt}
         styleId={this.props.styleId}
-        key={Math.random() * this.props.styleId}
         onClick={this.onClick}
       />
     );
