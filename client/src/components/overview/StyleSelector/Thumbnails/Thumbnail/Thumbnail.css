@@ -1,0 +1,10 @@
+.thumbnail {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 10px;
+}
+
+#selected {
+  border-color: aqua;
+}
