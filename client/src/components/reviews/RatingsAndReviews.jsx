@@ -4,7 +4,8 @@ import styles from './RatingsAndReviews.css';
 import ContainerBreakdown from './components/containerBreakdown/containerBreakdown.jsx';
 import ContainerList from './components/containerList/containerList.jsx';
 
-const mockData = [
+// ROUTE TO GET THIS DATE: https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews?product_id=14931&count=5&sort='relevance'
+const mockReviewsData = [
   {
     review_id: 147688,
     rating: 2,
@@ -32,12 +33,48 @@ const mockData = [
   },
 ];
 
+// CLIENT ROUTE: https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews/meta?product_id=14931
+const mockMetaReview = {
+  product_id: '14931',
+  ratings: {
+    1: '5',
+    2: '8',
+    3: '15',
+    4: '8',
+    5: '3',
+  },
+  recommended: {
+    false: '5',
+    true: '34',
+  },
+  characteristics: {
+    Fit: {
+      id: 50013,
+      value: '2.9354838709677419',
+    },
+    Length: {
+      id: 50014,
+      value: '3.1612903225806452',
+    },
+    Comfort: {
+      id: 50015,
+      value: '3.0967741935483871',
+    },
+    Quality: {
+      id: 50016,
+      value: '3.0967741935483871',
+    },
+  },
+};
+
+const productID = '14931';
+
 const RatingsAndReviews = () => (
   <div className={styles.ratingsAndReviews}>
     <h4>Ratings & Reviews</h4>
     <div className={styles.moduleColumns}>
       <ContainerBreakdown />
-      <ContainerList reviews={mockData} />
+      <ContainerList reviews={mockReviewsData} productID={productID} metaReview={mockMetaReview}/>
     </div>
   </div>
 );
