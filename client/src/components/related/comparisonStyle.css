@@ -1,0 +1,41 @@
+.background {
+  position: fixed;
+	z-index: 3;
+	background-color: rgba(0, 0, 0, 0.5);
+	top: 0%;
+	left: 0%;
+	width: 100vw;
+	height: 100vh;
+}
+
+.modal {
+  position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 50%;
+  height: 50%;
+	margin: 2.5%;
+  background-color: white;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.heading div {
+  margin: 0 60px;
+}
+
+.table {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  overflow: scroll;
+}

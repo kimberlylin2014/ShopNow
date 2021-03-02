@@ -19,7 +19,7 @@ class Card extends React.Component {
   }
 
   onCloseClick(product) {
-    this.props.removeOutfitItem(product);
+    this.props.removeFromOutfit(product);
   }
 
   render() {

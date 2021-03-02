@@ -1,30 +1,42 @@
 import React from 'react';
+import styles from './comparisonStyle.css';
+import PropTypes from 'prop-types';
 
 class Comparison extends React.Component {
   constructor() {
     super();
   }
 
-  /*
-  loadFeatures(product) {
-    let features = [];
-    axios.get(`/api/products/${product.id}`)
-    .then((resp) => {
-      console.log('resp: ', resp);
-      features = resp.data.features;
-    })
-    .catch((err) => console.log(err));
-    return Object.assign(product, features);
-  }
-  */
-
   closeModal() {
-    // calls toggleModal in relatedItems to turn off modal
+    this.props.toggleModal();
   }
 
   render() {
-    return <div>Modal!</div>;
+    const { current, selected } = this.props;
+    console.log(current.features);
+    console.log(selected.features);
+    // create array of features that includes all from current + all from selected
+    // include indication of which have feature
+    return (
+      <div className={styles.background} onClick={() => this.closeModal()}>
+        <div className={styles.modal}>
+          <div className={styles.heading}>
+            <div>{current.name}</div>
+            <div>{selected.name}</div>
+          </div>
+          <div className={styles.table}>
+            {/* <div>{current.features}</div>
+            <div>{selected.features}</div> */}
+          </div>
+        </div>
+      </div>
+    );
   }
 }
+
+Comparison.propTypes = {
+  current: PropTypes.isRequired,
+  selected: PropTypes.isRequired,
+};
 
 export default Comparison;
