@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Styles from './style.css';
-import API from '../../../../config';
+// import API from '../../../../config';
 import Category from './Category/Category.jsx';
 import ProductTitle from './ProductTitle/ProductTitle.jsx';
 import ProductOverview from './ProductOverview/ProductOverview.jsx';
@@ -13,13 +13,13 @@ import DefaultImages from './DefaultImages/DefaultImages.jsx';
 import StyleSelector from './StyleSelector/StyleSelector.jsx';
 
 class Overview extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       title: '',
       category: '',
       slogan: '',
-      desciprtion: '',
+      description: '',
       features: ['features'],
       styles: [],
       styleId: '',
@@ -47,15 +47,13 @@ class Overview extends React.Component {
   }
 
   getProductInfo() {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/14932', {
-      headers:
-        { Authorization: `${API}` },
+    axios.get('/api/products/14932', {
     }).then((data) => {
       this.setState({
         title: data.data.name,
         category: data.data.category,
         slogan: data.data.slogan,
-        desciprtion: data.data.description,
+        description: data.data.description,
         features: data.data.features,
       });
     })
@@ -63,10 +61,7 @@ class Overview extends React.Component {
   }
 
   getProductStyles() {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/14932/styles', {
-      headers:
-        { Authorization: `${API}` },
-    }).then((data) => {
+    axios.get('api/products/14932/styles').then((data) => {
       this.setState({
         styles: data.data.results,
       });
@@ -76,10 +71,7 @@ class Overview extends React.Component {
   }
 
   getReviewCount() {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews/?page=1&count=5&sort=newest&product_id=14932', {
-      headers:
-        { Authorization: `${API}` },
-    }).then((data) => {
+    axios.get('api/reviews/?page=1&count=5&sort=newest&product_id=14932').then((data) => {
       this.setState({
         numReviews: data.data.count,
       });
@@ -88,10 +80,7 @@ class Overview extends React.Component {
   }
 
   getAverageRating() {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews/meta?product_id=14932', {
-      headers:
-        { Authorization: `${API}` },
-    }).then((data) => {
+    axios.get('/api/reviews/meta/14932').then((data) => {
       let sumRating = 0;
       let count = 0;
       for (const keys in data.data.ratings) {
@@ -163,7 +152,7 @@ class Overview extends React.Component {
           <div className={Styles.colcontainer}>
             <div className={hideRating}>
               {' '}
-              <Rating reviewCount={this.state.numReviews} avgRating={this.state.avgRating}/>
+              <Rating reviewCount={this.state.numReviews} avgRating={this.state.avgRating} />
               {' '}
             </div>
             <Category category={this.state.category} />
@@ -174,7 +163,7 @@ class Overview extends React.Component {
           </div>
         </div>
         <div className={Styles.rowcontainer}>
-          <ProductOverview slogan={this.state.slogan} desciprtion={this.state.desciprtion} />
+          <ProductOverview slogan={this.state.slogan} desciprtion={this.state.description} />
           <ProductFeatures features={this.state.features} />
         </div>
       </div>
