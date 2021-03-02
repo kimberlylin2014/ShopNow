@@ -1,4 +1,7 @@
 .ratingBreakdown {
   display: flex;
-  justify-content: space-evenly;
+}
+
+.starNum {
+  margin-right: 20px;
 }

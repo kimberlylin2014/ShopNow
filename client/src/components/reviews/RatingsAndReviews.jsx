@@ -96,7 +96,7 @@ const RatingsAndReviews = () => (
   <div className={styles.ratingsAndReviews}>
     <h4>Ratings & Reviews</h4>
     <div className={styles.moduleColumns}>
-      <ContainerBreakdown />
+      <ContainerBreakdown metaReview={mockMetaReview} />
       <ContainerList
         reviews={mockReviewsData}
         productID={productID}
