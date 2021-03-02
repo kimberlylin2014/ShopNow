@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Thumbnails from './Thumbnails/Thumbnails.jsx';
+import Styles from './StyleSelector.css';
 
 class StyleSelector extends React.Component {
   constructor(props) {
@@ -33,7 +34,9 @@ class StyleSelector extends React.Component {
           Current Style:
           {this.state.currentStyle}
         </p>
-        {displayThumbnails}
+        <div className={Styles.thumbnails}>
+          {displayThumbnails}
+        </div>
       </div>
     );
   }

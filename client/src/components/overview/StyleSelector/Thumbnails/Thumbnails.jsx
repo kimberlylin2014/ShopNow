@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Thumbnail from './Thumbnail/Thumbnail.jsx';
+import Styles from './Thumbnails.css';
 
 const Thumbnails = ({ photos, name, styleId, changeStyle}) => {
   const displayThumbnail = photos.map((thumbnail) => (

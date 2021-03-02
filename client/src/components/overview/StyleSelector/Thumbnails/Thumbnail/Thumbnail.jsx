@@ -5,11 +5,11 @@ import Styles from './Thumbnail.css';
 class Thumbnail extends React.Component {
   constructor(props) {
     super(props);
-    this.onClick= this.onClick.bind(this);
+    this.onClick = this.onClick.bind(this);
   }
 
   onClick(e) {
-    this.props.changeStyle(e.target['alt']);
+    this.props.changeStyle(e.target.alt);
   }
 
   render() {
