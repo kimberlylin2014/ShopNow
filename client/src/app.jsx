@@ -9,10 +9,11 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product_id: 14931,
+      product_id: 14807,
       averageRating: 0
-    }
+    };
   }
+
   componentDidMount() {
     // figure out how to get product id from url
     const queryString = window.location.search;
@@ -29,10 +30,11 @@ class App extends React.Component {
   // loadAverageRating
 
   render() {
+    const { product_id } = this.state;
     return (
       <div>
         <Overview />
-        <Related productID={ this.state.product_id } />
+        <Related productID={product_id} />
         <Reviews />
       </div>
 

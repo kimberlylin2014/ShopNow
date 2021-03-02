@@ -87,7 +87,6 @@ class Related extends React.Component {
             <Card product={product} />
           ))}
         </div>
-
         <div className={styles.heading}>YOUR OUTFIT</div>
         <div className={styles.outfitSection}>
           <Card product={null} />
@@ -95,7 +94,6 @@ class Related extends React.Component {
             <Card product={product} />
           ))}
         </div>
-
       </div>
     );
   }
