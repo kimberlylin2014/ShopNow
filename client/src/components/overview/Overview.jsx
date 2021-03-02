@@ -27,10 +27,12 @@ class Overview extends React.Component {
       salePrice: '',
       photos: [],
       numReviews: 0,
+      avgRating: 0,
     };
     this.getProductInfo = this.getProductInfo.bind(this);
     this.getProductStyles = this.getProductStyles.bind(this);
     this.getReviewCount = this.getReviewCount.bind(this);
+    this.getAverageRating = this.getAverageRating.bind(this);
     this.defaultStyle = this.defaultStyle.bind(this);
     this.getPrice = this.getPrice.bind(this);
     this.getPhotos = this.getPhotos.bind(this);
@@ -41,6 +43,7 @@ class Overview extends React.Component {
     this.getProductInfo();
     this.getProductStyles();
     this.getReviewCount();
+    this.getAverageRating();
   }
 
   getProductInfo() {
@@ -79,6 +82,24 @@ class Overview extends React.Component {
     }).then((data) => {
       this.setState({
         numReviews: data.data.count,
+      });
+    })
+      .catch((err) => console.log('Err', err));
+  }
+
+  getAverageRating() {
+    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews/meta?product_id=14932', {
+      headers:
+        { Authorization: `${API}` },
+    }).then((data) => {
+      let sumRating = 0;
+      let count = 0;
+      for (const keys in data.data.ratings) {
+        sumRating += (data.data.ratings[keys] * keys);
+        count += Number(data.data.ratings[keys]);
+      }
+      this.setState({
+        avgRating: (sumRating / count),
       });
     })
       .catch((err) => console.log('Err', err));
@@ -140,7 +161,11 @@ class Overview extends React.Component {
         <div className={Styles.rowcontainer}>
           <DefaultImages photos={this.state.photos} alt={this.state.title} />
           <div className={Styles.colcontainer}>
-            <div className={hideRating}> <Rating reviewCount={this.state.numReviews} /> </div>
+            <div className={hideRating}>
+              {' '}
+              <Rating reviewCount={this.state.numReviews} avgRating={this.state.avgRating}/>
+              {' '}
+            </div>
             <Category category={this.state.category} />
             <ProductTitle title={this.state.title} />
             <Price originalPrice={this.state.originalPrice} salePrice={this.state.salePrice} />
