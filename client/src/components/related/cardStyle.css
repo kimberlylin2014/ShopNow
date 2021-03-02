@@ -12,12 +12,12 @@
 }
 
 .image {
-  max-width: 100%;
-  max-height: auto;
+  object-fit: cover;
+  height: 200px;
+  width: 175px;
 }
 
 .cardBottom {
   grid-row: 2 / 3;
-  background-color: lightgrey;
 }
 

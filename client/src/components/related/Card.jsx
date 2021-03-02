@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import styles from './cardStyle.css';
 
 class Card extends React.Component {
-
   // onCardClick() {
   //   // call function in App component to load product detail page for selected product
   // }
@@ -23,25 +22,27 @@ class Card extends React.Component {
   // }
 
   render() {
-    const { category, name, type, price } = this.props;
-    if (type === 'add') {
+    const { product } = this.props;
+    if (product === null) {
       return (
         <div className={styles.card}>Add to Outfit</div>
       );
     }
+    console.log(product);
     return (
       <div className={styles.card}>
         <div className={styles.cardTop}>
-          {/* <img
-            alt={this.props.product.name}
-            src={this.props.product.thumbnailURLs[0]}
-            className={styles.image} /> */}
-          <div className={styles.icon}>*</div>
+          <img
+            className={styles.image}
+            alt={product.name}
+            src={product.styles[0].photos[0].url}
+          />
+          {/* <div className={styles.icon}>*</div> */}
         </div>
         <div className={styles.cardBottom}>
-          <div className={styles.category}>{category}</div>
-          <div className={styles.name}>{name}</div>
-          <div className={styles.price}>{price}</div>
+          <div className={styles.category}>{product.category}</div>
+          <div className={styles.name}>{product.name}</div>
+          <div className={styles.price}>{product.price}</div>
         </div>
       </div>
     );
@@ -49,21 +50,7 @@ class Card extends React.Component {
 }
 
 Card.propTypes = {
-  category: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
+  product: PropTypes.isRequired,
 };
 
 export default Card;
-
-/*
-<Card
-              key={product.id}
-              className={styles.relatedCard}
-              type="related"
-              category={product.category}
-              name={product.name}
-              price={product.price}
-            />
-*/

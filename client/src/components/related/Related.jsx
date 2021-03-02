@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable indent */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable class-methods-use-this */
@@ -27,20 +28,19 @@ class Related extends React.Component {
     const { productID } = this.props;
     this.setState({ currentProduct: this.loadProduct(productID) });
     this.loadRelatedItems(productID);
-    // this.loadFeatures();
-    // this.loadRatings();
   }
 
   loadProduct(productID) {
+    let product;
     return axios.get(`/api/products/${productID}`)
-    .then((resp) => {
-      const product = {};
-      product.id = resp.data.id;
-      product.name = resp.data.name;
-      product.category = resp.data.category;
-      product.price = resp.data.default_price;
-      product.features = resp.data.features;
-      return product;
+    .then((resp) => resp.data)
+    .then((data) => {
+      product = data;
+      return axios.get(`api/products/${productID}/styles`)
+      .then((styleResp) => {
+        product.styles = styleResp.data.results;
+        return product;
+      });
     })
     .catch((err) => console.log(err));
   }
@@ -50,18 +50,9 @@ class Related extends React.Component {
     .then((resp) => resp.data)
     .then((array) => Promise.all(array.map((itemID) => this.loadProduct(itemID))))
     .then((relatedItems) => {
-      console.log('related:', relatedItems);
-      this.setState({ relatedItems })
+      this.setState({ relatedItems });
     })
     .catch((err) => console.log(err));
-  }
-
-  loadRelatedFeatures() {
-
-  }
-
-  loadFeatures() {
-
   }
 
   loadOutfitItem(item) {
@@ -87,39 +78,21 @@ class Related extends React.Component {
   }
 
   render() {
-    //console.log(this.state.currentProduct);
-    console.log('state:', this.state.relatedItems);
     const { relatedItems, outfitItems } = this.state;
     return (
       <div className={styles.component}>
         <div className={styles.heading}>RELATED PRODUCTS</div>
         <div className={styles.relatedSection}>
-          {console.log('just before map: ', relatedItems)}
-          {relatedItems.map((product) => {
-            {console.log('inside render:', product)}
-            return (<Card
-              key={product.id}
-              category={product.category}
-              name={product.name}
-              price={product.price}
-            />
-          );
-        }
-        )}
+          {relatedItems.map((product) => (
+            <Card product={product} />
+          ))}
         </div>
 
         <div className={styles.heading}>YOUR OUTFIT</div>
         <div className={styles.outfitSection}>
-          <Card key="0" className={styles.addCard} type="add" />
+          <Card product={null} />
           {outfitItems.map((product) => (
-            <Card
-              key={product.id}
-              className={styles.outfitCard}
-              type="outfit"
-              category={product.category}
-              name={product.name}
-              removeOutfitItem={this.removeOutfitItem}
-            />
+            <Card product={product} />
           ))}
         </div>
 
@@ -133,5 +106,3 @@ Related.propTypes = {
 };
 
 export default Related;
-
-//className={styles.relatedCard}
