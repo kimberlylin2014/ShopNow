@@ -35,7 +35,7 @@ class ContainerList extends React.Component {
 
   render() {
     const { displayPostReviewForm } = this.state;
-    const { productID, metaReview, productInfo, reviews } = this.props;
+    const { productID, metaReview, productInfo, reviews, addReview } = this.props;
     return (
       <div className={styles.containerList}>
         <SortBy />
@@ -47,6 +47,7 @@ class ContainerList extends React.Component {
             productID={productID}
             metaReview={metaReview}
             productInfo={productInfo}
+            addReview={addReview}
           />
         ) : null}
       </div>

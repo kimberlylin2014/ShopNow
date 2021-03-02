@@ -28,6 +28,7 @@ class FormPostReview extends React.Component {
       email: '',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   handleInputChange(e) {
@@ -47,6 +48,11 @@ class FormPostReview extends React.Component {
     }
   }
 
+  handleFormSubmit() {
+    const { addReview } = this.props;
+    addReview(this.state);
+  }
+
   render() {
     const {
       summary, body, name, email, rating,
@@ -62,7 +68,7 @@ class FormPostReview extends React.Component {
         <h4>
           Write Your Review about {productInfo.name}
         </h4>
-        <form>
+        <form onSumbit={this.handleFormSubmit}>
           <CharacteristicInputs
             characteristics={characteristics}
             handleInputChange={this.handleInputChange}

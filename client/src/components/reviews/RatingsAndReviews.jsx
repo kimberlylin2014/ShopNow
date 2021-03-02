@@ -92,19 +92,54 @@ const productInfo = {
 
 const productID = '14931';
 
-const RatingsAndReviews = () => (
-  <div className={styles.ratingsAndReviews}>
-    <h4>Ratings & Reviews</h4>
-    <div className={styles.moduleColumns}>
-      <ContainerBreakdown metaReview={mockMetaReview} />
-      <ContainerList
-        reviews={mockReviewsData}
-        productID={productID}
-        metaReview={mockMetaReview}
-        productInfo={productInfo}
-      />
+class RatingsAndReviews extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      reviews: mockReviewsData,
+    };
+    this.addReview = this.addReview.bind(this);
+  }
+
+  addReview(review) {
+    console.log(review);
+    this.setState({
+      reviews: [...this.state.mockReviewsData, review]
+    })
+  }
+
+  render() {
+    return (
+      <div className={styles.ratingsAndReviews}>
+      <h4>Ratings & Reviews</h4>
+      <div className={styles.moduleColumns}>
+        <ContainerBreakdown metaReview={mockMetaReview} />
+        <ContainerList
+          reviews={mockReviewsData}
+          productID={productID}
+          metaReview={mockMetaReview}
+          productInfo={productInfo}
+          addReview={this.addReview}
+        />
+      </div>
     </div>
-  </div>
-);
+    )
+  }
+} ;
+
+// const RatingsAndReviews = () => (
+//   <div className={styles.ratingsAndReviews}>
+//     <h4>Ratings & Reviews</h4>
+//     <div className={styles.moduleColumns}>
+//       <ContainerBreakdown metaReview={mockMetaReview} />
+//       <ContainerList
+//         reviews={mockReviewsData}
+//         productID={productID}
+//         metaReview={mockMetaReview}
+//         productInfo={productInfo}
+//       />
+//     </div>
+//   </div>
+// );
 
 export default RatingsAndReviews;
