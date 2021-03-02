@@ -22,11 +22,14 @@ class Related extends React.Component {
       showModal: false,
       selectedProduct: {},
     };
+    this.addToOutfit = this.addToOutfit.bind(this);
+    this.removeOutfitItem = this.removeOutfitItem.bind(this);
   }
 
   componentDidMount() {
     const { productID } = this.props;
-    this.setState({ currentProduct: this.loadProduct(productID) });
+    this.loadProduct(productID)
+    .then((currentProduct) => this.setState({ currentProduct }));
     this.loadRelatedItems(productID);
   }
 
@@ -55,9 +58,9 @@ class Related extends React.Component {
     .catch((err) => console.log(err));
   }
 
-  loadOutfitItem(item) {
+  addToOutfit() {
     const { outfitItems } = this.state;
-    outfitItems.push(item);
+    outfitItems.push(this.state.currentProduct);
     this.setState({ outfitItems });
   }
 
@@ -84,14 +87,14 @@ class Related extends React.Component {
         <div className={styles.heading}>RELATED PRODUCTS</div>
         <div className={styles.relatedSection}>
           {relatedItems.map((product) => (
-            <Card product={product} />
+            <Card product={product} type="related" />
           ))}
         </div>
         <div className={styles.heading}>YOUR OUTFIT</div>
         <div className={styles.outfitSection}>
-          <Card product={null} />
+          <Card product={null} type="add" addToOutfit={this.addToOutfit} />
           {outfitItems.map((product) => (
-            <Card product={product} />
+            <Card product={product} type="outfit" removeOutfitItem={this.removeOutfitItem} />
           ))}
         </div>
       </div>

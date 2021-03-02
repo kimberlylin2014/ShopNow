@@ -10,23 +10,28 @@ class Card extends React.Component {
   // }
 
   onStarClick() {
-    // call toggleModal function in relatedItems and pass in selected product
-    console.log('open modal!');
+    const { product } = this.props;
+    this.props.toggleModal(product);
   }
 
-  // onAddClick() {
-  //   // call loadOutfitItem in relatedItems and pass in selected product
-  // }
+  onAddClick() {
+    this.props.addToOutfit();
+  }
 
-  // onCloseClick() {
-  //   // call removeOutfitItem in relatedItems and pass in selected product
-  // }
+  onCloseClick(product) {
+    this.props.removeOutfitItem(product);
+  }
 
   render() {
-    const { product } = this.props;
-    if (product === null) {
+    const { product, type } = this.props;
+    if (type === 'add') {
       return (
-        <div className={styles.card}>Add to Outfit</div>
+        <div className={styles.card}>
+          <div className={styles.addText}>Add to Outfit</div>
+          <div className={styles.addIcon} onClick={() => this.onAddClick()}>
+            <img src="https://www.flaticon.com/svg/vstatic/svg/992/992651.svg?token=exp=1614710642~hmac=55671093312b73aacfb2111113db6a36" alt="add" />
+          </div>
+        </div>
       );
     }
     return (
@@ -37,9 +42,17 @@ class Card extends React.Component {
             alt={product.name}
             src={product.styles[0].photos[0].url}
           />
-          <div className={styles.icon} onClick={this.onStarClick}>
-            <img src="https://img.icons8.com/fluent/48/000000/star.png" alt="star" />
-          </div>
+          { type === 'related'
+            ? (
+              <div className={styles.icon} onClick={() => this.onStarClick()}>
+                <img src="https://img.icons8.com/fluent/48/000000/star.png" alt="star" />
+              </div>
+            )
+            : (
+              <div className={styles.icon} onClick={() => this.onCloseClick(product)}>
+                <img src="https://www.flaticon.com/svg/vstatic/svg/1617/1617543.svg?token=exp=1614712431~hmac=0639bb3bb043dc3b9fadf08dcd69ab0d" alt="close" />
+              </div>
+            )}
         </div>
         <div className={styles.cardBottom}>
           <div className={styles.category}>{product.category}</div>
@@ -53,6 +66,7 @@ class Card extends React.Component {
 
 Card.propTypes = {
   product: PropTypes.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default Card;
