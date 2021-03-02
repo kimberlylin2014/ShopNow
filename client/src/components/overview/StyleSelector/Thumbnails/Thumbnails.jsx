@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import Thumbnail from './Thumbnail/Thumbnail.jsx';
 import Styles from './Thumbnails.css';
 
-const Thumbnails = ({ photos, name, styleId, changeStyle}) => {
+const Thumbnails = ({ photos, name, styleId, changeStyle, selected}) => {
   const displayThumbnail = photos.map((thumbnail) => (
     <Thumbnail
+      currSelected = {selected}
       url={thumbnail.thumbnail_url}
       alt={name}
       styleId={styleId}

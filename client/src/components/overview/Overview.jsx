@@ -165,9 +165,9 @@ class Overview extends React.Component {
         </div>
         <div className={Styles.rowcontainer}>
           <ProductOverview slogan={this.state.slogan} desciprtion={this.state.description} />
-          <Share />
           <ProductFeatures features={this.state.features} />
         </div>
+        <Share />
       </div>
     );
   }

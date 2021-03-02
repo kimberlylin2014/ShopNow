@@ -12,8 +12,8 @@ const Share = ({ product_id }) => (
   </div>
 );
 
-Share.propTypes = {
-  product_id: PropTypes.string.isRequired,
-};
+// Share.propTypes = {
+//   product_id: PropTypes.string.isRequired,
+// };
 
 export default Share;

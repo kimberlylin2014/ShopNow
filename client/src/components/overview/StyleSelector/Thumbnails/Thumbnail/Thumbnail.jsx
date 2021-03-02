@@ -22,7 +22,7 @@ class Thumbnail extends React.Component {
     return (
       <img
         src={this.props.url}
-        className={Styles.thumbnail}
+        className={this.props.currSelected === this.props.alt ? Styles.selected : Styles.thumbnail}
         alt={this.props.alt}
         styleId={this.props.styleId}
         onClick={this.onClick}
