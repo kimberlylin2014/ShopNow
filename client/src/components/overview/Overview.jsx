@@ -9,6 +9,7 @@ import ProductFeatures from './ProductFeatures/ProductFeatures.jsx';
 import AddToCart from './AddToCart/AddToCart.jsx';
 import Price from './Price/Price.jsx';
 import DefaultImages from './DefaultImages/DefaultImages.jsx';
+import StyleSelector from './StyleSelector/StyleSelector.jsx';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -30,6 +31,7 @@ class Overview extends React.Component {
     this.defaultStyle = this.defaultStyle.bind(this);
     this.getPrice = this.getPrice.bind(this);
     this.getPhotos = this.getPhotos.bind(this);
+    this.updateStyleId = this.updateStyleId.bind(this);
   }
 
   componentDidMount() {
@@ -38,7 +40,7 @@ class Overview extends React.Component {
   }
 
   getProductInfo() {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/14931', {
+    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/14932', {
       headers:
         { Authorization: `${API}` },
     }).then((data) => {
@@ -54,7 +56,7 @@ class Overview extends React.Component {
   }
 
   getProductStyles() {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/14931/styles', {
+    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/14932/styles', {
       headers:
         { Authorization: `${API}` },
     }).then((data) => {
@@ -99,8 +101,23 @@ class Overview extends React.Component {
     }
   }
 
+  updateStyleId(id) {
+    this.setState({
+      styleId: id,
+    });
+  }
 
   render() {
+    let selector = <div />;
+    if (this.state.styles.length > 0) {
+      selector = (
+        <StyleSelector
+          styles={this.state.styles}
+          updateStyleId={this.updateStyleId}
+        />
+      );
+    }
+
     return (
       <div>
         <Category category={this.state.category} />
@@ -109,6 +126,7 @@ class Overview extends React.Component {
         <DefaultImages photos={this.state.photos} alt={this.state.title} />
         <ProductOverview slogan={this.state.slogan} desciprtion={this.state.desciprtion} />
         <ProductFeatures features={this.state.features} />
+        {selector}
         <AddToCart />
         <h1 className={styles.title}>Overview </h1>
       </div>
