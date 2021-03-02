@@ -59,9 +59,9 @@ class FormPostReview extends React.Component {
 
     return (
       <div className={styles.formPostReview}>
-        <h3>
+        <h4>
           Write Your Review about {productInfo.name}
-        </h3>
+        </h4>
         <form>
           <CharacteristicInputs
             characteristics={characteristics}
