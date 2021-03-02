@@ -5,17 +5,12 @@ import Styles from './Thumbnail.css';
 class Thumbnail extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isToggleOn: false,
-    };
     this.onClick = this.onClick.bind(this);
   }
 
-  onClick(e) {
-    this.setState({
-      isToggleOn:!this.state.isToggleOn,
-    });
-    this.props.changeStyle(e.target.alt);
+  onClick() {
+    this.props.changeStyle(this.props.alt);
+    this.props.updateStyleId(this.props.stylenum, this.props.index);
   }
 
   render() {
@@ -24,7 +19,6 @@ class Thumbnail extends React.Component {
         src={this.props.url}
         className={this.props.currSelected === this.props.alt ? Styles.selected : Styles.thumbnail}
         alt={this.props.alt}
-        styleId={this.props.styleId}
         onClick={this.onClick}
       />
     );

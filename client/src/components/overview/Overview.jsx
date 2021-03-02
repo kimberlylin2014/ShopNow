@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import Styles from './style.css';
-// import API from '../../../../config';
 import Category from './Category/Category.jsx';
 import ProductTitle from './ProductTitle/ProductTitle.jsx';
 import ProductOverview from './ProductOverview/ProductOverview.jsx';
@@ -17,13 +16,14 @@ class Overview extends React.Component {
   constructor() {
     super();
     this.state = {
+      styleId: '',
+      styleIndex: '',
       title: '',
       category: '',
       slogan: '',
       description: '',
       features: ['features'],
       styles: [],
-      styleId: '',
       originalPrice: '',
       salePrice: '',
       photos: [],
@@ -95,31 +95,24 @@ class Overview extends React.Component {
       .catch((err) => console.log('Err', err));
   }
 
-  getPrice(styleId) {
-    for (let i = 0; i < this.state.styles.length; i++) {
-      if (this.state.styles[i].style_id === styleId) {
-        this.setState({
-          originalPrice: this.state.styles[i].original_price,
-          salePrice: this.state.styles[i].sale_price,
-        });
-      }
-    }
+  getPrice() {
+    this.setState({
+      originalPrice: this.state.styles[this.state.styleIndex].original_price,
+      salePrice: this.state.styles[this.state.styleIndex].sale_price,
+    });
   }
 
-  getPhotos(styleId) {
-    for (let i = 0; i < this.state.styles.length; i++) {
-      if (this.state.styles[i].style_id === styleId) {
-        this.setState({
-          photos: this.state.styles[i].photos,
-        });
-      }
-    }
+  getPhotos() {
+    this.setState({
+      photos: this.state.styles[this.state.styleIndex].photos,
+    });
   }
 
   defaultStyle() {
     for (let i = 0; i < this.state.styles.length; i++) {
       if (this.state.styles[i]['default?']) {
         this.setState({
+          styleIndex: i,
           styleId: this.state.styles[i].style_id,
         });
         this.getPrice(this.state.styleId);
@@ -128,9 +121,16 @@ class Overview extends React.Component {
     }
   }
 
-  updateStyleId(id) {
-    this.setState({
-      styleId: id,
+  updateStyleId(id, index) {
+    let promise = new Promise((resolve) => {
+      this.setState({
+        styleId: id,
+        styleIndex: index,
+      });
+      resolve();
+    }).then(() => {
+      this.getPrice();
+      this.getPhotos();
     });
   }
 
