@@ -7,13 +7,13 @@ import MoreReviewsButton from '../moreReviewsButton/moreReviewsButton.jsx';
 import AddReviewButton from '../addReviewButton/addReviewButton.jsx';
 import FormPostReview from '../formPostReview/formPostReview.jsx';
 
-const ContainerList = ({ reviews, metaReview, productID }) => (
+const ContainerList = ({ reviews, metaReview, productID, productInfo}) => (
   <div className={styles.containerList}>
     <SortBy />
     <ReviewsList reviews={reviews} />
     <MoreReviewsButton />
     <AddReviewButton />
-    <FormPostReview productID={productID} metaReview={metaReview} />
+    <FormPostReview productID={productID} metaReview={metaReview} productInfo={productInfo} />
   </div>
 );
 

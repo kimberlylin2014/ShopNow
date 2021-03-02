@@ -1,10 +1,11 @@
 import React from 'react';
 import styles from './formInput.css';
 
-const FormInput = ({htmlFor, type, name, handleInputChange, value, label}) => (
-  <label htmlFor={htmlFor} >
+const FormInput = ({htmlFor, type, name, handleInputChange, value, label, placeholder='...'}) => (
+  <label htmlFor={htmlFor}>
     {label}
     <input
+      placeholder={placeholder}
       className={type === 'text' ? styles.textInput : ''}
       type={type}
       id={htmlFor}
@@ -12,7 +13,6 @@ const FormInput = ({htmlFor, type, name, handleInputChange, value, label}) => (
       onChange={handleInputChange}
       value={value}
     />
-
   </label>
 )
 

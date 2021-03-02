@@ -53,17 +53,24 @@ class FormPostReview extends React.Component {
     } = this.state;
 
     const {
-      metaReview : { characteristics }
+      metaReview: { characteristics },
+      productInfo,
     } = this.props;
 
     return (
-      <div>
-        <h3>Write Your Review about [Product Name ]</h3>
+      <div className={styles.formPostReview}>
+        <h3>
+          Write Your Review about {productInfo.name}
+        </h3>
         <form>
-          <CharacteristicInputs characteristics={characteristics} handleInputChange={this.handleInputChange} />
-          <div>
+          <CharacteristicInputs
+            characteristics={characteristics}
+            handleInputChange={this.handleInputChange}
+          />
+          <div className={styles.formGroup}>
             Overall Rating
             <FormInput
+              placeholder="1-5"
               htmlFor="rating"
               type="number"
               name="rating"
@@ -71,7 +78,7 @@ class FormPostReview extends React.Component {
               handleInputChange={this.handleInputChange}
             />
           </div>
-          <div>
+          <div className={styles.formGroup}>
             Do you recommend this product?
             <FormInput
               htmlFor="yesRecommend"
@@ -90,8 +97,9 @@ class FormPostReview extends React.Component {
               label="No"
             />
           </div>
-          <div>
+          <div className={styles.formGroup}>
             <FormInput
+              placeholder="Best purchase ever!"
               htmlFor="summary"
               type="text"
               name="summary"
@@ -100,8 +108,9 @@ class FormPostReview extends React.Component {
               label="Summary"
             />
           </div>
-          <div>
+          <div className={styles.formGroup}>
             <FormTextArea
+              placeholder="Why do you like the product or not?"
               htmlFor="body"
               name="body"
               value={body}
@@ -109,8 +118,9 @@ class FormPostReview extends React.Component {
               label="Review Body"
             />
           </div>
-          <div>
+          <div className={styles.formGroup}>
             <FormInput
+              placeholder="jamie123"
               htmlFor="name"
               type="text"
               name="name"
@@ -119,8 +129,9 @@ class FormPostReview extends React.Component {
               label="Nickname"
             />
           </div>
-          <div>
+          <div className={styles.formGroup}>
             <FormInput
+              placeholder="jamie@gmail.com"
               htmlFor="email"
               type="text"
               name="email"

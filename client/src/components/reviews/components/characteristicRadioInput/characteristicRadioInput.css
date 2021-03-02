@@ -1,0 +1,11 @@
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 170px;
+}
+
+.labelSize {
+  text-align: center;
+  font-size: 12px;
+}
