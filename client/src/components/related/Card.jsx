@@ -6,21 +6,21 @@ import styles from './cardStyle.css';
 
 class Card extends React.Component {
 
-  onCardClick() {
-    // call function in App component to load product detail page for selected product
-  }
+  // onCardClick() {
+  //   // call function in App component to load product detail page for selected product
+  // }
 
-  onStarClick() {
-    // call toggleModal function in relatedItems and pass in selected product
-  }
+  // onStarClick() {
+  //   // call toggleModal function in relatedItems and pass in selected product
+  // }
 
-  onAddClick() {
-    // call loadOutfitItem in relatedItems and pass in selected product
-  }
+  // onAddClick() {
+  //   // call loadOutfitItem in relatedItems and pass in selected product
+  // }
 
-  onCloseClick() {
-    // call removeOutfitItem in relatedItems and pass in selected product
-  }
+  // onCloseClick() {
+  //   // call removeOutfitItem in relatedItems and pass in selected product
+  // }
 
   render() {
     const { category, name, type, price } = this.props;
@@ -49,15 +49,21 @@ class Card extends React.Component {
 }
 
 Card.propTypes = {
-  category: PropTypes.string,
-  name: PropTypes.string,
-  type: PropTypes.string,
-};
-
-Card.defaultProps = {
-  category: '',
-  name: '',
-  type: '',
+  category: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
 };
 
 export default Card;
+
+/*
+<Card
+              key={product.id}
+              className={styles.relatedCard}
+              type="related"
+              category={product.category}
+              name={product.name}
+              price={product.price}
+            />
+*/
