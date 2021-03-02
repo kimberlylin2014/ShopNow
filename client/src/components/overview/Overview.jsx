@@ -145,7 +145,6 @@ class Overview extends React.Component {
       );
     }
     const hideRating = !this.state.numReviews ? Styles.hidden : '';
-
     return (
       <div>
         <div className={Styles.rowcontainer}>
