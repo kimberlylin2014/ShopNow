@@ -33,6 +33,9 @@ class Related extends React.Component {
     this.loadProduct(productID)
     .then((currentProduct) => this.setState({ currentProduct }));
     this.loadRelatedItems(productID);
+    this.setState({
+      outfitItems: JSON.parse(localStorage.getItem('outfitItems') || '[]')
+    });
   }
 
   loadProduct(productID) {
@@ -61,19 +64,22 @@ class Related extends React.Component {
   }
 
   addToOutfit() {
-    const { outfitItems, currentProduct } = this.state;
+    const { currentProduct } = this.state;
+    const outfitItems = JSON.parse(localStorage.getItem('outfitItems') || '[]');
     if (!outfitItems.includes(currentProduct)) {
       outfitItems.push(currentProduct);
-      this.setState({ outfitItems });
     }
+    localStorage.setItem('outfitItems', JSON.stringify(outfitItems));
+    this.setState({ outfitItems });
   }
 
   removeFromOutfit(item) {
-    const { outfitItems } = this.state;
-    const index = outfitItems.indexOf(item);
+   const { outfitItems } = this.state;
+   const index = outfitItems.indexOf(item);
     if (index >= 0) {
       outfitItems.splice(index, 1);
       this.setState({ outfitItems });
+      localStorage.setItem('outfitItems', JSON.stringify(outfitItems));
     }
   }
 
