@@ -10,6 +10,7 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import Card from './Card.jsx';
+import Comparison from './Comparison.jsx';
 import styles from './relatedStyle.css';
 
 class Related extends React.Component {
@@ -22,11 +23,15 @@ class Related extends React.Component {
       showModal: false,
       selectedProduct: {},
     };
+    this.addToOutfit = this.addToOutfit.bind(this);
+    this.removeFromOutfit = this.removeFromOutfit.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   componentDidMount() {
     const { productID } = this.props;
-    this.setState({ currentProduct: this.loadProduct(productID) });
+    this.loadProduct(productID)
+    .then((currentProduct) => this.setState({ currentProduct }));
     this.loadRelatedItems(productID);
   }
 
@@ -55,17 +60,21 @@ class Related extends React.Component {
     .catch((err) => console.log(err));
   }
 
-  loadOutfitItem(item) {
-    const { outfitItems } = this.state;
-    outfitItems.push(item);
-    this.setState({ outfitItems });
+  addToOutfit() {
+    const { outfitItems, currentProduct } = this.state;
+    if (!outfitItems.includes(currentProduct)) {
+      outfitItems.push(currentProduct);
+      this.setState({ outfitItems });
+    }
   }
 
-  removeOutfitItem(item) {
+  removeFromOutfit(item) {
     const { outfitItems } = this.state;
     const index = outfitItems.indexOf(item);
-    outfitItems.splice(index, 1);
-    this.setState({ outfitItems });
+    if (index >= 0) {
+      outfitItems.splice(index, 1);
+      this.setState({ outfitItems });
+    }
   }
 
   toggleModal(selectedProduct) {
@@ -78,22 +87,36 @@ class Related extends React.Component {
   }
 
   render() {
-    const { relatedItems, outfitItems } = this.state;
+    const {
+      relatedItems,
+      outfitItems,
+      showModal,
+      currentProduct,
+      selectedProduct,
+    } = this.state;
     return (
       <div className={styles.component}>
         <div className={styles.heading}>RELATED PRODUCTS</div>
         <div className={styles.relatedSection}>
           {relatedItems.map((product) => (
-            <Card product={product} />
+            <Card product={product} type="related" toggleModal={this.toggleModal} />
           ))}
         </div>
         <div className={styles.heading}>YOUR OUTFIT</div>
         <div className={styles.outfitSection}>
-          <Card product={null} />
+          <Card product={null} type="add" addToOutfit={this.addToOutfit} />
           {outfitItems.map((product) => (
-            <Card product={product} />
+            <Card product={product} type="outfit" removeFromOutfit={this.removeFromOutfit} />
           ))}
         </div>
+        { showModal
+          ? (
+            <Comparison
+              current={currentProduct}
+              selected={selectedProduct}
+              toggleModal={this.toggleModal}
+            />
+          ) : null}
       </div>
     );
   }
