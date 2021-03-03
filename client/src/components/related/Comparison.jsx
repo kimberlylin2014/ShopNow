@@ -14,8 +14,6 @@ class Comparison extends React.Component {
 
   render() {
     const { current, selected } = this.props;
-    console.log(current.features);
-    console.log(selected.features);
     const features = {};
     for (let item of current.features) {
       let feat = item.feature;
@@ -35,7 +33,6 @@ class Comparison extends React.Component {
         }
       }
     }
-    console.log(features);
     // create array of features that includes all from current + all from selected
     // include indication of which have feature
     return (

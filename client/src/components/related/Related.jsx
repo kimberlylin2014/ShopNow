@@ -115,6 +115,7 @@ class Related extends React.Component {
       currentProduct,
       selectedProduct,
     } = this.state;
+    console.log(currentProduct);
     return (
       <div className={styles.component}>
         <div className={styles.heading}>RELATED PRODUCTS</div>
