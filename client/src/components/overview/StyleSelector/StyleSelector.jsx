@@ -6,39 +6,27 @@ import Styles from './StyleSelector.css';
 class StyleSelector extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      currentStyle: this.props.styles[0].name,
-    };
-    this.changeStyle = this.changeStyle.bind(this);
-  }
-
-  changeStyle(style) {
-    this.setState({
-      currentStyle: style,
-    });
   }
 
   render() {
     const displayThumbnails = this.props.styles.map((style) => (
       <Thumbnails
+        imageThumbnail = {this.props.imageThumbnail}
         index={this.props.styles.indexOf(style)}
-        selected={this.state.currentStyle}
+        selected={this.props.currentStyle}
         photos={style.photos}
         name={style.name}
         styleId={style.style_id}
-        changeStyle={this.changeStyle}
-        updateStyleId = {this.props.updateStyleId}
+        updateStyleId={this.props.updateStyleId}
       />
     ));
+
+    const isImageGallery = this.props.imageThumbnail ? Styles.imageGallery : Styles.thumbnails;
+
+
     return (
-      <div>
-        <p>
-          Current Style:
-          {this.state.currentStyle}
-        </p>
-        <div className={Styles.thumbnails}>
-          {displayThumbnails}
-        </div>
+      <div className={isImageGallery}>
+        {displayThumbnails}
       </div>
     );
   }

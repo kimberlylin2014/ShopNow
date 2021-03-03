@@ -18,6 +18,7 @@ class Overview extends React.Component {
     this.state = {
       product_id: 14802,
       styleId: '',
+      currentStyle: '',
       styleIndex: '',
       title: '',
       category: '',
@@ -115,6 +116,7 @@ class Overview extends React.Component {
         this.setState({
           styleIndex: i,
           styleId: this.state.styles[i].style_id,
+          currentStyle: this.state.styles[i].name,
         });
         this.getPrice(this.state.styleId);
         this.getPhotos(this.state.styleId);
@@ -123,7 +125,7 @@ class Overview extends React.Component {
   }
 
   updateStyleId(id, index) {
-    let promise = new Promise((resolve) => {
+    const promise = new Promise((resolve) => {
       this.setState({
         styleId: id,
         styleIndex: index,
@@ -132,24 +134,26 @@ class Overview extends React.Component {
     }).then(() => {
       this.getPrice();
       this.getPhotos();
+      this.setState({
+        currentStyle: this.state.styles[this.state.styleIndex].name,
+      });
     });
   }
 
   render() {
-    let selector = <div />;
-    if (this.state.styles.length > 0) {
-      selector = (
-        <StyleSelector
-          styles={this.state.styles}
-          updateStyleId={this.updateStyleId}
-        />
-      );
-    }
     const hideRating = !this.state.numReviews ? Styles.hidden : '';
     return (
       <div>
         <div className={Styles.rowcontainer}>
           <DefaultImages photos={this.state.photos} alt={this.state.title} />
+
+          <StyleSelector
+            imageThumbnail
+            styles={this.state.styles}
+            updateStyleId={this.updateStyleId}
+            currentStyle={this.state.currentStyle}
+          />
+
           <div className={Styles.colcontainer}>
             <div className={hideRating}>
               {' '}
@@ -159,7 +163,16 @@ class Overview extends React.Component {
             <Category category={this.state.category} />
             <ProductTitle title={this.state.title} />
             <Price originalPrice={this.state.originalPrice} salePrice={this.state.salePrice} />
-            {selector}
+            <p>
+              Selected Style:
+              {' '}
+              {this.state.currentStyle}
+            </p>
+            <StyleSelector
+              styles={this.state.styles}
+              updateStyleId={this.updateStyleId}
+              currentStyle={this.state.currentStyle}
+            />
             <AddToCart />
           </div>
         </div>
