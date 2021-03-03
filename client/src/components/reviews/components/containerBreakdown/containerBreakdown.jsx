@@ -7,7 +7,7 @@ import BreakdownCharacteristics from '../breakdownCharacteristics/breakdownChara
 
 const ContainerBreakdown = ({ metaReview }) => (
   <div className={styles.containerBreakdown}>
-    <BreakdownHeader />
+    <BreakdownHeader metaReview={metaReview}/>
     <TotalRecommendation />
     <RatingBreakdown starNum="5" />
     <RatingBreakdown starNum="4" />

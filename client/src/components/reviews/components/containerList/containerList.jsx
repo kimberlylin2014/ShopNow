@@ -7,16 +7,6 @@ import MoreReviewsButton from '../moreReviewsButton/moreReviewsButton.jsx';
 import AddReviewButton from '../addReviewButton/addReviewButton.jsx';
 import FormPostReview from '../formPostReview/formPostReview.jsx';
 
-// const ContainerList = ({ reviews, metaReview, productID, productInfo}) => (
-//   <div className={styles.containerList}>
-//     <SortBy />
-//     <ReviewsList reviews={reviews} />
-//     <MoreReviewsButton />
-//     <AddReviewButton />
-//     <FormPostReview productID={productID} metaReview={metaReview} productInfo={productInfo} />
-//   </div>
-// );
-
 class ContainerList extends React.Component {
   constructor(props) {
     super(props);
@@ -41,7 +31,7 @@ class ContainerList extends React.Component {
         <SortBy />
         <ReviewsList reviews={reviews} />
         <MoreReviewsButton />
-        <AddReviewButton handleAddReviewButtonClick={this.handleAddReviewButtonClick}/>
+        <AddReviewButton handleAddReviewButtonClick={this.handleAddReviewButtonClick} />
         {displayPostReviewForm ? (
           <FormPostReview
             metaReview={metaReview}
