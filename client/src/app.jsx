@@ -12,6 +12,7 @@ class App extends React.Component {
       product_id: 14931,
       averageRating: 0
     };
+    this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
   }
 
   componentDidMount() {
@@ -31,17 +32,22 @@ class App extends React.Component {
 
   // loadAverageRating
 
+  changeCurrentProduct(product_id) {
+    this.setState({ product_id });
+  }
+
   render() {
     const { product_id } = this.state;
+    console.log('current product in App:', product_id);
     return (
       <div>
         <Overview />
-        <Related productID={product_id} />
+        <Related productID={product_id} changeCurrentProduct={this.changeCurrentProduct} />
         <Reviews />
       </div>
 
     );
   }
-};
+}
 
 export default App;

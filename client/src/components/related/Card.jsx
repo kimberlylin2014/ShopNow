@@ -5,21 +5,24 @@ import PropTypes from 'prop-types';
 import styles from './cardStyle.css';
 
 class Card extends React.Component {
-  // onCardClick() {
-  //   // call function in App component to load product detail page for selected product
-  // }
+  onCardClick(productID) {
+    const { changeCurrentProduct } = this.props;
+    changeCurrentProduct(productID);
+  }
 
   onStarClick() {
-    const { product } = this.props;
-    this.props.toggleModal(product);
+    const { toggleModal, product } = this.props;
+    toggleModal(product);
   }
 
   onAddClick() {
-    this.props.addToOutfit();
+    const { addToOutfit } = this.props;
+    addToOutfit();
   }
 
   onCloseClick(product) {
-    this.props.removeFromOutfit(product);
+    const { removeFromOutfit } = this.props;
+    removeFromOutfit(product);
   }
 
   render() {
@@ -28,14 +31,14 @@ class Card extends React.Component {
       return (
         <div className={styles.card}>
           <div className={styles.addText}>Add to Outfit</div>
-          <div className={styles.addIcon} onClick={() => this.onAddClick()}>
+          <div className={styles.addIcon} onClick={() => this.onAddClick(product)}>
             <img src="https://www.flaticon.com/svg/vstatic/svg/992/992651.svg?token=exp=1614710642~hmac=55671093312b73aacfb2111113db6a36" alt="add" />
           </div>
         </div>
       );
     }
     return (
-      <div className={styles.card}>
+      <div className={styles.card} onClick={() => this.onCardClick(product.id)}>
         <div className={styles.cardTop}>
           <img
             className={styles.image}
