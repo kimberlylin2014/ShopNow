@@ -1,3 +1,15 @@
-.title {
-  color: pink
+
+.colcontainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.rowcontainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.hidden {
+  display: none;
 }

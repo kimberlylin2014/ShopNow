@@ -1,0 +1,14 @@
+.component {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 10px;
+}
+
+.heading {
+  font-size: 120%;
+}
+
+.relatedSection, .outfitSection {
+  display: flex;
+  flex-direction: row;
+}
+
