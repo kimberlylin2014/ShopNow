@@ -1,16 +1,16 @@
 .thumbnail {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  margin: 10px;
+  margin: 5px;
   border: 5px solid white;
 }
 
 .selected {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  margin: 10px;
+  margin: 5px;
   border: 5px solid red;
 }
 

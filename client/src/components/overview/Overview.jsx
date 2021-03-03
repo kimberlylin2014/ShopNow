@@ -16,7 +16,7 @@ class Overview extends React.Component {
   constructor() {
     super();
     this.state = {
-      product_id: 14802,
+      product_id: 14801,
       styleId: '',
       currentStyle: '',
       styleIndex: '',
@@ -151,7 +151,7 @@ class Overview extends React.Component {
             imageThumbnail
             styles={this.state.styles}
             updateStyleId={this.updateStyleId}
-            currentStyle={this.state.currentStyle}
+            currentStyle={this.state.styleId}
           />
 
           <div className={Styles.colcontainer}>
@@ -171,7 +171,7 @@ class Overview extends React.Component {
             <StyleSelector
               styles={this.state.styles}
               updateStyleId={this.updateStyleId}
-              currentStyle={this.state.currentStyle}
+              currentStyle={this.state.styleId}
             />
             <AddToCart />
           </div>
