@@ -4,6 +4,7 @@ import axios from 'axios';
 import styles from './RatingsAndReviews.css';
 import ContainerBreakdown from './components/containerBreakdown/containerBreakdown.jsx';
 import ContainerList from './components/containerList/containerList.jsx';
+
 // ROUTE TO GET THIS DATE: https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews?product_id=14931&count=5&sort='relevance'
 const mockReviewsData = [
   {
@@ -90,62 +91,70 @@ const productInfo = {
   ],
 };
 
-const productID = '14931';
+const productID = '14937';
 
 class RatingsAndReviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      product_id: productID,
       reviews: [],
+      metaReview: null,
+      sortBy: 'relevance',
     };
-    this.addReview = this.addReview.bind(this);
   }
 
   componentDidMount() {
     this.getAllReviews();
+    this.getMetaReview();
+  }
+
+  getMetaReview() {
+    const { product_id } = this.state;
+    axios.get(`/api/reviews/meta/${product_id}`)
+      .then((resp) => {
+        this.setState({
+          metaReview: { ...resp.data },
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   getAllReviews() {
-    const id = 14937;
-    const count = 2;
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews?product_id=${id}&count=${count}&sort='relevance'}`, {
-      headers:
-      { Authorization: '2c265fe021b247def8de755d3af50c6d9bbe0772' },
-    }).then((resp) => {
-      this.setState({
-        reviews: [...resp.data.results],
+    const { product_id, sortBy } = this.state;
+    axios.get(`/api/reviews?product_id=${product_id}&count=2&sort=${sortBy}`)
+      .then((resp) => {
+        console.log('get all reviews complete');
+        this.setState({
+          reviews: [...resp.data.results],
+        });
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    }).catch((err) => {
-      console.log('Err', err);
-    });
   }
 
   addReview(review) {
-    const headers = {
-      Authorization: '2c265fe021b247def8de755d3af50c6d9bbe0772',
-    };
-    axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews', review,
-      {
-        headers,
-      })
+    axios.post('/api/reviews', review)
       .then((resp) => {
-        this.setState({
-          reviews: [...this.state.reviews, review]
-        })
+        console.log(resp.data);
       })
       .catch((err) => {
-        console.log('ERR', err);
-      });
+        console.log(err);
+      })
   }
 
   render() {
+    const { reviews, metaReview } = this.state;
     return (
       <div className={styles.ratingsAndReviews}>
         <h4>Ratings & Reviews</h4>
         <div className={styles.moduleColumns}>
-          <ContainerBreakdown metaReview={mockMetaReview} />
+          <ContainerBreakdown metaReview={metaReview} />
           <ContainerList
-            reviews={this.state.reviews}
+            reviews={reviews}
             productID={productID}
             metaReview={mockMetaReview}
             productInfo={productInfo}

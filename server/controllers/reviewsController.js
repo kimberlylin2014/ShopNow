@@ -34,33 +34,30 @@ const getReviewMetaData = (req, res) => {
 
 // //postReview
 const postReview = (req, res) => {
-  // var {product_id, rating, summary, body, recommend, name, email, photos, characteristics} = req.body;
-  // console.log(product_id);
-  // console.log(rating);
-  // console.log(summary);
-  // console.log(body);
-  // console.log(recommend);
-  // console.log(name);
-  // console.log(email);
-  // console.log(photos);
-  // console.log(characteristics);
+  const {
+    product_id, rating, summary, body, recommend, name, email, photos, characteristics,
+  } = req.body;
 
-  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews', {
-    product_id,
-    rating,
-    summary,
-    body,
-    recommend,
-    name,
-    email,
-    photos,
-    characteristics,
-    headers:  { 'Authorization' : `${KEY}` }})
-      .then((resp) => {
-        res.status(200).send('Review posted');
-      }).catch((err) => {
-        console.log('ERR', err);
-      })
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews',
+    {
+      product_id,
+      rating,
+      summary,
+      body,
+      recommend,
+      name,
+      email,
+      photos,
+      characteristics
+    },
+    { headers: { 'Authorization' : `${KEY}` } })
+    .then((resp) => {
+      res.status(200).send(resp.data);
+    })
+    .catch((err) => {
+      console.log('ERR', err);
+      res.status(400).send('Can not post new review');
+    });
 };
 
 // //updateReviewHelpful
