@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import Styles from './style.css';
-// import API from '../../../../config';
 import Category from './Category/Category.jsx';
 import ProductTitle from './ProductTitle/ProductTitle.jsx';
 import ProductOverview from './ProductOverview/ProductOverview.jsx';
@@ -11,18 +10,20 @@ import Price from './Price/Price.jsx';
 import Rating from './Rating/Rating.jsx';
 import DefaultImages from './DefaultImages/DefaultImages.jsx';
 import StyleSelector from './StyleSelector/StyleSelector.jsx';
+import Share from './Share/Share.jsx';
 
 class Overview extends React.Component {
   constructor() {
     super();
     this.state = {
+      styleId: '',
+      styleIndex: '',
       title: '',
       category: '',
       slogan: '',
       description: '',
       features: ['features'],
       styles: [],
-      styleId: '',
       originalPrice: '',
       salePrice: '',
       photos: [],
@@ -47,7 +48,7 @@ class Overview extends React.Component {
   }
 
   getProductInfo() {
-    axios.get('/api/products/14932', {
+    axios.get('/api/products/14297', {
     }).then((data) => {
       this.setState({
         title: data.data.name,
@@ -61,7 +62,7 @@ class Overview extends React.Component {
   }
 
   getProductStyles() {
-    axios.get('api/products/14932/styles').then((data) => {
+    axios.get('api/products/14297/styles').then((data) => {
       this.setState({
         styles: data.data.results,
       });
@@ -71,7 +72,7 @@ class Overview extends React.Component {
   }
 
   getReviewCount() {
-    axios.get('api/reviews/?page=1&count=5&sort=newest&product_id=14932').then((data) => {
+    axios.get('api/reviews/?page=1&count=5&sort=newest&product_id=14297').then((data) => {
       this.setState({
         numReviews: data.data.count,
       });
@@ -80,7 +81,7 @@ class Overview extends React.Component {
   }
 
   getAverageRating() {
-    axios.get('/api/reviews/meta/14932').then((data) => {
+    axios.get('/api/reviews/meta/14297').then((data) => {
       let sumRating = 0;
       let count = 0;
       for (const keys in data.data.ratings) {
@@ -94,31 +95,24 @@ class Overview extends React.Component {
       .catch((err) => console.log('Err', err));
   }
 
-  getPrice(styleId) {
-    for (let i = 0; i < this.state.styles.length; i++) {
-      if (this.state.styles[i].style_id === styleId) {
-        this.setState({
-          originalPrice: this.state.styles[i].original_price,
-          salePrice: this.state.styles[i].sale_price,
-        });
-      }
-    }
+  getPrice() {
+    this.setState({
+      originalPrice: this.state.styles[this.state.styleIndex].original_price,
+      salePrice: this.state.styles[this.state.styleIndex].sale_price,
+    });
   }
 
-  getPhotos(styleId) {
-    for (let i = 0; i < this.state.styles.length; i++) {
-      if (this.state.styles[i].style_id === styleId) {
-        this.setState({
-          photos: this.state.styles[i].photos,
-        });
-      }
-    }
+  getPhotos() {
+    this.setState({
+      photos: this.state.styles[this.state.styleIndex].photos,
+    });
   }
 
   defaultStyle() {
     for (let i = 0; i < this.state.styles.length; i++) {
       if (this.state.styles[i]['default?']) {
         this.setState({
+          styleIndex: i,
           styleId: this.state.styles[i].style_id,
         });
         this.getPrice(this.state.styleId);
@@ -127,9 +121,16 @@ class Overview extends React.Component {
     }
   }
 
-  updateStyleId(id) {
-    this.setState({
-      styleId: id,
+  updateStyleId(id, index) {
+    let promise = new Promise((resolve) => {
+      this.setState({
+        styleId: id,
+        styleIndex: index,
+      });
+      resolve();
+    }).then(() => {
+      this.getPrice();
+      this.getPhotos();
     });
   }
 
@@ -144,7 +145,6 @@ class Overview extends React.Component {
       );
     }
     const hideRating = !this.state.numReviews ? Styles.hidden : '';
-
     return (
       <div>
         <div className={Styles.rowcontainer}>
@@ -166,6 +166,7 @@ class Overview extends React.Component {
           <ProductOverview slogan={this.state.slogan} desciprtion={this.state.description} />
           <ProductFeatures features={this.state.features} />
         </div>
+        <Share />
       </div>
     );
   }

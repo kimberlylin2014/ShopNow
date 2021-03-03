@@ -8,18 +8,17 @@ class Thumbnail extends React.Component {
     this.onClick = this.onClick.bind(this);
   }
 
-  onClick(e) {
-    this.props.changeStyle(e.target.alt);
+  onClick() {
+    this.props.changeStyle(this.props.alt);
+    this.props.updateStyleId(this.props.stylenum, this.props.index);
   }
 
   render() {
     return (
       <img
         src={this.props.url}
-        className={Styles.thumbnail}
+        className={this.props.currSelected === this.props.alt ? Styles.selected : Styles.thumbnail}
         alt={this.props.alt}
-        styleId={this.props.styleId}
-        key={Math.random() * this.props.styleId}
         onClick={this.onClick}
       />
     );

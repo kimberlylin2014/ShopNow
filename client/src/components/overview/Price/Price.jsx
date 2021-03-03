@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Price.css';
+import Styles from './Price.css';
 
 const Price = ({ originalPrice, salePrice }) => {
   if (salePrice) {
     return (
       <div>
-        <p className="originalprice" className={styles.strikethrough}>
+        <p className={Styles.strikethrough}>
           $
           {originalPrice}
         </p>
-        <p className="saleprice">
+        <p className={Styles.saleprice}>
           $
           {salePrice}
         </p>
@@ -18,7 +18,7 @@ const Price = ({ originalPrice, salePrice }) => {
     );
   }
   return (
-    <p className="originalprice">
+    <p>
       $
       {originalPrice}
     </p>
@@ -27,6 +27,7 @@ const Price = ({ originalPrice, salePrice }) => {
 
 Price.propTypes = {
   originalPrice: PropTypes.string.isRequired,
+  salePrice: PropTypes.string,
 };
 
 export default Price;

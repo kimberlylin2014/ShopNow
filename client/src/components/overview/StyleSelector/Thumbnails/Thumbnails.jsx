@@ -3,14 +3,17 @@ import PropTypes from 'prop-types';
 import Thumbnail from './Thumbnail/Thumbnail.jsx';
 import Styles from './Thumbnails.css';
 
-const Thumbnails = ({ photos, name, styleId, changeStyle}) => {
+const Thumbnails = ({ index, photos, name, styleId, changeStyle, selected, updateStyleId}) => {
   const displayThumbnail = photos.map((thumbnail) => (
     <Thumbnail
+      index = {index}
+      currSelected = {selected}
       url={thumbnail.thumbnail_url}
       alt={name}
-      styleId={styleId}
-      key={Math.random() * styleId}
+      stylenum={styleId}
+      key={thumbnail.thumbnail_url}
       changeStyle={changeStyle}
+      updateStyleId={updateStyleId}
     />
   ));
   return (
