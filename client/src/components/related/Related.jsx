@@ -29,6 +29,15 @@ class Related extends React.Component {
     this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.productID !== this.props.productID) {
+      const { productID } = this.props;
+      this.loadProduct(productID)
+      .then((currentProduct) => this.setState({ currentProduct }));
+      this.loadRelatedItems(productID);
+    }
+  }
+
   componentDidMount() {
     const { productID } = this.props;
     this.loadProduct(productID)
@@ -64,8 +73,9 @@ class Related extends React.Component {
 
   addToOutfit() {
     const { currentProduct } = this.state;
-    const outfitItems = JSON.parse(localStorage.getItem('outfitItems') || '[]');
-    if (!outfitItems.includes(currentProduct)) {
+    const outfitItems = JSON.parse(localStorage.getItem('outfitItems'));
+    const ids = outfitItems.map(item => item.id);
+    if (!ids.includes(currentProduct.id)) {
       outfitItems.push(currentProduct);
     }
     localStorage.setItem('outfitItems', JSON.stringify(outfitItems));
@@ -94,6 +104,7 @@ class Related extends React.Component {
   changeCurrentProduct(productID) {
     const { changeCurrentProduct } = this.props;
     changeCurrentProduct(productID);
+    this.setState({ productID });
   }
 
   render() {
@@ -104,7 +115,6 @@ class Related extends React.Component {
       currentProduct,
       selectedProduct,
     } = this.state;
-    console.log('current product in Related:', currentProduct.id);
     return (
       <div className={styles.component}>
         <div className={styles.heading}>RELATED PRODUCTS</div>
@@ -117,7 +127,7 @@ class Related extends React.Component {
         <div className={styles.outfitSection}>
           <Card product={null} type="add" addToOutfit={this.addToOutfit} />
           {outfitItems.map((product) => (
-            <Card key={product.id} product={product} type="outfit" removeFromOutfit={this.removeFromOutfit} changeCurrentProduct={this.changeCurrentProduct}/>
+            <Card key={product.id} product={product} type="outfit" removeFromOutfit={this.removeFromOutfit} changeCurrentProduct={this.changeCurrentProduct} />
           ))}
         </div>
         { showModal
