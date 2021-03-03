@@ -99,14 +99,14 @@ class Related extends React.Component {
         <div className={styles.heading}>RELATED PRODUCTS</div>
         <div className={styles.relatedSection}>
           {relatedItems.map((product) => (
-            <Card product={product} type="related" toggleModal={this.toggleModal} />
+            <Card key={product.id} product={product} type="related" toggleModal={this.toggleModal} />
           ))}
         </div>
         <div className={styles.heading}>YOUR OUTFIT</div>
         <div className={styles.outfitSection}>
           <Card product={null} type="add" addToOutfit={this.addToOutfit} />
           {outfitItems.map((product) => (
-            <Card product={product} type="outfit" removeFromOutfit={this.removeFromOutfit} />
+            <Card key={product.id} product={product} type="outfit" removeFromOutfit={this.removeFromOutfit} />
           ))}
         </div>
         { showModal
