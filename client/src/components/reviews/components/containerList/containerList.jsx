@@ -19,10 +19,10 @@ import FormPostReview from '../formPostReview/formPostReview.jsx';
 
 class ContainerList extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       displayPostReviewForm: false,
-    }
+    };
     this.handleAddReviewButtonClick = this.handleAddReviewButtonClick.bind(this);
   }
 
@@ -35,7 +35,7 @@ class ContainerList extends React.Component {
 
   render() {
     const { displayPostReviewForm } = this.state;
-    const { productID, metaReview, productInfo, reviews, addReview } = this.props;
+    const { metaReview, productInfo, reviews, addReview } = this.props;
     return (
       <div className={styles.containerList}>
         <SortBy />
@@ -44,7 +44,6 @@ class ContainerList extends React.Component {
         <AddReviewButton handleAddReviewButtonClick={this.handleAddReviewButtonClick}/>
         {displayPostReviewForm ? (
           <FormPostReview
-            productID={productID}
             metaReview={metaReview}
             productInfo={productInfo}
             addReview={addReview}

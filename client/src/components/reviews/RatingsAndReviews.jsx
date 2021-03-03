@@ -69,28 +69,30 @@ const mockMetaReview = {
 };
 
 // Route https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/14931
-const productInfo = {
-  id: 14931,
-  campus: 'hr-sfo',
-  name: 'Manuela Pants',
-  slogan: 'Nemo ratione deserunt.',
-  description: 'Rerum quia tempore aperiam reiciendis. Eum a enim. Saepe magni tenetur et. Sit est beatae.',
-  category: 'Pants',
-  default_price: '398.00',
-  created_at: '2021-02-23T02:49:03.102Z',
-  updated_at: '2021-02-23T02:49:03.102Z',
-  features: [
-    {
-      feature: 'Non-GMO',
-      value: null,
-    },
-    {
-      feature: 'Material',
-      value: '"FullControl Skin"',
-    },
-  ],
-};
+// const productInfo = {
+//   id: 14931,
+//   campus: 'hr-sfo',
+//   name: 'Manuela Pants',
+//   slogan: 'Nemo ratione deserunt.',
+//   description: 'Rerum quia tempore aperiam reiciendis. Eum a enim. Saepe magni tenetur et. Sit est beatae.',
+//   category: 'Pants',
+//   default_price: '398.00',
+//   created_at: '2021-02-23T02:49:03.102Z',
+//   updated_at: '2021-02-23T02:49:03.102Z',
+//   features: [
+//     {
+//       feature: 'Non-GMO',
+//       value: null,
+//     },
+//     {
+//       feature: 'Material',
+//       value: '"FullControl Skin"',
+//     },
+//   ],
+// };
 
+// 14040
+// 14937
 const productID = '14937';
 
 class RatingsAndReviews extends React.Component {
@@ -101,12 +103,29 @@ class RatingsAndReviews extends React.Component {
       reviews: [],
       metaReview: null,
       sortBy: 'relevance',
+      productInfo: null,
     };
+    this.addReview = this.addReview.bind(this);
+    this.getProductInfo = this.getProductInfo.bind(this);
   }
 
   componentDidMount() {
     this.getAllReviews();
     this.getMetaReview();
+    this.getProductInfo();
+  }
+
+  getProductInfo() {
+    const { product_id } = this.state;
+    axios.get(`/api/products/${product_id}`)
+      .then((resp) => {
+        this.setState({
+          productInfo: {...resp.data}
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
   getMetaReview() {
@@ -147,7 +166,7 @@ class RatingsAndReviews extends React.Component {
   }
 
   render() {
-    const { reviews, metaReview } = this.state;
+    const { reviews, metaReview, productInfo } = this.state;
     return (
       <div className={styles.ratingsAndReviews}>
         <h4>Ratings & Reviews</h4>
@@ -155,8 +174,7 @@ class RatingsAndReviews extends React.Component {
           <ContainerBreakdown metaReview={metaReview} />
           <ContainerList
             reviews={reviews}
-            productID={productID}
-            metaReview={mockMetaReview}
+            metaReview={metaReview}
             productInfo={productInfo}
             addReview={this.addReview}
           />

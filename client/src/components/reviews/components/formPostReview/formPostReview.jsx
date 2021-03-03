@@ -75,7 +75,7 @@ class FormPostReview extends React.Component {
         <h4>
           Write Your Review about
           {' '}
-          {productInfo.name}
+          {productInfo ? productInfo.name : null}
         </h4>
         <form onSubmit={this.handleFormSubmit}>
           <CharacteristicInputs
