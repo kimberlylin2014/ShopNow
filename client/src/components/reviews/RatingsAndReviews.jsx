@@ -1,9 +1,9 @@
 /* eslint-disable import/extensions */
 import React from 'react';
+import axios from 'axios';
 import styles from './RatingsAndReviews.css';
 import ContainerBreakdown from './components/containerBreakdown/containerBreakdown.jsx';
 import ContainerList from './components/containerList/containerList.jsx';
-
 // ROUTE TO GET THIS DATE: https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews?product_id=14931&count=5&sort='relevance'
 const mockReviewsData = [
   {
@@ -96,36 +96,66 @@ class RatingsAndReviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviews: mockReviewsData,
+      reviews: [],
     };
     this.addReview = this.addReview.bind(this);
   }
 
+  componentDidMount() {
+    this.getAllReviews();
+  }
+
+  getAllReviews() {
+    const id = 14937;
+    const count = 2;
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews?product_id=${id}&count=${count}&sort='relevance'}`, {
+      headers:
+      { Authorization: '2c265fe021b247def8de755d3af50c6d9bbe0772' },
+    }).then((resp) => {
+      this.setState({
+        reviews: [...resp.data.results],
+      });
+    }).catch((err) => {
+      console.log('Err', err);
+    });
+  }
+
   addReview(review) {
-    console.log(review);
-    this.setState({
-      reviews: [...this.state.mockReviewsData, review]
-    })
+    const headers = {
+      Authorization: '2c265fe021b247def8de755d3af50c6d9bbe0772',
+    };
+    axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews', review,
+      {
+        headers,
+      })
+      .then((resp) => {
+        this.setState({
+          reviews: [...this.state.reviews, review]
+        })
+      })
+      .catch((err) => {
+        console.log('ERR', err);
+      });
   }
 
   render() {
     return (
       <div className={styles.ratingsAndReviews}>
-      <h4>Ratings & Reviews</h4>
-      <div className={styles.moduleColumns}>
-        <ContainerBreakdown metaReview={mockMetaReview} />
-        <ContainerList
-          reviews={mockReviewsData}
-          productID={productID}
-          metaReview={mockMetaReview}
-          productInfo={productInfo}
-          addReview={this.addReview}
-        />
+        <h4>Ratings & Reviews</h4>
+        <div className={styles.moduleColumns}>
+          <ContainerBreakdown metaReview={mockMetaReview} />
+          <ContainerList
+            reviews={this.state.reviews}
+            productID={productID}
+            metaReview={mockMetaReview}
+            productInfo={productInfo}
+            addReview={this.addReview}
+          />
+        </div>
       </div>
-    </div>
-    )
+    );
   }
-} ;
+}
 
 // const RatingsAndReviews = () => (
 //   <div className={styles.ratingsAndReviews}>

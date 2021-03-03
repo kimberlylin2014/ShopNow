@@ -18,7 +18,7 @@ class FormPostReview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product_id: props.metaReview.product_id,
+      product_id: parseInt(props.metaReview.product_id),
       rating: '',
       recommend: '',
       characteristics: FormPostReview.createCharacteristicState(props.metaReview),
@@ -26,14 +26,20 @@ class FormPostReview extends React.Component {
       body: '',
       name: '',
       email: '',
+      photos: [],
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   handleInputChange(e) {
-    const { name, value } = e.target;
+    let { name, value } = e.target;
     if (Number.isNaN(parseInt(name))) {
+      if (name === 'rating') {
+        value = parseInt(value);
+      } else if (name === 'recommend') {
+        value = value === 'true';
+      }
       this.setState({
         [name]: value,
       });
@@ -42,13 +48,14 @@ class FormPostReview extends React.Component {
       this.setState({
         characteristics: {
           ...characteristics,
-          [name]: value,
+          [name]: parseInt(value),
         },
       });
     }
   }
 
-  handleFormSubmit() {
+  handleFormSubmit(e) {
+    e.preventDefault();
     const { addReview } = this.props;
     addReview(this.state);
   }
@@ -66,9 +73,11 @@ class FormPostReview extends React.Component {
     return (
       <div className={styles.formPostReview}>
         <h4>
-          Write Your Review about {productInfo.name}
+          Write Your Review about
+          {' '}
+          {productInfo.name}
         </h4>
-        <form onSumbit={this.handleFormSubmit}>
+        <form onSubmit={this.handleFormSubmit}>
           <CharacteristicInputs
             characteristics={characteristics}
             handleInputChange={this.handleInputChange}

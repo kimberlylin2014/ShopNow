@@ -1,7 +1,8 @@
 import React from 'react';
+import styles from './username.css';
 
 const Username = ({ username }) => (
-  <div>
+  <div className={styles.userName}>
     {username}
   </div>
 );

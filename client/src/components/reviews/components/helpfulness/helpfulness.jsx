@@ -31,7 +31,7 @@ class Helpfulness extends React.Component {
           Yes
         </button>
         <span>
-          {helpfulness}
+          ({helpfulness})
         </span>
       </p>
     );
