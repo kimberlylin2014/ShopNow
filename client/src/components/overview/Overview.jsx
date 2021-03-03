@@ -16,6 +16,7 @@ class Overview extends React.Component {
   constructor() {
     super();
     this.state = {
+      product_id: 14802,
       styleId: '',
       styleIndex: '',
       title: '',
@@ -48,7 +49,7 @@ class Overview extends React.Component {
   }
 
   getProductInfo() {
-    axios.get('/api/products/14297', {
+    axios.get(`/api/products/${this.state.product_id}`, {
     }).then((data) => {
       this.setState({
         title: data.data.name,
@@ -62,7 +63,7 @@ class Overview extends React.Component {
   }
 
   getProductStyles() {
-    axios.get('api/products/14297/styles').then((data) => {
+    axios.get(`api/products/${this.state.product_id}/styles`).then((data) => {
       this.setState({
         styles: data.data.results,
       });
@@ -72,7 +73,7 @@ class Overview extends React.Component {
   }
 
   getReviewCount() {
-    axios.get('api/reviews/?page=1&count=5&sort=newest&product_id=14297').then((data) => {
+    axios.get(`api/reviews/?page=1&count=5&sort=newest&product_id=${this.state.product_id}`).then((data) => {
       this.setState({
         numReviews: data.data.count,
       });
@@ -81,7 +82,7 @@ class Overview extends React.Component {
   }
 
   getAverageRating() {
-    axios.get('/api/reviews/meta/14297').then((data) => {
+    axios.get(`/api/reviews/meta/${this.state.product_id}`).then((data) => {
       let sumRating = 0;
       let count = 0;
       for (const keys in data.data.ratings) {
