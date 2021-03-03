@@ -2,7 +2,7 @@ import React from 'react';
 
 const ReviewBody = ({body}) => (
   <div>
-    {body}
+    Review: {body}
   </div>
 );
 

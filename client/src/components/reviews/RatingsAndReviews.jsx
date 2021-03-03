@@ -1,10 +1,11 @@
 /* eslint-disable import/extensions */
 import React from 'react';
+import axios from 'axios';
 import styles from './RatingsAndReviews.css';
 import ContainerBreakdown from './components/containerBreakdown/containerBreakdown.jsx';
 import ContainerList from './components/containerList/containerList.jsx';
-
-const mockData = [
+// ROUTE TO GET THIS DATE: https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews?product_id=14931&count=5&sort='relevance'
+const mockReviewsData = [
   {
     review_id: 147688,
     rating: 2,
@@ -32,14 +33,143 @@ const mockData = [
   },
 ];
 
-const RatingsAndReviews = () => (
-  <div className={styles.ratingsAndReviews}>
-    <h4>Ratings & Reviews</h4>
-    <div className={styles.moduleColumns}>
-      <ContainerBreakdown />
-      <ContainerList reviews={mockData} />
-    </div>
-  </div>
-);
+// CLIENT ROUTE: https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews/meta?product_id=14931
+const mockMetaReview = {
+  product_id: '14931',
+  ratings: {
+    1: '5',
+    2: '8',
+    3: '15',
+    4: '8',
+    5: '3',
+  },
+  recommended: {
+    false: '5',
+    true: '34',
+  },
+  characteristics: {
+    Fit: {
+      id: 50013,
+      value: '2.9354838709677419',
+    },
+    Length: {
+      id: 50014,
+      value: '3.1612903225806452',
+    },
+    Comfort: {
+      id: 50015,
+      value: '3.0967741935483871',
+    },
+    Quality: {
+      id: 50016,
+      value: '3.0967741935483871',
+    },
+  },
+};
+
+// Route https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/14931
+const productInfo = {
+  id: 14931,
+  campus: 'hr-sfo',
+  name: 'Manuela Pants',
+  slogan: 'Nemo ratione deserunt.',
+  description: 'Rerum quia tempore aperiam reiciendis. Eum a enim. Saepe magni tenetur et. Sit est beatae.',
+  category: 'Pants',
+  default_price: '398.00',
+  created_at: '2021-02-23T02:49:03.102Z',
+  updated_at: '2021-02-23T02:49:03.102Z',
+  features: [
+    {
+      feature: 'Non-GMO',
+      value: null,
+    },
+    {
+      feature: 'Material',
+      value: '"FullControl Skin"',
+    },
+  ],
+};
+
+const productID = '14931';
+
+class RatingsAndReviews extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      reviews: [],
+    };
+    this.addReview = this.addReview.bind(this);
+  }
+
+  componentDidMount() {
+    this.getAllReviews();
+  }
+
+  getAllReviews() {
+    const id = 14937;
+    const count = 2;
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews?product_id=${id}&count=${count}&sort='relevance'}`, {
+      headers:
+      { Authorization: '2c265fe021b247def8de755d3af50c6d9bbe0772' },
+    }).then((resp) => {
+      this.setState({
+        reviews: [...resp.data.results],
+      });
+    }).catch((err) => {
+      console.log('Err', err);
+    });
+  }
+
+  addReview(review) {
+    const headers = {
+      Authorization: '2c265fe021b247def8de755d3af50c6d9bbe0772',
+    };
+    axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews', review,
+      {
+        headers,
+      })
+      .then((resp) => {
+        this.setState({
+          reviews: [...this.state.reviews, review]
+        })
+      })
+      .catch((err) => {
+        console.log('ERR', err);
+      });
+  }
+
+  render() {
+    return (
+      <div className={styles.ratingsAndReviews}>
+        <h4>Ratings & Reviews</h4>
+        <div className={styles.moduleColumns}>
+          <ContainerBreakdown metaReview={mockMetaReview} />
+          <ContainerList
+            reviews={this.state.reviews}
+            productID={productID}
+            metaReview={mockMetaReview}
+            productInfo={productInfo}
+            addReview={this.addReview}
+          />
+        </div>
+      </div>
+    );
+  }
+}
+
+// const RatingsAndReviews = () => (
+//   <div className={styles.ratingsAndReviews}>
+//     <h4>Ratings & Reviews</h4>
+//     <div className={styles.moduleColumns}>
+//       <ContainerBreakdown metaReview={mockMetaReview} />
+//       <ContainerList
+//         reviews={mockReviewsData}
+//         productID={productID}
+//         metaReview={mockMetaReview}
+//         productInfo={productInfo}
+//       />
+//     </div>
+//   </div>
+// );
 
 export default RatingsAndReviews;

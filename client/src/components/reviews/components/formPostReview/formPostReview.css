@@ -1,0 +1,16 @@
+.textInput {
+  display: block;
+  margin-bottom: 10px;
+  border: 1px solid black;
+  width: 80%;
+}
+
+.formGroup {
+  margin-top: 12px;
+}
+
+.formPostReview {
+  margin-top: 5px;
+  border: 1px solid black;
+  padding: 8px;
+}

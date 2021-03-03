@@ -2,7 +2,7 @@ import React from 'react';
 
 const Summary = ({summary}) => (
   <div>
-    {summary}
+    Summary: {summary}
   </div>
 );
 

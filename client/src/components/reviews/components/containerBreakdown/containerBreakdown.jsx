@@ -3,8 +3,9 @@ import styles from './containerBreakdown.css';
 import BreakdownHeader from '../breakdownHeader/breakdownHeader.jsx';
 import TotalRecommendation from '../totalRecommendation/totalRecommendation.jsx';
 import RatingBreakdown from '../ratingBreakdown/ratingBreakdown.jsx';
+import BreakdownCharacteristics from '../breakdownCharacteristics/breakdownCharacteristics.jsx';
 
-const ContainerBreakdown = () => (
+const ContainerBreakdown = ({metaReview}) => (
   <div className={styles.containerBreakdown}>
     <BreakdownHeader />
     <TotalRecommendation />
@@ -13,6 +14,7 @@ const ContainerBreakdown = () => (
     <RatingBreakdown starNum="3" />
     <RatingBreakdown starNum="2" />
     <RatingBreakdown starNum="1" />
+    <BreakdownCharacteristics metaReview={metaReview} />
   </div>
 );
 

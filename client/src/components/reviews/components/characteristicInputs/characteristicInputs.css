@@ -1,0 +1,12 @@
+.bold {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.radioRow {
+  color: grey;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+}
+

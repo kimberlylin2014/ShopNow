@@ -17,6 +17,8 @@ class App extends React.Component {
   componentDidMount() {
     // figure out how to get product id from url
     const queryString = window.location.search;
+    // console.log(queryString);
+    this.loadProduct(this.state.product_id);
     console.log(queryString);
     //this.loadProduct(this.state.product_id);
   }
