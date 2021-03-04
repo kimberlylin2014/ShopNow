@@ -6,14 +6,23 @@ import Quantity from './Quantity/Quantity.jsx';
 class AddToCart extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      currentSKU:'',
+    };
+    this.changeSKU = this.changeSKU.bind(this);
+  }
+
+  changeSKU(SKU) {
+    this.setState({
+      currentSKU:SKU,
+    });
   }
 
   render() {
-    // skus={this.props.currentStyleObj ? this.props.currentStyleObj['skus'] : ''}
     return (
       <div>
-        <Size skus={this.props.currentStyleObj ? this.props.currentStyleObj['skus'] : ''}/>
-        <Quantity />
+        <Size skus={this.props.currentStyleObj ? this.props.currentStyleObj.skus : ''} changeSKU={this.changeSKU} />
+        <Quantity skus={this.props.currentStyleObj ? this.props.currentStyleObj.skus : ''} />
         <button>Add To Cart</button>
       </div>
     );
