@@ -104,10 +104,13 @@ class RatingsAndReviews extends React.Component {
       metaReview: null,
       sortBy: 'newest',
       productInfo: null,
+      totalReviews: null,
+      numOfRecommendation: null,
     };
     this.addReview = this.addReview.bind(this);
     this.getProductInfo = this.getProductInfo.bind(this);
     this.updateHelpfulByReviewID = this.updateHelpfulByReviewID.bind(this);
+    this.toggleSortBy = this.toggleSortBy.bind(this);
   }
 
   componentDidMount() {
@@ -133,8 +136,13 @@ class RatingsAndReviews extends React.Component {
     const { product_id } = this.state;
     axios.get(`/api/reviews/meta/${product_id}`)
       .then((resp) => {
+        const { data: { recommended }} = resp;
+        const totalReviews = this.getTotalReviews(recommended.false, recommended.true);
+        const numOfRec = this.getNumOfRecommendation(recommended.false, recommended.true)
         this.setState({
           metaReview: { ...resp.data },
+          totalReviews: totalReviews,
+          numOfRecommendation: numOfRec,
         });
       })
       .catch((err) => {
@@ -142,9 +150,19 @@ class RatingsAndReviews extends React.Component {
       });
   }
 
+  getTotalReviews(numOfFalse, numOfTrue) {
+    return parseInt(numOfFalse) + parseInt(numOfTrue);
+  }
+
+  getNumOfRecommendation(numOfFalse, numOfTrue) {
+    const total = parseInt(numOfFalse) + parseInt(numOfTrue);
+    const precentageOfRec = (parseInt(numOfTrue) / total) * 100;
+    return precentageOfRec.toFixed(0);
+  }
+
   getAllReviews() {
     const { product_id, sortBy } = this.state;
-    axios.get(`/api/reviews?product_id=${product_id}&count=3&sort=${sortBy}`)
+    axios.get(`/api/reviews?product_id=${product_id}&count=10&sort=${sortBy}`)
       .then((resp) => {
         this.setState({
           reviews: [...resp.data.results],
@@ -153,6 +171,14 @@ class RatingsAndReviews extends React.Component {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  toggleSortBy(sortBy) {
+    this.setState({
+      sortBy: sortBy
+    }, () => {
+      this.getAllReviews();
+    });
   }
 
   addReview(review) {
@@ -177,18 +203,20 @@ class RatingsAndReviews extends React.Component {
   }
 
   render() {
-    const { reviews, metaReview, productInfo } = this.state;
+    const { reviews, metaReview, productInfo, totalReviews, numOfRecommendation } = this.state;
     return (
       <div className={styles.ratingsAndReviews}>
         <h4>Ratings & Reviews</h4>
         <div className={styles.moduleColumns}>
-          <ContainerBreakdown metaReview={metaReview} />
+          <ContainerBreakdown metaReview={metaReview} numOfRecommendation={numOfRecommendation} />
           <ContainerList
             reviews={reviews}
             metaReview={metaReview}
             productInfo={productInfo}
             addReview={this.addReview}
             updateHelpfulByReviewID={this.updateHelpfulByReviewID}
+            totalReviews={totalReviews}
+            toggleSortBy={this.toggleSortBy}
           />
         </div>
       </div>
