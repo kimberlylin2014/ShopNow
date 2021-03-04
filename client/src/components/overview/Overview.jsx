@@ -20,6 +20,7 @@ class Overview extends React.Component {
       styleId: '',
       currentStyle: '',
       styleIndex: '',
+      currentStyleObj: '',
       title: '',
       category: '',
       slogan: '',
@@ -116,6 +117,7 @@ class Overview extends React.Component {
         this.setState({
           styleIndex: i,
           styleId: this.state.styles[i].style_id,
+          currentStyleObj: this.state.styles[i],
           currentStyle: this.state.styles[i].name,
         });
         this.getPrice(this.state.styleId);
@@ -136,9 +138,9 @@ class Overview extends React.Component {
       this.getPrice();
       this.getPhotos();
       this.setState({
+        currentStyleObj: this.state.styles[this.state.styleIndex],
         currentStyle: this.state.styles[this.state.styleIndex].name,
       });
-      console.log(this.state.styleId);
     });
   }
 
@@ -175,7 +177,10 @@ class Overview extends React.Component {
               updateStyleId={this.updateStyleId}
               currentStyle={this.state.styleId}
             />
-            <AddToCart currentStyleObj={this.state.styles[this.state.styleIndex]} />
+            {
+              this.state.currentStyleObj && <AddToCart currentStyleObj={this.state.currentStyleObj} />
+            }
+
           </div>
         </div>
         <div className={Styles.rowcontainer}>

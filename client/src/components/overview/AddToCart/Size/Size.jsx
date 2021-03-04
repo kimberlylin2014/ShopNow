@@ -8,14 +8,13 @@ class Size extends React.Component {
   }
 
   handleOnChange(e) {
-    const removeId = e.target.getAttribute('test');
-    console.log(removeId);
+    // console.log(e.target.selectedOptions[0].getAttribute('SKU'));
     this.props.changeSKU(e.target.value);
   }
 
   render() {
     let sizes = Object.entries(this.props.skus);
-    const displaySize = sizes.map((size) => <option test={size[0]} value={size[0]}>{size[1]['size']}</option>);
+    const displaySize = sizes.map((size) => <option SKU={size[0]} value={size[0]}>{size[1]['size']}</option>);
 
     return (<div>
         <label htmlFor="size">Select Size:</label>
