@@ -18,6 +18,7 @@ class Size extends React.Component {
       if ( size[1].quantity > 0 ) {
         return <option SKU={size[0]} value={size[0]}>{size[1]['size']}</option>
       }
+      return <option SKU={size[0]} value={size[0]}>{size[1]['size']} is out of stock</option>
     });
 
     return (<div>

@@ -4,6 +4,7 @@ import axios from 'axios';
 import Overview from './components/overview/Overview.jsx';
 import Related from './components/related/Related.jsx';
 import Reviews from './components/reviews/RatingsAndReviews.jsx';
+import Header from './components/Header/Header.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -46,6 +47,7 @@ class App extends React.Component {
     const { productID, styleID } = this.state;
     return (
       <div>
+        <Header />
         <Overview changeStyleId={this.changeStyleId} productID={productID} />
         <Related
           productID={productID}
