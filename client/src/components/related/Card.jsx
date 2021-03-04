@@ -3,6 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './cardStyle.css';
+import Stars from '../Stars.jsx';
+
 class Card extends React.Component {
   onCardClick(productID) {
     const { changeCurrentProduct } = this.props;
@@ -83,6 +85,7 @@ class Card extends React.Component {
           <div className={styles.category}>{product.category}</div>
           <div className={styles.name}>{product.name}</div>
           {this.getPrice()}
+          <Stars numStars={1.67} />
         </div>
       </div>
     );
