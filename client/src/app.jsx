@@ -9,9 +9,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product_id: 14931,
-      averageRating: 0,
-      style_id: 76285,
+      productID: 14931,
+      styleID: 76286,
+      averageRating: 3.5
     };
     this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
     this.changeStyleId = this.changeStyleId.bind(this);
@@ -38,25 +38,20 @@ class App extends React.Component {
     this.setState({ productID });
   }
 
-  changeStyleId(style_id) {
-    this.setState({ style_id });
+  changeStyleId(styleID) {
+    this.setState({ styleID });
   }
 
   render() {
     const { productID, styleID } = this.state;
     return (
       <div>
-<<<<<<< HEAD
-        <Overview />
+        <Overview changeStyleId={this.changeStyleId} productID={productID} />
         <Related
           productID={productID}
           styleID={styleID}
           changeCurrentProduct={this.changeCurrentProduct}
         />
-=======
-        <Overview changeStyleId={this.changeStyleId} productID={product_id} />
-        <Related productID={product_id} changeCurrentProduct={this.changeCurrentProduct} />
->>>>>>> Pass style_id back to App
         <Reviews />
       </div>
 
