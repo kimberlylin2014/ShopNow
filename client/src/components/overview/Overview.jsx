@@ -130,6 +130,7 @@ class Overview extends React.Component {
         styleId: id,
         styleIndex: index,
       });
+      this.props.changeStyleId(id);
       resolve();
     }).then(() => {
       this.getPrice();
@@ -137,6 +138,7 @@ class Overview extends React.Component {
       this.setState({
         currentStyle: this.state.styles[this.state.styleIndex].name,
       });
+      console.log(this.state.styleId);
     });
   }
 
