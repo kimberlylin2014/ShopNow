@@ -27,12 +27,19 @@ class Card extends React.Component {
   }
 
   getPrice() {
-    const { product } = this.props;
-    if (product.styles[0].sale_price) {
+    const { product, styleIndex, type } = this.props;
+    const index = type === 'related' ? 0 : styleIndex;
+    if (product.styles[index].sale_price) {
       return (
         <div className={styles.price}>
-          <div className={styles.oldPrice}>${product.default_price}</div>
-          <div className={styles.newPrice}>${product.styles[0].sale_price}</div>
+          <div className={styles.oldPrice}>
+            $
+            {product.default_price}
+          </div>
+          <div className={styles.newPrice}>
+            $
+            {product.styles[index].sale_price}
+          </div>
         </div>
       );
     }
