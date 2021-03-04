@@ -57,12 +57,13 @@ const CharacteristInputs = ({ characteristics, handleInputChange }) => {
   });
 
   const allRows = [];
-
+  let counter = 0;
   for (let i = 0; i < info.length; i += 1) {
     const row = [];
     for (let j = 0; j < 5; j += 1) {
       row.push(
         <CharacteristicRadioInput
+          key={counter++}
           htmlFor={`${entries[i][0]}${j + 1}`}
           type="radio"
           name={`${entries[i][1].id}`}
@@ -73,7 +74,7 @@ const CharacteristInputs = ({ characteristics, handleInputChange }) => {
       );
     }
     allRows.push(
-      <div>
+      <div key={counter++}>
         <p className={styles.bold}>{entries[i][0]}</p>
         <div className={styles.radioRow}>
           {row}

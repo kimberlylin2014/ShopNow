@@ -6,7 +6,11 @@ const BreakdownCharacteristics = ({metaReview}) => {
   if (metaReview) {
     const entries = Object.entries(metaReview.characteristics);
     list = entries.map((entry) => (
-      <BreakdownOneCharacteristic name={entry[0]} value={parseFloat(entry[1].value).toFixed(2)}/>
+      <BreakdownOneCharacteristic
+        key={entry[1].id}
+        name={entry[0]}
+        value={parseFloat(entry[1].value).toFixed(2)}
+      />
     ));
   }
   return (
