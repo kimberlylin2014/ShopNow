@@ -11,9 +11,9 @@ const Stars = ({ numStars }) => {
     array.push('stars/filledStar.png');
   }
   if (numQuarters === 0) {
-    numEmptyStars = 4 - numFilledStars;
+    numEmptyStars = 5 - numFilledStars;
   } else {
-    numEmptyStars = 4 - numFilledStars - 1;
+    numEmptyStars = 5 - numFilledStars - 1;
     if (numQuarters === 1) {
       array.push('stars/quarterStar.png');
     } else if (numQuarters === 2) {
