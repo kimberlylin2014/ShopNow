@@ -11,16 +11,17 @@ class SortBy extends React.Component {
 
   handleSelect(e) {
     const { toggleSortBy } = this.props;
+    const { sortByValue } = this.state;
     const { name, value } = e.target;
     this.setState({
       [name]: value,
     }, () => {
-      toggleSortBy(this.state.sortByValue);
+      toggleSortBy(sortByValue);
     });
   }
 
   render() {
-    const { totalReviews, toggleSortBy } = this.props;
+    const { totalReviews } = this.props;
     return (
       <form>
         <label htmlFor="sortList">{totalReviews ? totalReviews : null} reviews, sorted by:</label>
