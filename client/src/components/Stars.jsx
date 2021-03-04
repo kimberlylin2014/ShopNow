@@ -9,22 +9,22 @@ const Stars = ({ numStars }) => {
   let numEmptyStars = 0;
   const array = [];
   for (let i = 0; i < numFilledStars; i++) {
-    array.push('stars/filledStar.svg');
+    array.push('stars/filledStar.png');
   }
   if (numQuarters === 0) {
     numEmptyStars = 4 - numFilledStars;
   } else {
     numEmptyStars = 4 - numFilledStars - 1;
     if (numQuarters === 1) {
-      array.push('stars/quarterStar.svg');
+      array.push('stars/quarterStar.png');
     } else if (numQuarters === 2) {
-      array.push('stars/halfStar.svg');
+      array.push('stars/halfStar.png');
     } else if (numQuarters === 3) {
-      array.push('stars/threeQuarterStar.svg');
+      array.push('stars/threeQuarterStar.png');
     }
   }
   for (let j = 0; j < numEmptyStars; j++) {
-    array.push('stars/emptyStar.svg');
+    array.push('stars/emptyStar.png');
   }
   // display {numFilledStars} filled stars
   // numQuarters === 0 ? display {numStars - numFilledStars} empty stars
