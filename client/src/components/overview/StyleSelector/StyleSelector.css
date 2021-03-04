@@ -8,4 +8,8 @@
 .imageGallery {
   position: absolute;
   left: 50px;
+  overflow: auto;
+  white-space: nowrap;
+  overflow-y: scroll;
+  height: 550px;
 }

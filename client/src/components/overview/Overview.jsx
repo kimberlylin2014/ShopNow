@@ -173,7 +173,7 @@ class Overview extends React.Component {
               updateStyleId={this.updateStyleId}
               currentStyle={this.state.styleId}
             />
-            <AddToCart />
+            <AddToCart currentStyleObj={this.state.styles[this.state.styleIndex]} />
           </div>
         </div>
         <div className={Styles.rowcontainer}>
