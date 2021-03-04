@@ -6,39 +6,36 @@ import Styles from './StyleSelector.css';
 class StyleSelector extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      currentStyle: this.props.styles[0].name,
-    };
-    this.changeStyle = this.changeStyle.bind(this);
+    // this.imageNav = React.createRef();
   }
 
-  changeStyle(style) {
-    this.setState({
-      currentStyle: style,
-    });
-  }
+  // handleScroll(direction) {
+  //   console.log(this.imageNav.current);
+  //   if ( direction === 'top' ) {
+  //     this.imageNav.current.scrollTop;
+  //   }
+  // }
 
   render() {
     const displayThumbnails = this.props.styles.map((style) => (
       <Thumbnails
+        imageThumbnail = {this.props.imageThumbnail}
+        currentStyle = {this.props.currentStyle}
+        styleId={style.style_id}
+        updateStyleId={this.props.updateStyleId}
         index={this.props.styles.indexOf(style)}
-        selected={this.state.currentStyle}
+        selected={this.props.currentStyle}
         photos={style.photos}
         name={style.name}
-        styleId={style.style_id}
-        changeStyle={this.changeStyle}
-        updateStyleId = {this.props.updateStyleId}
       />
     ));
+
+    const isImageGallery = this.props.imageThumbnail ? Styles.imageGallery : Styles.thumbnails;
+
+
     return (
-      <div>
-        <p>
-          Current Style:
-          {this.state.currentStyle}
-        </p>
-        <div className={Styles.thumbnails}>
-          {displayThumbnails}
-        </div>
+      <div className={isImageGallery} ref={this.imageNav}>
+        {displayThumbnails}
       </div>
     );
   }

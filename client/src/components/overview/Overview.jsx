@@ -16,8 +16,11 @@ class Overview extends React.Component {
   constructor() {
     super();
     this.state = {
+      product_id: 14931,
       styleId: '',
+      currentStyle: '',
       styleIndex: '',
+      currentStyleObj: '',
       title: '',
       category: '',
       slogan: '',
@@ -48,7 +51,7 @@ class Overview extends React.Component {
   }
 
   getProductInfo() {
-    axios.get('/api/products/14297', {
+    axios.get(`/api/products/${this.state.product_id}`, {
     }).then((data) => {
       this.setState({
         title: data.data.name,
@@ -62,7 +65,7 @@ class Overview extends React.Component {
   }
 
   getProductStyles() {
-    axios.get('api/products/14297/styles').then((data) => {
+    axios.get(`api/products/${this.state.product_id}/styles`).then((data) => {
       this.setState({
         styles: data.data.results,
       });
@@ -72,7 +75,7 @@ class Overview extends React.Component {
   }
 
   getReviewCount() {
-    axios.get('api/reviews/?page=1&count=5&sort=newest&product_id=14297').then((data) => {
+    axios.get(`api/reviews/?page=1&count=5&sort=newest&product_id=${this.state.product_id}`).then((data) => {
       this.setState({
         numReviews: data.data.count,
       });
@@ -81,7 +84,7 @@ class Overview extends React.Component {
   }
 
   getAverageRating() {
-    axios.get('/api/reviews/meta/14297').then((data) => {
+    axios.get(`/api/reviews/meta/${this.state.product_id}`).then((data) => {
       let sumRating = 0;
       let count = 0;
       for (const keys in data.data.ratings) {
@@ -114,6 +117,8 @@ class Overview extends React.Component {
         this.setState({
           styleIndex: i,
           styleId: this.state.styles[i].style_id,
+          currentStyleObj: this.state.styles[i],
+          currentStyle: this.state.styles[i].name,
         });
         this.getPrice(this.state.styleId);
         this.getPhotos(this.state.styleId);
@@ -122,33 +127,37 @@ class Overview extends React.Component {
   }
 
   updateStyleId(id, index) {
-    let promise = new Promise((resolve) => {
+    const promise = new Promise((resolve) => {
       this.setState({
         styleId: id,
         styleIndex: index,
       });
+      this.props.changeStyleId(id);
       resolve();
     }).then(() => {
       this.getPrice();
       this.getPhotos();
+      this.setState({
+        currentStyleObj: this.state.styles[this.state.styleIndex],
+        currentStyle: this.state.styles[this.state.styleIndex].name,
+      });
     });
   }
 
   render() {
-    let selector = <div />;
-    if (this.state.styles.length > 0) {
-      selector = (
-        <StyleSelector
-          styles={this.state.styles}
-          updateStyleId={this.updateStyleId}
-        />
-      );
-    }
     const hideRating = !this.state.numReviews ? Styles.hidden : '';
     return (
       <div>
         <div className={Styles.rowcontainer}>
           <DefaultImages photos={this.state.photos} alt={this.state.title} />
+
+          <StyleSelector
+            imageThumbnail
+            styles={this.state.styles}
+            updateStyleId={this.updateStyleId}
+            currentStyle={this.state.styleId}
+          />
+
           <div className={Styles.colcontainer}>
             <div className={hideRating}>
               {' '}
@@ -158,8 +167,20 @@ class Overview extends React.Component {
             <Category category={this.state.category} />
             <ProductTitle title={this.state.title} />
             <Price originalPrice={this.state.originalPrice} salePrice={this.state.salePrice} />
-            {selector}
-            <AddToCart />
+            <p>
+              Selected Style:
+              {' '}
+              {this.state.currentStyle}
+            </p>
+            <StyleSelector
+              styles={this.state.styles}
+              updateStyleId={this.updateStyleId}
+              currentStyle={this.state.styleId}
+            />
+            {
+              this.state.currentStyleObj && <AddToCart currentStyleObj={this.state.currentStyleObj} />
+            }
+
           </div>
         </div>
         <div className={Styles.rowcontainer}>
