@@ -7,26 +7,16 @@ import MoreReviewsButton from '../moreReviewsButton/moreReviewsButton.jsx';
 import AddReviewButton from '../addReviewButton/addReviewButton.jsx';
 import FormPostReview from '../formPostReview/formPostReview.jsx';
 
-// const ContainerList = ({ reviews, metaReview, productID, productInfo}) => (
-//   <div className={styles.containerList}>
-//     <SortBy />
-//     <ReviewsList reviews={reviews} />
-//     <MoreReviewsButton />
-//     <AddReviewButton />
-//     <FormPostReview productID={productID} metaReview={metaReview} productInfo={productInfo} />
-//   </div>
-// );
-
 class ContainerList extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       displayPostReviewForm: false,
-    }
-    this.handleAddReviewButtonClick = this.handleAddReviewButtonClick.bind(this);
+    };
+    this.toggleFormDisplay = this.toggleFormDisplay.bind(this);
   }
 
-  handleAddReviewButtonClick() {
+  toggleFormDisplay() {
     const { displayPostReviewForm } = this.state;
     this.setState({
       displayPostReviewForm: !displayPostReviewForm,
@@ -35,19 +25,19 @@ class ContainerList extends React.Component {
 
   render() {
     const { displayPostReviewForm } = this.state;
-    const { productID, metaReview, productInfo, reviews, addReview } = this.props;
+    const { metaReview, productInfo, reviews, addReview, updateHelpfulByReviewID } = this.props;
     return (
       <div className={styles.containerList}>
         <SortBy />
-        <ReviewsList reviews={reviews} />
+        <ReviewsList reviews={reviews} updateHelpfulByReviewID={updateHelpfulByReviewID} />
         <MoreReviewsButton />
-        <AddReviewButton handleAddReviewButtonClick={this.handleAddReviewButtonClick}/>
+        <AddReviewButton toggleFormDisplay={this.toggleFormDisplay} />
         {displayPostReviewForm ? (
           <FormPostReview
-            productID={productID}
             metaReview={metaReview}
             productInfo={productInfo}
             addReview={addReview}
+            toggleFormDisplay={this.toggleFormDisplay}
           />
         ) : null}
       </div>

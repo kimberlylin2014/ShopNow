@@ -6,19 +6,22 @@ import CharacteristicInputs from '../characteristicInputs/characteristicInputs.j
 
 class FormPostReview extends React.Component {
   static createCharacteristicState(metaReview) {
-    const { characteristics } = metaReview;
-    const characteristicStateObj = {};
-    const values = Object.values(characteristics);
-    values.forEach((value) => {
-      characteristicStateObj[value.id] = '';
-    });
-    return characteristicStateObj;
+    if (metaReview) {
+      const { characteristics } = metaReview;
+      const characteristicStateObj = {};
+      const values = Object.values(characteristics);
+      values.forEach((value) => {
+        characteristicStateObj[value.id] = '';
+      });
+      return characteristicStateObj;
+    }
+    return '';
   }
 
   constructor(props) {
     super(props);
     this.state = {
-      product_id: parseInt(props.metaReview.product_id),
+      product_id: parseInt(props.metaReview ? props.metaReview.product_id : ''),
       rating: '',
       recommend: '',
       characteristics: FormPostReview.createCharacteristicState(props.metaReview),
@@ -31,7 +34,6 @@ class FormPostReview extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
-
   handleInputChange(e) {
     let { name, value } = e.target;
     if (Number.isNaN(parseInt(name))) {
@@ -56,32 +58,30 @@ class FormPostReview extends React.Component {
 
   handleFormSubmit(e) {
     e.preventDefault();
-    const { addReview } = this.props;
+    const { addReview, toggleFormDisplay } = this.props;
     addReview(this.state);
+    toggleFormDisplay();
   }
 
   render() {
-    const {
-      summary, body, name, email, rating,
-    } = this.state;
+    const { summary, body, name, email, rating } = this.state;
 
-    const {
-      metaReview: { characteristics },
-      productInfo,
-    } = this.props;
+    const { metaReview, productInfo } = this.props;
 
     return (
       <div className={styles.formPostReview}>
         <h4>
           Write Your Review about
           {' '}
-          {productInfo.name}
+          {productInfo ? productInfo.name : null}
         </h4>
         <form onSubmit={this.handleFormSubmit}>
-          <CharacteristicInputs
-            characteristics={characteristics}
-            handleInputChange={this.handleInputChange}
-          />
+          {metaReview ? (
+            <CharacteristicInputs
+              characteristics={metaReview.characteristics}
+              handleInputChange={this.handleInputChange}
+            />
+          ) : null}
           <div className={styles.formGroup}>
             Overall Rating
             <FormInput
@@ -158,7 +158,6 @@ class FormPostReview extends React.Component {
           <input type="submit" value="submit" />
         </form>
       </div>
-
     );
   }
 }
