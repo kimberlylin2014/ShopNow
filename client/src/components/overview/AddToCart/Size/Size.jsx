@@ -1,16 +1,34 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 
-const Size = () => {
-  return <div>
-    <label htmlFor="size">Select Size:</label>
-    <select name="size">
-      <option value="XS">XS</option>
-      <option value="S">S</option>
-      <option value="M">M</option>
-      <option value="L">L</option>
-    </select>
-  </div>;
-};
+class Size extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleOnChange = this.handleOnChange.bind(this);
+  }
+
+  handleOnChange(e) {
+    // console.log(e.target.selectedOptions[0].getAttribute('SKU'));
+    this.props.changeSKU(e.target.value);
+  }
+
+  render() {
+    console.log(this.props.skus);
+    let sizes = Object.entries(this.props.skus);
+    const displaySize = sizes.map((size) => {
+      if ( size[1].quantity > 0 ) {
+        return <option SKU={size[0]} value={size[0]}>{size[1]['size']}</option>
+      }
+    });
+
+    return (<div>
+        <label htmlFor="size">Select Size:</label>
+        <select name="size" onChange={this.handleOnChange}>
+          {displaySize}
+        </select>
+      </div>
+    );
+  }
+}
 
 export default Size;

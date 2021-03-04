@@ -1,4 +1,15 @@
 .thumbnails {
   display: flex;
+  flex-flow: row wrap;
   justify-content: space-between;
+  width: 350px;
+}
+
+.imageGallery {
+  position: absolute;
+  left: 50px;
+  overflow: auto;
+  white-space: nowrap;
+  overflow-y: scroll;
+  height: 550px;
 }

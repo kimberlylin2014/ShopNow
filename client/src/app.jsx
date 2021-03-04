@@ -14,6 +14,7 @@ class App extends React.Component {
       averageRating: 3.5
     };
     this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
+    this.changeStyleId = this.changeStyleId.bind(this);
   }
 
   componentDidMount() {
@@ -37,11 +38,15 @@ class App extends React.Component {
     this.setState({ productID });
   }
 
+  changeStyleId(styleID) {
+    this.setState({ styleID });
+  }
+
   render() {
     const { productID, styleID } = this.state;
     return (
       <div>
-        <Overview />
+        <Overview changeStyleId={this.changeStyleId} productID={productID} />
         <Related
           productID={productID}
           styleID={styleID}
