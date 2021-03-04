@@ -69,10 +69,23 @@ class Related extends React.Component {
       return axios.get(`api/products/${productID}/styles`)
       .then((styleResp) => {
         product.styles = styleResp.data.results;
-        return product;
+        return axios.get(`api/reviews/meta/${productID}`)
+        .then((reviewsResp) => {
+          product.ratings = reviewsResp.data.ratings;
+          product.averageRating = this.getAverageRating(reviewsResp.data.ratings);
+          return product;
+        });
       });
     })
     .catch((err) => console.log(err));
+  }
+
+  getAverageRating(ratings) {
+    const total = Object.keys(ratings).reduce((acc, curr) => (
+      parseInt(acc) + parseInt(curr)*parseInt(ratings[curr])), 0);
+    const numRatings = Object.keys(ratings).reduce((acc, curr) => (
+      parseInt(acc) + parseInt(ratings[curr])), 0);
+    return (total / numRatings);
   }
 
   loadRelatedItems(productID) {
@@ -130,7 +143,6 @@ class Related extends React.Component {
       styleIndex,
       selectedProduct,
     } = this.state;
-    console.log(currentProduct);
     return (
       <div className={styles.component}>
         <div className={styles.heading}>RELATED PRODUCTS</div>
