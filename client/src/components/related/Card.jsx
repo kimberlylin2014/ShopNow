@@ -40,7 +40,8 @@ class Card extends React.Component {
   }
 
   render() {
-    const { product, type } = this.props;
+    const { product, type, styleIndex } = this.props;
+    console.log(styleIndex);
     if (type === 'add') {
       return (
         <div className={styles.card}>
@@ -57,7 +58,7 @@ class Card extends React.Component {
           <img
             className={styles.image}
             alt={product.name}
-            src={product.styles[0].photos[0].url}
+            src={product.styles[styleIndex].photos[0].url}
           />
           { type === 'related'
             ? (

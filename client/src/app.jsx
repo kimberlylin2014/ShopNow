@@ -9,8 +9,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product_id: 14931,
-      averageRating: 0
+      productID: 14931,
+      styleID: 76286,
+      averageRating: 3.5
     };
     this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
   }
@@ -19,29 +20,33 @@ class App extends React.Component {
     // figure out how to get product id from url
     const queryString = window.location.search;
     // console.log(queryString);
-    //this.loadProduct(this.state.product_id);
+    //this.loadProduct(this.state.productID);
     console.log(queryString);
-    //this.loadProduct(this.state.product_id);
+    //this.loadProduct(this.state.productID);
   }
 
-  loadProduct(product_id) {
-    axios.get(`/api/products/${product_id}`)
-      .then(resp => this.setState({ product_id }))
-      .catch(err => console.log('ERR', err));
+  loadProduct(productID) {
+    axios.get(`/api/products/${productID}`)
+      .then((resp) => this.setState({ productID }))
+      .catch((err) => console.log('ERR', err));
   }
 
   // loadAverageRating
 
-  changeCurrentProduct(product_id) {
-    this.setState({ product_id });
+  changeCurrentProduct(productID) {
+    this.setState({ productID });
   }
 
   render() {
-    const { product_id } = this.state;
+    const { productID, styleID } = this.state;
     return (
       <div>
         <Overview />
-        <Related productID={product_id} changeCurrentProduct={this.changeCurrentProduct} />
+        <Related
+          productID={productID}
+          styleID={styleID}
+          changeCurrentProduct={this.changeCurrentProduct}
+        />
         <Reviews />
       </div>
 

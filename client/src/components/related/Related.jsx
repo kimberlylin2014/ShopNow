@@ -18,6 +18,7 @@ class Related extends React.Component {
     super();
     this.state = {
       currentProduct: {},
+      styleIndex: 0,
       relatedItems: [],
       outfitItems: [],
       showModal: false,
@@ -36,14 +37,27 @@ class Related extends React.Component {
       .then((currentProduct) => this.setState({ currentProduct }));
       this.loadRelatedItems(productID);
     }
+    if (prevProps.styleID !== this.props.styleID) {
+      const { styleID } = this.props;
+      this.getStyleIndex(styleID);
+    }
   }
 
   componentDidMount() {
-    const { productID } = this.props;
+    const { productID, styleID } = this.props;
     this.loadProduct(productID)
-    .then((currentProduct) => this.setState({ currentProduct }));
+    .then((currentProduct) => {
+      this.setState({ currentProduct });
+      this.getStyleIndex(styleID);
+    });
     this.loadRelatedItems(productID);
     this.setState({ outfitItems: JSON.parse(localStorage.getItem('outfitItems') || '[]') });
+  }
+
+  getStyleIndex(styleID) {
+    const { currentProduct } = this.state;
+    const styleIndex = currentProduct.styles.findIndex((style) => style.style_id === styleID);
+    this.setState({ styleIndex });
   }
 
   loadProduct(productID) {
@@ -74,7 +88,7 @@ class Related extends React.Component {
   addToOutfit() {
     const { currentProduct } = this.state;
     const outfitItems = JSON.parse(localStorage.getItem('outfitItems'));
-    const ids = outfitItems.map(item => item.id);
+    const ids = outfitItems.map((item) => item.id);
     if (!ids.includes(currentProduct.id)) {
       outfitItems.push(currentProduct);
     }
@@ -113,6 +127,7 @@ class Related extends React.Component {
       outfitItems,
       showModal,
       currentProduct,
+      styleIndex,
       selectedProduct,
     } = this.state;
     console.log(currentProduct);
@@ -121,14 +136,14 @@ class Related extends React.Component {
         <div className={styles.heading}>RELATED PRODUCTS</div>
         <div className={styles.relatedSection}>
           {relatedItems.map((product) => (
-            <Card key={product.id} product={product} type="related" toggleModal={this.toggleModal} changeCurrentProduct={this.changeCurrentProduct}/>
+            <Card key={product.id} product={product} styleIndex={styleIndex} type="related" toggleModal={this.toggleModal} changeCurrentProduct={this.changeCurrentProduct} />
           ))}
         </div>
         <div className={styles.heading}>YOUR OUTFIT</div>
         <div className={styles.outfitSection}>
           <Card product={null} type="add" addToOutfit={this.addToOutfit} />
           {outfitItems.map((product) => (
-            <Card key={product.id} product={product} type="outfit" removeFromOutfit={this.removeFromOutfit} changeCurrentProduct={this.changeCurrentProduct} />
+            <Card key={product.id} product={product} styleIndex={styleIndex} type="outfit" removeFromOutfit={this.removeFromOutfit} changeCurrentProduct={this.changeCurrentProduct} />
           ))}
         </div>
         { showModal
