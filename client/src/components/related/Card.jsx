@@ -29,9 +29,14 @@ class Card extends React.Component {
   getPrice() {
     const { product } = this.props;
     if (product.styles[0].sale_price) {
-      return product.styles[0].sale_price;
+      return (
+        <div className={styles.price}>
+          <div className={styles.oldPrice}>${product.default_price}</div>
+          <div className={styles.newPrice}>${product.styles[0].sale_price}</div>
+        </div>
+      );
     }
-    return product.default_price;
+    return <div className={styles.price}>${product.default_price}</div>;
   }
 
   render() {
@@ -69,7 +74,7 @@ class Card extends React.Component {
         <div className={styles.cardBottom}>
           <div className={styles.category}>{product.category}</div>
           <div className={styles.name}>{product.name}</div>
-          <div className={styles.price}>{this.getPrice()}</div>
+          {this.getPrice()}
         </div>
       </div>
     );

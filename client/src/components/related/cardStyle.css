@@ -62,6 +62,13 @@
   left: 60px;
 }
 
+.oldPrice {
+  text-decoration: line-through red;
+}
+
+.newPrice {
+  color: red;
+}
 
 
 
