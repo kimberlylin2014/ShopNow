@@ -3,7 +3,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './cardStyle.css';
-
 class Card extends React.Component {
   onCardClick(productID) {
     const { changeCurrentProduct } = this.props;
@@ -30,7 +29,7 @@ class Card extends React.Component {
   getPrice() {
     const { product } = this.props;
     if (product.styles[0].sale_price) {
-
+      return product.styles[0].sale_price;
     }
     return product.default_price;
   }
@@ -42,7 +41,7 @@ class Card extends React.Component {
         <div className={styles.card}>
           <div className={styles.addText}>Add to Outfit</div>
           <div className={styles.addIcon} onClick={() => this.onAddClick(product)}>
-            <img src="https://www.flaticon.com/svg/vstatic/svg/992/992651.svg?token=exp=1614710642~hmac=55671093312b73aacfb2111113db6a36" alt="add" />
+            <img src="icons/add.svg" alt="add" />
           </div>
         </div>
       );
@@ -58,12 +57,12 @@ class Card extends React.Component {
           { type === 'related'
             ? (
               <div className={styles.icon} onClick={(event) => this.onStarClick(event)}>
-                <img src="https://img.icons8.com/fluent/48/000000/star.png" alt="star" />
+                <img src="icons/star.svg" alt="star" />
               </div>
             )
             : (
               <div className={styles.icon} onClick={(event) => this.onCloseClick(event, product)}>
-                <img src="https://www.flaticon.com/svg/vstatic/svg/1617/1617543.svg?token=exp=1614712431~hmac=0639bb3bb043dc3b9fadf08dcd69ab0d" alt="close" />
+                <img src="icons/close.svg" alt="close" />
               </div>
             )}
         </div>
