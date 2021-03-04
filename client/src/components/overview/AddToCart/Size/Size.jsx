@@ -13,7 +13,6 @@ class Size extends React.Component {
   }
 
   render() {
-    console.log(this.props.skus);
     let sizes = Object.entries(this.props.skus);
     const displaySize = sizes.map((size) => {
       if ( size[1].quantity > 0 ) {

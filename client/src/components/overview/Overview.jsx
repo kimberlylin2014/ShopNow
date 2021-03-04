@@ -16,9 +16,7 @@ class Overview extends React.Component {
   constructor() {
     super();
     this.state = {
-      product_id: 14931,
       styleId: '',
-      currentStyle: '',
       styleIndex: '',
       currentStyleObj: '',
       title: '',
@@ -44,15 +42,15 @@ class Overview extends React.Component {
   }
 
   componentDidMount() {
-    this.getProductInfo();
-    this.getProductStyles();
-    this.getReviewCount();
-    this.getAverageRating();
+    const {productID} = this.props;
+    this.getProductInfo(productID);
+    this.getProductStyles(productID);
+    this.getReviewCount(productID);
+    this.getAverageRating(productID);
   }
 
-  getProductInfo() {
-    axios.get(`/api/products/${this.state.product_id}`, {
-    }).then((data) => {
+  getProductInfo(productID) {
+    axios.get(`/api/products/${productID}`).then((data) => {
       this.setState({
         title: data.data.name,
         category: data.data.category,
@@ -64,8 +62,8 @@ class Overview extends React.Component {
       .catch((err) => console.log('Err', err));
   }
 
-  getProductStyles() {
-    axios.get(`api/products/${this.state.product_id}/styles`).then((data) => {
+  getProductStyles(productID) {
+    axios.get(`api/products/${productID}/styles`).then((data) => {
       this.setState({
         styles: data.data.results,
       });
@@ -74,17 +72,21 @@ class Overview extends React.Component {
       .catch((err) => console.log('Err', err));
   }
 
-  getReviewCount() {
-    axios.get(`api/reviews/?page=1&count=5&sort=newest&product_id=${this.state.product_id}`).then((data) => {
+  getReviewCount(productID) {
+    axios.get(`/api/reviews/meta/${productID}`).then((data) => {
+      let reviewCount = 0;
+      for ( const keys in data.data.recommended ){
+        reviewCount += Number(data.data.recommended[keys]);
+      }
       this.setState({
-        numReviews: data.data.count,
+        numReviews: reviewCount,
       });
     })
       .catch((err) => console.log('Err', err));
   }
 
-  getAverageRating() {
-    axios.get(`/api/reviews/meta/${this.state.product_id}`).then((data) => {
+  getAverageRating(productID) {
+    axios.get(`/api/reviews/meta/${productID}`).then((data) => {
       let sumRating = 0;
       let count = 0;
       for (const keys in data.data.ratings) {
@@ -118,7 +120,6 @@ class Overview extends React.Component {
           styleIndex: i,
           styleId: this.state.styles[i].style_id,
           currentStyleObj: this.state.styles[i],
-          currentStyle: this.state.styles[i].name,
         });
         this.getPrice(this.state.styleId);
         this.getPhotos(this.state.styleId);
@@ -128,18 +129,17 @@ class Overview extends React.Component {
 
   updateStyleId(id, index) {
     const promise = new Promise((resolve) => {
+      this.props.changeStyleId(id);
       this.setState({
         styleId: id,
         styleIndex: index,
       });
-      this.props.changeStyleId(id);
       resolve();
     }).then(() => {
       this.getPrice();
       this.getPhotos();
       this.setState({
         currentStyleObj: this.state.styles[this.state.styleIndex],
-        currentStyle: this.state.styles[this.state.styleIndex].name,
       });
     });
   }
@@ -170,7 +170,7 @@ class Overview extends React.Component {
             <p>
               Selected Style:
               {' '}
-              {this.state.currentStyle}
+              {this.state.currentStyleObj.name}
             </p>
             <StyleSelector
               styles={this.state.styles}
