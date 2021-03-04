@@ -5,21 +5,34 @@ import PropTypes from 'prop-types';
 import styles from './cardStyle.css';
 
 class Card extends React.Component {
-  // onCardClick() {
-  //   // call function in App component to load product detail page for selected product
-  // }
+  onCardClick(productID) {
+    const { changeCurrentProduct } = this.props;
+    changeCurrentProduct(productID);
+  }
 
-  onStarClick() {
-    const { product } = this.props;
-    this.props.toggleModal(product);
+  onStarClick(event) {
+    const { toggleModal, product } = this.props;
+    toggleModal(product);
+    event.stopPropagation();
   }
 
   onAddClick() {
-    this.props.addToOutfit();
+    const { addToOutfit } = this.props;
+    addToOutfit();
   }
 
-  onCloseClick(product) {
-    this.props.removeFromOutfit(product);
+  onCloseClick(event, product) {
+    const { removeFromOutfit } = this.props;
+    removeFromOutfit(product);
+    event.stopPropagation();
+  }
+
+  getPrice() {
+    const { product } = this.props;
+    if (product.styles[0].sale_price) {
+
+    }
+    return product.default_price;
   }
 
   render() {
@@ -28,14 +41,14 @@ class Card extends React.Component {
       return (
         <div className={styles.card}>
           <div className={styles.addText}>Add to Outfit</div>
-          <div className={styles.addIcon} onClick={() => this.onAddClick()}>
+          <div className={styles.addIcon} onClick={() => this.onAddClick(product)}>
             <img src="https://www.flaticon.com/svg/vstatic/svg/992/992651.svg?token=exp=1614710642~hmac=55671093312b73aacfb2111113db6a36" alt="add" />
           </div>
         </div>
       );
     }
     return (
-      <div className={styles.card}>
+      <div className={styles.card} onClick={() => this.onCardClick(product.id)}>
         <div className={styles.cardTop}>
           <img
             className={styles.image}
@@ -44,12 +57,12 @@ class Card extends React.Component {
           />
           { type === 'related'
             ? (
-              <div className={styles.icon} onClick={() => this.onStarClick()}>
+              <div className={styles.icon} onClick={(event) => this.onStarClick(event)}>
                 <img src="https://img.icons8.com/fluent/48/000000/star.png" alt="star" />
               </div>
             )
             : (
-              <div className={styles.icon} onClick={() => this.onCloseClick(product)}>
+              <div className={styles.icon} onClick={(event) => this.onCloseClick(event, product)}>
                 <img src="https://www.flaticon.com/svg/vstatic/svg/1617/1617543.svg?token=exp=1614712431~hmac=0639bb3bb043dc3b9fadf08dcd69ab0d" alt="close" />
               </div>
             )}
@@ -57,7 +70,7 @@ class Card extends React.Component {
         <div className={styles.cardBottom}>
           <div className={styles.category}>{product.category}</div>
           <div className={styles.name}>{product.name}</div>
-          <div className={styles.price}>{product.default_price}</div>
+          <div className={styles.price}>{this.getPrice()}</div>
         </div>
       </div>
     );
@@ -65,7 +78,6 @@ class Card extends React.Component {
 }
 
 Card.propTypes = {
-  product: PropTypes.isRequired,
   type: PropTypes.string.isRequired,
 };
 

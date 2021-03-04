@@ -26,6 +26,16 @@ class Related extends React.Component {
     this.addToOutfit = this.addToOutfit.bind(this);
     this.removeFromOutfit = this.removeFromOutfit.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
+    this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.productID !== this.props.productID) {
+      const { productID } = this.props;
+      this.loadProduct(productID)
+      .then((currentProduct) => this.setState({ currentProduct }));
+      this.loadRelatedItems(productID);
+    }
   }
 
   componentDidMount() {
@@ -33,6 +43,7 @@ class Related extends React.Component {
     this.loadProduct(productID)
     .then((currentProduct) => this.setState({ currentProduct }));
     this.loadRelatedItems(productID);
+    this.setState({ outfitItems: JSON.parse(localStorage.getItem('outfitItems') || '[]') });
   }
 
   loadProduct(productID) {
@@ -61,19 +72,23 @@ class Related extends React.Component {
   }
 
   addToOutfit() {
-    const { outfitItems, currentProduct } = this.state;
-    if (!outfitItems.includes(currentProduct)) {
+    const { currentProduct } = this.state;
+    const outfitItems = JSON.parse(localStorage.getItem('outfitItems'));
+    const ids = outfitItems.map(item => item.id);
+    if (!ids.includes(currentProduct.id)) {
       outfitItems.push(currentProduct);
-      this.setState({ outfitItems });
     }
+    localStorage.setItem('outfitItems', JSON.stringify(outfitItems));
+    this.setState({ outfitItems });
   }
 
   removeFromOutfit(item) {
-    const { outfitItems } = this.state;
-    const index = outfitItems.indexOf(item);
+   const { outfitItems } = this.state;
+   const index = outfitItems.indexOf(item);
     if (index >= 0) {
       outfitItems.splice(index, 1);
       this.setState({ outfitItems });
+      localStorage.setItem('outfitItems', JSON.stringify(outfitItems));
     }
   }
 
@@ -86,6 +101,12 @@ class Related extends React.Component {
     }
   }
 
+  changeCurrentProduct(productID) {
+    const { changeCurrentProduct } = this.props;
+    changeCurrentProduct(productID);
+    this.setState({ productID });
+  }
+
   render() {
     const {
       relatedItems,
@@ -94,19 +115,20 @@ class Related extends React.Component {
       currentProduct,
       selectedProduct,
     } = this.state;
+    console.log(currentProduct);
     return (
       <div className={styles.component}>
         <div className={styles.heading}>RELATED PRODUCTS</div>
         <div className={styles.relatedSection}>
           {relatedItems.map((product) => (
-            <Card product={product} type="related" toggleModal={this.toggleModal} />
+            <Card key={product.id} product={product} type="related" toggleModal={this.toggleModal} changeCurrentProduct={this.changeCurrentProduct}/>
           ))}
         </div>
         <div className={styles.heading}>YOUR OUTFIT</div>
         <div className={styles.outfitSection}>
           <Card product={null} type="add" addToOutfit={this.addToOutfit} />
           {outfitItems.map((product) => (
-            <Card product={product} type="outfit" removeFromOutfit={this.removeFromOutfit} />
+            <Card key={product.id} product={product} type="outfit" removeFromOutfit={this.removeFromOutfit} changeCurrentProduct={this.changeCurrentProduct} />
           ))}
         </div>
         { showModal

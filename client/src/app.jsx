@@ -9,16 +9,17 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product_id: 14807,
+      product_id: 14931,
       averageRating: 0
     };
+    this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
   }
 
   componentDidMount() {
     // figure out how to get product id from url
     const queryString = window.location.search;
     // console.log(queryString);
-    this.loadProduct(this.state.product_id);
+    //this.loadProduct(this.state.product_id);
     console.log(queryString);
     //this.loadProduct(this.state.product_id);
   }
@@ -31,17 +32,21 @@ class App extends React.Component {
 
   // loadAverageRating
 
+  changeCurrentProduct(product_id) {
+    this.setState({ product_id });
+  }
+
   render() {
     const { product_id } = this.state;
     return (
       <div>
         <Overview />
-        <Related productID={product_id} />
+        <Related productID={product_id} changeCurrentProduct={this.changeCurrentProduct} />
         <Reviews />
       </div>
 
     );
   }
-};
+}
 
 export default App;
