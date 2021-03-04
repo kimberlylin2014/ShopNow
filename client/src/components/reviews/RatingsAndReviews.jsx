@@ -144,7 +144,7 @@ class RatingsAndReviews extends React.Component {
 
   getAllReviews() {
     const { product_id, sortBy } = this.state;
-    axios.get(`/api/reviews?product_id=${product_id}&count=17&sort=${sortBy}`)
+    axios.get(`/api/reviews?product_id=${product_id}&count=3&sort=${sortBy}`)
       .then((resp) => {
         this.setState({
           reviews: [...resp.data.results],
@@ -167,9 +167,15 @@ class RatingsAndReviews extends React.Component {
   }
 
   updateHelpfulByReviewID(reviewID) {
-    console.log(reviewID);
-    // axios.put(`api/reviews/${reviewID}/helpful`)
+    axios.put(`api/reviews/${reviewID}/helpful`)
+      .then((resp) => {
+        this.getAllReviews();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
+
   render() {
     const { reviews, metaReview, productInfo } = this.state;
     return (
