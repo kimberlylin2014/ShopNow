@@ -3,6 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './cardStyle.css';
+import Stars from '../Stars.jsx';
+
 class Card extends React.Component {
   onCardClick(productID) {
     const { changeCurrentProduct } = this.props;
@@ -27,12 +29,19 @@ class Card extends React.Component {
   }
 
   getPrice() {
-    const { product } = this.props;
-    if (product.styles[0].sale_price) {
+    const { product, styleIndex, type } = this.props;
+    const index = type === 'related' ? 0 : styleIndex;
+    if (product.styles[index].sale_price) {
       return (
         <div className={styles.price}>
-          <div className={styles.oldPrice}>${product.default_price}</div>
-          <div className={styles.newPrice}>${product.styles[0].sale_price}</div>
+          <div className={styles.oldPrice}>
+            $
+            {product.default_price}
+          </div>
+          <div className={styles.newPrice}>
+            $
+            {product.styles[index].sale_price}
+          </div>
         </div>
       );
     }
@@ -40,7 +49,8 @@ class Card extends React.Component {
   }
 
   render() {
-    const { product, type } = this.props;
+    const { product, type, styleIndex } = this.props;
+    console.log(styleIndex);
     if (type === 'add') {
       return (
         <div className={styles.card}>
@@ -57,7 +67,7 @@ class Card extends React.Component {
           <img
             className={styles.image}
             alt={product.name}
-            src={product.styles[0].photos[0].url}
+            src={product.styles[styleIndex].photos[0].url}
           />
           { type === 'related'
             ? (
@@ -75,6 +85,7 @@ class Card extends React.Component {
           <div className={styles.category}>{product.category}</div>
           <div className={styles.name}>{product.name}</div>
           {this.getPrice()}
+          <Stars numStars={1.67} />
         </div>
       </div>
     );
