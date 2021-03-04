@@ -102,11 +102,12 @@ class RatingsAndReviews extends React.Component {
       product_id: productID,
       reviews: [],
       metaReview: null,
-      sortBy: 'relevance',
+      sortBy: 'newest',
       productInfo: null,
     };
     this.addReview = this.addReview.bind(this);
     this.getProductInfo = this.getProductInfo.bind(this);
+    this.updateHelpfulByReviewID = this.updateHelpfulByReviewID.bind(this);
   }
 
   componentDidMount() {
@@ -143,9 +144,8 @@ class RatingsAndReviews extends React.Component {
 
   getAllReviews() {
     const { product_id, sortBy } = this.state;
-    axios.get(`/api/reviews?product_id=${product_id}&count=2&sort=${sortBy}`)
+    axios.get(`/api/reviews?product_id=${product_id}&count=17&sort=${sortBy}`)
       .then((resp) => {
-        console.log('get all reviews complete');
         this.setState({
           reviews: [...resp.data.results],
         });
@@ -156,18 +156,20 @@ class RatingsAndReviews extends React.Component {
   }
 
   addReview(review) {
-    console.log('adding new review');
-    console.log(review);
     axios.post('/api/reviews', review)
       .then((resp) => {
-        console.log(resp.data);
-        this.getMetaReview()
+        this.getMetaReview();
+        this.getAllReviews();
       })
       .catch((err) => {
         console.log(err);
       })
   }
 
+  updateHelpfulByReviewID(reviewID) {
+    console.log(reviewID);
+    // axios.put(`api/reviews/${reviewID}/helpful`)
+  }
   render() {
     const { reviews, metaReview, productInfo } = this.state;
     return (
@@ -180,6 +182,7 @@ class RatingsAndReviews extends React.Component {
             metaReview={metaReview}
             productInfo={productInfo}
             addReview={this.addReview}
+            updateHelpfulByReviewID={this.updateHelpfulByReviewID}
           />
         </div>
       </div>

@@ -7,8 +7,8 @@ class AddReviewButton extends React.Component {
   }
 
   handleClick() {
-    const { handleAddReviewButtonClick } = this.props;
-    handleAddReviewButtonClick();
+    const { toggleFormDisplay } = this.props;
+    toggleFormDisplay();
   }
 
   render() {

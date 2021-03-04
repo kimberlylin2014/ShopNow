@@ -13,10 +13,10 @@ class ContainerList extends React.Component {
     this.state = {
       displayPostReviewForm: false,
     };
-    this.handleAddReviewButtonClick = this.handleAddReviewButtonClick.bind(this);
+    this.toggleFormDisplay = this.toggleFormDisplay.bind(this);
   }
 
-  handleAddReviewButtonClick() {
+  toggleFormDisplay() {
     const { displayPostReviewForm } = this.state;
     this.setState({
       displayPostReviewForm: !displayPostReviewForm,
@@ -31,12 +31,13 @@ class ContainerList extends React.Component {
         <SortBy />
         <ReviewsList reviews={reviews} />
         <MoreReviewsButton />
-        <AddReviewButton handleAddReviewButtonClick={this.handleAddReviewButtonClick} />
+        <AddReviewButton toggleFormDisplay={this.toggleFormDisplay} />
         {displayPostReviewForm ? (
           <FormPostReview
             metaReview={metaReview}
             productInfo={productInfo}
             addReview={addReview}
+            toggleFormDisplay={this.toggleFormDisplay}
           />
         ) : null}
       </div>

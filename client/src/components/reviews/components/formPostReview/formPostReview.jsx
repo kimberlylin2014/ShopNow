@@ -58,8 +58,9 @@ class FormPostReview extends React.Component {
 
   handleFormSubmit(e) {
     e.preventDefault();
-    const { addReview } = this.props;
+    const { addReview, toggleFormDisplay } = this.props;
     addReview(this.state);
+    toggleFormDisplay();
   }
 
   render() {

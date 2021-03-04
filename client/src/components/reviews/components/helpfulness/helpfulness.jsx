@@ -11,14 +11,20 @@ class Helpfulness extends React.Component {
   }
 
   handleHelpfulClick() {
+    const {review : {review_id}, updateHelpfulByReviewID } = this.props;
+    console.log('inside helpfulness')
+    console.log(review_id);
+    console.log(updateHelpfulByReviewID)
     this.setState({
       disabled: false,
+    }, function() {
+      updateHelpfulByReviewID(review_id);
     });
   }
 
   render() {
     const { disabled } = this.state;
-    const { helpfulness } = this.props;
+    const { review } = this.props;
     return (
       <p>
         Helpful?
@@ -31,7 +37,7 @@ class Helpfulness extends React.Component {
           Yes
         </button>
         <span>
-          ({helpfulness})
+          ({review.helpfulness})
         </span>
       </p>
     );
