@@ -50,7 +50,6 @@ class Card extends React.Component {
 
   render() {
     const { product, type, styleIndex } = this.props;
-    console.log(styleIndex);
     if (type === 'add') {
       return (
         <div className={styles.card}>
@@ -85,7 +84,7 @@ class Card extends React.Component {
           <div className={styles.category}>{product.category}</div>
           <div className={styles.name}>{product.name}</div>
           {this.getPrice()}
-          <Stars numStars={1.67} />
+          <Stars numStars={product.averageRating} />
         </div>
       </div>
     );

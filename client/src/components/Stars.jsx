@@ -28,7 +28,7 @@ const Stars = ({ numStars }) => {
 
   return (
     <div>
-      {array.map((starFile) => <img className={styles.star} src={`${starFile}`} alt={starFile} />)}
+      {array.map((starFile, index) => <img key={index} className={styles.star} src={`${starFile}`} alt={starFile} />)}
     </div>
   );
 };
