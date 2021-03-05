@@ -54,7 +54,7 @@ class App extends React.Component {
           styleID={styleID}
           changeCurrentProduct={this.changeCurrentProduct}
         />
-        <Reviews />
+        <Reviews id="Reviews" />
       </div>
 
     );
