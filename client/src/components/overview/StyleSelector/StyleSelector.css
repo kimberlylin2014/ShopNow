@@ -1,8 +1,6 @@
 .thumbnails {
   display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  width: 350px;
+  width: 150px;
 }
 
 .imageGallery {

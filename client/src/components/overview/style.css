@@ -16,3 +16,7 @@
 .hidden {
   display: none;
 }
+
+.Price {
+  height: 90px;
+}

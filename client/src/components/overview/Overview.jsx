@@ -167,7 +167,9 @@ class Overview extends React.Component {
               {' '}
             </div>
 
+            <div className={Styles.Price}>
             <Price originalPrice={this.state.originalPrice} salePrice={this.state.salePrice} />
+            </div>
 
             <p>
               <b>STYLE</b>
