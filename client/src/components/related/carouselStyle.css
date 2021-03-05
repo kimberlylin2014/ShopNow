@@ -1,0 +1,4 @@
+.leftArrow, .rightArrow {
+  cursor: pointer;
+  /* visibility: hidden; */
+}
