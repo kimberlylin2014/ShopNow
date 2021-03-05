@@ -42,7 +42,7 @@ class Overview extends React.Component {
   }
 
   componentDidMount() {
-    const {productID} = this.props;
+    const { productID } = this.props;
     this.getProductInfo(productID);
     this.getProductStyles(productID);
     this.getReviewCount(productID);
@@ -75,7 +75,7 @@ class Overview extends React.Component {
   getReviewCount(productID) {
     axios.get(`/api/reviews/meta/${productID}`).then((data) => {
       let reviewCount = 0;
-      for ( const keys in data.data.recommended ){
+      for (const keys in data.data.recommended) {
         reviewCount += Number(data.data.recommended[keys]);
       }
       this.setState({
@@ -168,7 +168,7 @@ class Overview extends React.Component {
             </div>
 
             <div className={Styles.Price}>
-            <Price originalPrice={this.state.originalPrice} salePrice={this.state.salePrice} />
+              <Price originalPrice={this.state.originalPrice} salePrice={this.state.salePrice} />
             </div>
 
             <p>
@@ -191,7 +191,10 @@ class Overview extends React.Component {
           <ProductOverview slogan={this.state.slogan} desciprtion={this.state.description} />
           <ProductFeatures features={this.state.features} />
         </div>
-        <Share />
+
+        <div className={Styles.Share}>
+          <Share />
+        </div>
       </div>
     );
   }

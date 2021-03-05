@@ -1,6 +1,7 @@
 .thumbnails {
   display: flex;
-  width: 150px;
+  width: 350px;
+  flex-wrap: wrap;
 }
 
 .imageGallery {
