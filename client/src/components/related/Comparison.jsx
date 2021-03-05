@@ -33,13 +33,11 @@ class Comparison extends React.Component {
         }
       }
     }
-    // create array of features that includes all from current + all from selected
-    // include indication of which have feature
     return (
       <div className={styles.background} onClick={() => this.closeModal()}>
         <div className={styles.modal}>
+          <div className={styles.heading}>COMPARING</div>
           <div className={styles.header}>
-            <div className={styles.heading}>COMPARING</div>
             <div className={styles.current}>{current.name}</div>
             <div className={styles.selected}>{selected.name}</div>
           </div>
