@@ -74,7 +74,6 @@ class Related extends React.Component {
         product = data;
         return axios.get(`api/products/${productID}/styles`)
           .then((styleResp) => {
-            console.log('test!', product, styleResp);
             product.styles = styleResp.data.results;
             return axios.get(`api/reviews/meta/${productID}`)
               .then((reviewsResp) => {
