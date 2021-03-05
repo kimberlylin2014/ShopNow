@@ -1,3 +1,5 @@
 .breakdownHeader {
   display: flex;
+  align-items: center;
 }
+

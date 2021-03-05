@@ -15,7 +15,6 @@ const ReviewTile = ({review, updateHelpfulByReviewID}) => (
     <Body body={review.body} />
     <IRecommend review={review} />
     {/* <Response /> */}
-    {/* <Helpfulness helpfulness={review.helpfulness} /> */}
     <Helpfulness review={review} updateHelpfulByReviewID={updateHelpfulByReviewID} />
   </div>
 );

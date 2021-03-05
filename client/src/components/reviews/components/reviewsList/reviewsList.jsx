@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReviewTile from '../reviewTile/reviewTile.jsx';
+import styles from './reviewsList.css';
 
 const ReviewsList = ({ reviews, updateHelpfulByReviewID }) => (
-  <div>
+  <div className={styles.reviewsList}>
     {reviews.map((review) => (
       <ReviewTile
         key={review.review_id}
