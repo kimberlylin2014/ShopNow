@@ -5,6 +5,7 @@ import Overview from './components/overview/Overview.jsx';
 import Related from './components/related/Related.jsx';
 import Reviews from './components/reviews/RatingsAndReviews.jsx';
 import Header from './components/Header/Header.jsx';
+import styles from './appStyle.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -46,7 +47,7 @@ class App extends React.Component {
   render() {
     const { productID, styleID } = this.state;
     return (
-      <div>
+      <div className={styles.app}>
         <Header />
         <Overview changeStyleId={this.changeStyleId} productID={productID} />
         <Related
