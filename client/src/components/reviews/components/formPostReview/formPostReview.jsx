@@ -3,6 +3,7 @@ import styles from './formPostReview.css';
 import FormInput from '../formInput/formInput.jsx';
 import FormTextArea from '../formTextArea/formTextArea.jsx';
 import CharacteristicInputs from '../characteristicInputs/characteristicInputs.jsx';
+import StarRating from '../starRating/starRating.jsx';
 
 class FormPostReview extends React.Component {
   static createCharacteristicState(metaReview) {
@@ -76,13 +77,8 @@ class FormPostReview extends React.Component {
           {productInfo ? productInfo.name : null}
         </h4>
         <form onSubmit={this.handleFormSubmit}>
-          {metaReview ? (
-            <CharacteristicInputs
-              characteristics={metaReview.characteristics}
-              handleInputChange={this.handleInputChange}
-            />
-          ) : null}
-          <div className={styles.formGroup}>
+          <StarRating />
+          {/* <div className={styles.formGroup}>
             Overall Rating
             <FormInput
               placeholder="1-5"
@@ -92,7 +88,7 @@ class FormPostReview extends React.Component {
               value={rating}
               handleInputChange={this.handleInputChange}
             />
-          </div>
+          </div> */}
           <div className={styles.formGroup}>
             Do you recommend this product?
             <FormInput
@@ -155,6 +151,12 @@ class FormPostReview extends React.Component {
               label="Email"
             />
           </div>
+          {metaReview ? (
+            <CharacteristicInputs
+              characteristics={metaReview.characteristics}
+              handleInputChange={this.handleInputChange}
+            />
+          ) : null}
           <input type="submit" value="submit" />
         </form>
       </div>
