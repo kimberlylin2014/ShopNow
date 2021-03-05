@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Stars from '../../Stars.jsx';
 
 const Rating = ({ reviewCount, avgRating }) => (
   <div>
-    <p>Average Rating: {avgRating}</p>
+    <Stars numStars={avgRating} />
+
     <p className="ReviewCount">
       Read all
+      {' '}
       {reviewCount}
       {' '}
       reviews

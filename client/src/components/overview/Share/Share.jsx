@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import Facebook from './Facebook/Facebook.jsx';
 import Twitter from './Twitter/Twitter.jsx';
 import Pinterest from './Pinterest/Pinterest.jsx';
+import Styles from './Share.css';
 
 const Share = ({ product_id }) => (
-  <div>
+  <div className={Styles.Share}>
     <Facebook />
     <Twitter />
     <Pinterest />

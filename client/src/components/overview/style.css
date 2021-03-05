@@ -1,3 +1,6 @@
+.parent {
+  font-family: p22-underground, sans-serif;
+}
 
 .colcontainer {
   display: flex;
@@ -13,3 +16,8 @@
 .hidden {
   display: none;
 }
+
+.Price {
+  height: 90px;
+}
+

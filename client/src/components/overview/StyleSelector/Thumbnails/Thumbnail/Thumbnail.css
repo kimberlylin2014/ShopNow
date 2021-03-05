@@ -3,7 +3,8 @@
   height: 60px;
   border-radius: 50%;
   margin: 5px;
-  border: 5px solid white;
+  padding: 6px;
+  border: 1.5px solid white;
 }
 
 .selected {
@@ -11,7 +12,8 @@
   height: 60px;
   border-radius: 50%;
   margin: 5px;
-  border: 5px solid red;
+  padding: 6px;
+  border: 1.5px solid black;
 }
 
 #box {

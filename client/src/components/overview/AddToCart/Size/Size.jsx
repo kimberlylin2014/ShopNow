@@ -1,31 +1,56 @@
 import React from 'react';
+import Styles from './Size.css';
 // import PropTypes from 'prop-types';
 
 class Size extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      SKU: '',
+    };
     this.handleOnChange = this.handleOnChange.bind(this);
   }
 
   handleOnChange(e) {
-    // console.log(e.target.selectedOptions[0].getAttribute('SKU'));
     this.props.changeSKU(e.target.value);
+    this.setState({
+      SKU: e.target.getAttribute('SKU'),
+    });
   }
 
   render() {
-    console.log(this.props.skus);
-    let sizes = Object.entries(this.props.skus);
+    const { skus } = this.props;
+    const { SKU } = this.state;
+
+    const sizes = Object.entries(skus);
     const displaySize = sizes.map((size) => {
-      if ( size[1].quantity > 0 ) {
-        return <option SKU={size[0]} value={size[0]}>{size[1]['size']}</option>
+      if (size[1].quantity > 0) {
+        const selected = size[0] === SKU ? Styles.selected : '';
+        return (
+          <button
+            SKU={size[0]}
+            value={size[0]}
+            onClick={this.handleOnChange}
+            className={Styles.AvailableSize}
+            id={selected}
+          >
+            {size[1].size}
+          </button>
+        );
       }
+      return (
+        <button SKU={size[0]} value={size[0]} className={Styles.OOS}>
+          {size[1].size}
+        </button>
+      );
     });
 
-    return (<div>
-        <label htmlFor="size">Select Size:</label>
-        <select name="size" onChange={this.handleOnChange}>
+    return (
+      <div>
+        <p><b>SIZE</b></p>
+        <div className={Styles.Sizes}>
           {displaySize}
-        </select>
+        </div>
       </div>
     );
   }
