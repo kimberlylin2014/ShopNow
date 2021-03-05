@@ -29,7 +29,11 @@ class Card extends React.Component {
   }
 
   getPrice() {
-    const { product, styleIndex, type } = this.props;
+    const { product, type } = this.props;
+    let { styleIndex } =this.props;
+    if (!styleIndex) {
+      styleIndex = 0;
+    }
     const index = type === 'related' ? 0 : styleIndex;
     if (product.styles[index].sale_price) {
       return (
@@ -71,7 +75,7 @@ class Card extends React.Component {
           { type === 'related'
             ? (
               <div className={styles.icon} onClick={(event) => this.onStarClick(event)}>
-                <img src="icons/star.svg" alt="star" />
+                <img src="stars/filledStar.png" alt="star" />
               </div>
             )
             : (
@@ -84,7 +88,7 @@ class Card extends React.Component {
           <div className={styles.category}>{product.category}</div>
           <div className={styles.name}>{product.name}</div>
           {this.getPrice()}
-          <Stars numStars={product.averageRating} />
+          <Stars className={styles.stars} numStars={product.averageRating} />
         </div>
       </div>
     );

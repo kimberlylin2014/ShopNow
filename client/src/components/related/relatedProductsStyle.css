@@ -1,0 +1,7 @@
+.related {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 8%;
+  font-size: 0.8rem;
+  overflow: auto;
+}
