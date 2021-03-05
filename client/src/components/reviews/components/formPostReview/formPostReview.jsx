@@ -78,17 +78,6 @@ class FormPostReview extends React.Component {
         </h4>
         <form onSubmit={this.handleFormSubmit}>
           <StarRating />
-          {/* <div className={styles.formGroup}>
-            Overall Rating
-            <FormInput
-              placeholder="1-5"
-              htmlFor="rating"
-              type="number"
-              name="rating"
-              value={rating}
-              handleInputChange={this.handleInputChange}
-            />
-          </div> */}
           <div className={styles.formGroup}>
             Do you recommend this product?
             <FormInput

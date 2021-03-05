@@ -29,19 +29,23 @@ class ContainerList extends React.Component {
 
 
   handleOpenModalButtonClick(e) {
+    document.body.scroll = 'no';
+    document.documentElement.style.overflow = 'hidden';
     this.setState({
       modalDisplay: 'block',
     })
   }
 
   handleCloseModalButtonClick(e) {
+    document.documentElement.style.overflow = 'scroll';
+    document.body.scroll = 'yes';
     this.setState({
       modalDisplay: 'none',
-    })
+    });
   }
 
   render() {
-    const { displayPostReviewForm } = this.state;
+    // const { displayPostReviewForm } = this.state;
     const {
       metaReview,
       productInfo,
@@ -64,7 +68,6 @@ class ContainerList extends React.Component {
         />
         <MoreReviewsButton
           displayMoreReviewsButton={displayMoreReviewsButton}
-
         />
         <AddReviewButton
           toggleFormDisplay={this.toggleFormDisplay}
@@ -73,15 +76,18 @@ class ContainerList extends React.Component {
         <FormModal
           modalDisplay={this.state.modalDisplay}
           handleCloseModalButtonClick={this.handleCloseModalButtonClick}
+          metaReview={metaReview}
+          productInfo={productInfo}
+          addReview={addReview}
         />
-        {displayPostReviewForm ? (
+        {/* {displayPostReviewForm ? (
           <FormPostReview
             metaReview={metaReview}
             productInfo={productInfo}
             addReview={addReview}
             toggleFormDisplay={this.toggleFormDisplay}
           />
-        ) : null}
+        ) : null} */}
       </div>
     );
   }
@@ -96,3 +102,5 @@ ContainerList.propTypes = {
 };
 
 export default ContainerList;
+
+
