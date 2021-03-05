@@ -13,10 +13,9 @@ const ReviewTile = ({review, updateHelpfulByReviewID}) => (
     <ReviewHeader review={review} />
     <Summary summary={review.summary} />
     <Body body={review.body} />
-    <IRecommend />
+    <IRecommend review={review} />
     {/* <Response /> */}
-    {/* <Helpfulness helpfulness={review.helpfulness} /> */}
-    <Helpfulness review={review} updateHelpfulByReviewID={updateHelpfulByReviewID}/>
+    <Helpfulness review={review} updateHelpfulByReviewID={updateHelpfulByReviewID} />
   </div>
 );
 

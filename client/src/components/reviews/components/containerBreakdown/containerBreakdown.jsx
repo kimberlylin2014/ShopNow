@@ -5,10 +5,10 @@ import TotalRecommendation from '../totalRecommendation/totalRecommendation.jsx'
 import RatingBreakdown from '../ratingBreakdown/ratingBreakdown.jsx';
 import BreakdownCharacteristics from '../breakdownCharacteristics/breakdownCharacteristics.jsx';
 
-const ContainerBreakdown = ({ metaReview }) => (
+const ContainerBreakdown = ({ metaReview, numOfRecommendation }) => (
   <div className={styles.containerBreakdown}>
     <BreakdownHeader metaReview={metaReview}/>
-    <TotalRecommendation />
+    <TotalRecommendation numOfRecommendation={numOfRecommendation} />
     <RatingBreakdown starNum="5" />
     <RatingBreakdown starNum="4" />
     <RatingBreakdown starNum="3" />

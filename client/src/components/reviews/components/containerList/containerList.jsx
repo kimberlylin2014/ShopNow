@@ -25,12 +25,12 @@ class ContainerList extends React.Component {
 
   render() {
     const { displayPostReviewForm } = this.state;
-    const { metaReview, productInfo, reviews, addReview, updateHelpfulByReviewID } = this.props;
+    const { metaReview, productInfo, reviews, addReview, updateHelpfulByReviewID, totalReviews, toggleSortBy, displayAddReviewButton } = this.props;
     return (
       <div className={styles.containerList}>
-        <SortBy />
+        <SortBy totalReviews={totalReviews} toggleSortBy={toggleSortBy} />
         <ReviewsList reviews={reviews} updateHelpfulByReviewID={updateHelpfulByReviewID} />
-        <MoreReviewsButton />
+        <MoreReviewsButton displayAddReviewButton={displayAddReviewButton} />
         <AddReviewButton toggleFormDisplay={this.toggleFormDisplay} />
         {displayPostReviewForm ? (
           <FormPostReview

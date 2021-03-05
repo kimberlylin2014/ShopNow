@@ -1,10 +1,10 @@
 .ratingsAndReviews {
-  width: 60%;
+  width: 90%;
   margin: 0 auto;
 }
 
 .moduleColumns {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 

@@ -1,13 +1,20 @@
 import React from 'react';
 import styles from './breakdownHeader.css';
 import AverageRating from '../averageRating/averageRating.jsx';
-import StarRating from '../starRating/starRating.jsx';
+import Stars from '../../../Stars.jsx';
+import { calculateAverageRating } from '../../utils/rating.js';
 
-const BreakdownHeader = ({metaReview}) => (
-  <div className={styles.breakdownHeader}>
-    <AverageRating metaReview={metaReview}/>
-    <StarRating />
-  </div>
-);
+const BreakdownHeader = ({metaReview}) => {
+  let rating = null;
+  if (metaReview) {
+    rating = calculateAverageRating(metaReview.ratings);
+  }
+  return (
+    <div className={styles.breakdownHeader}>
+      <AverageRating rating={rating} />
+      <Stars numStars={rating} />
+    </div>
+  );
+};
 
 export default BreakdownHeader;

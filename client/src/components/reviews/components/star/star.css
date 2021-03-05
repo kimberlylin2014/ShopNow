@@ -1,0 +1,8 @@
+.starImg {
+  width: 30px;
+  margin-right:2px;
+}
+
+.starImg:hover {
+  cursor: pointer;
+}

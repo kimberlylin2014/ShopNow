@@ -1,3 +1,9 @@
-.underline {
+.helpfulButton {
   text-decoration: underline;
+  border: none;
+  background-color: #f4f4f2;
+}
+
+.helpfulButton:hover {
+  cursor: pointer;
 }
