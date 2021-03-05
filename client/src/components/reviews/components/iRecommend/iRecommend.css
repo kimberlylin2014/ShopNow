@@ -1,0 +1,9 @@
+.iRecommend {
+  display: flex;
+  align-items: center;
+}
+
+.iRecommendImg {
+  width: 20px;
+  margin-right: 10px;
+}
