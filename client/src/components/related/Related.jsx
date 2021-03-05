@@ -1,16 +1,13 @@
-/* eslint-disable no-console */
-/* eslint-disable indent */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable class-methods-use-this */
-/* eslint-disable react/sort-comp */
 /* eslint-disable react/no-unused-state */
+/* eslint-disable radix */
 /* eslint-disable import/extensions */
-/* eslint-disable react/prefer-stateless-function */
+/* eslint-disable class-methods-use-this */
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import Card from './Card.jsx';
 import Comparison from './Comparison.jsx';
+// import Carousel from './Carousel.jsx';
 import styles from './relatedStyle.css';
 
 class Related extends React.Component {
@@ -28,30 +25,30 @@ class Related extends React.Component {
     this.removeFromOutfit = this.removeFromOutfit.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.productID !== this.props.productID) {
-      const { productID } = this.props;
-      this.loadProduct(productID)
-      .then((currentProduct) => this.setState({ currentProduct }));
-      this.loadRelatedItems(productID);
-    }
-    if (prevProps.styleID !== this.props.styleID) {
-      const { styleID } = this.props;
-      this.getStyleIndex(styleID);
-    }
+    this.getAverageRating = this.getAverageRating.bind(this);
   }
 
   componentDidMount() {
     const { productID, styleID } = this.props;
     this.loadProduct(productID)
-    .then((currentProduct) => {
-      this.setState({ currentProduct });
-      this.getStyleIndex(styleID);
-    });
+      .then((currentProduct) => {
+        this.setState({ currentProduct });
+        this.getStyleIndex(styleID);
+      });
     this.loadRelatedItems(productID);
     this.setState({ outfitItems: JSON.parse(localStorage.getItem('outfitItems') || '[]') });
+  }
+
+  componentDidUpdate(prevProps) {
+    const { productID, styleID } = this.props;
+    if (prevProps.productID !== productID) {
+      this.loadProduct(productID)
+        .then((currentProduct) => this.setState({ currentProduct }));
+      this.loadRelatedItems(productID);
+    }
+    if (prevProps.styleID !== styleID) {
+      this.getStyleIndex(styleID);
+    }
   }
 
   getStyleIndex(styleID) {
@@ -60,42 +57,43 @@ class Related extends React.Component {
     this.setState({ styleIndex });
   }
 
-  loadProduct(productID) {
-    let product;
-    return axios.get(`/api/products/${productID}`)
-    .then((resp) => resp.data)
-    .then((data) => {
-      product = data;
-      return axios.get(`api/products/${productID}/styles`)
-      .then((styleResp) => {
-        product.styles = styleResp.data.results;
-        return axios.get(`api/reviews/meta/${productID}`)
-        .then((reviewsResp) => {
-          product.ratings = reviewsResp.data.ratings;
-          product.averageRating = this.getAverageRating(reviewsResp.data.ratings);
-          return product;
-        });
-      });
-    })
-    .catch((err) => console.log(err));
-  }
-
   getAverageRating(ratings) {
-    const total = Object.keys(ratings).reduce((acc, curr) => (
+    const keys = Object.keys(ratings);
+    const total = keys.reduce((acc, curr) => (
       parseInt(acc) + parseInt(curr)*parseInt(ratings[curr])), 0);
-    const numRatings = Object.keys(ratings).reduce((acc, curr) => (
+    const numRatings = keys.reduce((acc, curr) => (
       parseInt(acc) + parseInt(ratings[curr])), 0);
     return (total / numRatings);
   }
 
+  loadProduct(productID) {
+    let product;
+    return axios.get(`/api/products/${productID}`)
+      .then((resp) => resp.data)
+      .then((data) => {
+        product = data;
+        return axios.get(`api/products/${productID}/styles`)
+          .then((styleResp) => {
+            product.styles = styleResp.data.results;
+            return axios.get(`api/reviews/meta/${productID}`)
+              .then((reviewsResp) => {
+                product.ratings = reviewsResp.data.ratings;
+                product.averageRating = this.getAverageRating(reviewsResp.data.ratings);
+                return product;
+              });
+          });
+      })
+      .catch((err) => console.log(err));
+  }
+
   loadRelatedItems(productID) {
     axios.get(`/api/products/${productID}/related`)
-    .then((resp) => resp.data)
-    .then((array) => Promise.all(array.map((itemID) => this.loadProduct(itemID))))
-    .then((relatedItems) => {
-      this.setState({ relatedItems });
-    })
-    .catch((err) => console.log(err));
+      .then((resp) => resp.data)
+      .then((array) => Promise.all(array.map((itemID) => this.loadProduct(itemID))))
+      .then((relatedItems) => {
+        this.setState({ relatedItems });
+      })
+      .catch((err) => console.log(err));
   }
 
   addToOutfit() {
@@ -110,8 +108,8 @@ class Related extends React.Component {
   }
 
   removeFromOutfit(item) {
-   const { outfitItems } = this.state;
-   const index = outfitItems.indexOf(item);
+    const { outfitItems } = this.state;
+    const index = outfitItems.indexOf(item);
     if (index >= 0) {
       outfitItems.splice(index, 1);
       this.setState({ outfitItems });
@@ -143,10 +141,19 @@ class Related extends React.Component {
       styleIndex,
       selectedProduct,
     } = this.state;
+    /*
+    const relatedCards = relatedItems.map((product) => (
+      <Card key={product.id} product={product} styleIndex={styleIndex} type="related" toggleModal={this.toggleModal} changeCurrentProduct={this.changeCurrentProduct} />
+    ));
+    const outfitCards = outfitItems.map((product) => (
+      <Card key={product.id} product={product} styleIndex={styleIndex} type="outfit" removeFromOutfit={this.removeFromOutfit} changeCurrentProduct={this.changeCurrentProduct} />
+    ));
+    */
     return (
       <div className={styles.component}>
         <div className={styles.heading}>RELATED PRODUCTS</div>
         <div className={styles.relatedSection}>
+          {/* <Carousel cards={relatedCards} /> */}
           {relatedItems.map((product) => (
             <Card key={product.id} product={product} styleIndex={styleIndex} type="related" toggleModal={this.toggleModal} changeCurrentProduct={this.changeCurrentProduct} />
           ))}
@@ -154,6 +161,7 @@ class Related extends React.Component {
         <div className={styles.heading}>YOUR OUTFIT</div>
         <div className={styles.outfitSection}>
           <Card product={null} type="add" addToOutfit={this.addToOutfit} />
+          {/* <Carousel cards={outfitCards} /> */}
           {outfitItems.map((product) => (
             <Card key={product.id} product={product} styleIndex={styleIndex} type="outfit" removeFromOutfit={this.removeFromOutfit} changeCurrentProduct={this.changeCurrentProduct} />
           ))}
@@ -173,6 +181,8 @@ class Related extends React.Component {
 
 Related.propTypes = {
   productID: PropTypes.number.isRequired,
+  styleID: PropTypes.number.isRequired,
+  changeCurrentProduct: PropTypes.isRequired,
 };
 
 export default Related;
