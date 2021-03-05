@@ -134,8 +134,8 @@ class RatingsAndReviews extends React.Component {
   render() {
     const { reviews, metaReview, productInfo, totalReviews, numOfRecommendation, displayAddReviewButton } = this.state;
     return (
-      <div className={styles.ratingsAndReviews}>
-        <h4>Ratings & Reviews</h4>
+      <section className={styles.ratingsAndReviews}>
+        <h2>Ratings & Reviews</h2>
         <div className={styles.moduleColumns}>
           <ContainerBreakdown metaReview={metaReview} numOfRecommendation={numOfRecommendation} />
           <ContainerList
@@ -149,7 +149,7 @@ class RatingsAndReviews extends React.Component {
             displayAddReviewButton={displayAddReviewButton}
           />
         </div>
-      </div>
+      </section>
     );
   }
 }
