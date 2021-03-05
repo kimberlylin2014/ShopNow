@@ -10,7 +10,7 @@ class MoreReviewsButton extends React.Component {
     const {displayAddReviewButton} = this.props;
     return (
       <div>
-        {displayAddReviewButton ? <button className=>More Reviews</button> : null}
+        {displayAddReviewButton ? <button>More Reviews</button> : null}
       </div>
     )
   }
