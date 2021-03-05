@@ -147,7 +147,7 @@ class Overview extends React.Component {
   render() {
     const hideRating = !this.state.numReviews ? Styles.hidden : '';
     return (
-      <div>
+      <div className={Styles.parent}>
         <div className={Styles.rowcontainer}>
           <DefaultImages photos={this.state.photos} alt={this.state.title} />
 
@@ -159,16 +159,18 @@ class Overview extends React.Component {
           />
 
           <div className={Styles.colcontainer}>
+            <Category category={this.state.category} />
+            <ProductTitle title={this.state.title} />
             <div className={hideRating}>
               {' '}
               <Rating reviewCount={this.state.numReviews} avgRating={this.state.avgRating} />
               {' '}
             </div>
-            <Category category={this.state.category} />
-            <ProductTitle title={this.state.title} />
+
             <Price originalPrice={this.state.originalPrice} salePrice={this.state.salePrice} />
+
             <p>
-              Selected Style:
+              <b>STYLE</b>
               {' '}
               {this.state.currentStyleObj.name}
             </p>

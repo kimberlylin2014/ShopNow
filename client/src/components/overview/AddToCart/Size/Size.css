@@ -1,0 +1,34 @@
+.Sizes {
+  display: flex-inline;
+  width: 250px;
+}
+
+.AvailableSize {
+  text-align: center;
+  font-family: p22-underground, sans-serif;
+  align-items: center;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border: 1px black solid;
+  border-radius: 10%;
+  background-color: white;
+  margin: 5px;
+}
+
+.AvailableSize:hover {
+  border: 1px white solid;
+  background-color: black;
+  color: white
+}
+
+.OOS {
+  color:grey;
+  text-align: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border: 1px black solid;
+  border-radius: 10%;
+  margin: 5px;
+}

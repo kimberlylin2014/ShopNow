@@ -1,4 +1,5 @@
 import React from 'react';
+import Styles from './Quantity.css';
 // import PropTypes from 'prop-types';
 
 const Quantity = ({ inventory }) => {
@@ -7,8 +8,8 @@ const Quantity = ({ inventory }) => {
 
   return (
     <div>
-      <label htmlFor="quantity">Select quantity:</label>
-      <select name="quantity">
+      <p><b>QTY</b></p>
+      <select name="quantity" className={Styles.Quantity}>
         {availability}
       </select>
     </div>

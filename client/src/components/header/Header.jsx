@@ -8,8 +8,6 @@ class Header extends React.Component {
     super();
   }
 
-  
-
   render() {
     return (
       <div className={Styles.header}>

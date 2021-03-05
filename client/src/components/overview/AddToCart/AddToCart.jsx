@@ -1,5 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
+import Styles from './AddToCart.css';
 import Size from './Size/Size.jsx';
 import Quantity from './Quantity/Quantity.jsx';
 
@@ -25,7 +26,8 @@ class AddToCart extends React.Component {
         <Size skus={currentStyleObj ? currentStyleObj.skus : ''} changeSKU={this.changeSKU} />
         <Quantity inventory={currentSKU && currentStyleObj.skus &&
           currentStyleObj.skus[currentSKU] ? currentStyleObj.skus[currentSKU].quantity : ''} />
-        <button>Add To Cart</button>
+        <br />
+        <button className={Styles.AddToCart}>ADD TO CART</button>
       </div>
     );
   }
