@@ -18,7 +18,7 @@
 
 .AvailableSize:hover {
   border: 1px white solid;
-  background-color: black;
+  background-color:#C6AD8F;
   color: white
 }
 
@@ -35,7 +35,7 @@
 
 #selected {
   border: 1px white solid;
-  background-color: black;
+  background-color: #C6AD8F;
   color: white;
   box-shadow: 2px 2px rgb(129, 126, 126);
 }

@@ -17,8 +17,9 @@ class StyleSelector extends React.Component {
   // }
 
   render() {
-    const displayThumbnails = this.props.styles.map((style) => (
+    const displayThumbnails = this.props.styles.map((style, index) => (
       <Thumbnails
+        key={index}
         imageThumbnail = {this.props.imageThumbnail}
         currentStyle = {this.props.currentStyle}
         styleId={style.style_id}

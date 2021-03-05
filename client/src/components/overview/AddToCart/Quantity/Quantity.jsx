@@ -4,7 +4,7 @@ import Styles from './Quantity.css';
 
 const Quantity = ({ inventory }) => {
   const quantity = Array.from({ length: inventory >= 15 ? 15 : inventory }, (_, i) => i + 1);
-  const availability = quantity.map((num) => <option value={num}>{num}</option>);
+  const availability = quantity.map((num, index) => <option key={index} value={num}>{num}</option>);
 
   return (
     <div>
