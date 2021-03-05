@@ -90,11 +90,7 @@ class RatingsAndReviews extends React.Component {
   }
 
   getAllReviews() {
-    console.log('inside get all reviews')
     const { product_id, sortBy, reviewCount } = this.state;
-    console.log(product_id)
-    console.log(sortBy)
-    console.log(reviewCount);
     axios.get(`/api/reviews?product_id=${product_id}&count=${reviewCount}&sort=${sortBy}`)
       .then((resp) => {
         this.setState({

@@ -3,6 +3,7 @@ import styles from './reviewHeader.css';
 import StarRating from '../starRating/starRating.jsx';
 import Username from '../username/username.jsx';
 import DateOfReview from '../dateOfReview/dateOfReview.jsx';
+import Stars from '../../../Stars.jsx';
 
 const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
@@ -13,7 +14,8 @@ const ReviewHeader = ({review}) => {
   const monthDateYear = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getUTCFullYear()}`;
   return (
     <div className={styles.reviewHeader}>
-      <StarRating />
+      {/* <StarRating /> */}
+      <Stars numStars={review.rating}/>
       <div className={styles.usernameAndDate}>
         <Username username={review.reviewer_name} />
         <DateOfReview date={monthDateYear} />
