@@ -7,6 +7,12 @@
   color: #373833;
   width: 90%;
   margin: 0 auto;
+  max-width: 90%;
+}
+
+.section {
+  height: 100vh;
+  margin: 5% 0;
 }
 
 /* colors!
@@ -15,5 +21,8 @@ background color: #FEFEFE
 primary text color: #373833
 secondary text color: #393e46
 main color: #C6AD8F
+
+
+card color: #EAEAEA
 
 */

@@ -1,13 +1,6 @@
-.component {
-  margin: 10px;
-}
-
 .heading {
-  font-size: 120%;
+  font-size: 2rem;
+  margin-bottom: 1%;
 }
 
-.relatedSection, .outfitSection {
-  display: flex;
-  flex-direction: row;
-}
 

@@ -1,8 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Overview from './components/overview/Overview.jsx';
-import Related from './components/related/Related.jsx';
+import RelatedItemsAndComparison from './components/related/RelatedItemsAndComparison.jsx';
 import Reviews from './components/reviews/RatingsAndReviews.jsx';
 import Header from './components/Header/Header.jsx';
 import styles from './appStyle.css';
@@ -13,7 +12,8 @@ class App extends React.Component {
     this.state = {
       productID: 14450,
       styleID: 73180,
-      averageRating: 3.5
+      // Do we need this?
+      // averageRating: 3.5
     };
     this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
     this.changeStyleId = this.changeStyleId.bind(this);
@@ -50,11 +50,13 @@ class App extends React.Component {
       <div className={styles.app}>
         <Header />
         <Overview changeStyleId={this.changeStyleId} productID={productID} />
-        <Related
-          productID={productID}
-          styleID={styleID}
-          changeCurrentProduct={this.changeCurrentProduct}
-        />
+        <div className={styles.section}>
+          <RelatedItemsAndComparison
+            productID={productID}
+            styleID={styleID}
+            changeCurrentProduct={this.changeCurrentProduct}
+          />
+        </div>
         <Reviews />
       </div>
 
