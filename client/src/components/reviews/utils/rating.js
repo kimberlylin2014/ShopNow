@@ -10,3 +10,13 @@ export function calculateAverageRating(ratings) {
   return average;
 }
 
+export function calculatePercentageOfRating(metaReview, rating) {
+  const {ratings} = metaReview;
+  const ratingCounts = Object.values(ratings);
+  let totalRatingCounts = 0;
+  ratingCounts.forEach((count) => {
+    totalRatingCounts += parseInt(count);
+  });
+  const percentageOfRating = ((parseInt(ratings[rating])/(totalRatingCounts)) * 100).toFixed(0);
+  return percentageOfRating;
+}

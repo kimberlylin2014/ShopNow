@@ -4,18 +4,21 @@ import BreakdownHeader from '../breakdownHeader/breakdownHeader.jsx';
 import TotalRecommendation from '../totalRecommendation/totalRecommendation.jsx';
 import RatingBreakdown from '../ratingBreakdown/ratingBreakdown.jsx';
 import BreakdownCharacteristics from '../breakdownCharacteristics/breakdownCharacteristics.jsx';
+import {calculatePercentageOfRating} from '../../utils/rating.js';
 
 const ContainerBreakdown = ({ metaReview, numOfRecommendation }) => (
   <div className={styles.containerBreakdown}>
     <BreakdownHeader metaReview={metaReview}/>
     <TotalRecommendation numOfRecommendation={numOfRecommendation} />
-    <div className={styles.ratingBreakdown}>
-      <RatingBreakdown starNum="5" />
-      <RatingBreakdown starNum="4" />
-      <RatingBreakdown starNum="3" />
-      <RatingBreakdown starNum="2" />
-      <RatingBreakdown starNum="1" />
-    </div>
+    {metaReview ? (
+      <div className={styles.ratingBreakdown}>
+        <RatingBreakdown starNum="5" percentRating={calculatePercentageOfRating(metaReview, '5')} />
+        <RatingBreakdown starNum="4" percentRating={calculatePercentageOfRating(metaReview, '4')}/>
+        <RatingBreakdown starNum="3" percentRating={calculatePercentageOfRating(metaReview, '3')}/>
+        <RatingBreakdown starNum="2" percentRating={calculatePercentageOfRating(metaReview, '2')}/>
+        <RatingBreakdown starNum="1" percentRating={calculatePercentageOfRating(metaReview, '1')}/>
+      </div>
+    ): null}
     <BreakdownCharacteristics metaReview={metaReview} />
   </div>
 );
