@@ -1,38 +1,28 @@
 import React, { useState } from 'react';
 import Styles from './ImageGallery.css';
 
-const ImageSlider = ({ productImages }) => {
-  const [current, setCurrent] = useState(0);
-  const { length } = productImages;
-
-  if (!Array.isArray(productImages) || length <= 0) {
-    return null;
-  }
-
+const ImageSlider = ({ length, currIndex, updateIndex }) => {
   const nextPic = () => {
-    setCurrent(current === length - 1 ? 0 : current + 1);
+    updateIndex(currIndex + 1);
   };
 
   const previousPic = () => {
-    setCurrent(current === 0 ? length - 1 : current - 1);
+    updateIndex(currIndex - 1);
   };
-
-  const imageGallery = productImages.map((image, index) => (
-    <div className={current === index ? Styles.CurrentPic : Styles.slider}>
-      { current === index && (
-        <img className={Styles.images} src={image.url} alt="productThumbnail" />)}
-    </div>
-  ));
 
   return (
     <div className={Styles.slider}>
-      { current !== 0 && (
-        <img src='icons/leftArrow.png' className={Styles.LeftArrow} onClick={previousPic}/>
-      )}
-      {imageGallery}
-      { current !== length - 1 && (
-        <img src='icons/rightArrow.png' className={Styles.RightArrow} onClick={nextPic}/>
-      )}
+      <div className={Styles.arrow}>
+        { currIndex > 0 && (
+        <img src="icons/leftArrow.png" className={Styles.LeftArrow} onClick={previousPic} />
+        )}
+      </div>
+
+      <div className={Styles.arrow}>
+        { currIndex !== length - 1 && (
+        <img src="icons/rightArrow.png" className={Styles.RightArrow} onClick={nextPic} />
+        )}
+      </div>
     </div>
   );
 };

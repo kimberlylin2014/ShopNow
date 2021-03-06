@@ -1,27 +1,21 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Styles from './DefaultImages.css';
 import ImageSlider from './ImageGallery/ImageGallery.jsx';
+import ProductThumbnails from './ProductThumbnails/ProductThumbnails.jsx';
 
-const DefaultImages = ({
-  photos, alt, allStyles,
-}) => {
+const DefaultImages = ({ photos }) => {
+  const [index, setIndex] = useState(0);
 
   if (photos) {
-    console.log(photos);
-    // const displayImages = photos.map((pic, index) => (
-    //   <img
-    //     className={Styles.mainImage}
-    //     src={pic.url}
-    //     alt={alt}
-    //     key={index}
-    //   />
-    // ));
-
     return (
       <div className={Styles.gallery}>
-        {/* { displayImages } */}
-        <ImageSlider productImages={photos} />
+        <div className={Styles.currImage}>
+          <img className={Styles.images} src={photos[index].url} alt="defaultImage" />
+        </div>
+        <ImageSlider currIndex={index} updateIndex={setIndex} length={photos.length} />
+        
+        <ProductThumbnails productThumbnails={photos} currIndex={index} updateIndex={setIndex} />
       </div>
     );
   }

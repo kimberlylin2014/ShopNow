@@ -1,0 +1,20 @@
+.thumbnails {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 400px;
+  align-items: space-between;
+  position: absolute;
+  top: 15%;
+}
+
+.productThumbnail {
+  width: 50px;
+  height: 50px;
+  margin: 5px;;
+}
+
+#Selected {
+  border: 1px white solid;
+  box-shadow: 0px 5px white;
+}

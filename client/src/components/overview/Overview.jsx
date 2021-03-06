@@ -177,14 +177,7 @@ class Overview extends React.Component {
     return (
       <div className={Styles.parent}>
         <div className={Styles.rowcontainer}>
-          <DefaultImages photos={currentStyleObj.photos} alt={title} allStyles={styles} />
-
-          {/* <StyleSelector
-            imageThumbnail
-            styles={styles}
-            updateStyleId={this.updateStyleId}
-            currentStyle={styleId}
-          /> */}
+          <DefaultImages photos={currentStyleObj.photos} />
 
           <div className={Styles.colcontainer}>
             <Category category={category} />

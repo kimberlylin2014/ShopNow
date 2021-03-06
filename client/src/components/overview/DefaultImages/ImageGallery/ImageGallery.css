@@ -1,16 +1,18 @@
 .slider {
+  min-width: 560px;
+  top: 50%;
+  left: 5%;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  transition-duration: 1s ease;
+  justify-content: space-between;
+  position: absolute;
 }
 
-.images {
-  width: 500px;
-  height: 650px;
-}
 
+.arrow {
+  min-width: 50px;
+  min-height: 50px;
+}
 
 .LeftArrow {
   width: 50px;
