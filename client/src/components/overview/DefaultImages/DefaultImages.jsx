@@ -4,19 +4,19 @@ import Styles from './DefaultImages.css';
 import ImageSlider from './ImageGallery/ImageGallery.jsx';
 
 const DefaultImages = ({
-  photos, alt, key, allStyles,
+  photos, alt, allStyles,
 }) => {
 
-  console.log(photos);
   if (photos) {
-    const displayImages = photos.map((pic, index) => (
-      <img
-        className={Styles.mainImage}
-        src={pic.url}
-        alt={alt}
-        key={index}
-      />
-    ));
+    console.log(photos);
+    // const displayImages = photos.map((pic, index) => (
+    //   <img
+    //     className={Styles.mainImage}
+    //     src={pic.url}
+    //     alt={alt}
+    //     key={index}
+    //   />
+    // ));
 
     return (
       <div className={Styles.gallery}>

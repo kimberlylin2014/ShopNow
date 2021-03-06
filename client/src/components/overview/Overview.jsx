@@ -49,6 +49,17 @@ class Overview extends React.Component {
     this.getAverageRating(productID);
   }
 
+  componentDidUpdate(prevProps) {
+    const { productID } = this.props;
+    if (prevProps.productID !== productID) {
+      this.getProductInfo(productID);
+      this.getProductStyles(productID);
+      this.getReviewCount(productID);
+      this.getAverageRating(productID);
+    }
+  }
+
+
   getProductInfo(productID) {
     axios.get(`/api/products/${productID}`).then((data) => {
       this.setState({
@@ -162,17 +173,18 @@ class Overview extends React.Component {
       avgRating,
     } = this.state;
     const hideRating = !numReviews ? Styles.hidden : '';
+
     return (
       <div className={Styles.parent}>
         <div className={Styles.rowcontainer}>
           <DefaultImages photos={currentStyleObj.photos} alt={title} allStyles={styles} />
 
-          <StyleSelector
+          {/* <StyleSelector
             imageThumbnail
             styles={styles}
             updateStyleId={this.updateStyleId}
             currentStyle={styleId}
-          />
+          /> */}
 
           <div className={Styles.colcontainer}>
             <Category category={category} />
