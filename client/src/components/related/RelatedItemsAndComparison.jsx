@@ -5,9 +5,9 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import Card from './Card.jsx';
 import Comparison from './Comparison.jsx';
-// import Carousel from './Carousel.jsx';
+import RelatedProducts from './RelatedProducts.jsx';
+import YourOutfit from './YourOutfit.jsx';
 import styles from './relatedStyle.css';
 
 class Related extends React.Component {
@@ -141,31 +141,26 @@ class Related extends React.Component {
       styleIndex,
       selectedProduct,
     } = this.state;
-    console.log(currentProduct);
-    /*
-    const relatedCards = relatedItems.map((product) => (
-      <Card key={product.id} product={product} styleIndex={styleIndex} type="related" toggleModal={this.toggleModal} changeCurrentProduct={this.changeCurrentProduct} />
-    ));
-    const outfitCards = outfitItems.map((product) => (
-      <Card key={product.id} product={product} styleIndex={styleIndex} type="outfit" removeFromOutfit={this.removeFromOutfit} changeCurrentProduct={this.changeCurrentProduct} />
-    ));
-    */
     return (
-      <div className={styles.component}>
+      <div>
         <div className={styles.heading}>RELATED PRODUCTS</div>
         <div className={styles.relatedSection}>
-          {/* <Carousel cards={relatedCards} /> */}
-          {relatedItems.map((product) => (
-            <Card key={product.id} product={product} styleIndex={styleIndex} type="related" toggleModal={this.toggleModal} changeCurrentProduct={this.changeCurrentProduct} />
-          ))}
+          <RelatedProducts
+            relatedItems={relatedItems}
+            styleIndex={styleIndex}
+            toggleModal={this.toggleModal}
+            changeCurrentProduct={this.changeCurrentProduct}
+          />
         </div>
         <div className={styles.heading}>YOUR OUTFIT</div>
         <div className={styles.outfitSection}>
-          <Card product={null} type="add" addToOutfit={this.addToOutfit} />
-          {/* <Carousel cards={outfitCards} /> */}
-          {outfitItems.map((product) => (
-            <Card key={product.id} product={product} styleIndex={styleIndex} type="outfit" removeFromOutfit={this.removeFromOutfit} changeCurrentProduct={this.changeCurrentProduct} />
-          ))}
+          <YourOutfit
+            outfitItems={outfitItems}
+            styleIndex={styleIndex}
+            addToOutfit={this.addToOutfit}
+            removeFromOutfit={this.removeFromOutfit}
+            changeCurrentProduct={this.changeCurrentProduct}
+          />
         </div>
         { showModal
           ? (

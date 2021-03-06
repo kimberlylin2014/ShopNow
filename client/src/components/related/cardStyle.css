@@ -1,13 +1,14 @@
 .card {
   display: inline-grid;
   grid-template-rows: 2fr 1fr;
-  border: 1px solid black;
-  margin: 10px;
+  background-color: #EAEAEA;
+  margin: 0 10px;
   height: 330px;
   width: 225px;
   position: relative;
 }
 
+/* CARD TOP */
 .cardTop {
   grid-row: 1 / 2;
 }
@@ -19,11 +20,29 @@
   padding: 0px;
 }
 
+/* CARD BOTTOM */
 .cardBottom {
   grid-row: 2 / 3;
   padding: 10px;
 }
 
+.category {
+  text-transform: uppercase;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.oldPrice {
+  text-decoration: line-through #C6AD8F;
+}
+
+.newPrice {
+  color: #C6AD8F;
+}
+
+/* ICONS */
 .icon {
   z-index: 3;
   position: absolute;
@@ -41,6 +60,8 @@
   transform: scale(1.3, 1.3);
 }
 
+/* ADD TO OUTFIT CARD */
+
 .addIcon img {
   height: 100px;
   width: auto;
@@ -57,17 +78,9 @@
 
 .addText {
   position: absolute;
-  font-size: 120%;
+  font-size: 1rem;
   top: 80px;
-  left: 60px;
-}
-
-.oldPrice {
-  text-decoration: line-through red;
-}
-
-.newPrice {
-  color: red;
+  left: 65px;
 }
 
 
