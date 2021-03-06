@@ -38,3 +38,7 @@
   opacity: 1;
   transition-duration: 1s;
 }
+
+.Hidden {
+  visibility: hidden
+}

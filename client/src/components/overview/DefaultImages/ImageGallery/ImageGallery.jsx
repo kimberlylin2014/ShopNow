@@ -26,12 +26,17 @@ const ImageSlider = ({ productImages }) => {
 
   return (
     <div className={Styles.slider}>
+      { current !== 0 && (
       <div className={Styles.LeftArrow} onClick={previousPic}>
         <img src='icons/leftArrow.png' />
       </div>
+      )}
+
+      { current !== length - 1 && (
       <div className={Styles.RightArrow} onClick={nextPic}>
         <img src='icons/rightArrow.png' />
       </div>
+      )}
       {imageGallery}
     </div>
   );

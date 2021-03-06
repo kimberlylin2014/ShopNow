@@ -11,7 +11,7 @@ class App extends React.Component {
     this.state = {
       productID: 14450,
       styleID: 73180,
-      averageRating: 3.5
+      averageRating: 3.5,
     };
     this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
     this.changeStyleId = this.changeStyleId.bind(this);
