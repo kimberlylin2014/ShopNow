@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import Overview from './components/overview/Overview.jsx';
 import RelatedItemsAndComparison from './components/related/RelatedItemsAndComparison.jsx';
 import Reviews from './components/reviews/RatingsAndReviews.jsx';
@@ -12,8 +11,7 @@ class App extends React.Component {
     this.state = {
       productID: 14450,
       styleID: 73180,
-      // Do we need this?
-      // averageRating: 3.5
+      averageRating: 3.5
     };
     this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
     this.changeStyleId = this.changeStyleId.bind(this);
@@ -23,18 +21,11 @@ class App extends React.Component {
     // figure out how to get product id from url
     const queryString = window.location.search;
     // console.log(queryString);
-    //this.loadProduct(this.state.productID);
-    console.log(queryString);
-    //this.loadProduct(this.state.productID);
   }
 
-  loadProduct(productID) {
-    axios.get(`/api/products/${productID}`)
-      .then((resp) => this.setState({ productID }))
-      .catch((err) => console.log('ERR', err));
+  changeAverageRating(averageRating) {
+    this.setState({ averageRating });
   }
-
-  // loadAverageRating
 
   changeCurrentProduct(productID) {
     this.setState({ productID });
