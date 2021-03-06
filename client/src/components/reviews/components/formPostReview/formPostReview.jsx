@@ -78,35 +78,33 @@ class FormPostReview extends React.Component {
         </h4>
         <form onSubmit={this.handleFormSubmit}>
           <StarRating />
-          {/* <div className={styles.formGroup}>
-            Overall Rating
-            <FormInput
-              placeholder="1-5"
-              htmlFor="rating"
-              type="number"
-              name="rating"
-              value={rating}
-              handleInputChange={this.handleInputChange}
-            />
-          </div> */}
-          <div className={styles.formGroup}>
-            Do you recommend this product?
-            <FormInput
-              htmlFor="yesRecommend"
-              type="radio"
-              name="recommend"
-              value="true"
-              handleInputChange={this.handleInputChange}
-              label="Yes"
-            />
-            <FormInput
-              htmlFor="noRecommend"
-              type="radio"
-              name="recommend"
-              value="false"
-              handleInputChange={this.handleInputChange}
-              label="No"
-            />
+          <div className={`${styles.formGroup} ${styles.recommendInputs}`}>
+            <div>
+              Do you recommend this product?
+            </div>
+            <div className={styles.recommendInputs}>
+              <div>
+                <FormInput
+                  htmlFor="yesRecommend"
+                  type="radio"
+                  name="recommend"
+                  value="true"
+                  handleInputChange={this.handleInputChange}
+                  label="Yes"
+                />
+              </div>
+              <div>
+                <FormInput
+                  htmlFor="noRecommend"
+                  type="radio"
+                  name="recommend"
+                  value="false"
+                  handleInputChange={this.handleInputChange}
+                  label="No"
+                />
+              </div>
+
+            </div>
           </div>
           <div className={styles.formGroup}>
             <FormInput
@@ -157,7 +155,7 @@ class FormPostReview extends React.Component {
               handleInputChange={this.handleInputChange}
             />
           ) : null}
-          <input type="submit" value="submit" />
+          <input type="submit" value="SUBMIT" className={styles.buttonStyle}/>
         </form>
       </div>
     );

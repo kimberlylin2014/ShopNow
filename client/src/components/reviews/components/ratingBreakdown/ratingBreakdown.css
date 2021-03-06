@@ -1,7 +1,16 @@
 .ratingBreakdown {
   display: flex;
+  justify-content: space-around;
+  margin: 10px;
+  width: 70%;
 }
 
 .starNum {
-  margin-right: 20px;
+  margin-right: 5px;
+  /* margin: 5px;
+  padding: 20px; */
+}
+
+.starText {
+  /* margin-left: 10px; */
 }

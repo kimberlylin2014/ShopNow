@@ -9,6 +9,7 @@ const CharacteristicRadioInput = ({htmlFor, type, name, handleInputChange, value
       name={name}
       onChange={handleInputChange}
       value={value}
+      className={styles.charRadio}
     />
     <label htmlFor={htmlFor} className={styles.labelSize}>
       {label}

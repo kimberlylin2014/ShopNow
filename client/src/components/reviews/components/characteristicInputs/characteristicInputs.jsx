@@ -75,7 +75,7 @@ const CharacteristInputs = ({ characteristics, handleInputChange }) => {
     }
     allRows.push(
       <div key={counter++}>
-        <p className={styles.bold}>{entries[i][0]}</p>
+        <p className={styles.radioRowTitle}>{entries[i][0]}</p>
         <div className={styles.radioRow}>
           {row}
         </div>

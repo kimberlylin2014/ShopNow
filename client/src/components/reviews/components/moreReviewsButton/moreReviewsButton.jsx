@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './moreReviewsButton.css';
 
 class MoreReviewsButton extends React.Component {
   constructor(props) {
@@ -6,11 +7,11 @@ class MoreReviewsButton extends React.Component {
   }
 
   render() {
-    const {displayAddReviewButton} = this.props;
+    const {displayMoreReviewsButton} = this.props;
     return (
-      <div>
-        {displayAddReviewButton ? <button>More Reviews</button> : null}
-      </div>
+      <React.Fragment>
+        {displayMoreReviewsButton ? <button className={styles.buttonStyle}>MORE REVIEWS</button> : null}
+      </React.Fragment>
     )
   }
 };

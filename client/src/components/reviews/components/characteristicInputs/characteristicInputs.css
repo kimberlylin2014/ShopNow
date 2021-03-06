@@ -1,12 +1,24 @@
-.bold {
+.characteristicInputs {
+  width: 100%;
+  margin: 35px 0 0px 0;
+}
+
+.radioRowTitle {
+  padding-bottom: 10px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 1rem;
+  color: #373833;
+  margin: 0 0 10px;
+  border-bottom: solid 2px  #373833;
 }
 
 .radioRow {
-  color: grey;
+  color:  #373833;
   display: flex;
   justify-content: space-between;
-  border: 1px solid black;
+  /* background-color: #373833; */
+  /* border-bottom: solid 1px  #373833; */
+  margin-bottom: 15px;
+  /* padding-bottom: 10px; */
 }
 

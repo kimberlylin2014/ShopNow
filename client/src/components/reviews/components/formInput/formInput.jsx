@@ -6,7 +6,7 @@ const FormInput = ({htmlFor, type, name, handleInputChange, value, label, placeh
     {label}
     <input
       placeholder={placeholder}
-      className={type === 'text' ? styles.textInput : ''}
+      className={type === 'text' ? styles.textInput : styles.radioInput}
       type={type}
       id={htmlFor}
       name={name}

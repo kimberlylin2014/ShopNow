@@ -22,7 +22,7 @@ class RatingsAndReviews extends React.Component {
       totalReviews: null,
       numOfRecommendation: null,
       reviewCount: 0,
-      displayAddReviewButton: false,
+      displayMoreReviewsButton: false,
     };
     this.addReview = this.addReview.bind(this);
     this.getProductInfo = this.getProductInfo.bind(this);
@@ -66,7 +66,7 @@ class RatingsAndReviews extends React.Component {
             this.setState((currState) => (
               {
                 reviewCount: currState.reviewCount + 2,
-                displayAddReviewButton: true,
+                displayMoreReviewsButton: true,
               }
             ), () => {
               this.getAllReviews();
@@ -132,10 +132,10 @@ class RatingsAndReviews extends React.Component {
   }
 
   render() {
-    const { reviews, metaReview, productInfo, totalReviews, numOfRecommendation, displayAddReviewButton } = this.state;
+    const { reviews, metaReview, productInfo, totalReviews, numOfRecommendation, displayMoreReviewsButton } = this.state;
     return (
-      <div className={styles.ratingsAndReviews}>
-        <h4>Ratings & Reviews</h4>
+      <section className={styles.ratingsAndReviews}>
+        <h2>Ratings & Reviews</h2>
         <div className={styles.moduleColumns}>
           <ContainerBreakdown metaReview={metaReview} numOfRecommendation={numOfRecommendation} />
           <ContainerList
@@ -146,10 +146,10 @@ class RatingsAndReviews extends React.Component {
             updateHelpfulByReviewID={this.updateHelpfulByReviewID}
             totalReviews={totalReviews}
             toggleSortBy={this.toggleSortBy}
-            displayAddReviewButton={displayAddReviewButton}
+            displayMoreReviewsButton={displayMoreReviewsButton}
           />
         </div>
-      </div>
+      </section>
     );
   }
 }
