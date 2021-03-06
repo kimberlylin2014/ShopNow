@@ -4,12 +4,9 @@ import styles from './comparisonStyle.css';
 import PropTypes from 'prop-types';
 
 class Comparison extends React.Component {
-  constructor() {
-    super();
-  }
-
   closeModal() {
-    this.props.toggleModal();
+    const { toggleModal } = this.props;
+    toggleModal();
   }
 
   render() {

@@ -1,0 +1,21 @@
+.carouselSection {
+  display: flex;
+  flex-direction: row;
+}
+
+.carousel {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 8%;
+  font-size: 0.8rem;
+  max-width: 1500px;
+  overflow: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+.leftArrow, .rightArrow {
+  cursor: pointer;
+  height: 50px;
+  margin: auto 0;
+}

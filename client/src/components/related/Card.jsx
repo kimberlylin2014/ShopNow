@@ -88,7 +88,7 @@ class Card extends React.Component {
           <div className={styles.category}>{product.category}</div>
           <div className={styles.name}>{product.name}</div>
           {this.getPrice()}
-          <Stars className={styles.stars} numStars={product.averageRating} />
+          <Stars className={styles.stars} numStars={product.averageRating} starsClass={'cardStars'} />
         </div>
       </div>
     );
