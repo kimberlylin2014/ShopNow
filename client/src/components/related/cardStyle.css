@@ -35,11 +35,11 @@
 }
 
 .oldPrice {
-  text-decoration: line-through #C6AD8F;
+  text-decoration: line-through red;
 }
 
 .newPrice {
-  color: #C6AD8F;
+  color: red;
 }
 
 /* ICONS */
@@ -51,7 +51,7 @@
 }
 
 .icon img {
-  height: 25px;
+  height: 20px;
   cursor: pointer;
   transition: transform .2s ease-in-out;
 }

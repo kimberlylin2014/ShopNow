@@ -59,7 +59,7 @@ class Card extends React.Component {
         <div className={styles.card}>
           <div className={styles.addText}>Add to Outfit</div>
           <div className={styles.addIcon} onClick={() => this.onAddClick(product)}>
-            <img src="icons/add.svg" alt="add" />
+            <img src="icons/add.png" alt="add" />
           </div>
         </div>
       );
@@ -75,12 +75,12 @@ class Card extends React.Component {
           { type === 'related'
             ? (
               <div className={styles.icon} onClick={(event) => this.onStarClick(event)}>
-                <img src="stars/filledStar.png" alt="star" />
+                <img src="icons/comparisonStar.png" alt="star" />
               </div>
             )
             : (
               <div className={styles.icon} onClick={(event) => this.onCloseClick(event, product)}>
-                <img src="icons/close.svg" alt="close" />
+                <img src="icons/close.png" alt="close" />
               </div>
             )}
         </div>
