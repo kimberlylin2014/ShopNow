@@ -1,11 +1,10 @@
 import React from 'react';
+import styles from './breakdownOneCharacteristic.css';
 
 const BreakdownOneCharacteristic = ({name, value}) => (
-  <div>
-    <p>
-      {name} Score:
-      {value}
-    </p>
+  <div className={styles.breakdownOneCharacteristic}>
+    {name}:
+    {value}
   </div>
 );
 

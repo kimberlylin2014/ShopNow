@@ -137,7 +137,7 @@ class RatingsAndReviews extends React.Component {
       <section className={styles.ratingsAndReviews}>
         <h2>Ratings & Reviews</h2>
         <div className={styles.moduleColumns}>
-          <ContainerBreakdown metaReview={metaReview} numOfRecommendation={numOfRecommendation} />
+          <ContainerBreakdown metaReview={metaReview} numOfRecommendation={numOfRecommendation} totalReviews={totalReviews}/>
           <ContainerList
             reviews={reviews}
             metaReview={metaReview}

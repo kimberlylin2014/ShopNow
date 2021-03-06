@@ -20,3 +20,45 @@ export function calculatePercentageOfRating(metaReview, rating) {
   const percentageOfRating = ((parseInt(ratings[rating])/(totalRatingCounts)) * 100).toFixed(0);
   return percentageOfRating;
 }
+
+export function calculateCharacteristicBreakdown(score) {
+  let box1 = false;
+  let box2 = false;
+  let box3 = false;
+  let marginLeft = '5%';
+
+  if (parseFloat(score) < 1.5) {
+    box1 = true;
+  } else if (parseFloat(score) === 1.5) {
+    box1 = true;
+    marginLeft = '40%';
+  } else if (parseFloat(score) > 1.5 && parseFloat(score) <= 2.9) {
+    box1 = true;
+    marginLeft = '80%';
+  } else if (parseFloat(score) < 3.5) {
+    box2 = true;
+  } else if (parseFloat(score) === 3.5) {
+    box2 = true;
+    marginLeft = '40%';
+  } else if (parseFloat(score) > 3.5 && parseFloat(score) < 4) {
+    box2 = true;
+    marginLeft = '80%';
+  } else if (parseFloat(score) < 4.5) {
+    box3 = true;
+  } else if (parseFloat(score) === 4.5) {
+    box3 = true;
+    marginLeft = '40%';
+  } else if (parseFloat(score) > 4.5 && parseFloat(score) <= 5) {
+    box3 = true;
+    marginLeft = '80%';
+  }
+
+  const info = {
+    marginLeft,
+    box1,
+    box2,
+    box3,
+  };
+
+  return info;
+}
