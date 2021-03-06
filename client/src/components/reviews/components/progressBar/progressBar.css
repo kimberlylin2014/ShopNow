@@ -1,0 +1,13 @@
+.progressFrame{
+  width: 300px;
+  border: 1px solid black;
+  height: 15px;
+  margin-left: 30px;
+}
+
+
+.progressBar {
+
+  background-color: #393e46;
+
+}

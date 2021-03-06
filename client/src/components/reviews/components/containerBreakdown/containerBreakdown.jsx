@@ -9,11 +9,13 @@ const ContainerBreakdown = ({ metaReview, numOfRecommendation }) => (
   <div className={styles.containerBreakdown}>
     <BreakdownHeader metaReview={metaReview}/>
     <TotalRecommendation numOfRecommendation={numOfRecommendation} />
-    <RatingBreakdown starNum="5" />
-    <RatingBreakdown starNum="4" />
-    <RatingBreakdown starNum="3" />
-    <RatingBreakdown starNum="2" />
-    <RatingBreakdown starNum="1" />
+    <div className={styles.ratingBreakdown}>
+      <RatingBreakdown starNum="5" />
+      <RatingBreakdown starNum="4" />
+      <RatingBreakdown starNum="3" />
+      <RatingBreakdown starNum="2" />
+      <RatingBreakdown starNum="1" />
+    </div>
     <BreakdownCharacteristics metaReview={metaReview} />
   </div>
 );
