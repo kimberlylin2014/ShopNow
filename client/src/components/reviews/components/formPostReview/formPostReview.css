@@ -1,3 +1,14 @@
+.formPostReview {
+  margin: 5px auto;
+  padding: 5px 20px 20px 20px;
+  width: 90%;
+}
+
+.recommendInputs {
+  display: flex;
+  justify-content: space-between;
+}
+
 .textInput {
   display: block;
   margin-bottom: 10px;
@@ -6,10 +17,26 @@
 }
 
 .formGroup {
-  margin-top: 12px;
+  margin-top: 18px;
 }
 
-.formPostReview {
-  margin-top: 5px;
-  padding: 5px 20px 20px 20px;
+.buttonStyle {
+  width: 150px;
+  height: 45px;
+  background-color: #FEFEFE;
+  color: #393e46;
+  border: 1px solid #393e46;
+  margin-top: 20px;
 }
+
+.buttonStyle:hover {
+  color: #FEFEFE;
+  cursor: pointer;
+  background-color: #393e46;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.11),
+              0 2px 2px rgba(0,0,0,0.11),
+              0 4px 4px rgba(0,0,0,0.11),
+              0 6px 8px rgba(0,0,0,0.11),
+              0 8px 16px rgba(0,0,0,0.11);
+}
+

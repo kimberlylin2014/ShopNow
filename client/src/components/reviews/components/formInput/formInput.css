@@ -1,7 +1,14 @@
 .textInput {
   display: block;
   margin-bottom: 10px;
-  border: 1px solid black;
-  width: 80%;
+  border: 1px solid #393e46;
   border-radius: 5px;
+  height: 30px;
+  width: 100%;
+}
+
+
+.radioInput {
+  cursor: pointer;
+  margin-right: 50px;
 }
