@@ -8,7 +8,7 @@
 
 .labelSize {
   text-align: center;
-  font-size: 2rem;
+  /* font-size: 2rem; */
   color: #393e46;
   margin-top: 8px;
   margin-left: 20px;
@@ -16,7 +16,7 @@
 
 .charRadio {
   cursor: pointer;
-  transform: scale(2);
+  /* transform: scale(2); */
 }
 
 /* .flexColumn {

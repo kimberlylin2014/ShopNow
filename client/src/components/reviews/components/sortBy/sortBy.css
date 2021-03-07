@@ -1,5 +1,5 @@
 .sortBy {
-  font-size: 3rem;
+  /* font-size: 1rem; */
 }
 
 .sortByLabel {
@@ -11,7 +11,7 @@
   background-color: #FEFEFE;
   text-decoration: underline;
   appearance: none;
-  font-size: 1.6rem;
+  /* font-size: 1rem; */
 }
 
 /* .sortByOption {

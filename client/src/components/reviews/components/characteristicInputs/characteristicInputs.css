@@ -22,7 +22,7 @@
  .radioRowTitle {
   padding-bottom: 10px;
   font-weight: 600;
-  font-size: 2rem;
+  /* font-size: 2rem; */
   color: #373833;
   margin: 0 0 10px;
   border-bottom: solid 2px  #373833;

@@ -40,7 +40,7 @@ class App extends React.Component {
     return (
       <div className={styles.app}>
         <Header />
-        <Overview changeStyleId={this.changeStyleId} productID={productID} />
+        {/* <Overview changeStyleId={this.changeStyleId} productID={productID} /> */}
         <div className={styles.section}>
           <RelatedItemsAndComparison
             productID={productID}
