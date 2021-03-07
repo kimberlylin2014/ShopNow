@@ -66,13 +66,17 @@ class ContainerList extends React.Component {
           reviews={reviews}
           updateHelpfulByReviewID={updateHelpfulByReviewID}
         />
-        <MoreReviewsButton
-          displayMoreReviewsButton={displayMoreReviewsButton}
-        />
-        <AddReviewButton
-          toggleFormDisplay={this.toggleFormDisplay}
-          handleOpenModalButtonClick={this.handleOpenModalButtonClick}
-        />
+
+        <div className={styles.flex}>
+          <MoreReviewsButton
+            displayMoreReviewsButton={displayMoreReviewsButton}
+          />
+           <AddReviewButton
+             toggleFormDisplay={this.toggleFormDisplay}
+            handleOpenModalButtonClick={this.handleOpenModalButtonClick}
+          />
+        </div>
+
         <FormModal
           modalDisplay={this.state.modalDisplay}
           handleCloseModalButtonClick={this.handleCloseModalButtonClick}

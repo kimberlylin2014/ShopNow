@@ -3,3 +3,23 @@
   margin: 30px 0 10px 0;
   font-size: 1rem;
 }
+
+/* tablet vie*/
+@media (min-width: 576px) {
+  .flex {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+@media (min-width: 768px) {
+  .containerList {
+    width: 100%;
+    margin: 0 0 10px 0;
+    font-size: 1rem;
+  }
+  .flex {
+    display: flex;
+    justify-content: space-around;
+  }
+}

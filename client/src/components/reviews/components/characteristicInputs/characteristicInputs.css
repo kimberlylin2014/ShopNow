@@ -35,3 +35,11 @@
   margin-bottom: 15px;
 }
 
+/* desktop view */
+@media (min-width: 992px) {
+  .radioRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+}

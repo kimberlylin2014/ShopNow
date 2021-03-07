@@ -16,3 +16,17 @@
   cursor: pointer;
 }
 
+/* tablet vie*/
+@media (min-width: 576px) {
+  .buttonStyle {
+    width: 40%;
+  }
+}
+
+
+/* desktop view */
+@media (min-width: 768px) {
+  .buttonStyle {
+    width: 40%;
+  }
+}
