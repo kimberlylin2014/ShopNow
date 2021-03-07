@@ -60,7 +60,7 @@ class Related extends React.Component {
   getAverageRating(ratings) {
     const keys = Object.keys(ratings);
     const total = keys.reduce((acc, curr) => (
-      parseInt(acc) + parseInt(curr)*parseInt(ratings[curr])), 0);
+      parseInt(acc) + parseInt(curr) * parseInt(ratings[curr])), 0);
     const numRatings = keys.reduce((acc, curr) => (
       parseInt(acc) + parseInt(ratings[curr])), 0);
     return (total / numRatings);
@@ -144,24 +144,20 @@ class Related extends React.Component {
     return (
       <div>
         <div className={styles.heading}>RELATED PRODUCTS</div>
-        <div className={styles.relatedSection}>
-          <RelatedProducts
-            relatedItems={relatedItems}
-            styleIndex={styleIndex}
-            toggleModal={this.toggleModal}
-            changeCurrentProduct={this.changeCurrentProduct}
-          />
-        </div>
+        <RelatedProducts
+          relatedItems={relatedItems}
+          styleIndex={styleIndex}
+          toggleModal={this.toggleModal}
+          changeCurrentProduct={this.changeCurrentProduct}
+        />
         <div className={styles.heading}>YOUR OUTFIT</div>
-        <div className={styles.outfitSection}>
-          <YourOutfit
-            outfitItems={outfitItems}
-            styleIndex={styleIndex}
-            addToOutfit={this.addToOutfit}
-            removeFromOutfit={this.removeFromOutfit}
-            changeCurrentProduct={this.changeCurrentProduct}
-          />
-        </div>
+        <YourOutfit
+          outfitItems={outfitItems}
+          styleIndex={styleIndex}
+          addToOutfit={this.addToOutfit}
+          removeFromOutfit={this.removeFromOutfit}
+          changeCurrentProduct={this.changeCurrentProduct}
+        />
         { showModal
           ? (
             <Comparison

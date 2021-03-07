@@ -1,8 +1,20 @@
 .star {
+  height: 18px;
+}
+
+.cardStar {
   height: 15px;
 }
 
 .cardStars {
   position:absolute;
   bottom: 5px;
+}
+
+.reviewStar {
+
+}
+
+.reviewStars {
+
 }

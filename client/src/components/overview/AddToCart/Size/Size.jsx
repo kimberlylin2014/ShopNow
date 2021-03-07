@@ -23,11 +23,12 @@ class Size extends React.Component {
     const { SKU } = this.state;
 
     const sizes = Object.entries(skus);
-    const displaySize = sizes.map((size) => {
+    const displaySize = sizes.map((size, index) => {
       if (size[1].quantity > 0) {
         const selected = size[0] === SKU ? Styles.selected : '';
         return (
           <button
+            key={index}
             SKU={size[0]}
             value={size[0]}
             onClick={this.handleOnChange}
@@ -39,7 +40,7 @@ class Size extends React.Component {
         );
       }
       return (
-        <button SKU={size[0]} value={size[0]} className={Styles.OOS}>
+        <button key={index} SKU={size[0]} value={size[0]} className={Styles.OOS}>
           {size[1].size}
         </button>
       );

@@ -6,19 +6,12 @@ import Styles from './StyleSelector.css';
 class StyleSelector extends React.Component {
   constructor(props) {
     super(props);
-    // this.imageNav = React.createRef();
   }
 
-  // handleScroll(direction) {
-  //   console.log(this.imageNav.current);
-  //   if ( direction === 'top' ) {
-  //     this.imageNav.current.scrollTop;
-  //   }
-  // }
-
-  render() {
-    const displayThumbnails = this.props.styles.map((style) => (
+    render() {
+    const displayThumbnails = this.props.styles.map((style, index) => (
       <Thumbnails
+        key={index}
         imageThumbnail = {this.props.imageThumbnail}
         currentStyle = {this.props.currentStyle}
         styleId={style.style_id}

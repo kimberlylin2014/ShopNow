@@ -6,6 +6,7 @@
   height: 330px;
   width: 225px;
   position: relative;
+  flex-shrink: 0;
 }
 
 /* CARD TOP */

@@ -1,17 +1,26 @@
-.carouselSection {
-  display: flex;
-  flex-direction: row;
-}
-
-.carousel {
+/* .carouselSection {
+  max-width: 90vw;
   display: flex;
   flex-direction: row;
   margin-bottom: 8%;
   font-size: 0.8rem;
-  max-width: 1500px;
-  overflow: auto;
+  overflow: scroll;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+} */
+
+.cards {
+  max-width: 90vw;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 8%;
+  font-size: 0.8rem;
+  overflow: auto;
+  scroll-behavior: smooth;
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .leftArrow, .rightArrow {

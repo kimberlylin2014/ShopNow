@@ -49,6 +49,17 @@ class Overview extends React.Component {
     this.getAverageRating(productID);
   }
 
+  componentDidUpdate(prevProps) {
+    const { productID } = this.props;
+    if (prevProps.productID !== productID) {
+      this.getProductInfo(productID);
+      this.getProductStyles(productID);
+      this.getReviewCount(productID);
+      this.getAverageRating(productID);
+    }
+  }
+
+
   getProductInfo(productID) {
     axios.get(`/api/products/${productID}`).then((data) => {
       this.setState({
@@ -145,51 +156,61 @@ class Overview extends React.Component {
   }
 
   render() {
-    const hideRating = !this.state.numReviews ? Styles.hidden : '';
+    const {
+      styleId,
+      styleIndex,
+      currentStyleObj,
+      title,
+      category,
+      slogan,
+      description,
+      features,
+      styles,
+      originalPrice,
+      salePrice,
+      photos,
+      numReviews,
+      avgRating,
+    } = this.state;
+    const hideRating = !numReviews ? Styles.hidden : '';
+
     return (
       <div className={Styles.parent}>
         <div className={Styles.rowcontainer}>
-          <DefaultImages photos={this.state.photos} alt={this.state.title} />
-
-          <StyleSelector
-            imageThumbnail
-            styles={this.state.styles}
-            updateStyleId={this.updateStyleId}
-            currentStyle={this.state.styleId}
-          />
+          <DefaultImages photos={currentStyleObj.photos} />
 
           <div className={Styles.colcontainer}>
-            <Category category={this.state.category} />
-            <ProductTitle title={this.state.title} />
+            <Category category={category} />
+            <ProductTitle title={title} />
             <div className={hideRating}>
               {' '}
-              <Rating reviewCount={this.state.numReviews} avgRating={this.state.avgRating} />
+              <Rating reviewCount={numReviews} avgRating={avgRating} />
               {' '}
             </div>
 
             <div className={Styles.Price}>
-              <Price originalPrice={this.state.originalPrice} salePrice={this.state.salePrice} />
+              <Price originalPrice={originalPrice} salePrice={salePrice} />
             </div>
 
             <p>
               <b>STYLE</b>
               {' '}
-              {this.state.currentStyleObj.name}
+              {currentStyleObj.name}
             </p>
             <StyleSelector
-              styles={this.state.styles}
+              styles={styles}
               updateStyleId={this.updateStyleId}
-              currentStyle={this.state.styleId}
+              currentStyle={styleId}
             />
             {
-              this.state.currentStyleObj && <AddToCart currentStyleObj={this.state.currentStyleObj} />
+              currentStyleObj && <AddToCart currentStyleObj={currentStyleObj} />
             }
 
           </div>
         </div>
         <div className={Styles.rowcontainer}>
-          <ProductOverview slogan={this.state.slogan} desciprtion={this.state.description} />
-          <ProductFeatures features={this.state.features} />
+          <ProductOverview slogan={slogan} desciprtion={description} />
+          <ProductFeatures features={features} />
         </div>
 
         <div className={Styles.Share}>

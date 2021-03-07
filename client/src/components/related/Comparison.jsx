@@ -4,6 +4,25 @@ import styles from './comparisonStyle.css';
 import PropTypes from 'prop-types';
 
 class Comparison extends React.Component {
+  constructor () {
+    super();
+    this.escFunction = this.escFunction.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.escFunction, false);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.escFunction, false);
+  }
+
+  escFunction(event) {
+    if (event.keyCode === 27) {
+      this.closeModal();
+    }
+  }
+
   closeModal() {
     const { toggleModal } = this.props;
     toggleModal();

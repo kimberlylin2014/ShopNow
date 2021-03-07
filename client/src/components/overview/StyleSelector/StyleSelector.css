@@ -6,7 +6,7 @@
 
 .imageGallery {
   position: absolute;
-  left: 50px;
+  left: 8%;
   overflow: auto;
   white-space: nowrap;
   overflow-y: scroll;
