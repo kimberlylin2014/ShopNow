@@ -14,7 +14,6 @@ const DefaultImages = ({ photos }) => {
           <img className={Styles.images} src={photos[index].url} alt="defaultImage" />
         </div>
         <ImageSlider currIndex={index} updateIndex={setIndex} length={photos.length} />
-        
         <ProductThumbnails productThumbnails={photos} currIndex={index} updateIndex={setIndex} />
       </div>
     );

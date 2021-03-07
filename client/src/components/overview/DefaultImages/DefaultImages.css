@@ -6,6 +6,11 @@
 .images {
   width: 500px;
   height: 650px;
+  cursor: zoom-in;
+}
+
+.images:hover {
+  cursor: zoom-in;
 }
 
 .currImage {
