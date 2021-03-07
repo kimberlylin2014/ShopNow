@@ -1,4 +1,8 @@
+h3 {
+  padding-left: 1%;
+}
+
 .produtDesc {
-  font-size: 20px;
+  font-size: .8rem;
   width: 65%;
 }

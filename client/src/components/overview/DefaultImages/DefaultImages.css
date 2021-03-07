@@ -1,5 +1,19 @@
-.mainImage {
-  width: 700px;
-  height: 700px;
+.gallery {
+  width: 450px;
+  height: 600px;
+}
+
+.images {
+  width: 500px;
+  height: 650px;
   cursor: zoom-in;
+}
+
+.images:hover {
+  cursor: zoom-in;
+}
+
+.currImage {
+  width: 500px;
+  height: 650px;
 }

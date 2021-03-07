@@ -4,7 +4,7 @@ import Feature from './Feature/Feature.jsx';
 import Styles from './ProductFeatures.css';
 
 function ProductFeatures({ features }) {
-  const listFeatures = features.map((feat) => <Feature key={feat} feature={feat} />);
+  const listFeatures = features.map((feat, index) => <Feature key={index} feature={feat} />);
   return (
     <ul className={Styles.featureList}>
       {listFeatures}
