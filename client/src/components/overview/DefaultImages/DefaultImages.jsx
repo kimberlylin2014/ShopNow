@@ -16,11 +16,7 @@ const DefaultImages = ({ photos }) => {
           <img className={Styles.images} src={photos[index].url} alt="defaultImage" />
         </div>
 
-        <Modal handleClose={setModal} show={modal} />
-
-        <button onClick={() => { setModal(true); }}>
-          Open
-        </button>
+        <Modal handleClose={setModal} show={modal} currIndex={index} updateIndex={setIndex} photos={photos}/>
 
         <ImageSlider currIndex={index} updateIndex={setIndex} length={photos.length} />
         <ProductThumbnails productThumbnails={photos} currIndex={index} updateIndex={setIndex} />
