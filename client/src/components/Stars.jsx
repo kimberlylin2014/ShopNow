@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './starsStyle.css';
 
-const Stars = ({ numStars, starsClass }) => {
+const Stars = ({ numStars, starsClass, starClass }) => {
   const numFilledStars = Math.floor(numStars);
   const decimal = Number((numStars - numFilledStars).toFixed(2)) * 100;
   const numQuarters = Math.round(decimal / 25);
@@ -28,7 +28,7 @@ const Stars = ({ numStars, starsClass }) => {
 
   return (
     <div className={styles[starsClass]}>
-      {array.map((starFile, index) => <img key={index} className={styles.star} src={`${starFile}`} alt={starFile} />)}
+      {array.map((starFile, index) => <img key={index} className={styles[starClass]} src={`${starFile}`} alt={starFile} />)}
     </div>
   );
 };

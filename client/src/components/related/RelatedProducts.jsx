@@ -14,28 +14,60 @@ const RelatedProducts = ({ relatedItems, styleIndex, toggleModal, changeCurrentP
   const container = document.getElementById('relatedContainer');
 
   const scroll = (scrollOffset) => {
+    console.log('scrollLeft: ', container.scrollLeft);
+    console.log('scrollWidth: ', container.scrollWidth);
+    console.log('clientWidth: ', container.clientWidth);
     container.scrollLeft += scrollOffset;
+  };
+
+  const displayLeftArrow = () => {
+    if (container.scrollLeft > 0) {
+      return (
+        <img
+          src="icons/leftArrow.png"
+          className={styles.leftArrow}
+          onClick={() => scroll(-245)}
+          alt="leftArrow"
+        />
+      );
+    }
+    return <div />;
+  };
+
+  const displayRightArrow = () => {
+    if (container.clientWidth < container.scrollWidth) {
+      return (
+        <img
+          src="icons/rightArrow.png"
+          className={styles.rightArrow}
+          onClick={() => scroll(245)}
+          alt="rightArrow"
+        />
+      );
+    }
+    return <div />;
   };
 
   return (
     <div className={styles.carouselSection}>
-      <img
-        src="icons/leftArrow.png"
-        className={styles.leftArrow}
-        onClick={() => scroll(-245)}
-        alt="leftArrow"
-      />
-      <div className={styles.carousel} id="relatedContainer">
-        {cards}
+      {
+        document.getElementById('relatedContainer') ? displayLeftArrow() : null
+      }
+      <div
+        className={styles.carousel}
+        id="relatedContainer"
+      >
+        <div className={styles.cards}>{cards}</div>
       </div>
-      <img
-        src="icons/rightArrow.png"
-        className={styles.rightArrow}
-        onClick={() => scroll(245)}
-        alt="rightArrow"
-      />
+      {
+        document.getElementById('relatedContainer') ? displayRightArrow() : null
+      }
     </div>
   );
 };
 
 export default RelatedProducts;
+
+/*
+
+*/
