@@ -23,7 +23,7 @@ const ProductThumbnails = ({ productThumbnails, currIndex, updateIndex }) => {
     <div className={Styles.thumbnails}>
       { productThumbnails.length > 0 && (
       <div className={Styles.thumbnails}>
-        <button onClick={() => settracker(tracker === 0 ? 0 : tracker - 1)}>UP</button>
+        <img src='icons/up-arrow.svg' className={Styles.upArrow} onClick={() => settracker(tracker === 0 ? 0 : tracker - 1)} />
         { createThumbnail(tracker) }
         { createThumbnail(tracker + 1) }
         { createThumbnail(tracker + 2) }
@@ -31,7 +31,7 @@ const ProductThumbnails = ({ productThumbnails, currIndex, updateIndex }) => {
         { createThumbnail(tracker + 4) }
         { createThumbnail(tracker + 5) }
         { createThumbnail(tracker + 6) }
-        <button onClick={() => settracker( tracker + 7 === length ? tracker : tracker + 1)}> DOWN</button>
+        <img src='icons/down-arrow.svg' className={Styles.downArrow} onClick={() => settracker( tracker + 7 === length ? tracker : tracker + 1)} />
       </div>
       )}
     </div>
