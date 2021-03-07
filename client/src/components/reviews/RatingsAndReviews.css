@@ -1,10 +1,20 @@
+/* mobile view */
+.moduleColumns {
+  display: grid;
+  grid-template-columns: 100%;
+  /* grid-template-rows: 100% 100%; */
+}
+
 .ratingsAndReviews {
   margin: 5% auto;
-  font-size: 1.2rem;
+  font-size: 1.7rem;
 }
 
-.moduleColumns {
-  display: flex;
-  justify-content: center;
+
+/* .containerBreakdown {
+  grid-row: 1;
 }
 
+.containerList {
+  grid-row: 3;
+} */

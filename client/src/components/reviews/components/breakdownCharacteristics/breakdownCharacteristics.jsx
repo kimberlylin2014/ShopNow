@@ -72,7 +72,7 @@ const BreakdownCharacteristics = ({metaReview}) => {
     });
   }
   return (
-    <div>
+    <div className={styles.breakdownCharacteristicSection}>
       {list}
     </div>
   );

@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './sortBy.css';
 
 class SortBy extends React.Component {
   constructor(props) {
@@ -23,15 +24,17 @@ class SortBy extends React.Component {
   render() {
     const { totalReviews } = this.props;
     return (
-      <form>
-        <label htmlFor="sortList">{totalReviews ? totalReviews : null} reviews, sorted by:</label>
-        <select name="sortByValue" id="sortList" onChange={this.handleSelect} value={this.state.sortByValue}>
-          <option value="relevance">Relevance</option>
-          <option value="helpful">Helpful</option>
-          <option value="newest">Newest</option>
-        </select>
-      </form>
-    )
+      <div className={styles.sortBy}>
+        <form>
+          <label htmlFor="sortList" ><span className={styles.sortByLabel}>{totalReviews ? totalReviews : null} reviews</span>, sorted by: </label>
+          <select name="sortByValue" id="sortList" onChange={this.handleSelect} value={this.state.sortByValue} className={styles.sortBySelect}>
+            <option value="relevance">Relevance</option>
+            <option value="helpful"> Helpful</option>
+            <option value="newest">Newest</option>
+          </select>
+        </form>
+      </div>
+    );
   }
 };
 

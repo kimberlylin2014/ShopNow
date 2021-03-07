@@ -1,0 +1,19 @@
+.sortBy {
+  font-size: 3rem;
+}
+
+.sortByLabel {
+  font-weight: 600;
+}
+
+.sortBySelect {
+  border: none;
+  background-color: #FEFEFE;
+  text-decoration: underline;
+  appearance: none;
+  font-size: 1.6rem;
+}
+
+/* .sortByOption {
+  font-size: 3rem;
+} */

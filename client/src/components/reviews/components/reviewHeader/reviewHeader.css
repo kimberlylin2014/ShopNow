@@ -1,9 +1,12 @@
 .reviewHeader {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .reviewHeader .usernameAndDate{
   display: flex;
   justify-content: end;
+  margin: 40px 0 30px 0;
+  font-size: 2rem;
 }

@@ -23,7 +23,7 @@ class Helpfulness extends React.Component {
     const { disabled } = this.state;
     const { review } = this.props;
     return (
-      <p>
+      <p className={styles.helpful}>
         Helpful?
         <button
           type="button"

@@ -5,10 +5,11 @@ import styles from './RatingsAndReviews.css';
 import ContainerBreakdown from './components/containerBreakdown/containerBreakdown.jsx';
 import ContainerList from './components/containerList/containerList.jsx';
 
-// 14040
+// 14040 (little reviwes)
 // 14937
+//  14982
 
-const productID = '14937';
+const productID = '14982';
 
 class RatingsAndReviews extends React.Component {
   constructor(props) {
@@ -137,17 +138,21 @@ class RatingsAndReviews extends React.Component {
       <section className={styles.ratingsAndReviews}>
         <h2>Ratings & Reviews</h2>
         <div className={styles.moduleColumns}>
-          <ContainerBreakdown metaReview={metaReview} numOfRecommendation={numOfRecommendation} totalReviews={totalReviews}/>
-          <ContainerList
-            reviews={reviews}
-            metaReview={metaReview}
-            productInfo={productInfo}
-            addReview={this.addReview}
-            updateHelpfulByReviewID={this.updateHelpfulByReviewID}
-            totalReviews={totalReviews}
-            toggleSortBy={this.toggleSortBy}
-            displayMoreReviewsButton={displayMoreReviewsButton}
-          />
+          <div className={styles.containerBreakdown}>
+            <ContainerBreakdown metaReview={metaReview} numOfRecommendation={numOfRecommendation} totalReviews={totalReviews}/>
+          </div>
+          <div className={styles.containerList}>
+            <ContainerList
+              reviews={reviews}
+              metaReview={metaReview}
+              productInfo={productInfo}
+              addReview={this.addReview}
+              updateHelpfulByReviewID={this.updateHelpfulByReviewID}
+              totalReviews={totalReviews}
+              toggleSortBy={this.toggleSortBy}
+              displayMoreReviewsButton={displayMoreReviewsButton}
+            />
+          </div>
         </div>
       </section>
     );

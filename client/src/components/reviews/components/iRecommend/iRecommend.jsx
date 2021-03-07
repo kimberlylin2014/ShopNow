@@ -5,10 +5,10 @@ const IRecommend = ({review}) => (
   <div className={styles.iRecommend}>
     <img
       className={styles.iRecommendImg}
-      src="/icons/tick.png"
+      src="/icons/check.png"
       alt="green-checkmark"
     />
-    {review.recommend ? 'I recommend this product' : null }
+    <span className={styles.iRecommendText}>{review.recommend ? 'I recommend this product' : null }</span>
   </div>
 );
 
