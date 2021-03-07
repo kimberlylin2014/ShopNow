@@ -5,7 +5,6 @@ const FormTextArea = ({htmlFor, name, handleInputChange, value, label, placehold
   <label htmlFor={htmlFor}>
     {label}
     <textarea
-      placeholder={placeholder}
       className={styles.textInput}
       id={htmlFor}
       name={name}
