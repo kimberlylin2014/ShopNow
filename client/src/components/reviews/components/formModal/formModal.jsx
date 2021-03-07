@@ -10,6 +10,7 @@ const FormModal = ({modalDisplay, handleCloseModalButtonClick, metaReview, produ
           metaReview={metaReview}
           productInfo={productInfo}
           addReview={addReview}
+          handleCloseModalButtonClick={handleCloseModalButtonClick}
         />
       </div>
     </div>

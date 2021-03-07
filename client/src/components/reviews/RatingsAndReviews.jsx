@@ -116,6 +116,7 @@ class RatingsAndReviews extends React.Component {
       .then((resp) => {
         this.getMetaReview();
         this.getAllReviews();
+        console.log(resp.data);
       })
       .catch((err) => {
         console.log(err);

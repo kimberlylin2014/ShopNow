@@ -6,26 +6,27 @@ import CharacteristicInputs from '../characteristicInputs/characteristicInputs.j
 import StarRating from '../starRating/starRating.jsx';
 
 class FormPostReview extends React.Component {
-  static createCharacteristicState(metaReview) {
-    if (metaReview) {
-      const { characteristics } = metaReview;
-      const characteristicStateObj = {};
-      const values = Object.values(characteristics);
-      values.forEach((value) => {
-        characteristicStateObj[value.id] = '';
-      });
-      return characteristicStateObj;
-    }
-    return '';
-  }
+  // static createCharacteristicState(metaReview) {
+  //   if (metaReview) {
+  //     const { characteristics } = metaReview;
+  //     const characteristicStateObj = {};
+  //     const values = Object.values(characteristics);
+  //     values.forEach((value) => {
+  //       characteristicStateObj[value.id] = '';
+  //     });
+  //     return characteristicStateObj;
+  //   }
+  //   return '';
+  // }
 
   constructor(props) {
     super(props);
     this.state = {
-      product_id: parseInt(props.metaReview ? props.metaReview.product_id : ''),
+      product_id: '',
       rating: '',
       recommend: '',
-      characteristics: FormPostReview.createCharacteristicState(props.metaReview),
+      // characteristics: FormPostReview.createCharacteristicState(props.metaReview),
+      characteristics: '',
       summary: '',
       body: '',
       name: '',
@@ -34,7 +35,20 @@ class FormPostReview extends React.Component {
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleStarRatingClick = this.handleStarRatingClick.bind(this);
   }
+
+  // componentDidUpdate(prevProps) {
+  //   const { metaReview } = this.props;
+  //   console.log(metaReview)
+  //   if (metaReview !== prevProps.metaReview) {
+  //     this.setState({
+  //       product_id: this.props.metaReview.product_id,
+  //     });
+  //   }
+  // }
+
+
   handleInputChange(e) {
     let { name, value } = e.target;
     if (Number.isNaN(parseInt(name))) {
@@ -57,11 +71,22 @@ class FormPostReview extends React.Component {
     }
   }
 
+  handleStarRatingClick(starId) {
+    const id = starId.slice(4);
+    this.setState({
+      rating: parseInt(id),
+    });
+  }
+
   handleFormSubmit(e) {
     e.preventDefault();
-    const { addReview, toggleFormDisplay } = this.props;
-    addReview(this.state);
-    toggleFormDisplay();
+    const { addReview, metaReview, handleCloseModalButtonClick } = this.props;
+    this.setState({
+      product_id: parseInt(metaReview.product_id),
+    }, () => {
+      addReview(this.state);
+      handleCloseModalButtonClick();
+    });
   }
 
   render() {
@@ -77,7 +102,7 @@ class FormPostReview extends React.Component {
           {productInfo ? productInfo.name : null}
         </h4>
         <form onSubmit={this.handleFormSubmit}>
-          <StarRating />
+          <StarRating handleStarRatingClick={this.handleStarRatingClick}/>
           <div className={`${styles.formGroup} ${styles.recommendInputs}`}>
             <div>
               Do you recommend this product?
