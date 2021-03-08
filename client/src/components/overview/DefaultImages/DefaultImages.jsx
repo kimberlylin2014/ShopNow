@@ -1,20 +1,52 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Styles from './DefaultImages.css';
-import ImageSlider from './ImageGallery/ImageGallery.jsx';
+import LeftArrow from './Arrows/LeftArrow.jsx';
+import RightArrow from './Arrows/RightArrow.jsx';
 import ProductThumbnails from './ProductThumbnails/ProductThumbnails.jsx';
+import Modal from './Modal/Modal.jsx';
 
 const DefaultImages = ({ photos }) => {
   const [index, setIndex] = useState(0);
+  const [modal, setModal] = useState(false);
 
   if (photos) {
     return (
       <div className={Styles.gallery}>
-        <div className={Styles.currImage}>
-          <img className={Styles.images} src={photos[index].url} alt="defaultImage" />
+
+        <LeftArrow
+          currIndex={index}
+          updateIndex={setIndex}
+          length={photos.length}
+        />
+
+        <div className={Styles.imagesAndThumbnails}>
+          <img
+            className={Styles.images}
+            src={photos[index].url}
+            alt="defaultImage"
+            onClick={() => { setModal(true); }}
+          />
+          <ProductThumbnails
+            productThumbnails={photos}
+            currIndex={index}
+            updateIndex={setIndex}
+          />
         </div>
-        <ImageSlider currIndex={index} updateIndex={setIndex} length={photos.length} />
-        <ProductThumbnails productThumbnails={photos} currIndex={index} updateIndex={setIndex} />
+
+        <RightArrow
+          currIndex={index}
+          updateIndex={setIndex}
+          length={photos.length}
+        />
+
+        <Modal
+          handleClose={setModal}
+          show={modal}
+          currIndex={index}
+          updateIndex={setIndex}
+          photos={photos}
+        />
       </div>
     );
   }

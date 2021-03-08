@@ -1,0 +1,19 @@
+
+.arrow {
+  min-width: 50px;
+  min-height: 50px;
+}
+
+.LeftArrow {
+  top: 42%;
+  z-index: 2;
+  cursor: pointer;
+  position: absolute;
+}
+
+.RightArrow {
+  top: 42%;
+  z-index: 2;
+  cursor: pointer;
+  position: absolute;
+}

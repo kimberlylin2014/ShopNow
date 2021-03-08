@@ -1,0 +1,48 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.image {
+  width: 70%;
+  height: 85%;
+  cursor: crosshair;
+  object-fit: cover;
+}
+
+
+.close {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  left: 96.5%;
+  top:1%;
+}
+
+
+.modalMain {
+  position:fixed;
+  background: white;
+  width: 80%;
+  height: 95%;
+  top:50%;
+  left:50%;
+  z-index: 10;
+  transform: translate(-50%,-50%);
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.displayBlock {
+  display: block;
+}
+
+.displayNone {
+  display: none;
+}
