@@ -9,7 +9,7 @@ import { getTotalReviews, getNumOfRecommendation, determineNumReviewsToLoad } fr
 // 14937
 //  14807 (NO REVIEWS)
 
-const productID = '14807';
+const productID = '14937';
 
 class RatingsAndReviews extends React.Component {
   constructor(props) {

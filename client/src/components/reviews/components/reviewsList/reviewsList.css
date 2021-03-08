@@ -1,3 +1,6 @@
 .reviewsList {
   margin-top: 40px;
+  max-height: 90vh;
+  overflow: scroll;
+  padding: 30px;
 }
