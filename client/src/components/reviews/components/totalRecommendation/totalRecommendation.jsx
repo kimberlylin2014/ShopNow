@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './totalRecommendation.css';
 
-const TotalRecommendation = ({numOfRecommendation}) => (
+const TotalRecommendation = ({numOfRecommendation, totalReviews}) => (
   <p className={styles.totalRecommendation}>
-    {numOfRecommendation}
+    {totalReviews ? numOfRecommendation : 0}
     % of reviews recommend this product
   </p>
 );

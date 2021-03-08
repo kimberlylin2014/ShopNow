@@ -7,9 +7,9 @@ import ContainerList from './components/containerList/containerList.jsx';
 import { getTotalReviews, getNumOfRecommendation, determineNumReviewsToLoad } from './utils/rating.js';
 // 14040 (little reviwes)
 // 14937
-//  14982
+//  14807 (NO REVIEWS)
 
-const productID = '14981';
+const productID = '14807';
 
 class RatingsAndReviews extends React.Component {
   constructor(props) {
@@ -20,10 +20,10 @@ class RatingsAndReviews extends React.Component {
       metaReview: null,
       sortBy: 'newest',
       productInfo: null,
-      totalReviews: null,
+      totalReviews: 0,
       numOfRecommendation: null,
       reviewCount: 0,
-      displayMoreReviewsButton: true,
+      displayMoreReviewsButton: false,
     };
     this.addReview = this.addReview.bind(this);
     this.getProductInfo = this.getProductInfo.bind(this);
@@ -86,17 +86,21 @@ class RatingsAndReviews extends React.Component {
         const { data: { recommended } } = resp;
         const totalReviews = getTotalReviews(recommended.false, recommended.true);
         const numOfRecommendation = getNumOfRecommendation(recommended.false, recommended.true);
-        let numOfReviewsToLoad = determineNumReviewsToLoad(totalReviews, this.state.reviewCount);
-        console.log(numOfReviewsToLoad);
+        const numOfReviewsToLoad = determineNumReviewsToLoad(totalReviews, this.state.reviewCount);
         if (numOfReviewsToLoad) {
-          console.log('load 2 more')
           this.setState({
             metaReview: { ...resp.data },
             reviewCount: numOfReviewsToLoad.reviewCount,
             displayMoreReviewsButton: numOfReviewsToLoad.displayButton,
-            numOfReviewsToLoad,
+            totalReviews,
+            numOfRecommendation,
           }, () => {
             this.getAllReviews(numOfReviewsToLoad.reviewCount);
+          });
+        } else {
+          // If No Reviews
+          this.setState({
+            metaReview: { ...resp.data },
           });
         }
       })
@@ -121,7 +125,7 @@ class RatingsAndReviews extends React.Component {
     this.setState({
       sortBy: sortBy
     }, () => {
-      this.getAllReviews();
+      this.getAllReviews(this.state.reviewCount);
     });
   }
 
@@ -129,8 +133,6 @@ class RatingsAndReviews extends React.Component {
     axios.post('/api/reviews', review)
       .then((resp) => {
         this.getMetaReview();
-        this.getAllReviews();
-        console.log(resp.data);
       })
       .catch((err) => {
         console.log(err);
@@ -140,7 +142,7 @@ class RatingsAndReviews extends React.Component {
   updateHelpfulByReviewID(reviewID) {
     axios.put(`api/reviews/${reviewID}/helpful`)
       .then((resp) => {
-        this.getAllReviews();
+        this.getMetaReview();
       })
       .catch((err) => {
         console.log(err);

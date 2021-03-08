@@ -11,7 +11,8 @@ const BreakdownHeader = ({metaReview, totalReviews}) => {
   }
   return (
     <div className={styles.breakdownHeader}>
-      <AverageRating rating={rating} />
+      {totalReviews ? (<AverageRating rating={rating} />) : null}
+
       <Stars numStars={rating} starsClass={styles.starsClass} />
       &nbsp;({totalReviews} reviews)
     </div>

@@ -49,7 +49,7 @@ const characteristicChart = {
   },
 };
 
-const BreakdownCharacteristics = ({metaReview}) => {
+const BreakdownCharacteristics = ({metaReview, totalReviews}) => {
   let list = null;
   if (metaReview) {
     const entries = Object.entries(metaReview.characteristics);
@@ -61,6 +61,7 @@ const BreakdownCharacteristics = ({metaReview}) => {
             key={entry[1].id}
             name={entry[0]}
             value={parseFloat(entry[1].value).toFixed(1)}
+            totalReviews={totalReviews}
           />
           <div className={styles.breakdownProgressBarSection}>
             <BreakdownProgressBar label={characteristicChart[entry[0]][1]} box="box1" data={data}/>

@@ -7,12 +7,12 @@ class RatingBreakdown extends React.Component {
     super(props)
   }
   render() {
-    const { starNum, percentRating, count } = this.props;
+    const { starNum, percentRating, count = 0, totalReviews } = this.props;
     return (
       <div className={styles.ratingBreakdown}>
         <div className={styles.starNum}>{starNum} stars</div>
-        <ProgressBar percentRating={percentRating}/>
-        ({count})
+        <ProgressBar percentRating={totalReviews ? percentRating : 0}/>
+        {totalReviews ? `(${count})` : '' }
       </div>
     );
   }

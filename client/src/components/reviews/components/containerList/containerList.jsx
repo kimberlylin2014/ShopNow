@@ -49,18 +49,18 @@ class ContainerList extends React.Component {
     } = this.props;
     return (
       <div className={styles.containerList}>
-        <SortBy
-          totalReviews={totalReviews}
-          toggleSortBy={toggleSortBy}
-        />
+        {totalReviews ? (
+          <SortBy
+            totalReviews={totalReviews}
+            toggleSortBy={toggleSortBy}
+          />
+        ) : null}
         <ReviewsList
           reviews={reviews}
           updateHelpfulByReviewID={updateHelpfulByReviewID}
         />
-        <p className={styles.noMoreReviewMessage}>{!displayMoreReviewsButton ? 'No More Reviews To Load' : ''}</p>
-
+        <p className={styles.noMoreReviewMessage}>{!displayMoreReviewsButton ? 'No Reviews to Load' : ''}</p>
         <div className={styles.flex}>
-
           <AddReviewButton
             toggleFormDisplay={this.toggleFormDisplay}
             handleOpenModalButtonClick={this.handleOpenModalButtonClick}
