@@ -4,12 +4,12 @@ import axios from 'axios';
 import styles from './RatingsAndReviews.css';
 import ContainerBreakdown from './components/containerBreakdown/containerBreakdown.jsx';
 import ContainerList from './components/containerList/containerList.jsx';
-import { getTotalReviews, getNumOfRecommendation } from './utils/rating.js';
+import { getTotalReviews, getNumOfRecommendation, determineNumReviewsToLoad } from './utils/rating.js';
 // 14040 (little reviwes)
 // 14937
 //  14982
 
-const productID = '14982';
+const productID = '14981';
 
 class RatingsAndReviews extends React.Component {
   constructor(props) {
@@ -23,12 +23,13 @@ class RatingsAndReviews extends React.Component {
       totalReviews: null,
       numOfRecommendation: null,
       reviewCount: 0,
-      displayMoreReviewsButton: false,
+      displayMoreReviewsButton: true,
     };
     this.addReview = this.addReview.bind(this);
     this.getProductInfo = this.getProductInfo.bind(this);
     this.updateHelpfulByReviewID = this.updateHelpfulByReviewID.bind(this);
     this.toggleSortBy = this.toggleSortBy.bind(this);
+    this.loadMoreReviews = this.loadMoreReviews.bind(this);
   }
 
   componentDidMount() {
@@ -49,6 +50,35 @@ class RatingsAndReviews extends React.Component {
       })
   }
 
+  // getMetaReview() {
+  //   const { product_id } = this.state;
+  //   axios.get(`/api/reviews/meta/${product_id}`)
+  //     .then((resp) => {
+  //       const { data: { recommended } } = resp;
+  //       const totalReviews = getTotalReviews(recommended.false, recommended.true);
+  //       const numOfRecommendation = getNumOfRecommendation(recommended.false, recommended.true);
+  //       this.setState({
+  //         metaReview: { ...resp.data },
+  //         totalReviews,
+  //         numOfRecommendation,
+  //       }, () => {
+  //         const { reviewCount } = this.state;
+  //         if (totalReviews > reviewCount && totalReviews >= 2) {
+  //           this.setState((currState) => (
+  //             {
+  //               reviewCount: currState.reviewCount + 2,
+  //               displayMoreReviewsButton: true,
+  //             }
+  //           ), () => {
+  //             this.getAllReviews();
+  //           });
+  //         }
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
   getMetaReview() {
     const { product_id } = this.state;
     axios.get(`/api/reviews/meta/${product_id}`)
@@ -56,31 +86,25 @@ class RatingsAndReviews extends React.Component {
         const { data: { recommended } } = resp;
         const totalReviews = getTotalReviews(recommended.false, recommended.true);
         const numOfRecommendation = getNumOfRecommendation(recommended.false, recommended.true);
-        this.setState({
-          metaReview: { ...resp.data },
-          totalReviews,
-          numOfRecommendation,
-        }, () => {
-          const { reviewCount } = this.state;
-          if (totalReviews > reviewCount && totalReviews >= 2) {
-            this.setState((currState) => (
-              {
-                reviewCount: currState.reviewCount + 2,
-                displayMoreReviewsButton: true,
-              }
-            ), () => {
-              this.getAllReviews();
-            });
-          }
-        });
+        let numOfReviewsToLoad = determineNumReviewsToLoad(totalReviews, this.state.reviewCount);
+        console.log(numOfReviewsToLoad);
+        if (numOfReviewsToLoad) {
+          console.log('load 2 more')
+          this.setState({
+            metaReview: { ...resp.data },
+            reviewCount: numOfReviewsToLoad.reviewCount,
+            displayMoreReviewsButton: numOfReviewsToLoad.displayButton,
+            numOfReviewsToLoad,
+          }, () => {
+            this.getAllReviews(numOfReviewsToLoad.reviewCount);
+          });
+        }
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => console.log(err));
   }
 
-  getAllReviews() {
-    const { product_id, sortBy, reviewCount } = this.state;
+  getAllReviews(reviewCount) {
+    const { product_id, sortBy } = this.state;
     axios.get(`/api/reviews?product_id=${product_id}&count=${reviewCount}&sort=${sortBy}`)
       .then((resp) => {
         console.log(resp.data.result)
@@ -123,6 +147,11 @@ class RatingsAndReviews extends React.Component {
       });
   }
 
+  loadMoreReviews(e) {
+    console.log('handling load more reviews');
+    this.getMetaReview();
+  }
+
   render() {
     const {
       reviews,
@@ -132,6 +161,7 @@ class RatingsAndReviews extends React.Component {
       numOfRecommendation,
       displayMoreReviewsButton,
     } = this.state;
+    console.log(displayMoreReviewsButton)
     return (
       <section className={styles.ratingsAndReviews}>
         <h2>Ratings & Reviews</h2>
@@ -153,6 +183,7 @@ class RatingsAndReviews extends React.Component {
               totalReviews={totalReviews}
               toggleSortBy={this.toggleSortBy}
               displayMoreReviewsButton={displayMoreReviewsButton}
+              loadMoreReviews={this.loadMoreReviews}
             />
           </div>
         </div>

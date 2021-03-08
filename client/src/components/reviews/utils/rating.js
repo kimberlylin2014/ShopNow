@@ -64,6 +64,12 @@ export function calculateCharacteristicBreakdown(score) {
 }
 
 export function getTotalReviews(numOfFalse, numOfTrue) {
+  if (isNaN(parseInt(numOfFalse))) {
+    numOfFalse = 0;
+  }
+  if (isNaN(parseInt(numOfTrue))) {
+    numOfTrue = 0;
+  }
   return parseInt(numOfFalse) + parseInt(numOfTrue);
 }
 
@@ -71,4 +77,36 @@ export function getNumOfRecommendation(numOfFalse, numOfTrue) {
   const total = parseInt(numOfFalse) + parseInt(numOfTrue);
   const precentageOfRec = (parseInt(numOfTrue) / total) * 100;
   return precentageOfRec.toFixed(0);
+}
+
+export function determineNumReviewsToLoad(totalReviews, reviewCount) {
+  const result = {
+    reviewCount: reviewCount,
+    displayButton: true,
+  };
+  let difference;
+  // check if totalReviews is now even/odd
+  if (totalReviews % 2 === 0) {
+    difference = 2;
+  } else {
+    difference = 1;
+  }
+
+  if (totalReviews % 2 !== 0) {
+    if (totalReviews - reviewCount === difference) {
+      result.reviewCount += 1;
+      result.displayButton = false;
+    } else {
+      result.reviewCount += 2;
+    }
+  } else {
+    if (totalReviews - reviewCount === difference) {
+      result.reviewCount += 2;
+      result.displayButton = false;
+    } else {
+      result.reviewCount += 2;
+    }
+  }
+
+  return result;
 }

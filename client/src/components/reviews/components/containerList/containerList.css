@@ -4,11 +4,15 @@
   font-size: 1rem;
 }
 
-/* tablet vie*/
+.noMoreReviewMessage {
+  margin: 20px 0 20px 0;
+  text-align: end;
+}
+
+/* tablet view*/
 @media (min-width: 576px) {
   .flex {
     display: flex;
-    justify-content: space-around;
   }
 }
 
@@ -20,6 +24,5 @@
   }
   .flex {
     display: flex;
-    justify-content: space-around;
   }
 }

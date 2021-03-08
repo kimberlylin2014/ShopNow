@@ -26,5 +26,6 @@
 @media (min-width: 768px) {
   .buttonStyle {
     width: 40%;
+    margin-right: 30px;
   }
 }
