@@ -50,35 +50,6 @@ class RatingsAndReviews extends React.Component {
       })
   }
 
-  // getMetaReview() {
-  //   const { product_id } = this.state;
-  //   axios.get(`/api/reviews/meta/${product_id}`)
-  //     .then((resp) => {
-  //       const { data: { recommended } } = resp;
-  //       const totalReviews = getTotalReviews(recommended.false, recommended.true);
-  //       const numOfRecommendation = getNumOfRecommendation(recommended.false, recommended.true);
-  //       this.setState({
-  //         metaReview: { ...resp.data },
-  //         totalReviews,
-  //         numOfRecommendation,
-  //       }, () => {
-  //         const { reviewCount } = this.state;
-  //         if (totalReviews > reviewCount && totalReviews >= 2) {
-  //           this.setState((currState) => (
-  //             {
-  //               reviewCount: currState.reviewCount + 2,
-  //               displayMoreReviewsButton: true,
-  //             }
-  //           ), () => {
-  //             this.getAllReviews();
-  //           });
-  //         }
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }
   getMetaReview() {
     const { product_id } = this.state;
     axios.get(`/api/reviews/meta/${product_id}`)
@@ -150,7 +121,6 @@ class RatingsAndReviews extends React.Component {
   }
 
   loadMoreReviews(e) {
-    console.log('handling load more reviews');
     this.getMetaReview();
   }
 
@@ -163,7 +133,6 @@ class RatingsAndReviews extends React.Component {
       numOfRecommendation,
       displayMoreReviewsButton,
     } = this.state;
-    console.log(displayMoreReviewsButton)
     return (
       <section className={styles.ratingsAndReviews}>
         <h2>Ratings & Reviews</h2>
@@ -195,3 +164,37 @@ class RatingsAndReviews extends React.Component {
 }
 
 export default RatingsAndReviews;
+
+
+
+// test
+
+  // getMetaReview() {
+  //   const { product_id } = this.state;
+  //   axios.get(`/api/reviews/meta/${product_id}`)
+  //     .then((resp) => {
+  //       const { data: { recommended } } = resp;
+  //       const totalReviews = getTotalReviews(recommended.false, recommended.true);
+  //       const numOfRecommendation = getNumOfRecommendation(recommended.false, recommended.true);
+  //       this.setState({
+  //         metaReview: { ...resp.data },
+  //         totalReviews,
+  //         numOfRecommendation,
+  //       }, () => {
+  //         const { reviewCount } = this.state;
+  //         if (totalReviews > reviewCount && totalReviews >= 2) {
+  //           this.setState((currState) => (
+  //             {
+  //               reviewCount: currState.reviewCount + 2,
+  //               displayMoreReviewsButton: true,
+  //             }
+  //           ), () => {
+  //             this.getAllReviews();
+  //           });
+  //         }
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
