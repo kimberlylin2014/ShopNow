@@ -12,19 +12,30 @@ const Modal = ({
     <div className={showHideClassName}>
       <section className={Styles.modalMain}>
 
-        <img src="icons/close.svg" className={Styles.close} onClick={() => handleClose(false)} />
+        <img
+          src="icons/close.svg"
+          alt="close button"
+          className={Styles.close}
+          onClick={() => handleClose(false)}
+        />
 
-        <LeftArrow currIndex={currIndex} updateIndex={updateIndex} length={photos.length} />
+        <LeftArrow
+          currIndex={currIndex}
+          updateIndex={updateIndex}
+          length={photos.length}
+        />
 
-        <div className={Styles.currImage}>
-          <img
+        <img
             className={Styles.image}
             src={photos[currIndex].url}
             alt="expandedDefaultImage"
-          />
-        </div>
+        />
 
-        <RightArrow currIndex={currIndex} updateIndex={updateIndex} length={photos.length} />
+        <RightArrow
+          currIndex={currIndex}
+          updateIndex={updateIndex}
+          length={photos.length}
+        />
 
       </section>
     </div>

@@ -11,12 +11,9 @@
   width: 70%;
   height: 85%;
   cursor: crosshair;
+  object-fit: cover;
 }
 
-.currImage {
-  min-width: 80%;
-  display: flex;
-}
 
 .close {
   width: 25px;
@@ -38,7 +35,8 @@
   transform: translate(-50%,-50%);
   border: 1px solid black;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .displayBlock {

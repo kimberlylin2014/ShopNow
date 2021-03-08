@@ -2,9 +2,10 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  align-items: space-between;
+  align-items: center;
   position: absolute;
   left: 5%;
+
 }
 
 .productThumbnail {
