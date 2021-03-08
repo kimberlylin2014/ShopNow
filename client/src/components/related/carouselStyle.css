@@ -14,6 +14,7 @@
 .leftArrow, .rightArrow {
   cursor: pointer;
   width: 50px;
+  flex-shrink: 0;
   align-self: center;
 }
 
