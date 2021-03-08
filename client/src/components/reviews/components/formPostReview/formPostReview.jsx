@@ -38,17 +38,6 @@ class FormPostReview extends React.Component {
     this.handleStarRatingClick = this.handleStarRatingClick.bind(this);
   }
 
-  // componentDidUpdate(prevProps) {
-  //   const { metaReview } = this.props;
-  //   console.log(metaReview)
-  //   if (metaReview !== prevProps.metaReview) {
-  //     this.setState({
-  //       product_id: this.props.metaReview.product_id,
-  //     });
-  //   }
-  // }
-
-
   handleInputChange(e) {
     let { name, value } = e.target;
     if (Number.isNaN(parseInt(name))) {

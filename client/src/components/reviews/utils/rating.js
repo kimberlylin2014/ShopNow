@@ -62,3 +62,13 @@ export function calculateCharacteristicBreakdown(score) {
 
   return info;
 }
+
+export function getTotalReviews(numOfFalse, numOfTrue) {
+  return parseInt(numOfFalse) + parseInt(numOfTrue);
+}
+
+export function getNumOfRecommendation(numOfFalse, numOfTrue) {
+  const total = parseInt(numOfFalse) + parseInt(numOfTrue);
+  const precentageOfRec = (parseInt(numOfTrue) / total) * 100;
+  return precentageOfRec.toFixed(0);
+}

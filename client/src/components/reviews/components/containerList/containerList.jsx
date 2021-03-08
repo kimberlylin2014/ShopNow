@@ -12,28 +12,18 @@ class ContainerList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayPostReviewForm: false,
       modalDisplay: 'none',
     };
-    this.toggleFormDisplay = this.toggleFormDisplay.bind(this);
     this.handleOpenModalButtonClick = this.handleOpenModalButtonClick.bind(this);
     this.handleCloseModalButtonClick = this.handleCloseModalButtonClick.bind(this);
   }
-
-  toggleFormDisplay() {
-    const { displayPostReviewForm } = this.state;
-    this.setState({
-      displayPostReviewForm: !displayPostReviewForm,
-    });
-  }
-
 
   handleOpenModalButtonClick(e) {
     document.body.scroll = 'no';
     document.documentElement.style.overflow = 'hidden';
     this.setState({
       modalDisplay: 'block',
-    })
+    });
   }
 
   handleCloseModalButtonClick(e) {
@@ -45,7 +35,7 @@ class ContainerList extends React.Component {
   }
 
   render() {
-    // const { displayPostReviewForm } = this.state;
+    const { modalDisplay } = this.state;
     const {
       metaReview,
       productInfo,
@@ -54,7 +44,7 @@ class ContainerList extends React.Component {
       updateHelpfulByReviewID,
       totalReviews,
       toggleSortBy,
-      displayMoreReviewsButton
+      displayMoreReviewsButton,
     } = this.props;
     return (
       <div className={styles.containerList}>
@@ -66,32 +56,22 @@ class ContainerList extends React.Component {
           reviews={reviews}
           updateHelpfulByReviewID={updateHelpfulByReviewID}
         />
-
         <div className={styles.flex}>
           <MoreReviewsButton
             displayMoreReviewsButton={displayMoreReviewsButton}
           />
-           <AddReviewButton
-             toggleFormDisplay={this.toggleFormDisplay}
+          <AddReviewButton
+            toggleFormDisplay={this.toggleFormDisplay}
             handleOpenModalButtonClick={this.handleOpenModalButtonClick}
           />
         </div>
-
         <FormModal
-          modalDisplay={this.state.modalDisplay}
+          modalDisplay={modalDisplay}
           handleCloseModalButtonClick={this.handleCloseModalButtonClick}
           metaReview={metaReview}
           productInfo={productInfo}
           addReview={addReview}
         />
-        {/* {displayPostReviewForm ? (
-          <FormPostReview
-            metaReview={metaReview}
-            productInfo={productInfo}
-            addReview={addReview}
-            toggleFormDisplay={this.toggleFormDisplay}
-          />
-        ) : null} */}
       </div>
     );
   }
@@ -106,5 +86,3 @@ ContainerList.propTypes = {
 };
 
 export default ContainerList;
-
-
