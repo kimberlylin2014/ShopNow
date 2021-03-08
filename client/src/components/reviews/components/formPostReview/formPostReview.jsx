@@ -6,26 +6,12 @@ import CharacteristicInputs from '../characteristicInputs/characteristicInputs.j
 import StarRating from '../starRating/starRating.jsx';
 
 class FormPostReview extends React.Component {
-  // static createCharacteristicState(metaReview) {
-  //   if (metaReview) {
-  //     const { characteristics } = metaReview;
-  //     const characteristicStateObj = {};
-  //     const values = Object.values(characteristics);
-  //     values.forEach((value) => {
-  //       characteristicStateObj[value.id] = '';
-  //     });
-  //     return characteristicStateObj;
-  //   }
-  //   return '';
-  // }
-
   constructor(props) {
     super(props);
     this.state = {
       product_id: '',
       rating: '',
       recommend: '',
-      // characteristics: FormPostReview.createCharacteristicState(props.metaReview),
       characteristics: '',
       summary: '',
       body: '',
@@ -61,10 +47,12 @@ class FormPostReview extends React.Component {
   }
 
   handleStarRatingClick(starId) {
-    const id = starId.slice(4);
-    this.setState({
-      rating: parseInt(id),
-    });
+    // const id = starId.slice(4);
+    console.log(starId);
+    console.log(typeof starId)
+    // this.setState({
+    //   rating: parseInt(id),
+    // });
   }
 
   handleFormSubmit(e) {

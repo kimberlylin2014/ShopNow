@@ -91,8 +91,6 @@ export function getNumOfRecommendation(numOfFalse, numOfTrue) {
 }
 
 export function determineNumReviewsToLoad(totalReviews, reviewCount) {
-  console.log(totalReviews);
-  console.log(reviewCount);
   if (totalReviews === 0) {
     return 0;
   }

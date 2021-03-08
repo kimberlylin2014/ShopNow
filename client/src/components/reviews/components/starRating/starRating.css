@@ -1,4 +1,20 @@
 .starRating {
   display: flex;
+  align-items: center;
+}
 
+.selectedMessage {
+  margin: 30px 0;
+  font-weight: 600;
+}
+
+@media (min-width: 576px) {
+  .starRatingSection {
+    display: flex;
+    align-items: center;
+  }
+
+  .selectedMessage {
+    margin: 0 0 0 20px;
+  }
 }
