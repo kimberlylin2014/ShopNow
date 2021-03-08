@@ -1,6 +1,7 @@
 import React from 'react';
 import Styles from './Modal.css';
-import ImageSlider from '../ImageGallery/ImageGallery.jsx';
+import LeftArrow from '../Arrows/LeftArrow.jsx';
+import RightArrow from '../Arrows/RightArrow.jsx';
 
 const Modal = ({
   handleClose, show, currIndex, updateIndex, photos,
@@ -10,15 +11,21 @@ const Modal = ({
   return (
     <div className={showHideClassName}>
       <section className={Styles.modalMain}>
+
         <img src="icons/close.svg" className={Styles.close} onClick={() => handleClose(false)} />
 
+        <LeftArrow currIndex={currIndex} updateIndex={updateIndex} length={photos.length} />
+
         <div className={Styles.currImage}>
-          <img className={Styles.images} src={photos[currIndex].url} alt="expandedDefaultImage" />
+          <img
+            className={Styles.image}
+            src={photos[currIndex].url}
+            alt="expandedDefaultImage"
+          />
         </div>
 
-        <div className={Styles.arrows}>
-          <ImageSlider currIndex={currIndex} updateIndex={updateIndex} length={photos.length} />
-        </div>
+        <RightArrow currIndex={currIndex} updateIndex={updateIndex} length={photos.length} />
+
       </section>
     </div>
   );
