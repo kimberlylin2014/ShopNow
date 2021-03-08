@@ -14,17 +14,39 @@ const DefaultImages = ({ photos }) => {
     return (
       <div className={Styles.gallery}>
 
-        <LeftArrow currIndex={index} updateIndex={setIndex} length={photos.length} />
+        <LeftArrow
+          currIndex={index}
+          updateIndex={setIndex}
+          length={photos.length}
+        />
 
-        <div className={Styles.currImage} onClick={() => { setModal(true); }}>
-          <img className={Styles.images} src={photos[index].url} alt="defaultImage" />
+        <div className={Styles.imagesAndThumbnails}>
+          <img
+            className={Styles.images}
+            src={photos[index].url}
+            alt="defaultImage"
+            onClick={() => { setModal(true); }}
+          />
+          <ProductThumbnails
+            productThumbnails={photos}
+            currIndex={index}
+            updateIndex={setIndex}
+          />
         </div>
 
-        <RightArrow currIndex={index} updateIndex={setIndex} length={photos.length} />
+        <RightArrow
+          currIndex={index}
+          updateIndex={setIndex}
+          length={photos.length}
+        />
 
-        <Modal handleClose={setModal} show={modal} currIndex={index} updateIndex={setIndex} photos={photos}/>
-
-        <ProductThumbnails productThumbnails={photos} currIndex={index} updateIndex={setIndex} />
+        <Modal
+          handleClose={setModal}
+          show={modal}
+          currIndex={index}
+          updateIndex={setIndex}
+          photos={photos}
+        />
       </div>
     );
   }

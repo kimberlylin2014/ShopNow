@@ -4,7 +4,7 @@
   flex-wrap: wrap;
   align-items: space-between;
   position: absolute;
-  top: 12%;
+  left: 5%;
 }
 
 .productThumbnail {
