@@ -6,9 +6,9 @@ import RatingBreakdown from '../ratingBreakdown/ratingBreakdown.jsx';
 import BreakdownCharacteristics from '../breakdownCharacteristics/breakdownCharacteristics.jsx';
 import {calculatePercentageOfRating} from '../../utils/rating.js';
 
-const ContainerBreakdown = ({ metaReview, numOfRecommendation, totalReviews }) => (
+const ContainerBreakdown = ({ metaReview, numOfRecommendation, totalReviews, averageRating }) => (
   <div className={styles.containerBreakdown}>
-    <BreakdownHeader metaReview={metaReview} totalReviews={totalReviews} />
+    <BreakdownHeader metaReview={metaReview} totalReviews={totalReviews} averageRating={averageRating}/>
     {metaReview ? (
       <TotalRecommendation numOfRecommendation={numOfRecommendation} totalReviews={totalReviews}/>
     ) : null}

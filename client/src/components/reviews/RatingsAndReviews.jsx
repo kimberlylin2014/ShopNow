@@ -4,12 +4,13 @@ import axios from 'axios';
 import styles from './RatingsAndReviews.css';
 import ContainerBreakdown from './components/containerBreakdown/containerBreakdown.jsx';
 import ContainerList from './components/containerList/containerList.jsx';
-import { getTotalReviews, getNumOfRecommendation, determineNumReviewsToLoad } from './utils/rating.js';
+import { getTotalReviews, getNumOfRecommendation, determineNumReviewsToLoad, calculateAverageRating } from './utils/rating.js';
 // 14040 (little reviwes)
 // 14937
 //  14807 (NO REVIEWS)
 
-const productID = '14937';
+// const productID = '14937';
+const productID = '14807';
 
 class RatingsAndReviews extends React.Component {
   constructor(props) {
@@ -24,6 +25,7 @@ class RatingsAndReviews extends React.Component {
       numOfRecommendation: null,
       reviewCount: 0,
       displayMoreReviewsButton: false,
+      averageRating: 0,
     };
     this.addReview = this.addReview.bind(this);
     this.getProductInfo = this.getProductInfo.bind(this);
@@ -58,13 +60,15 @@ class RatingsAndReviews extends React.Component {
         const totalReviews = getTotalReviews(recommended.false, recommended.true);
         const numOfRecommendation = getNumOfRecommendation(recommended.false, recommended.true);
         const numOfReviewsToLoad = determineNumReviewsToLoad(totalReviews, this.state.reviewCount);
+        const averageRating = calculateAverageRating(resp.data.ratings);
         if (numOfReviewsToLoad) {
           this.setState({
             metaReview: { ...resp.data },
             reviewCount: numOfReviewsToLoad.reviewCount,
             displayMoreReviewsButton: numOfReviewsToLoad.displayButton,
-            totalReviews,
             numOfRecommendation,
+            totalReviews,
+            averageRating,
           }, () => {
             this.getAllReviews(numOfReviewsToLoad.reviewCount);
           });
@@ -132,6 +136,7 @@ class RatingsAndReviews extends React.Component {
       totalReviews,
       numOfRecommendation,
       displayMoreReviewsButton,
+      averageRating
     } = this.state;
     return (
       <section className={styles.ratingsAndReviews}>
@@ -142,6 +147,7 @@ class RatingsAndReviews extends React.Component {
               metaReview={metaReview}
               numOfRecommendation={numOfRecommendation}
               totalReviews={totalReviews}
+              averageRating={averageRating}
             />
           </div>
           <div className={styles.containerList}>
