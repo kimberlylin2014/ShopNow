@@ -38,14 +38,14 @@ class Card extends React.Component {
     if (product.styles[index].sale_price) {
       return (
         <div className={styles.price}>
-          <div className={styles.oldPrice}>
+          <span className={styles.oldPrice}>
             $
             {product.default_price}
-          </div>
-          <div className={styles.newPrice}>
+          </span>
+          <span className={styles.newPrice}>
             $
             {product.styles[index].sale_price}
-          </div>
+          </span>
         </div>
       );
     }

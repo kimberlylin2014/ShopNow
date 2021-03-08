@@ -1,10 +1,11 @@
 .cards {
-  max-width: 90vw;
+  /* max-width: 90%; */
   display: flex;
   flex-direction: row;
   margin-bottom: 8%;
   font-size: 0.8rem;
   overflow: auto;
+  overflow-x: hidden;
   scroll-behavior: smooth;
   flex-wrap: nowrap;
   white-space: nowrap;
@@ -12,8 +13,35 @@
 
 .leftArrow, .rightArrow {
   cursor: pointer;
-  height: 50px;
-  margin: auto 0;
+  width: 50px;
+  align-self: center;
+}
+
+.leftArrow img, .rightArrow img {
+  width: 50px;
+}
+
+.leftArrow {
+  margin-right: 10px;
+}
+
+.rightArrow {
+  margin-left: 10px;
+}
+
+.carousel {
+  /* position: relative; */
+  /* max-width: 90vw; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-shrink: 0;
+  /* margin-bottom: 8%;
+  font-size: 0.8rem;
+  overflow: auto;
+  scroll-behavior: smooth;
+  flex-wrap: nowrap;
+  white-space: nowrap; */
 }
 
 /************************************************************
