@@ -16,7 +16,6 @@ class RatingsAndReviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product_id: productID,
       reviews: [],
       metaReview: null,
       sortBy: 'newest',
@@ -32,6 +31,7 @@ class RatingsAndReviews extends React.Component {
     this.updateHelpfulByReviewID = this.updateHelpfulByReviewID.bind(this);
     this.toggleSortBy = this.toggleSortBy.bind(this);
     this.loadMoreReviews = this.loadMoreReviews.bind(this);
+    this.resetModuleState = this.resetModuleState.bind(this);
   }
 
   componentDidMount() {
@@ -39,9 +39,31 @@ class RatingsAndReviews extends React.Component {
     this.getProductInfo();
   }
 
+  componentDidUpdate(prevProps) {
+    const { productID } = this.props;
+    if (prevProps.productID !== productID) {
+      this.resetModuleState(() => {
+        this.setState({
+          reviews: [],
+          metaReview: null,
+          sortBy: 'newest',
+          productInfo: null,
+          totalReviews: 0,
+          numOfRecommendation: null,
+          reviewCount: 0,
+          displayMoreReviewsButton: false,
+          averageRating: 0,
+        }, () => {
+          this.getProductInfo();
+          this.getMetaReview();
+        });
+      });
+    }
+  }
+
   getProductInfo() {
-    const { product_id } = this.state;
-    axios.get(`/api/products/${product_id}`)
+    const { productID } = this.props;
+    axios.get(`/api/products/${productID}`)
       .then((resp) => {
         this.setState({
           productInfo: {...resp.data}
@@ -49,17 +71,18 @@ class RatingsAndReviews extends React.Component {
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   }
 
   getMetaReview() {
-    const { product_id } = this.state;
-    axios.get(`/api/reviews/meta/${product_id}`)
+    const { productID } = this.props;
+    const { reviewCount } = this.state;
+    axios.get(`/api/reviews/meta/${productID}`)
       .then((resp) => {
         const { data: { recommended } } = resp;
         const totalReviews = getTotalReviews(recommended.false, recommended.true);
         const numOfRecommendation = getNumOfRecommendation(recommended.false, recommended.true);
-        const numOfReviewsToLoad = determineNumReviewsToLoad(totalReviews, this.state.reviewCount);
+        const numOfReviewsToLoad = determineNumReviewsToLoad(totalReviews, reviewCount);
         const averageRating = calculateAverageRating(resp.data.ratings);
         if (numOfReviewsToLoad) {
           this.setState({
@@ -83,10 +106,10 @@ class RatingsAndReviews extends React.Component {
   }
 
   getAllReviews(reviewCount) {
-    const { product_id, sortBy } = this.state;
-    axios.get(`/api/reviews?product_id=${product_id}&count=${reviewCount}&sort=${sortBy}`)
+    const { sortBy } = this.state;
+    const { productID } = this.props;
+    axios.get(`/api/reviews?product_id=${productID}&count=${reviewCount}&sort=${sortBy}`)
       .then((resp) => {
-        console.log(resp.data.result)
         this.setState({
           reviews: [...resp.data.results],
         });
@@ -94,6 +117,10 @@ class RatingsAndReviews extends React.Component {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  resetModuleState(callback) {
+    callback();
   }
 
   toggleSortBy(sortBy) {
@@ -105,9 +132,23 @@ class RatingsAndReviews extends React.Component {
   }
 
   addReview(review) {
+    const { productID, changeAverageRating } = this.props;
     axios.post('/api/reviews', review)
       .then((resp) => {
-        this.getMetaReview();
+        return axios.get(`/api/reviews/meta/${productID}`)
+      })
+      .then((metaData) => {
+        const { data: { recommended, ratings } } = metaData;
+        const averageRating = calculateAverageRating(ratings);
+        const numOfRecommendation = getNumOfRecommendation(recommended.false, recommended.true);
+        const totalReviews = getTotalReviews(recommended.false, recommended.true);
+        changeAverageRating(parseFloat(averageRating));
+        this.setState({
+          metaReview: { ...metaData.data },
+          numOfRecommendation,
+          totalReviews,
+          averageRating,
+        });
       })
       .catch((err) => {
         console.log(err);
