@@ -14,8 +14,7 @@ const ReviewHeader = ({review}) => {
   const monthDateYear = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getUTCFullYear()}`;
   return (
     <div className={styles.reviewHeader}>
-      {/* <StarRating /> */}
-      <Stars numStars={review.rating}/>
+      <Stars numStars={review.rating} starClass="reviewStar"/>
       <div className={styles.usernameAndDate}>
         <Username username={review.reviewer_name} />
         <DateOfReview date={monthDateYear} />

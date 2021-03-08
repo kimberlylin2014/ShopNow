@@ -1,0 +1,11 @@
+.breakdownCharacteristicSection {
+  margin: 20px 0 20px 0;
+}
+
+.breakdownCharacteristic {
+  margin: 30px 0 20px 0;
+}
+
+.breakdownProgressBarSection {
+  display: flex;
+}

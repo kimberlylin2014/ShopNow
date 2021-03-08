@@ -15,6 +15,7 @@ class App extends React.Component {
     };
     this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
     this.changeStyleId = this.changeStyleId.bind(this);
+    this.changeAverageRating = this.changeAverageRating.bind(this);
   }
 
   componentDidMount() {
@@ -36,7 +37,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { productID, styleID } = this.state;
+    const { productID, styleID, averageRating } = this.state;
     return (
       <div className={styles.app}>
         <Header />
@@ -48,7 +49,10 @@ class App extends React.Component {
             changeCurrentProduct={this.changeCurrentProduct}
           />
         </div>
-        <Reviews />
+        <Reviews
+          productID={productID}
+          changeAverageRating={this.changeAverageRating}
+        />
       </div>
 
     );

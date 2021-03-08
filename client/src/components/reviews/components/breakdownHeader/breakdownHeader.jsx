@@ -4,15 +4,17 @@ import AverageRating from '../averageRating/averageRating.jsx';
 import Stars from '../../../Stars.jsx';
 import { calculateAverageRating } from '../../utils/rating.js';
 
-const BreakdownHeader = ({metaReview}) => {
-  let rating = null;
-  if (metaReview) {
-    rating = calculateAverageRating(metaReview.ratings);
-  }
+const BreakdownHeader = ({metaReview, totalReviews, averageRating}) => {
+  // let rating = null;
+  // if (metaReview) {
+  //   rating = calculateAverageRating(metaReview.ratings);
+  // }
   return (
     <div className={styles.breakdownHeader}>
-      <AverageRating rating={rating} />
-      <Stars numStars={rating} />
+      {totalReviews ? (<AverageRating rating={averageRating} />) : null}
+
+      <Stars numStars={averageRating} starsClass={styles.starsClass} />
+      &nbsp;({totalReviews} reviews)
     </div>
   );
 };

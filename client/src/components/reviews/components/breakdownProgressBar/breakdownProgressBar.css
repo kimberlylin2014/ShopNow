@@ -1,0 +1,25 @@
+.breakdownProgressBar {
+  margin-right: 10px;
+  width: 33%;
+}
+
+.breakdownProgressBarFrame {
+  height: 20px;
+  /* border: 1px solid black; */
+  width: 100%;
+  background-color: #EAEAEA;
+  margin: 10px 0 15px;
+  position: relative;
+}
+
+.breakdownProgressBarLabel {
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.progressBar {
+  width: 20px;
+  height: 30px;
+  position: absolute;
+  top: 6px;
+}

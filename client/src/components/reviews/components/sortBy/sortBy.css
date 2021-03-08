@@ -1,0 +1,23 @@
+.sortBy {
+  /* font-size: 1rem; */
+}
+
+.sortByLabel {
+  font-weight: 600;
+}
+
+.sortBySelect {
+  border: none;
+  background-color: #FEFEFE;
+  text-decoration: underline;
+  appearance: none;
+  /* font-size: 1rem; */
+}
+
+.sortBySelect:hover {
+  cursor: pointer;
+}
+
+/* .sortByOption {
+  font-size: 3rem;
+} */

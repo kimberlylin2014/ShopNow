@@ -1,9 +1,10 @@
 .buttonStyle {
-  width: 250px;
+  width: 100%;
   height: 50px;
   background-color: #C6AD8F;
   color: white;
   border: none;
+  margin-bottom: 5px;
 }
 
 .buttonStyle:hover {
@@ -14,4 +15,17 @@
               0 8px 16px rgba(0,0,0,0.11);
   cursor: pointer;
 }
+/* tablet vie*/
+@media (min-width: 576px) {
+  .buttonStyle {
+    width: 40%;
+  }
+}
 
+/* desktop view */
+@media (min-width: 768px) {
+  .buttonStyle {
+    width: 40%;
+    margin-right: 30px;
+  }
+}

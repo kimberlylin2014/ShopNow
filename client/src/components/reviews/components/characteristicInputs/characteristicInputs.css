@@ -3,22 +3,43 @@
   margin: 35px 0 0px 0;
 }
 
-.radioRowTitle {
+/* .radioRowTitle {
   padding-bottom: 10px;
   font-weight: 600;
   font-size: 1rem;
   color: #373833;
   margin: 0 0 10px;
   border-bottom: solid 2px  #373833;
-}
+} */
 
-.radioRow {
+/* .radioRow {
   color:  #373833;
   display: flex;
   justify-content: space-between;
-  /* background-color: #373833; */
-  /* border-bottom: solid 1px  #373833; */
   margin-bottom: 15px;
-  /* padding-bottom: 10px; */
+}
+ */
+ .radioRowTitle {
+  padding-bottom: 10px;
+  font-weight: 600;
+  /* font-size: 2rem; */
+  color: #373833;
+  margin: 0 0 10px;
+  border-bottom: solid 2px  #373833;
 }
 
+ .radioRow {
+  color:  #373833;
+  /* display: flex;
+  justify-content: space-between; */
+  margin-bottom: 15px;
+}
+
+/* desktop view */
+@media (min-width: 992px) {
+  .radioRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+}

@@ -7,31 +7,52 @@
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
-  overflow: scroll; /* Enable scroll if needed */
+  overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+  background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
 .modalContent {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: #fefefe;
-  margin: 20px auto; /* 15% from the top and centered */
   padding: 10px;
   border: 1px solid #888;
-  width: 50%; /* Could be more or less, depending on screen size */
+  width: 90%; /* Could be more or less, depending on screen size */
+  overflow: scroll;
+  height: 90vh;
 }
 
 /* The Close Button */
 .close {
-  color: #aaa;
+  color: #393e46;
   float: right;
-  font-size: 28px;
+  margin-right: 5px;
+  font-size: 30px;
   font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-  color: black;
+  color: #393e46;
   text-decoration: none;
   cursor: pointer;
+}
+
+/* desktop view */
+@media (min-width: 768px) {
+  .modalContent {
+    width: 80%;
+    overflow: scroll;
+    max-height: 90vh;
+  }
+}
+
+@media (min-width: 1200px) {
+  .modalContent {
+    width: 700px;
+  }
 }

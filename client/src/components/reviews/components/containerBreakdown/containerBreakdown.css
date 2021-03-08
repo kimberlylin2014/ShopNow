@@ -1,7 +1,9 @@
 .containerBreakdown {
-    width: 50%;
+    width: 100%;
+    font-size: 1rem;
 }
 
 .ratingBreakdown {
-    margin: 20px 0 20px 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

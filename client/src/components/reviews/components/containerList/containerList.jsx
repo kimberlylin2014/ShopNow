@@ -12,28 +12,18 @@ class ContainerList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayPostReviewForm: false,
       modalDisplay: 'none',
     };
-    this.toggleFormDisplay = this.toggleFormDisplay.bind(this);
     this.handleOpenModalButtonClick = this.handleOpenModalButtonClick.bind(this);
     this.handleCloseModalButtonClick = this.handleCloseModalButtonClick.bind(this);
   }
-
-  toggleFormDisplay() {
-    const { displayPostReviewForm } = this.state;
-    this.setState({
-      displayPostReviewForm: !displayPostReviewForm,
-    });
-  }
-
 
   handleOpenModalButtonClick(e) {
     document.body.scroll = 'no';
     document.documentElement.style.overflow = 'hidden';
     this.setState({
       modalDisplay: 'block',
-    })
+    });
   }
 
   handleCloseModalButtonClick(e) {
@@ -45,7 +35,7 @@ class ContainerList extends React.Component {
   }
 
   render() {
-    // const { displayPostReviewForm } = this.state;
+    const { modalDisplay } = this.state;
     const {
       metaReview,
       productInfo,
@@ -54,40 +44,39 @@ class ContainerList extends React.Component {
       updateHelpfulByReviewID,
       totalReviews,
       toggleSortBy,
-      displayMoreReviewsButton
+      displayMoreReviewsButton,
+      loadMoreReviews
     } = this.props;
     return (
       <div className={styles.containerList}>
-        <SortBy
-          totalReviews={totalReviews}
-          toggleSortBy={toggleSortBy}
-        />
+        {totalReviews ? (
+          <SortBy
+            totalReviews={totalReviews}
+            toggleSortBy={toggleSortBy}
+          />
+        ) : null}
         <ReviewsList
           reviews={reviews}
           updateHelpfulByReviewID={updateHelpfulByReviewID}
         />
-        <MoreReviewsButton
-          displayMoreReviewsButton={displayMoreReviewsButton}
-        />
-        <AddReviewButton
-          toggleFormDisplay={this.toggleFormDisplay}
-          handleOpenModalButtonClick={this.handleOpenModalButtonClick}
-        />
+        <p className={styles.noMoreReviewMessage}>{!displayMoreReviewsButton ? 'No Reviews to Load' : ''}</p>
+        <div className={styles.flex}>
+          <AddReviewButton
+            toggleFormDisplay={this.toggleFormDisplay}
+            handleOpenModalButtonClick={this.handleOpenModalButtonClick}
+          />
+          <MoreReviewsButton
+            displayMoreReviewsButton={displayMoreReviewsButton}
+            loadMoreReviews={loadMoreReviews}
+          />
+        </div>
         <FormModal
-          modalDisplay={this.state.modalDisplay}
+          modalDisplay={modalDisplay}
           handleCloseModalButtonClick={this.handleCloseModalButtonClick}
           metaReview={metaReview}
           productInfo={productInfo}
           addReview={addReview}
         />
-        {/* {displayPostReviewForm ? (
-          <FormPostReview
-            metaReview={metaReview}
-            productInfo={productInfo}
-            addReview={addReview}
-            toggleFormDisplay={this.toggleFormDisplay}
-          />
-        ) : null} */}
       </div>
     );
   }
@@ -102,5 +91,3 @@ ContainerList.propTypes = {
 };
 
 export default ContainerList;
-
-

@@ -93,14 +93,16 @@ class StarRating extends React.Component {
   handleOnClick(e) {
     e.stopPropagation();
     const {id} = e.target.dataset;
-    console.log(id)
+    const { handleStarRatingClick } = this.props;
     if (id === 'star1') {
+      handleStarRatingClick(id);
       this.setState({
         star1: '/stars/filledStar.png',
         persist: true,
         opacity: 1,
       });
     } else if (id === 'star2') {
+      handleStarRatingClick(id);
       this.setState({
         star1: '/stars/filledStar.png',
         star2: '/stars/filledStar.png',
@@ -108,6 +110,7 @@ class StarRating extends React.Component {
         opacity: 1,
       });
     } else if (id === 'star3') {
+      handleStarRatingClick(id);
       this.setState({
         star1: '/stars/filledStar.png',
         star2: '/stars/filledStar.png',
@@ -116,6 +119,7 @@ class StarRating extends React.Component {
         opacity: 1,
       });
     } else if (id === 'star4') {
+      handleStarRatingClick(id);
       this.setState({
         star1: '/stars/filledStar.png',
         star2: '/stars/filledStar.png',
@@ -125,6 +129,7 @@ class StarRating extends React.Component {
         opacity: 1,
       });
     } else if (id === 'star5') {
+      handleStarRatingClick(id);
       this.setState({
         star1: '/stars/filledStar.png',
         star2: '/stars/filledStar.png',

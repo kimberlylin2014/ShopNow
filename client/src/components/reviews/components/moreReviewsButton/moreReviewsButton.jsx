@@ -4,17 +4,30 @@ import styles from './moreReviewsButton.css';
 class MoreReviewsButton extends React.Component {
   constructor(props) {
     super(props);
+    this.handleMoreReviewClick = this.handleMoreReviewClick.bind(this);
+  }
+
+  handleMoreReviewClick() {
+    const {loadMoreReviews} = this.props;
+    console.log('clicked load more')
+    loadMoreReviews();
   }
 
   render() {
     const {displayMoreReviewsButton} = this.props;
+    let styleObj = {
+      visibility: 'visible',
+    };
+    if (!displayMoreReviewsButton) {
+      styleObj.visibility = 'hidden';
+    }
     return (
       <React.Fragment>
-        {displayMoreReviewsButton ? <button className={styles.buttonStyle}>MORE REVIEWS</button> : null}
+         <button className={styles.buttonStyle} onClick={this.handleMoreReviewClick} style={styleObj}>MORE REVIEWS</button>
       </React.Fragment>
-    )
+    );
   }
-};
+}
 
 
 export default MoreReviewsButton;
