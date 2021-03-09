@@ -191,7 +191,7 @@ class RatingsAndReviews extends React.Component {
               averageRating={averageRating}
             />
           </div>
-          <div className={styles.containerList}>
+          <div className={styles.containerList} id="reviews">
             <ContainerList
               reviews={reviews}
               metaReview={metaReview}
