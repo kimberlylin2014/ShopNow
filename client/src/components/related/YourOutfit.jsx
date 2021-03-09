@@ -12,24 +12,23 @@ const YourOutfit = ({
   removeFromOutfit,
   changeCurrentProduct
 }) => {
+
+  const container = useRef(container);
   const [leftArrow, setLeftArrow] = useState(<div />);
   const [rightArrow, setRightArrow] = useState(<div />);
-  const container = createRef(null);
+
+  const scroll = (scrollOffset) => {
+    container.current.scrollLeft += scrollOffset;
+  };
 
   const cards = outfitItems.map((product) => (
     <Card key={product.id} product={product} styleIndex={styleIndex} type="outfit" removeFromOutfit={removeFromOutfit} changeCurrentProduct={changeCurrentProduct} />
   ));
   cards.unshift(<Card product={null} type="add" addToOutfit={addToOutfit} />);
 
-  const scroll = (scrollOffset) => {
-    console.log('scrollLeft: ', container.scrollLeft);
-    console.log('scrollWidth: ', container.scrollWidth);
-    console.log('clientWidth: ', container.clientWidth);
-    container.current.scrollLeft += scrollOffset;
-  };
-
   useEffect(() => {
-    if (container.current.scrollLeft > 0) {
+    const { scrollLeft, clientWidth, scrollWidth } = container.current;
+    if (scrollLeft > 0) {
       setLeftArrow(
         <img
           src="icons/leftArrow.png"
@@ -38,30 +37,38 @@ const YourOutfit = ({
           alt="leftArrow"
         />
       );
+    } else {
+      setLeftArrow(<div className={styles.leftArrow} />);
     }
 
-    if (container.current.clientWidth < container.current.scrollWidth) {
+    if (clientWidth < scrollWidth
+      && scrollLeft < scrollWidth - clientWidth - 20) {
       setRightArrow(
         <img
           src="icons/rightArrow.png"
-          className={styles.rightArrow}
           onClick={() => scroll(245)}
           alt="rightArrow"
         />
       );
+    } else {
+      setRightArrow(<div />);
     }
   });
+
   return (
-    <div className={styles.carouselSection}>
-      {rightArrow}
+    <div className={styles.carousel}>
+      <div className={styles.leftArrow}>
+        {leftArrow}
+      </div>
       <div
-        className={styles.carousel}
-        id="outfitContainer"
+        className={styles.cards}
         ref={container}
       >
-        <div className={styles.cards}>{cards}</div>
+        {cards}
       </div>
-      {leftArrow}
+      <div className={styles.rightArrow}>
+        {rightArrow}
+      </div>
     </div>
   );
 };

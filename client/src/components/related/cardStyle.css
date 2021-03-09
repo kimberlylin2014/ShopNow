@@ -41,6 +41,7 @@
 
 .newPrice {
   color: red;
+  padding-left: 10px;
 }
 
 /* ICONS */
@@ -87,6 +88,35 @@
 /************************************************************
 MEDIA QUERIES
 ************************************************************/
+
+@media (max-width: 575px) {
+  .card {
+    height: 250px;
+    width: 170px;
+  }
+
+  .image {
+    height: 166px;
+    width: 170px;
+  }
+
+  .cardBottom {
+    padding-top: 5px;
+  }
+
+  .addIcon img {
+    height: 75px;
+    top: 110px;
+    left: 50px;
+  }
+
+  .addText {
+    position: absolute;
+    font-size: 1rem;
+    top: 60px;
+    left: 35px;
+  }
+}
 
 @media (min-width: 576px) {
 
