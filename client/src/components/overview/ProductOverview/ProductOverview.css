@@ -6,3 +6,15 @@ h2 {
   font-size: 1.1rem;
   width: 65%;
 }
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .produtDesc {
+    width: 100%;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 479px) {
+  .produtDesc {
+    width: 100%;
+  }
+}

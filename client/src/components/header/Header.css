@@ -1,6 +1,11 @@
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.storeName {
+  font-family: 'Cedarville Cursive', cursive, sans-serif;
 }
 
 .cart {
@@ -12,7 +17,7 @@
 .itemCount {
   position: absolute;
   right: 51px;
-  top: 23px;
+  top: 49px;
 }
 
 @media (min-width: 640px) and (max-width: 767px) {

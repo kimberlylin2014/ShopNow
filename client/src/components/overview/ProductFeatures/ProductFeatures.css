@@ -2,3 +2,15 @@
   width: 38%;
   list-style-type: '\25b2';
 }
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .featureList {
+    width: 100%;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 479px) {
+  .featureList {
+    width: 100%;
+  }
+}

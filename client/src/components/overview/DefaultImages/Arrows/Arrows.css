@@ -1,17 +1,17 @@
 
 .arrow {
-  min-width: 50px;
-  min-height: 50px;
+  max-width: 20px;
+  max-height: 20px;
 }
 
 .LeftArrow {
   z-index: 2;
   cursor: pointer;
-  position: absolute;
+  width: 20px;
 }
 
 .RightArrow {
   z-index: 2;
   cursor: pointer;
-  position: absolute;
+  width: 20px;
 }
