@@ -6,3 +6,9 @@
   min-height: 100px;
   width: 100%;
 }
+
+.requiredField::after {
+  content: "*";
+  color: red;
+  margin-left: 3px;
+}

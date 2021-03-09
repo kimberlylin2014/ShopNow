@@ -211,37 +211,3 @@ class RatingsAndReviews extends React.Component {
 }
 
 export default RatingsAndReviews;
-
-
-
-// test
-
-  // getMetaReview() {
-  //   const { product_id } = this.state;
-  //   axios.get(`/api/reviews/meta/${product_id}`)
-  //     .then((resp) => {
-  //       const { data: { recommended } } = resp;
-  //       const totalReviews = getTotalReviews(recommended.false, recommended.true);
-  //       const numOfRecommendation = getNumOfRecommendation(recommended.false, recommended.true);
-  //       this.setState({
-  //         metaReview: { ...resp.data },
-  //         totalReviews,
-  //         numOfRecommendation,
-  //       }, () => {
-  //         const { reviewCount } = this.state;
-  //         if (totalReviews > reviewCount && totalReviews >= 2) {
-  //           this.setState((currState) => (
-  //             {
-  //               reviewCount: currState.reviewCount + 2,
-  //               displayMoreReviewsButton: true,
-  //             }
-  //           ), () => {
-  //             this.getAllReviews();
-  //           });
-  //         }
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }

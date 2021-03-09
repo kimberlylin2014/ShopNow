@@ -4,34 +4,24 @@ import FormInput from '../formInput/formInput.jsx';
 import FormTextArea from '../formTextArea/formTextArea.jsx';
 import CharacteristicInputs from '../characteristicInputs/characteristicInputs.jsx';
 import StarRating from '../starRating/starRating.jsx';
+import FormValidationMessage from '../formValidationMessage/formValidationMessage.jsx';
+import { formIsValidated } from '../../utils/formValidation.js';
 
 class FormPostReview extends React.Component {
-  // static createCharacteristicState(metaReview) {
-  //   if (metaReview) {
-  //     const { characteristics } = metaReview;
-  //     const characteristicStateObj = {};
-  //     const values = Object.values(characteristics);
-  //     values.forEach((value) => {
-  //       characteristicStateObj[value.id] = '';
-  //     });
-  //     return characteristicStateObj;
-  //   }
-  //   return '';
-  // }
-
   constructor(props) {
     super(props);
     this.state = {
       product_id: '',
       rating: '',
       recommend: '',
-      // characteristics: FormPostReview.createCharacteristicState(props.metaReview),
       characteristics: '',
       summary: '',
       body: '',
+      bodyCounter: 50,
       name: '',
       email: '',
       photos: [],
+      validationResult: {},
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -45,10 +35,17 @@ class FormPostReview extends React.Component {
         value = parseInt(value);
       } else if (name === 'recommend') {
         value = value === 'true';
+      } else if (name === 'body') {
+       this.setState({
+         body: value,
+         bodyCounter: 50 - value.length,
+       });
+      } else {
+        this.setState({
+          [name]: value,
+        });
       }
-      this.setState({
-        [name]: value,
-      });
+
     } else {
       const { characteristics } = this.state;
       this.setState({
@@ -61,39 +58,44 @@ class FormPostReview extends React.Component {
   }
 
   handleStarRatingClick(starId) {
-    const id = starId.slice(4);
     this.setState({
-      rating: parseInt(id),
+      rating: starId,
     });
   }
 
   handleFormSubmit(e) {
     e.preventDefault();
     const { addReview, metaReview, handleCloseModalButtonClick } = this.props;
-    this.setState({
-      product_id: parseInt(metaReview.product_id),
-    }, () => {
-      addReview(this.state);
+    const validatedResult = formIsValidated(this.state, metaReview);
+    const values = Object.values(validatedResult);
+    if (!values.includes(false)) {
+      addReview({
+        ...this.state,
+        product_id: parseInt(metaReview.product_id)
+      });
       handleCloseModalButtonClick();
-    });
+    } else {
+      this.setState({
+        validatedResult: { ...validatedResult },
+      });
+    }
   }
 
   render() {
-    const { summary, body, name, email, rating } = this.state;
-
+    const { summary, body, name, email, validatedResult, bodyCounter } = this.state;
     const { metaReview, productInfo } = this.props;
 
     return (
       <div className={styles.formPostReview}>
-        <h4>
+        <h3>
           Write Your Review about
           {' '}
           {productInfo ? productInfo.name : null}
-        </h4>
+        </h3>
         <form onSubmit={this.handleFormSubmit}>
-          <StarRating handleStarRatingClick={this.handleStarRatingClick}/>
+          <StarRating handleStarRatingClick={this.handleStarRatingClick} />
           <div className={`${styles.formGroup} ${styles.recommendInputs}`}>
-            <div>
+            <div className={styles.requiredField}>
               Do you recommend this product?
             </div>
             <div className={styles.recommendInputs}>
@@ -117,7 +119,6 @@ class FormPostReview extends React.Component {
                   label="No"
                 />
               </div>
-
             </div>
           </div>
           <div className={styles.formGroup}>
@@ -129,17 +130,23 @@ class FormPostReview extends React.Component {
               value={summary}
               handleInputChange={this.handleInputChange}
               label="Summary"
+              required={true}
             />
+             <p className={styles.disclaimer}>[60 characters max] </p>
           </div>
           <div className={styles.formGroup}>
             <FormTextArea
-              placeholder="Why do you like the product or not?"
+              placeholder="Why did you like the product or not"
               htmlFor="body"
               name="body"
               value={body}
               handleInputChange={this.handleInputChange}
-              label="Review Body"
+              label="Review"
+              required={true}
             />
+            <div className={styles.bodyDisclaimer}>
+              <span>[50-1000 characters]</span> <span className={styles.counter}>{bodyCounter <= 0 ? 'Minimum Reached' : `Minimum required characters left: ${bodyCounter}`}</span>
+            </div>
           </div>
           <div className={styles.formGroup}>
             <FormInput
@@ -149,8 +156,10 @@ class FormPostReview extends React.Component {
               name="name"
               value={name}
               handleInputChange={this.handleInputChange}
-              label="Nickname"
+              label="Username"
+              required={true}
             />
+            <p className={styles.disclaimer}>[60 characters max] For privacy reasons, do not use your full name or email address. </p>
           </div>
           <div className={styles.formGroup}>
             <FormInput
@@ -161,7 +170,9 @@ class FormPostReview extends React.Component {
               value={email}
               handleInputChange={this.handleInputChange}
               label="Email"
+              required={true}
             />
+            <p className={styles.disclaimer}>[60 characters max] For authentication reaesons, you will not be emailed.</p>
           </div>
           {metaReview ? (
             <CharacteristicInputs
@@ -169,6 +180,7 @@ class FormPostReview extends React.Component {
               handleInputChange={this.handleInputChange}
             />
           ) : null}
+          <FormValidationMessage text={validatedResult}/>
           <input type="submit" value="SUBMIT" className={styles.buttonStyle}/>
         </form>
       </div>
