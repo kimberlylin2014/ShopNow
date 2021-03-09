@@ -1,7 +1,7 @@
 import React from 'react';
 import Star from '../star/star.jsx';
 import styles from './starRating.css';
-import FormValidationMessage from '../formValidationMessage/formValidationMessage.jsx';
+
 
 const rating = {
   star1: {rating: 1, descrip: 'Poor'},
@@ -177,9 +177,6 @@ class StarRating extends React.Component {
           <Star id="3" handleMouseEnter={this.handleMouseEnter} opacity={opacity} star={star3} handleMouseLeave={this.handleMouseLeave} handleOnClick={this.handleOnClick}/>
           <Star id="4" handleMouseEnter={this.handleMouseEnter} opacity={opacity} star={star4} handleMouseLeave={this.handleMouseLeave} handleOnClick={this.handleOnClick}/>
           <Star id="5" handleMouseEnter={this.handleMouseEnter} opacity={opacity} star={star5} handleMouseLeave={this.handleMouseLeave} handleOnClick={this.handleOnClick}/>
-        </div>
-        <div className={styles.selectedMessage}>
-          <FormValidationMessage text={selected}/>
         </div>
       </div>
     )

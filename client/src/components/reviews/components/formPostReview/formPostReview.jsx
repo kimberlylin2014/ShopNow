@@ -5,6 +5,7 @@ import FormTextArea from '../formTextArea/formTextArea.jsx';
 import CharacteristicInputs from '../characteristicInputs/characteristicInputs.jsx';
 import StarRating from '../starRating/starRating.jsx';
 import FormValidationMessage from '../formValidationMessage/formValidationMessage.jsx';
+import { formIsValidated } from '../../utils/formValidation.js';
 
 class FormPostReview extends React.Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class FormPostReview extends React.Component {
       name: '',
       email: '',
       photos: [],
+      validationResult: {},
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -57,19 +59,24 @@ class FormPostReview extends React.Component {
     e.preventDefault();
     const { addReview, metaReview, handleCloseModalButtonClick } = this.props;
     // verify form before addReview
-
-
-    //
-    addReview({
-      ...this.state,
-      product_id: parseInt(metaReview.product_id)
-    });
-    handleCloseModalButtonClick();
+    const validatedResult = formIsValidated(this.state, metaReview);
+    const values = Object.values(validatedResult);
+    if (!values.includes(false)) {
+      console.log('passed all validation')
+      addReview({
+        ...this.state,
+        product_id: parseInt(metaReview.product_id)
+      });
+      handleCloseModalButtonClick();
+    } else {
+      this.setState({
+        validatedResult: { ...validatedResult }
+      });
+    }
   }
 
   render() {
-    const { summary, body, name, email, rating } = this.state;
-
+    const { summary, body, name, email, rating, validatedResult } = this.state;
     const { metaReview, productInfo } = this.props;
 
     return (
@@ -80,7 +87,7 @@ class FormPostReview extends React.Component {
           {productInfo ? productInfo.name : null}
         </h3>
         <form onSubmit={this.handleFormSubmit}>
-          <StarRating handleStarRatingClick={this.handleStarRatingClick}/>
+          <StarRating handleStarRatingClick={this.handleStarRatingClick} />
           <div className={`${styles.formGroup} ${styles.recommendInputs}`}>
             <div className={styles.requiredField}>
               Do you recommend this product?
@@ -128,7 +135,7 @@ class FormPostReview extends React.Component {
               name="body"
               value={body}
               handleInputChange={this.handleInputChange}
-              label="Review Body"
+              label="Review"
               required={true}
             />
             <p className={styles.disclaimer}>[50-1000 characters] Counter: 0</p>
@@ -141,7 +148,7 @@ class FormPostReview extends React.Component {
               name="name"
               value={name}
               handleInputChange={this.handleInputChange}
-              label="Nickname"
+              label="Username"
               required={true}
             />
             <p className={styles.disclaimer}>[60 characters max] For privacy reasons, do not use your full name or email address. </p>
@@ -165,6 +172,7 @@ class FormPostReview extends React.Component {
               handleInputChange={this.handleInputChange}
             />
           ) : null}
+          <FormValidationMessage text={validatedResult}/>
           <input type="submit" value="SUBMIT" className={styles.buttonStyle}/>
         </form>
       </div>
