@@ -17,7 +17,7 @@ class FormPostReview extends React.Component {
       characteristics: '',
       summary: '',
       body: '',
-      bodyCounter: 0,
+      bodyCounter: 50,
       name: '',
       email: '',
       photos: [],
@@ -38,7 +38,7 @@ class FormPostReview extends React.Component {
       } else if (name === 'body') {
        this.setState({
          body: value,
-         bodyCounter: value.length,
+         bodyCounter: 50 - value.length,
        });
       } else {
         this.setState({
@@ -145,7 +145,7 @@ class FormPostReview extends React.Component {
               required={true}
             />
             <div className={styles.bodyDisclaimer}>
-              <span>[50-1000 characters]</span> <span className={styles.counter}>Characters: {bodyCounter}</span>
+              <span>[50-1000 characters]</span> <span className={styles.counter}>{bodyCounter <= 0 ? 'Minimum Reached' : `Minimum required characters left: ${bodyCounter}`}</span>
             </div>
           </div>
           <div className={styles.formGroup}>
