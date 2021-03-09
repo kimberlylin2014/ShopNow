@@ -6,3 +6,35 @@ h2 {
   font-size: 1.1rem;
   width: 65%;
 }
+
+@media (max-width: 320px) {
+  .produtDesc {
+    width: 100%;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .produtDesc {
+    width: 100%;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 479px) {
+  .produtDesc {
+    width: 100%;
+  }
+}
+
+@media (min-width: 576px) {
+  .produtDesc {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .produtDesc {
+    width: 80%;
+  }
+}
+
+

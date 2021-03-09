@@ -12,3 +12,28 @@
   overflow-y: scroll;
   height: 550px;
 }
+
+@media (max-width: 320px) {
+  .thumbnails {
+    width: 100%;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .thumbnails {
+    width: 100%;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 479px) {
+  .thumbnails {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .thumbnails {
+    width: 100%;
+  }
+}
+

@@ -9,7 +9,7 @@ const RightArrow = ({ length, currIndex, updateIndex }) => {
   return (
     <div className={Styles.arrow}>
       { currIndex !== length - 1 && (
-        <img src="icons/rightArrow.png" className={Styles.RightArrow} onClick={nextPic} />
+        <img src="icons/rightCaret.png" className={Styles.RightArrow} onClick={nextPic} />
       )}
     </div>
   );
