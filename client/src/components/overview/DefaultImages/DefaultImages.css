@@ -1,7 +1,7 @@
 .gallery {
   width: 80%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -25,6 +25,12 @@
   position: relative;
 }
 
+@media (max-width: 320px) {
+  .gallery {
+    width:120%;
+  }
+}
+
 @media (min-width: 640px) and (max-width: 767px) {
   .images {
     object-fit: cover;
@@ -41,6 +47,26 @@
     cursor: zoom-in;
   }
   .gallery {
-    width:107%;
+    width:103%;
+  }
+}
+
+
+@media (min-width: 576px) {
+  .gallery {
+    width:100%;
+  }
+}
+
+
+@media (min-width: 768px) {
+  .gallery {
+    width:71%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .images {
+    min-width: 130%;
   }
 }

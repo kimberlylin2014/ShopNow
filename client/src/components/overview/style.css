@@ -34,8 +34,14 @@ a {
   font-size: 1.7rem;
 }
 
+@media (max-width: 320px) {
+  .rowcontainer {
+    display: flex;
+    flex-direction: column;
+  }
+}
 
-/* tablet view*/
+
 @media (min-width: 640px) and (max-width: 767px) {
   .rowcontainer {
     display: flex;
@@ -49,3 +55,16 @@ a {
     flex-direction: column;
   }
 }
+
+@media (min-width: 576px) and (max-width: 639px) {
+  .rowcontainer {
+    display: flex;
+    flex-direction: column;
+  }
+}
+/* 
+@media (min-width: 1200px) {
+  .rowcontainer {
+    width: 35%;
+  }
+} */
