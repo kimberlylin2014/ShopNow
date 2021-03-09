@@ -17,6 +17,7 @@ class FormPostReview extends React.Component {
       characteristics: '',
       summary: '',
       body: '',
+      bodyCounter: 0,
       name: '',
       email: '',
       photos: [],
@@ -34,10 +35,17 @@ class FormPostReview extends React.Component {
         value = parseInt(value);
       } else if (name === 'recommend') {
         value = value === 'true';
+      } else if (name === 'body') {
+       this.setState({
+         body: value,
+         bodyCounter: value.length,
+       });
+      } else {
+        this.setState({
+          [name]: value,
+        });
       }
-      this.setState({
-        [name]: value,
-      });
+
     } else {
       const { characteristics } = this.state;
       this.setState({
@@ -58,11 +66,9 @@ class FormPostReview extends React.Component {
   handleFormSubmit(e) {
     e.preventDefault();
     const { addReview, metaReview, handleCloseModalButtonClick } = this.props;
-    // verify form before addReview
     const validatedResult = formIsValidated(this.state, metaReview);
     const values = Object.values(validatedResult);
     if (!values.includes(false)) {
-      console.log('passed all validation')
       addReview({
         ...this.state,
         product_id: parseInt(metaReview.product_id)
@@ -70,13 +76,13 @@ class FormPostReview extends React.Component {
       handleCloseModalButtonClick();
     } else {
       this.setState({
-        validatedResult: { ...validatedResult }
+        validatedResult: { ...validatedResult },
       });
     }
   }
 
   render() {
-    const { summary, body, name, email, rating, validatedResult } = this.state;
+    const { summary, body, name, email, validatedResult, bodyCounter } = this.state;
     const { metaReview, productInfo } = this.props;
 
     return (
@@ -138,7 +144,9 @@ class FormPostReview extends React.Component {
               label="Review"
               required={true}
             />
-            <p className={styles.disclaimer}>[50-1000 characters] Counter: 0</p>
+            <div className={styles.bodyDisclaimer}>
+              <span>[50-1000 characters]</span> <span className={styles.counter}>Characters: {bodyCounter}</span>
+            </div>
           </div>
           <div className={styles.formGroup}>
             <FormInput
