@@ -142,25 +142,30 @@ class Related extends React.Component {
     } = this.state;
     return (
       <div>
-        <div className={styles.heading}>RELATED PRODUCTS</div>
         <div className={styles.section}>
-          <Section
-            name="related"
-            relatedItems={relatedItems}
-            styleIndex={styleIndex}
-            toggleModal={this.toggleModal}
-            changeCurrentProduct={this.changeCurrentProduct}
-          />
+          <div className={styles.heading}>RELATED PRODUCTS</div>
+          <div className={styles.subSection}>
+            <Section
+              name="related"
+              relatedItems={relatedItems}
+              styleIndex={styleIndex}
+              toggleModal={this.toggleModal}
+              changeCurrentProduct={this.changeCurrentProduct}
+            />
+          </div>
         </div>
         <div className={styles.section}>
-          <Section
-            name="outfit"
-            outfitItems={outfitItems}
-            styleIndex={styleIndex}
-            addToOutfit={this.addToOutfit}
-            removeFromOutfit={this.removeFromOutfit}
-            changeCurrentProduct={this.changeCurrentProduct}
-          />
+          <div className={styles.heading}>YOUR OUTFIT</div>
+          <div className={styles.subSection}>
+            <Section
+              name="outfit"
+              outfitItems={outfitItems}
+              styleIndex={styleIndex}
+              addToOutfit={this.addToOutfit}
+              removeFromOutfit={this.removeFromOutfit}
+              changeCurrentProduct={this.changeCurrentProduct}
+            />
+          </div>
         </div>
         { showModal
           ? (

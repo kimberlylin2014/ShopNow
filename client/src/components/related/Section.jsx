@@ -6,7 +6,7 @@
 /* eslint-disable import/extensions */
 import React, { useRef, useState } from 'react';
 import Card from './Card.jsx';
-import styles from './carouselStyle.css';
+import styles from './sectionStyle.css';
 
 const Section = (props) => {
   const { name } = props;
