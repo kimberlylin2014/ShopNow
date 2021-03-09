@@ -89,6 +89,9 @@
 MEDIA QUERIES
 ************************************************************/
 
+@media (max-width: 575px) {
+
+}
 @media (min-width: 576px) {
   /* .card {
     height: 440px;

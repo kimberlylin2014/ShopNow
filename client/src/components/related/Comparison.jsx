@@ -1,10 +1,13 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable react/prop-types */
 /* eslint-disable no-restricted-syntax */
 import React from 'react';
-import styles from './comparisonStyle.css';
 import PropTypes from 'prop-types';
+import styles from './comparisonStyle.css';
 
 class Comparison extends React.Component {
-  constructor () {
+  constructor() {
     super();
     this.escFunction = this.escFunction.bind(this);
   }
@@ -31,21 +34,21 @@ class Comparison extends React.Component {
   render() {
     const { current, selected } = this.props;
     const features = {};
-    for (let item of current.features) {
-      let feat = item.feature;
+    for (const item of current.features) {
+      const feat = item.feature;
       features[feat] = {
         currentVal: item.value || '✔️',
-        selectedVal: ''
-      }
+        selectedVal: '',
+      };
     }
-    for (let item of selected.features) {
-      let feat = item.feature;
+    for (const item of selected.features) {
+      const feat = item.feature;
       if (features[feat]) {
         features[feat].selectedVal = item.value;
       } else {
         features[feat] = {
           currentVal: '',
-          selectedVal: item.value || '✔️'
+          selectedVal: item.value || '✔️',
         }
       }
     }

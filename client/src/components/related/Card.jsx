@@ -1,3 +1,7 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable react/prop-types */
 /* eslint-disable import/extensions */
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
@@ -30,7 +34,7 @@ class Card extends React.Component {
 
   getPrice() {
     const { product, type } = this.props;
-    let { styleIndex } =this.props;
+    let { styleIndex } = this.props;
     if (!styleIndex) {
       styleIndex = 0;
     }
@@ -49,7 +53,11 @@ class Card extends React.Component {
         </div>
       );
     }
-    return <div className={styles.price}>${product.default_price}</div>;
+    return (
+      <div className={styles.price}>
+        ${product.default_price}
+      </div>
+    );
   }
 
   render() {
@@ -88,7 +96,7 @@ class Card extends React.Component {
           <div className={styles.category}>{product.category}</div>
           <div className={styles.name}>{product.name}</div>
           {this.getPrice()}
-          <Stars className={styles.stars} numStars={product.averageRating} starsClass={'cardStars'} starClass={'cardStar'} />
+          <Stars className={styles.stars} numStars={product.averageRating} starsClass="cardStars" starClass="cardStar" />
         </div>
       </div>
     );

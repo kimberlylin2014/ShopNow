@@ -6,8 +6,7 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import Comparison from './Comparison.jsx';
-import RelatedProducts from './RelatedProducts.jsx';
-import YourOutfit from './YourOutfit.jsx';
+import Section from './Section.jsx';
 import styles from './relatedStyle.css';
 
 class Related extends React.Component {
@@ -144,20 +143,25 @@ class Related extends React.Component {
     return (
       <div>
         <div className={styles.heading}>RELATED PRODUCTS</div>
-        <RelatedProducts
-          relatedItems={relatedItems}
-          styleIndex={styleIndex}
-          toggleModal={this.toggleModal}
-          changeCurrentProduct={this.changeCurrentProduct}
-        />
-        <div className={styles.heading}>YOUR OUTFIT</div>
-        <YourOutfit
-          outfitItems={outfitItems}
-          styleIndex={styleIndex}
-          addToOutfit={this.addToOutfit}
-          removeFromOutfit={this.removeFromOutfit}
-          changeCurrentProduct={this.changeCurrentProduct}
-        />
+        <div className={styles.section}>
+          <Section
+            name="related"
+            relatedItems={relatedItems}
+            styleIndex={styleIndex}
+            toggleModal={this.toggleModal}
+            changeCurrentProduct={this.changeCurrentProduct}
+          />
+        </div>
+        <div className={styles.section}>
+          <Section
+            name="outfit"
+            outfitItems={outfitItems}
+            styleIndex={styleIndex}
+            addToOutfit={this.addToOutfit}
+            removeFromOutfit={this.removeFromOutfit}
+            changeCurrentProduct={this.changeCurrentProduct}
+          />
+        </div>
         { showModal
           ? (
             <Comparison

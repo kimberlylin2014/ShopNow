@@ -35,17 +35,26 @@
   display: flex;
   flex-direction: row;
   flex-shrink: 0;
-  /* margin-bottom: 8%;
-  font-size: 0.8rem;
-  overflow: auto;
-  scroll-behavior: smooth;
-  flex-wrap: nowrap;
-  white-space: nowrap; */
+  max-width: 95%;
 }
 
 /************************************************************
 MEDIA QUERIES
 ************************************************************/
+
+@media(max-width: 575px) {
+  .leftArrow, .rightArrow {
+    width: 10px;
+  }
+
+  .leftArrow {
+    margin-right: 10px;
+  }
+
+  .rightArrow {
+    margin-left: 10px;
+  }
+}
 
 @media (min-width: 576px) {
 

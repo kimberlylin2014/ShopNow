@@ -1,17 +1,32 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/prefer-stateless-function */
+/* eslint-disable import/extensions */
 import React, { useRef, useState } from 'react';
 import Card from './Card.jsx';
 import styles from './carouselStyle.css';
 
-const YourOutfit = ({
-  outfitItems,
-  styleIndex,
-  addToOutfit,
-  removeFromOutfit,
-  changeCurrentProduct
-}) => {
+const Section = (props) => {
+  const { name } = props;
+  let cards;
+  if (name === 'related') {
+    const {
+      relatedItems, styleIndex, toggleModal, changeCurrentProduct,
+    } = props;
+    cards = relatedItems.map((product) => (
+      <Card key={product.id} product={product} styleIndex={styleIndex} type="related" toggleModal={toggleModal} changeCurrentProduct={changeCurrentProduct} />
+    ));
+  } else if (name === 'outfit') {
+    const {
+      outfitItems, styleIndex, addToOutfit, removeFromOutfit, changeCurrentProduct,
+    } = props;
+    cards = outfitItems.map((product) => (
+      <Card key={product.id} product={product} styleIndex={styleIndex} type="outfit" removeFromOutfit={removeFromOutfit} changeCurrentProduct={changeCurrentProduct} />
+    ));
+    cards.unshift(<Card product={null} type="add" addToOutfit={addToOutfit} />);
+  }
 
   const container = useRef(container);
   const [leftArrow, setLeftArrow] = useState(<div />);
@@ -20,11 +35,6 @@ const YourOutfit = ({
   const scroll = (scrollOffset) => {
     container.current.scrollLeft += scrollOffset;
   };
-
-  const cards = outfitItems.map((product) => (
-    <Card key={product.id} product={product} styleIndex={styleIndex} type="outfit" removeFromOutfit={removeFromOutfit} changeCurrentProduct={changeCurrentProduct} />
-  ));
-  cards.unshift(<Card product={null} type="add" addToOutfit={addToOutfit} />);
 
   const setArrows = () => {
     const { scrollLeft, clientWidth, scrollWidth } = container.current;
@@ -89,4 +99,4 @@ const YourOutfit = ({
   );
 };
 
-export default YourOutfit;
+export default Section;

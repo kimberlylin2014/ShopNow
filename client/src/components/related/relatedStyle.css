@@ -8,24 +8,21 @@ MEDIA QUERIES
 ************************************************************/
 
 @media (max-width: 575px) {
-  /* .heading {
-    transform: scale(0.7);
-    transition: transform .2s ease-in-out;
-  } */
+  .heading {
+    font-size: 1.3rem;
+  }
+
+  .relatedSection, .outfitSection {
+    height: 100vh;
+  }
 }
 
 @media (min-width: 576px) {
-  /* .heading {
-    transform: scale(0.8);
-    transition: transform .2s ease-in-out;
-  } */
+
 }
 
 @media (min-width: 768px) {
-  /* .heading {
-    transform: scale(0.9);
-    transition: transform .2s ease-in-out;
-  } */
+
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
