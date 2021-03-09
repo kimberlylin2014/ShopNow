@@ -1,6 +1,4 @@
 import React from 'react';
-import axios from 'axios';
-// import PropTypes from 'prop-types';
 import Styles from './AddToCart.css';
 import Size from './Size/Size.jsx';
 import Quantity from './Quantity/Quantity.jsx';
@@ -11,7 +9,6 @@ class AddToCart extends React.Component {
     this.state = {
       currentSKU: props.currentStyleObj
         ? Object.keys(props.currentStyleObj.skus)[0] : '',
-      // quantitySelected: 0,
       needSize: true,
       selectSizeMessage: false,
       reset: false,
@@ -36,16 +33,12 @@ class AddToCart extends React.Component {
         selectSizeMessage: true,
       });
     } else {
-      axios.post('/api/cart', {
-        sku_id: this.state.currentSKU,
-        // count: this.state.quantitySelected,
-      }).then(() => {
-        this.setState({
-          needSize: true,
-          selectSizeMessage: false,
-          reset: true,
-        });
-      }).catch((e) => console.log('Error', e));
+      this.props.onAddToCart(this.state.currentSKU);
+      this.setState({
+        needSize: true,
+        selectSizeMessage: false,
+        reset: true,
+      });
     }
   }
 
@@ -74,7 +67,6 @@ class AddToCart extends React.Component {
           inventory={currentSKU && currentStyleObj.skus
           && currentStyleObj.skus[currentSKU]
             ? currentStyleObj.skus[currentSKU].quantity : ''}
-          // changeQuantity={this.changeQuantity}
         />
         <br />
         <button

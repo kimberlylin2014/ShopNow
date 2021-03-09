@@ -2,7 +2,7 @@ import React from 'react';
 import Styles from './Quantity.css';
 // import PropTypes from 'prop-types';
 
-const Quantity = ({ inventory, changeQuantity }) => {
+const Quantity = ({ inventory }) => {
   const quantity = Array.from({ length: inventory >= 15 ? 15 : inventory }, (_, i) => i + 1);
   const availability = quantity.map((num, index) => <option key={index} value={num}>{num}</option>);
 
@@ -12,7 +12,6 @@ const Quantity = ({ inventory, changeQuantity }) => {
       <select
         name="quantity"
         className={Styles.Quantity}
-        // onChange={(e) => changeQuantity(e.target.value)}
       >
         {availability}
       </select>
