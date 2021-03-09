@@ -3,35 +3,22 @@
   margin: 35px 0 0px 0;
 }
 
-/* .radioRowTitle {
-  padding-bottom: 10px;
-  font-weight: 600;
-  font-size: 1rem;
-  color: #373833;
-  margin: 0 0 10px;
-  border-bottom: solid 2px  #373833;
-} */
-
-/* .radioRow {
-  color:  #373833;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
-}
- */
  .radioRowTitle {
   padding-bottom: 10px;
   font-weight: 600;
-  /* font-size: 2rem; */
   color: #373833;
   margin: 0 0 10px;
   border-bottom: solid 2px  #373833;
 }
 
+.radioRowTitle::after {
+  content: "*";
+  color: red;
+  margin-left: 3px;
+  font-weight: 400;
+}
  .radioRow {
   color:  #373833;
-  /* display: flex;
-  justify-content: space-between; */
   margin-bottom: 15px;
 }
 

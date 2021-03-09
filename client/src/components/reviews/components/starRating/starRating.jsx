@@ -171,6 +171,7 @@ class StarRating extends React.Component {
     return (
       <div className={styles.starRatingSection}>
         <div className={styles.starRating}>
+          <span className={styles.requiredField}>Click on Star to Rate:</span>
           <Star id="1" handleMouseEnter={this.handleMouseEnter} opacity={opacity} star={star1} handleMouseLeave={this.handleMouseLeave} handleOnClick={this.handleOnClick}/>
           <Star id="2" handleMouseEnter={this.handleMouseEnter} opacity={opacity} star={star2} handleMouseLeave={this.handleMouseLeave} handleOnClick={this.handleOnClick}/>
           <Star id="3" handleMouseEnter={this.handleMouseEnter} opacity={opacity} star={star3} handleMouseLeave={this.handleMouseLeave} handleOnClick={this.handleOnClick}/>

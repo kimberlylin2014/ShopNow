@@ -2,7 +2,6 @@
   margin: 5px auto;
   padding: 5px 20px 20px 20px;
   width: 90%;
-  /* font-size: rem; */
 }
 
 .recommendInputs {
@@ -18,7 +17,7 @@
 }
 
 .formGroup {
-  margin-top: 18px;
+  margin-top: 25px;
 }
 
  .buttonStyle {
@@ -27,9 +26,7 @@
   padding: 10px;
   background-color:  #393e46;
   color: #FEFEFE;
-  /* border: 1px solid #393e46; */
   margin-top: 20px;
-  /* font-size: 2rem; */
 }
 
 .buttonStyle:hover {
@@ -45,24 +42,13 @@
 }
 
 
-
-/* .buttonStyle {
-  width: 150px;
-  height: 45px;
-  background-color: #FEFEFE;
-  color: #393e46;
-  border: 1px solid #393e46;
-  margin-top: 20px;
+.requiredField::after {
+  content: "*";
+  color: red;
+  margin-left: 3px;
 }
 
-.buttonStyle:hover {
-  color: #FEFEFE;
-  cursor: pointer;
-  background-color: #393e46;
-  box-shadow: 0 1px 1px rgba(0,0,0,0.11),
-              0 2px 2px rgba(0,0,0,0.11),
-              0 4px 4px rgba(0,0,0,0.11),
-              0 6px 8px rgba(0,0,0,0.11),
-              0 8px 16px rgba(0,0,0,0.11);
+.disclaimer {
+  margin: 0;
+  font-size: 0.8rem;
 }
- */

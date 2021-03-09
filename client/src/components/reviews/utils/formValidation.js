@@ -11,3 +11,31 @@ function createCharacteristicState(metaReview) {
   return '';
 }
 
+export function verifyRating() {
+
+}
+
+export function verifyRecommendation() {
+
+}
+
+export function verifySummary() {
+
+}
+
+export function verifyReviewBody() {
+
+}
+
+export function verifyUsername() {
+
+}
+
+
+export function verifyEmail() {
+
+}
+
+export function verifyCharacteristics() {
+
+}

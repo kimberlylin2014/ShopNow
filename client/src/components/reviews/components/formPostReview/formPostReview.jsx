@@ -4,6 +4,7 @@ import FormInput from '../formInput/formInput.jsx';
 import FormTextArea from '../formTextArea/formTextArea.jsx';
 import CharacteristicInputs from '../characteristicInputs/characteristicInputs.jsx';
 import StarRating from '../starRating/starRating.jsx';
+import FormValidationMessage from '../formValidationMessage/formValidationMessage.jsx';
 
 class FormPostReview extends React.Component {
   constructor(props) {
@@ -47,23 +48,23 @@ class FormPostReview extends React.Component {
   }
 
   handleStarRatingClick(starId) {
-    // const id = starId.slice(4);
-    console.log(starId);
-    console.log(typeof starId)
-    // this.setState({
-    //   rating: parseInt(id),
-    // });
+    this.setState({
+      rating: starId,
+    });
   }
 
   handleFormSubmit(e) {
     e.preventDefault();
     const { addReview, metaReview, handleCloseModalButtonClick } = this.props;
-    this.setState({
-      product_id: parseInt(metaReview.product_id),
-    }, () => {
-      addReview(this.state);
-      handleCloseModalButtonClick();
+    // verify form before addReview
+
+
+    //
+    addReview({
+      ...this.state,
+      product_id: parseInt(metaReview.product_id)
     });
+    handleCloseModalButtonClick();
   }
 
   render() {
@@ -73,15 +74,15 @@ class FormPostReview extends React.Component {
 
     return (
       <div className={styles.formPostReview}>
-        <h4>
+        <h3>
           Write Your Review about
           {' '}
           {productInfo ? productInfo.name : null}
-        </h4>
+        </h3>
         <form onSubmit={this.handleFormSubmit}>
           <StarRating handleStarRatingClick={this.handleStarRatingClick}/>
           <div className={`${styles.formGroup} ${styles.recommendInputs}`}>
-            <div>
+            <div className={styles.requiredField}>
               Do you recommend this product?
             </div>
             <div className={styles.recommendInputs}>
@@ -105,7 +106,6 @@ class FormPostReview extends React.Component {
                   label="No"
                 />
               </div>
-
             </div>
           </div>
           <div className={styles.formGroup}>
@@ -117,17 +117,21 @@ class FormPostReview extends React.Component {
               value={summary}
               handleInputChange={this.handleInputChange}
               label="Summary"
+              required={true}
             />
+             <p className={styles.disclaimer}>[60 characters max] </p>
           </div>
           <div className={styles.formGroup}>
             <FormTextArea
-              placeholder="Why do you like the product or not?"
+              placeholder="Why did you like the product or not"
               htmlFor="body"
               name="body"
               value={body}
               handleInputChange={this.handleInputChange}
               label="Review Body"
+              required={true}
             />
+            <p className={styles.disclaimer}>[50-1000 characters] Counter: 0</p>
           </div>
           <div className={styles.formGroup}>
             <FormInput
@@ -138,7 +142,9 @@ class FormPostReview extends React.Component {
               value={name}
               handleInputChange={this.handleInputChange}
               label="Nickname"
+              required={true}
             />
+            <p className={styles.disclaimer}>[60 characters max] For privacy reasons, do not use your full name or email address. </p>
           </div>
           <div className={styles.formGroup}>
             <FormInput
@@ -149,7 +155,9 @@ class FormPostReview extends React.Component {
               value={email}
               handleInputChange={this.handleInputChange}
               label="Email"
+              required={true}
             />
+            <p className={styles.disclaimer}>[60 characters max] For authentication reaesons, you will not be emailed.</p>
           </div>
           {metaReview ? (
             <CharacteristicInputs

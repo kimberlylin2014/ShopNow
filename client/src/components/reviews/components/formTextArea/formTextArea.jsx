@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './formTextArea.css';
 
-const FormTextArea = ({htmlFor, name, handleInputChange, value, label, placeholder='...'}) => (
+const FormTextArea = ({htmlFor, name, handleInputChange, value, label, placeholder='...', required}) => (
   <label htmlFor={htmlFor}>
-    {label}
+    <span className={required ? styles.requiredField : ''}>{label}</span>
     <textarea
       className={styles.textInput}
       id={htmlFor}
