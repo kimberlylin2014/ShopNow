@@ -19,12 +19,12 @@ const RelatedProducts = ({ relatedItems, styleIndex, toggleModal, changeCurrentP
     container.current.scrollLeft += scrollOffset;
   };
 
-  useEffect(() => {
+  const setArrows = () => {
     const { scrollLeft, clientWidth, scrollWidth } = container.current;
     if (scrollLeft > 0) {
       setLeftArrow(
         <img
-          src="icons/leftArrow.png"
+          src="icons/leftCaret.png"
           className={styles.leftArrow}
           onClick={() => scroll(-245)}
           alt="leftArrow"
@@ -38,24 +38,27 @@ const RelatedProducts = ({ relatedItems, styleIndex, toggleModal, changeCurrentP
       && scrollLeft < scrollWidth - clientWidth - 20) {
       setRightArrow(
         <img
-          src="icons/rightArrow.png"
+          src="icons/rightCaret.png"
           onClick={() => scroll(245)}
           alt="rightArrow"
         />
       );
     } else {
-      setRightArrow(<div />);
+      setRightArrow(<div className={styles.rightArrow} />);
     }
-  });
+  };
+
+  window.addEventListener('resize', setArrows);
 
   return (
-    <div className={styles.carousel}>
+    <div onLoad={setArrows} className={styles.carousel}>
       <div className={styles.leftArrow}>
         {leftArrow}
       </div>
       <div
         className={styles.cards}
         ref={container}
+        onScroll={setArrows}
       >
         {cards}
       </div>
@@ -67,18 +70,3 @@ const RelatedProducts = ({ relatedItems, styleIndex, toggleModal, changeCurrentP
 };
 
 export default RelatedProducts;
-
-/*
-useEffect(() => {
-    let unmounted = false;
-    setTimeout(() => {
-      if (!unmounted) {
-        window.addEventListener('resize', update);
-      }
-    }, 50);
-    return () => {
-      unmounted = true;
-      window.addEventListener('resize', update);
-    };
-  });
-*/

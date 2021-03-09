@@ -14,19 +14,19 @@
 .leftArrow, .rightArrow {
   cursor: pointer;
   width: 50px;
+  flex-shrink: 0;
   align-self: center;
 }
 
 .leftArrow img, .rightArrow img {
-  width: 50px;
+  width: 20px;
 }
 
 .leftArrow {
-  margin-right: 10px;
 }
 
 .rightArrow {
-  margin-left: 10px;
+  margin: 50px;
 }
 
 .carousel {
@@ -34,7 +34,7 @@
   /* max-width: 90vw; */
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-shrink: 0;
   /* margin-bottom: 8%;
   font-size: 0.8rem;
