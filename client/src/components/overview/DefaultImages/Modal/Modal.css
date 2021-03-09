@@ -21,7 +21,7 @@
 
 .imgWrapper {
   display: inline-block;
-  overflow: hidden;
+  overflow: scroll;
   max-height: 90%;
 }
 

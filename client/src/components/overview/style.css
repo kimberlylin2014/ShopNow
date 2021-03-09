@@ -62,4 +62,9 @@ a {
     flex-direction: column;
   }
 }
-
+/* 
+@media (min-width: 1200px) {
+  .rowcontainer {
+    width: 35%;
+  }
+} */

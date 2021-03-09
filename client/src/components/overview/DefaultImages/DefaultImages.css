@@ -1,7 +1,7 @@
 .gallery {
   width: 80%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -66,5 +66,7 @@
 }
 
 @media (min-width: 1200px) {
-
+  .images {
+    min-width: 130%;
+  }
 }
