@@ -5,14 +5,12 @@
 }
 
 .LeftArrow {
-  top: 42%;
   z-index: 2;
   cursor: pointer;
   position: absolute;
 }
 
 .RightArrow {
-  top: 42%;
   z-index: 2;
   cursor: pointer;
   position: absolute;
