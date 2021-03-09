@@ -26,12 +26,12 @@ const YourOutfit = ({
   ));
   cards.unshift(<Card product={null} type="add" addToOutfit={addToOutfit} />);
 
-  useEffect(() => {
+  const setArrows = () => {
     const { scrollLeft, clientWidth, scrollWidth } = container.current;
     if (scrollLeft > 0) {
       setLeftArrow(
         <img
-          src="icons/leftArrow.png"
+          src="icons/leftCaret.png"
           className={styles.leftArrow}
           onClick={() => scroll(-245)}
           alt="leftArrow"
@@ -45,24 +45,27 @@ const YourOutfit = ({
       && scrollLeft < scrollWidth - clientWidth - 20) {
       setRightArrow(
         <img
-          src="icons/rightArrow.png"
+          src="icons/rightCaret.png"
           onClick={() => scroll(245)}
           alt="rightArrow"
         />
       );
     } else {
-      setRightArrow(<div />);
+      setRightArrow(<div className={styles.rightArrow} />);
     }
-  });
+  };
+
+  window.addEventListener('resize', setArrows);
 
   return (
-    <div className={styles.carousel}>
+    <div onLoad={setArrows} className={styles.carousel}>
       <div className={styles.leftArrow}>
         {leftArrow}
       </div>
       <div
         className={styles.cards}
         ref={container}
+        onScroll={setArrows}
       >
         {cards}
       </div>
