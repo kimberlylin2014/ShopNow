@@ -7,6 +7,12 @@ h2 {
   width: 65%;
 }
 
+@media (max-width: 320px) {
+  .produtDesc {
+    width: 100%;
+  }
+}
+
 @media (min-width: 640px) and (max-width: 767px) {
   .produtDesc {
     width: 100%;
@@ -18,3 +24,17 @@ h2 {
     width: 100%;
   }
 }
+
+@media (min-width: 576px) {
+  .produtDesc {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .produtDesc {
+    width: 80%;
+  }
+}
+
+

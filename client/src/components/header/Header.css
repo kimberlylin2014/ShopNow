@@ -6,6 +6,7 @@
 
 .storeName {
   font-family: 'Cedarville Cursive', cursive, sans-serif;
+  color: #C6AD8F;
 }
 
 .cart {
@@ -20,14 +21,45 @@
   top: 49px;
 }
 
+@media (max-width: 321px) {
+  .itemCount {
+    right: 28px;
+    top: 79px;
+  }
+}
+
 @media (min-width: 640px) and (max-width: 767px) {
   .itemCount {
     right: 32px;
   }
 }
 
-@media (min-width: 320px) and (max-width: 479px) {
+@media (min-width: 321px) and (max-width: 479px) {
   .itemCount {
     right: 27px;
+  }
+}
+
+@media (min-width: 576px) {
+  .itemCount {
+    right: 33px;
+  }
+}
+
+@media (min-width: 768px) {
+  .itemCount {
+    right: 35px;
+  }
+}
+
+@media (min-width: 992px) {
+  .itemCount {
+    right: 42px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .itemCount {
+    right: 57px;
   }
 }

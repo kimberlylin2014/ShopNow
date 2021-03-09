@@ -46,7 +46,7 @@
 .modalMain {
   position:fixed;
   background: white;
-  width: 80%;
+  width: 93%;
   height: 95%;
   top:50%;
   left:50%;
@@ -87,4 +87,53 @@
   background-color: rgb(129 126 126);
   margin: 3px;
   cursor: pointer;
+}
+
+@media (max-width: 320px) {
+  .close {
+    left: 90.5%;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .close {
+    left: 91.5%;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 479px) {
+  .close {
+    left: 91.5%;
+  }
+
+  .modalMain {
+    width: 86%;
+    left: 48%;
+  }
+}
+
+@media (min-width: 576px) {
+  .modalMain {
+    width: 91%;
+    left: 49%;
+  }
+
+  .close {
+    left: 94.5%;
+  }
+}
+
+@media (min-width: 768px) {
+  .modalMain {
+    width: 98%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .modalMain {
+    width: 95%;
+  }
+  .close {
+    left: 96.5%;
+  }
 }

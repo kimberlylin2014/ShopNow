@@ -42,14 +42,26 @@
   padding-left: 2%;
 }
 
-@media (min-width: 640px) and (max-width: 767px) {
+@media (max-width: 320px) {
   .thumbnails {
     display: none;
   }
 }
+
+/* @media (min-width: 640px) and (max-width: 767px) {
+  .thumbnails {
+    display: none;
+  }
+} */
 
 @media (min-width: 320px) and (max-width: 479px) {
   .thumbnails {
     display: none;
   }
 }
+
+/* @media (min-width: 576px) {
+  .thumbnails {
+    display: none;
+  }
+} */
