@@ -14,3 +14,15 @@
   right: 51px;
   top: 23px;
 }
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .itemCount {
+    right: 32px;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 479px) {
+  .itemCount {
+    right: 27px;
+  }
+}

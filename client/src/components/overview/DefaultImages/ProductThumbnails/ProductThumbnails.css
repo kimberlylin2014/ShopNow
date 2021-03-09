@@ -41,3 +41,9 @@
   left: 3%;
   padding-left: 2%;
 }
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .thumbnails {
+    display: none;
+  }
+}

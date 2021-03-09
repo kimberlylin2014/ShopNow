@@ -34,3 +34,18 @@ a {
   font-size: 1.7rem;
 }
 
+
+/* tablet view*/
+@media (min-width: 640px) and (max-width: 767px) {
+  .rowcontainer {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 479px) {
+  .rowcontainer {
+    display: flex;
+    flex-direction: column;
+  }
+}
