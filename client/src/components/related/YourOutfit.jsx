@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/prefer-stateless-function */
-import React, { createRef, useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import Card from './Card.jsx';
 import styles from './carouselStyle.css';
 
@@ -26,12 +26,13 @@ const YourOutfit = ({
   ));
   cards.unshift(<Card product={null} type="add" addToOutfit={addToOutfit} />);
 
-  useEffect(() => {
+  const setArrows = () => {
     const { scrollLeft, clientWidth, scrollWidth } = container.current;
-    if (scrollLeft > 0) {
+    if (scrollLeft > 0
+      && clientWidth < scrollWidth) {
       setLeftArrow(
         <img
-          src="icons/leftArrow.png"
+          src="icons/leftCaret.png"
           className={styles.leftArrow}
           onClick={() => scroll(-245)}
           alt="leftArrow"
@@ -45,24 +46,39 @@ const YourOutfit = ({
       && scrollLeft < scrollWidth - clientWidth - 20) {
       setRightArrow(
         <img
-          src="icons/rightArrow.png"
+          src="icons/rightCaret.png"
           onClick={() => scroll(245)}
           alt="rightArrow"
         />
       );
     } else {
-      setRightArrow(<div />);
+      setRightArrow(<div className={styles.rightArrow} />);
     }
-  });
+  };
+
+  const debounce = (func, delay = 500) => {
+    let timeoutId;
+    return (...args) => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      timeoutId = setTimeout(() => {
+        func.call(null, ...args);
+      }, delay);
+    };
+  };
+
+  window.addEventListener('resize', debounce(setArrows));
 
   return (
-    <div className={styles.carousel}>
+    <div onLoad={setArrows} className={styles.carousel}>
       <div className={styles.leftArrow}>
         {leftArrow}
       </div>
       <div
         className={styles.cards}
         ref={container}
+        onScroll={setArrows}
       >
         {cards}
       </div>

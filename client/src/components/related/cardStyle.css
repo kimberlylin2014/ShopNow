@@ -89,15 +89,16 @@
 MEDIA QUERIES
 ************************************************************/
 
-@media (max-width: 575px) {
-  .card {
-    height: 250px;
-    width: 170px;
+@media (min-width: 576px) {
+  /* .card {
+    height: 440px;
+    width: 300px;
+    margin: 0 5px;
   }
 
   .image {
-    height: 166px;
-    width: 170px;
+    height: 293px;
+    width: 300px;
   }
 
   .cardBottom {
@@ -115,24 +116,22 @@ MEDIA QUERIES
     font-size: 1rem;
     top: 60px;
     left: 35px;
-  }
+  } */
 }
-
-@media (min-width: 576px) {
-
-}
-/* Medium devices (tablets, 768px and up) */
 
 @media (min-width: 768px) {
 
-}
-/* Large devices (desktops, 992px and up) */
+ }
 
-@media (min-width: 992px) {
+ @media (min-width: 992px) and (max-width: 1199px) {
 
-}
-/* Extra large devices (large desktops, 1200px and up) */
+ }
 
-@media (min-width: 1200px) {
 
-}
+
+
+
+
+
+
+

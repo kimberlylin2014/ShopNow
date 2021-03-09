@@ -6,13 +6,13 @@ const Rating = ({ reviewCount, avgRating }) => (
   <div>
     <Stars numStars={avgRating} />
 
-    <p className="ReviewCount">
+    <a href='#reviews' className="ReviewCount">
       Read all
       {' '}
       {reviewCount}
       {' '}
       reviews
-    </p>
+    </a>
   </div>
 );
 
