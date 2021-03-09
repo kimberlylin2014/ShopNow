@@ -4,7 +4,7 @@ import Styles from './ProductOverview.css';
 
 const ProductOverview = ({ slogan, desciprtion }) => {
   return ( <div className={Styles.produtDesc} >
-    <h3 className="slogan">{slogan}</h3>
+    <h2 className="slogan">{slogan}</h2>
     <p className="desciprtion">{desciprtion}</p>
   </div>);
 };

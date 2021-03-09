@@ -19,7 +19,7 @@ class Size extends React.Component {
   }
 
   render() {
-    const { skus } = this.props;
+    const { skus, reset } = this.props;
     const { SKU } = this.state;
 
     const sizes = Object.entries(skus);
@@ -33,14 +33,19 @@ class Size extends React.Component {
             value={size[0]}
             onClick={this.handleOnChange}
             className={Styles.AvailableSize}
-            id={selected}
+            id={reset ? '' : selected}
           >
             {size[1].size}
           </button>
         );
       }
       return (
-        <button key={index} SKU={size[0]} value={size[0]} className={Styles.OOS}>
+        <button
+          key={index}
+          SKU={size[0]}
+          value={size[0]}
+          className={Styles.OOS}
+        >
           {size[1].size}
         </button>
       );

@@ -1,21 +1,42 @@
 import React from 'react';
-// import logo from './shopping-cart.png';
 // import PropTypes from 'prop-types';
+import axios from 'axios';
 import Styles from './Header.css';
 
 class Header extends React.Component {
   constructor() {
     super();
+    this.state = {
+      itemInCart: 0,
+    };
+    this.getTotalItem = this.getTotalItem.bind(this);
+  }
+
+  componentDidMount() {
+    this.getTotalItem();
+  }
+
+  getTotalItem() {
+    axios.get('api/cart').then((data) => {
+      let totalItem = 0;
+      for (const keys in data.data) {
+        totalItem += Number(data.data[keys].count);
+      }
+      this.setState({
+        itemInCart: totalItem,
+      });
+    });
   }
 
   render() {
     return (
       <div className={Styles.header}>
-        <h1>Logo</h1>
-        <img width='50px' height='50px' src='https://www.flaticon.com/svg/vstatic/svg/1170/1170678.svg?token=exp=1614895283~hmac=37876299e7422c0c52519b5d692192ec' alt="Logo" />
+        <h1>Holistic Hawks</h1>
+        <img className={Styles.cart} src="icons/shopping-bag.svg" alt="Logo" />
+        <p>{this.state.itemInCart}</p>
       </div>
-    )
+    );
   }
-};
+}
 
 export default Header;

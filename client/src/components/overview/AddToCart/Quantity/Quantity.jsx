@@ -2,14 +2,18 @@ import React from 'react';
 import Styles from './Quantity.css';
 // import PropTypes from 'prop-types';
 
-const Quantity = ({ inventory }) => {
+const Quantity = ({ inventory, changeQuantity }) => {
   const quantity = Array.from({ length: inventory >= 15 ? 15 : inventory }, (_, i) => i + 1);
   const availability = quantity.map((num, index) => <option key={index} value={num}>{num}</option>);
 
   return (
     <div>
       <p><b>QTY</b></p>
-      <select name="quantity" className={Styles.Quantity}>
+      <select
+        name="quantity"
+        className={Styles.Quantity}
+        // onChange={(e) => changeQuantity(e.target.value)}
+      >
         {availability}
       </select>
     </div>

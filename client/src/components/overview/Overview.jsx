@@ -183,10 +183,11 @@ class Overview extends React.Component {
             <Category category={category} />
             <ProductTitle title={title} />
             <div className={hideRating}>
-              {' '}
               <Rating reviewCount={numReviews} avgRating={avgRating} />
               {' '}
             </div>
+
+            <br />
 
             <div className={Styles.Price}>
               <Price originalPrice={originalPrice} salePrice={salePrice} />
