@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import Overview from './components/overview/Overview.jsx';
 import RelatedItemsAndComparison from './components/related/RelatedItemsAndComparison.jsx';
 import Reviews from './components/reviews/RatingsAndReviews.jsx';
@@ -12,13 +13,16 @@ class App extends React.Component {
       productID: 14038,
       styleID: 70565,
       averageRating: 3.5,
+      itemCount: 0,
     };
     this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
     this.changeStyleId = this.changeStyleId.bind(this);
     this.changeAverageRating = this.changeAverageRating.bind(this);
+    this.onAddToCart = this.onAddToCart.bind(this);
   }
 
   componentDidMount() {
+    this.getItemInCart();
     // figure out how to get product id from url
     const queryString = window.location.search;
     // console.log(queryString);
@@ -36,12 +40,36 @@ class App extends React.Component {
     this.setState({ styleID });
   }
 
+  getItemInCart() {
+    axios.get('api/cart').then((data) => {
+      let totalItem = 0;
+      for (const keys in data.data) {
+        totalItem += Number(data.data[keys].count);
+      }
+      this.setState({
+        itemCount: totalItem,
+      });
+    });
+  }
+
+  onAddToCart(skuId) {
+    axios.post('/api/cart', {
+      sku_id: skuId,
+    }).then(() => {
+      this.getItemInCart();
+    }).catch((e) => console.log('Error', e));
+  }
+
   render() {
-    const { productID, styleID, averageRating } = this.state;
+    const { productID, styleID, averageRating, itemCount } = this.state;
     return (
       <div className={styles.app}>
-        <Header />
-        <Overview changeStyleId={this.changeStyleId} productID={productID} />
+        <Header itemCount={itemCount} />
+        <Overview
+          changeStyleId={this.changeStyleId}
+          productID={productID}
+          onAddToCart={this.onAddToCart}
+        />
         <div className={styles.section}>
           <RelatedItemsAndComparison
             productID={productID}

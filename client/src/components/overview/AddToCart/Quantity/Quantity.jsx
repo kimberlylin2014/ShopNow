@@ -9,7 +9,10 @@ const Quantity = ({ inventory }) => {
   return (
     <div>
       <p><b>QTY</b></p>
-      <select name="quantity" className={Styles.Quantity}>
+      <select
+        name="quantity"
+        className={Styles.Quantity}
+      >
         {availability}
       </select>
     </div>

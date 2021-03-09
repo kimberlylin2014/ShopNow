@@ -59,7 +59,6 @@ class Overview extends React.Component {
     }
   }
 
-
   getProductInfo(productID) {
     axios.get(`/api/products/${productID}`).then((data) => {
       this.setState({
@@ -172,6 +171,8 @@ class Overview extends React.Component {
       numReviews,
       avgRating,
     } = this.state;
+
+    const { onAddToCart } = this.props;
     const hideRating = !numReviews ? Styles.hidden : '';
 
     return (
@@ -183,10 +184,11 @@ class Overview extends React.Component {
             <Category category={category} />
             <ProductTitle title={title} />
             <div className={hideRating}>
-              {' '}
               <Rating reviewCount={numReviews} avgRating={avgRating} />
               {' '}
             </div>
+
+            <br />
 
             <div className={Styles.Price}>
               <Price originalPrice={originalPrice} salePrice={salePrice} />
@@ -203,7 +205,13 @@ class Overview extends React.Component {
               currentStyle={styleId}
             />
             {
-              currentStyleObj && <AddToCart currentStyleObj={currentStyleObj} />
+              currentStyleObj
+              && (
+              <AddToCart
+                currentStyleObj={currentStyleObj}
+                onAddToCart={onAddToCart}
+              />
+              )
             }
 
           </div>

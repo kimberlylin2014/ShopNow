@@ -9,3 +9,11 @@
 .AddToCart:hover {
   background-color: #393e46;
 }
+
+.displayNone {
+  display: none;
+}
+
+.sizeMessage {
+  color: red
+}

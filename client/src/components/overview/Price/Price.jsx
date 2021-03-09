@@ -6,22 +6,22 @@ const Price = ({ originalPrice, salePrice }) => {
   if (salePrice) {
     return (
       <div>
-        <p className={Styles.strikethrough}>
+        <h5 className={Styles.strikethrough}>
           $
           {originalPrice}
-        </p>
-        <p className={Styles.saleprice}>
+        </h5>
+        <h5 className={Styles.saleprice}>
           $
           {salePrice}
-        </p>
+        </h5>
       </div>
     );
   }
   return (
-    <p>
+    <h5>
       $
       {originalPrice}
-    </p>
+    </h5>
   );
 };
 
