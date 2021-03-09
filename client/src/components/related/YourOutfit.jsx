@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/prefer-stateless-function */
-import React, { createRef, useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import Card from './Card.jsx';
 import styles from './carouselStyle.css';
 
@@ -28,7 +28,8 @@ const YourOutfit = ({
 
   const setArrows = () => {
     const { scrollLeft, clientWidth, scrollWidth } = container.current;
-    if (scrollLeft > 0) {
+    if (scrollLeft > 0
+      && clientWidth < scrollWidth) {
       setLeftArrow(
         <img
           src="icons/leftCaret.png"
@@ -55,7 +56,19 @@ const YourOutfit = ({
     }
   };
 
-  window.addEventListener('resize', setArrows);
+  const debounce = (func, delay = 500) => {
+    let timeoutId;
+    return (...args) => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      timeoutId = setTimeout(() => {
+        func.call(null, ...args);
+      }, delay);
+    };
+  };
+
+  window.addEventListener('resize', debounce(setArrows));
 
   return (
     <div onLoad={setArrows} className={styles.carousel}>
