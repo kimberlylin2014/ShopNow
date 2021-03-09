@@ -1,7 +1,8 @@
 .cards {
   display: flex;
   flex-direction: row;
-  margin-bottom: 8%;
+  margin-right: 10px;
+  margin-left: 10px;
   font-size: 0.8rem;
   overflow: auto;
   overflow-x: hidden;
@@ -24,28 +25,36 @@
 }
 
 .leftArrow {
-  margin-right: 40px;
+  /* margin-right: 40px; */
 }
 
 .rightArrow {
-  margin-left: 50px;
+  /* margin-left: 50px; */
 }
 
 .carousel {
   display: flex;
   flex-direction: row;
   flex-shrink: 0;
-  /* margin-bottom: 8%;
-  font-size: 0.8rem;
-  overflow: auto;
-  scroll-behavior: smooth;
-  flex-wrap: nowrap;
-  white-space: nowrap; */
+  max-width: 100%;
+  max-height: 100%;
 }
 
 /************************************************************
 MEDIA QUERIES
 ************************************************************/
+
+@media(max-width: 575px) {
+  .carousel {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .leftArrow, .rightArrow {
+    width: 10px;
+  }
+
+}
 
 @media (min-width: 576px) {
 
