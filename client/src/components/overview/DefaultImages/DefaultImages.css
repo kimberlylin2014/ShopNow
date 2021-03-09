@@ -34,3 +34,13 @@
     width:100%;
   }
 }
+
+@media (min-width: 320px) and (max-width: 479px) {
+  .images {
+    object-fit: cover;
+    cursor: zoom-in;
+  }
+  .gallery {
+    width:107%;
+  }
+}
