@@ -11,20 +11,6 @@ function createCharacteristicState(metaReview) {
   return '';
 }
 
-export function formIsValidated(formState, metaReview) {
-  const { rating, recommend, characteristics, summary, body, name, email} = formState;
-  const validatedResult = {
-    rating: verifyRating(rating),
-    recommendation: verifyRecommendation(recommend),
-    summary: verifySummary(summary),
-    review: verifyReviewBody(body),
-    name: verifyUsername(name),
-    email: verifyEmail(email),
-    characteristics: verifyCharacteristics(characteristics, metaReview)
-  };
- return validatedResult;
-}
-
 export function verifyRating(rating) {
   if (typeof rating === 'number' && rating >= 1 && rating <= 5) {
     return true;
@@ -76,4 +62,18 @@ export function verifyCharacteristics(characteristics, metaReview) {
     return false;
   }
   return true;
+}
+
+export function formIsValidated(formState, metaReview) {
+  const { rating, recommend, characteristics, summary, body, name, email} = formState;
+  const validatedResult = {
+    rating: verifyRating(rating),
+    recommendation: verifyRecommendation(recommend),
+    summary: verifySummary(summary),
+    review: verifyReviewBody(body),
+    name: verifyUsername(name),
+    email: verifyEmail(email),
+    characteristics: verifyCharacteristics(characteristics, metaReview)
+  };
+ return validatedResult;
 }

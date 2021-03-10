@@ -25,6 +25,7 @@ class App extends React.Component {
     this.getItemInCart();
     // figure out how to get product id from url
     const queryString = window.location.search;
+    console.log(window.location);
     // console.log(queryString);
   }
 
