@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './reviewTiles.css';
 import Summary from '../summary/summary.jsx';
-import Body from '../body/Body.jsx';
+import Body from '../body/body.jsx';
 import ReviewHeader from '../reviewHeader/reviewHeader.jsx';
 import IRecommend from '../iRecommend/iRecommend.jsx';
 import Response from '../response/response.jsx';
