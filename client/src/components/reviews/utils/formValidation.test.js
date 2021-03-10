@@ -60,18 +60,18 @@ describe('Testing Form Validation', () => {
     });
   });
 
-  // test('Expect output to have an object with the appropriate boolean values', () => {
-  //   const expectedObj = {
-  //     rating: false,
-  //     recommendation: true,
-  //     summary: false,
-  //     review: false,
-  //     name: false,
-  //     email: false,
-  //     characteristics: false,
-  //   }
-  //   defaultFormState.recommended = true;
-  //   const result = formIsValidated(defaultFormState, mockMetaReview);
-  //   expect(result).toBe(expectedObj);
-  // })
+  test('Expect output to have an object with the appropriate boolean values', () => {
+    const expectedObj = {
+      rating: false,
+      recommendation: true,
+      summary: false,
+      review: false,
+      name: false,
+      email: false,
+      characteristics: false,
+    }
+    defaultFormState.recommend = true;
+    const result = formIsValidated(defaultFormState, mockMetaReview);
+    expect(result).toStrictEqual(expectedObj);
+  })
 });

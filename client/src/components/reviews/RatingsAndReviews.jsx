@@ -83,6 +83,7 @@ class RatingsAndReviews extends React.Component {
         const totalReviews = getTotalReviews(recommended.false, recommended.true);
         const numOfRecommendation = getNumOfRecommendation(recommended.false, recommended.true);
         const numOfReviewsToLoad = determineNumReviewsToLoad(totalReviews, reviewCount);
+        console.log(resp.data.ratings)
         const averageRating = calculateAverageRating(resp.data.ratings);
         if (numOfReviewsToLoad) {
           this.setState({

@@ -26,7 +26,7 @@ export function verifyRecommendation(rec) {
 }
 
 export function verifySummary(summary) {
-  if (typeof summary === 'string' && summary.length <= 60) {
+  if (typeof summary === 'string' && summary.length <= 60 && summary.length > 0) {
     return true;
   }
   return false;
@@ -40,14 +40,14 @@ export function verifyReviewBody(body) {
 }
 
 export function verifyUsername(username) {
-  if (typeof username === 'string' && username.length <= 60) {
+  if (typeof username === 'string' && username.length <= 60 && username.length > 0) {
     return true;
   }
   return false;
 }
 
 export function verifyEmail(email) {
-  if (typeof email === 'string' && email.length <= 60) {
+  if (typeof email === 'string' && email.length <= 60 && email.length > 0) {
     return true;
   }
   return false;
