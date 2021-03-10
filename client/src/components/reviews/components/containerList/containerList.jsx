@@ -47,7 +47,6 @@ class ContainerList extends React.Component {
       displayMoreReviewsButton,
       loadMoreReviews
     } = this.props;
-    console.log(metaReview)
     return (
       <div className={styles.containerList}>
         {totalReviews ? (
