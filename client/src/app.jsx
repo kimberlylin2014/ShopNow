@@ -5,6 +5,7 @@ import RelatedItemsAndComparison from './components/related/RelatedItemsAndCompa
 import Reviews from './components/reviews/RatingsAndReviews.jsx';
 import Header from './components/header/Header.jsx';
 import styles from './appStyle.css';
+import Footer from './components/footer/footer.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -82,6 +83,7 @@ class App extends React.Component {
           productID={productID}
           changeAverageRating={this.changeAverageRating}
         />
+        <Footer />
       </div>
 
     );
