@@ -1,5 +1,5 @@
-import { shallow } from 'enzyme';
 import { formIsValidated } from './formValidation.js';
+import 'jest';
 
 const mockMetaReview = {
   product_id: '14040',
@@ -31,8 +31,47 @@ const mockMetaReview = {
   },
 };
 
-describe('Testing Form Validation', () => {
-  test('testing formIsValidated function', () => {
+const defaultFormState = {
+  product_id: '',
+  rating: '',
+  recommend: '',
+  characteristics: '',
+  summary: '',
+  body: '',
+  bodyCounter: 50,
+  name: '',
+  email: '',
+  photos: [],
+  validationResult: {},
+};
 
+describe('Testing Form Validation', () => {
+
+  test('Expect function formIsValidated to return an object of boolean values', () => {
+    const result = formIsValidated(defaultFormState, mockMetaReview);
+    expect(result).toEqual({
+      rating: expect.any(Boolean),
+      recommendation: expect.any(Boolean),
+      summary: expect.any(Boolean),
+      review: expect.any(Boolean),
+      name: expect.any(Boolean),
+      email: expect.any(Boolean),
+      characteristics: expect.any(Boolean),
+    });
   });
+
+  // test('Expect output to have an object with the appropriate boolean values', () => {
+  //   const expectedObj = {
+  //     rating: false,
+  //     recommendation: true,
+  //     summary: false,
+  //     review: false,
+  //     name: false,
+  //     email: false,
+  //     characteristics: false,
+  //   }
+  //   defaultFormState.recommended = true;
+  //   const result = formIsValidated(defaultFormState, mockMetaReview);
+  //   expect(result).toBe(expectedObj);
+  // })
 });

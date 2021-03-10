@@ -7,6 +7,7 @@ const app = express();
 
 app.use(express.json());
 
+// app.use('/:productId', express.static(path.join(__dirname, '../client/dist')));
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.use('/api/products', productRouter);
