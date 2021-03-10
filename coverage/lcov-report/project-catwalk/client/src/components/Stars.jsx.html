@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">4.35% </span>
+                <span class="strong">69.57% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>1/23</span>
+                <span class='fraction'>16/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">20% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>2/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">4.76% </span>
+                <span class="strong">66.67% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>1/21</span>
+                <span class='fraction'>14/21</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -96,7 +96,18 @@
 <a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -105,25 +116,14 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -132,17 +132,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 import styles from './starsStyle.css';
 &nbsp;
-const Stars = <span class="fstat-no" title="function not covered" >({</span> numStars, starsClass, starClass }) =&gt; {
-  const numFilledStars = <span class="cstat-no" title="statement not covered" >Math.floor(numStars);</span>
-  const decimal = <span class="cstat-no" title="statement not covered" >Number((numStars - numFilledStars).toFixed(2)) * 100;</span>
-  const numQuarters = <span class="cstat-no" title="statement not covered" >Math.round(decimal / 25);</span>
-  let numEmptyStars = <span class="cstat-no" title="statement not covered" >0;</span>
-  const array = <span class="cstat-no" title="statement not covered" >[];</span>
-<span class="cstat-no" title="statement not covered" >  for (let i = <span class="cstat-no" title="statement not covered" >0;</span> i &lt; numFilledStars; i++) {</span>
-<span class="cstat-no" title="statement not covered" >    array.push('stars/filledStar.png');</span>
+const Stars = ({ numStars, starsClass, starClass }) =&gt; {
+  const numFilledStars = Math.floor(numStars);
+  const decimal = Number((numStars - numFilledStars).toFixed(2)) * 100;
+  const numQuarters = Math.round(decimal / 25);
+  let numEmptyStars = 0;
+  const array = [];
+  for (let i = 0; i &lt; numFilledStars; i++) {
+    array.push('stars/filledStar.png');
   }
-<span class="cstat-no" title="statement not covered" >  if (numQuarters === 0) {</span>
-<span class="cstat-no" title="statement not covered" >    numEmptyStars = 5 - numFilledStars;</span>
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (numQuarters === 0) {
+    numEmptyStars = 5 - numFilledStars;
   } else {
 <span class="cstat-no" title="statement not covered" >    numEmptyStars = 5 - numFilledStars - 1;</span>
 <span class="cstat-no" title="statement not covered" >    if (numQuarters === 1) {</span>
@@ -153,13 +153,13 @@ const Stars = <span class="fstat-no" title="function not covered" >({</span> num
 <span class="cstat-no" title="statement not covered" >      array.push('stars/threeQuarterStar.png');</span>
     }
   }
-<span class="cstat-no" title="statement not covered" >  for (let j = <span class="cstat-no" title="statement not covered" >0;</span> j &lt; numEmptyStars; j++) {</span>
-<span class="cstat-no" title="statement not covered" >    array.push('stars/emptyStar.png');</span>
+  for (let j = 0; j &lt; numEmptyStars; j++) {
+    array.push('stars/emptyStar.png');
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;div className={styles[starsClass]}&gt;
-      {array.map(<span class="fstat-no" title="function not covered" >(s</span>tarFile, index) =&gt; <span class="cstat-no" title="statement not covered" >&lt;img key={index} className={styles.star || styles[starClass]} src={`${starFile}`} alt={starFile} /&gt;)</span>}
+      {array.map((starFile, index) =&gt; &lt;img key={index} className={styles.star || <span class="branch-1 cbranch-no" title="branch not covered" >styles[starClass]}</span> src={`${starFile}`} alt={starFile} /&gt;)}
     &lt;/div&gt;
   );
 };
@@ -172,7 +172,7 @@ export default Stars;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Mar 09 2021 21:16:32 GMT-0800 (Pacific Standard Time)
+                at Tue Mar 09 2021 23:23:59 GMT-0800 (Pacific Standard Time)
             </div>
         </div>
         <script src="../../../../prettify.js"></script>
