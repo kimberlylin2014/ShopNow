@@ -1,0 +1,15 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  /* background-color: #393e46; */
+  color: #393e46;
+}
+
+
+.links {
+ color: #C6AD8F;
+ text-decoration: solid;
+
+}
