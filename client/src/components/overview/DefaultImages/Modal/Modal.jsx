@@ -14,13 +14,14 @@ const Modal = ({
   const showHideClassName = show ? Styles.displayBlock : Styles.displayNone;
 
   const divStyle = {
-    backgroundPosition: '100px 100px',
+    // backgroundPosition: '100px 100px',
     // backgroundPosition: `${x} ${y}`,
   };
 
   const imagePanning = (e) => {
     const elementNewX = expandedImg.current.clientWidth;
-    console.log((e.pageX / expandedImg.current.clientWidth) * 100);
+    console.log(e.pageX, elementNewX, e.deltaX);
+    // console.log((e.pageX / expandedImg.current.clientWidth) * 100);
   };
 
   return (
@@ -33,6 +34,8 @@ const Modal = ({
           className={Styles.close}
           onClick={() => handleClose(false)}
         />
+
+
 
         <LeftArrow
           currIndex={currIndex}
