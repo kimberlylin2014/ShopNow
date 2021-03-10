@@ -7,6 +7,7 @@
   width: 225px;
   position: relative;
   flex-shrink: 0;
+  cursor: pointer;
 }
 
 /* CARD TOP */

@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/no-unused-state */
 /* eslint-disable radix */
 /* eslint-disable import/extensions */
 /* eslint-disable class-methods-use-this */
 import React from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import Comparison from './Comparison.jsx';
 import Section from './Section.jsx';
 import styles from './relatedStyle.css';
@@ -28,33 +29,40 @@ class Related extends React.Component {
   }
 
   componentDidMount() {
-    const { productID, styleID } = this.props;
+    const { productID, styleIndex } = this.props;
+    this.setState({ styleIndex });
     this.loadProduct(productID)
       .then((currentProduct) => {
         this.setState({ currentProduct });
-        this.getStyleIndex(styleID);
       });
     this.loadRelatedItems(productID);
     this.setState({ outfitItems: JSON.parse(localStorage.getItem('outfitItems') || '[]') });
   }
 
   componentDidUpdate(prevProps) {
-    const { productID, styleID } = this.props;
+    const { productID, styleIndex } = this.props;
     if (prevProps.productID !== productID) {
       this.loadProduct(productID)
         .then((currentProduct) => this.setState({ currentProduct }));
       this.loadRelatedItems(productID);
     }
-    if (prevProps.styleID !== styleID) {
-      this.getStyleIndex(styleID);
+    if (prevProps.styleIndex !== styleIndex) {
+      // this.getStyleIndex(styleID);
+      this.setStyleIndex(styleIndex);
     }
   }
 
+  setStyleIndex(styleIndex) {
+    this.setState({ styleIndex });
+  }
+
+  /*
   getStyleIndex(styleID) {
     const { currentProduct } = this.state;
     const styleIndex = currentProduct.styles.findIndex((style) => style.style_id === styleID);
     this.setState({ styleIndex });
   }
+  */
 
   getAverageRating(ratings) {
     const keys = Object.keys(ratings);
@@ -180,10 +188,10 @@ class Related extends React.Component {
   }
 }
 
-Related.propTypes = {
-  productID: PropTypes.number.isRequired,
-  styleID: PropTypes.number.isRequired,
-  changeCurrentProduct: PropTypes.isRequired,
-};
+// Related.propTypes = {
+//   productID: PropTypes.number.isRequired,
+//   styleIndex: PropTypes.number.isRequired,
+//   changeCurrentProduct: PropTypes.isRequired,
+// };
 
 export default Related;
