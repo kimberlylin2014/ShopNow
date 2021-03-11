@@ -15,7 +15,6 @@ class Related extends React.Component {
     super();
     this.state = {
       currentProduct: {},
-      styleIndex: 0,
       relatedItems: [],
       outfitItems: [],
       showModal: false,
@@ -30,10 +29,10 @@ class Related extends React.Component {
 
   componentDidMount() {
     const { productID, styleIndex } = this.props;
-    this.setState({ styleIndex });
     this.loadProduct(productID)
       .then((currentProduct) => {
         this.setState({ currentProduct });
+        this.setStyleIndex(styleIndex);
       });
     this.loadRelatedItems(productID);
     this.setState({ outfitItems: JSON.parse(localStorage.getItem('outfitItems') || '[]') });
@@ -47,22 +46,15 @@ class Related extends React.Component {
       this.loadRelatedItems(productID);
     }
     if (prevProps.styleIndex !== styleIndex) {
-      // this.getStyleIndex(styleID);
       this.setStyleIndex(styleIndex);
     }
   }
 
   setStyleIndex(styleIndex) {
-    this.setState({ styleIndex });
-  }
-
-  /*
-  getStyleIndex(styleID) {
     const { currentProduct } = this.state;
-    const styleIndex = currentProduct.styles.findIndex((style) => style.style_id === styleID);
-    this.setState({ styleIndex });
+    currentProduct.styleIndex = styleIndex;
+    this.setState({ currentProduct });
   }
-  */
 
   getAverageRating(ratings) {
     const keys = Object.keys(ratings);
@@ -82,6 +74,7 @@ class Related extends React.Component {
         return axios.get(`/api/products/${productID}/styles`)
           .then((styleResp) => {
             product.styles = styleResp.data.results;
+            product.styleIndex = 0;
             return axios.get(`/api/reviews/meta/${productID}`)
               .then((reviewsResp) => {
                 product.ratings = reviewsResp.data.ratings;
@@ -95,7 +88,10 @@ class Related extends React.Component {
 
   loadRelatedItems(productID) {
     axios.get(`/api/products/${productID}/related`)
-      .then((resp) => resp.data)
+      .then((resp) => {
+        console.log(resp.data);
+        return resp.data;
+      })
       .then((array) => Promise.all(array.map((itemID) => this.loadProduct(itemID))))
       .then((relatedItems) => {
         this.setState({ relatedItems });
@@ -145,7 +141,6 @@ class Related extends React.Component {
       outfitItems,
       showModal,
       currentProduct,
-      styleIndex,
       selectedProduct,
     } = this.state;
     return (
@@ -156,7 +151,6 @@ class Related extends React.Component {
             <Section
               name="related"
               relatedItems={relatedItems}
-              styleIndex={styleIndex}
               toggleModal={this.toggleModal}
               changeCurrentProduct={this.changeCurrentProduct}
             />
@@ -168,7 +162,6 @@ class Related extends React.Component {
             <Section
               name="outfit"
               outfitItems={outfitItems}
-              styleIndex={styleIndex}
               addToOutfit={this.addToOutfit}
               removeFromOutfit={this.removeFromOutfit}
               changeCurrentProduct={this.changeCurrentProduct}
@@ -187,7 +180,6 @@ class Related extends React.Component {
     );
   }
 }
-
 // Related.propTypes = {
 //   productID: PropTypes.number.isRequired,
 //   styleIndex: PropTypes.number.isRequired,

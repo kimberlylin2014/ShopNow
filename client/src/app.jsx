@@ -11,7 +11,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productID: 14038,
+      productID: 14039,
       styleIndex: 0,
       averageRating: 3.5,
       itemCount: 0,
@@ -34,6 +34,7 @@ class App extends React.Component {
 
   changeCurrentProduct(productID) {
     this.setState({ productID });
+    this.setState({ styleIndex: 0 });
   }
 
   changeStyleIndex(styleIndex) {
@@ -70,13 +71,13 @@ class App extends React.Component {
           productID={productID}
           onAddToCart={this.onAddToCart}
         />
-        {/* <div className={styles.section}>
+        <div className={styles.section}>
           <RelatedItemsAndComparison
             productID={productID}
             styleIndex={styleIndex}
             changeCurrentProduct={this.changeCurrentProduct}
           />
-        </div> */}
+        </div>
         <Reviews
           productID={productID}
           changeAverageRating={this.changeAverageRating}

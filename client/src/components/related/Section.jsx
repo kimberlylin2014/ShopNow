@@ -13,17 +13,17 @@ const Section = (props) => {
   let cards;
   if (name === 'related') {
     const {
-      relatedItems, styleIndex, toggleModal, changeCurrentProduct,
+      relatedItems, toggleModal, changeCurrentProduct,
     } = props;
     cards = relatedItems.map((product) => (
-      <Card key={product.id} product={product} styleIndex={styleIndex} type="related" toggleModal={toggleModal} changeCurrentProduct={changeCurrentProduct} />
+      <Card key={product.id} product={product} type="related" toggleModal={toggleModal} changeCurrentProduct={changeCurrentProduct} />
     ));
   } else if (name === 'outfit') {
     const {
-      outfitItems, styleIndex, addToOutfit, removeFromOutfit, changeCurrentProduct,
+      outfitItems, addToOutfit, removeFromOutfit, changeCurrentProduct,
     } = props;
     cards = outfitItems.map((product) => (
-      <Card key={product.id} product={product} styleIndex={styleIndex} type="outfit" removeFromOutfit={removeFromOutfit} changeCurrentProduct={changeCurrentProduct} />
+      <Card key={product.id} product={product} type="outfit" removeFromOutfit={removeFromOutfit} changeCurrentProduct={changeCurrentProduct} />
     ));
     cards.unshift(<Card product={null} type="add" addToOutfit={addToOutfit} />);
   }
