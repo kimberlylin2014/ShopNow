@@ -26,8 +26,7 @@ class AddToCart extends React.Component {
     this.setState({ quantitySelected });
   }
 
-  addToCart(e) {
-    e.preventDefault();
+  addToCart() {
     if (this.state.needSize) {
       this.setState({
         selectSizeMessage: true,

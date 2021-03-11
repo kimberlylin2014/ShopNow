@@ -139,7 +139,7 @@ class Overview extends React.Component {
 
   updateStyleId(id, index) {
     const promise = new Promise((resolve) => {
-      this.props.changeStyleId(id);
+      this.props.changeStyleIndex(index);
       this.setState({
         styleId: id,
         styleIndex: index,
