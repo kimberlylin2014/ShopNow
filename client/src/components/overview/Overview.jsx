@@ -73,7 +73,7 @@ class Overview extends React.Component {
   }
 
   getProductStyles(productID) {
-    axios.get(`api/products/${productID}/styles`).then((data) => {
+    axios.get(`/api/products/${productID}/styles`).then((data) => {
       this.setState({
         styles: data.data.results,
       });
