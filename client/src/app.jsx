@@ -11,7 +11,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productID: 14832,
+      productID: 14039,
       styleIndex: 0,
       averageRating: 3.5,
       itemCount: 0,
@@ -34,6 +34,7 @@ class App extends React.Component {
 
   changeCurrentProduct(productID) {
     this.setState({ productID });
+    this.setState({ styleIndex: 0 });
   }
 
   changeStyleIndex(styleIndex) {
