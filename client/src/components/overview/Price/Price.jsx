@@ -5,7 +5,7 @@ import Styles from './Price.css';
 const Price = ({ originalPrice, salePrice }) => {
   if (salePrice) {
     return (
-      <div>
+      <div className={Styles.SaleDisplay}>
         <label className={Styles.strikethrough}>
           $
           {originalPrice}
