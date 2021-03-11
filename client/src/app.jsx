@@ -41,7 +41,7 @@ class App extends React.Component {
   }
 
   getItemInCart() {
-    axios.get('api/cart').then((data) => {
+    axios.get('/api/cart').then((data) => {
       let totalItem = 0;
       for (const keys in data.data) {
         totalItem += Number(data.data[keys].count);
