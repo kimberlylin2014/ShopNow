@@ -10,7 +10,6 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
 ];
 
 const ReviewHeader = ({review}) => {
-  console.log(review);
   const date = new Date(review.date);
   const monthDateYear = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getUTCFullYear()}`;
   return (

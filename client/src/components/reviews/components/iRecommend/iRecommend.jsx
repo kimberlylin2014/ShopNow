@@ -6,7 +6,7 @@ const IRecommend = ({review}) => (
     {review.recommend ? (
       <img
       className={styles.iRecommendImg}
-      src="/icons/check.png"
+      src="icons/check.png"
       alt="green-checkmark"
       />
     ): null}
