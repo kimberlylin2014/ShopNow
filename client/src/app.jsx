@@ -24,8 +24,8 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getItemInCart();
-    const productID = window.location.pathname.replace('/', '');
-    this.setState({ productID });
+    // const productID = window.location.pathname.replace('/', '').replace('/', '');
+    // this.setState({ productID });
   }
 
   changeAverageRating(averageRating) {
@@ -70,13 +70,13 @@ class App extends React.Component {
           productID={productID}
           onAddToCart={this.onAddToCart}
         />
-        {/* <div className={styles.section}>
+        <div className={styles.section}>
           <RelatedItemsAndComparison
             productID={productID}
             styleIndex={styleIndex}
             changeCurrentProduct={this.changeCurrentProduct}
           />
-        </div> */}
+        </div>
         <Reviews
           productID={productID}
           changeAverageRating={this.changeAverageRating}
