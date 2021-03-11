@@ -12,7 +12,6 @@ class App extends React.Component {
     super(props);
     this.state = {
       productID: 14038,
-      // styleID: 70565,
       styleIndex: 0,
       averageRating: 3.5,
       itemCount: 0,
