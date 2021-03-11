@@ -79,10 +79,10 @@ class Related extends React.Component {
       .then((resp) => resp.data)
       .then((data) => {
         product = data;
-        return axios.get(`api/products/${productID}/styles`)
+        return axios.get(`/api/products/${productID}/styles`)
           .then((styleResp) => {
             product.styles = styleResp.data.results;
-            return axios.get(`api/reviews/meta/${productID}`)
+            return axios.get(`/api/reviews/meta/${productID}`)
               .then((reviewsResp) => {
                 product.ratings = reviewsResp.data.ratings;
                 product.averageRating = this.getAverageRating(reviewsResp.data.ratings);
