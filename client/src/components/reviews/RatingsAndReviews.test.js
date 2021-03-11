@@ -7,7 +7,7 @@ describe('Testing RatingsAndReviews Component', () => {
     expect(wrapper).toHaveState({
       reviews: [],
       metaReview: null,
-      sortBy: 'newest',
+      sortBy: 'relevance',
       productInfo: null,
       totalReviews: 0,
       numOfRecommendation: null,
