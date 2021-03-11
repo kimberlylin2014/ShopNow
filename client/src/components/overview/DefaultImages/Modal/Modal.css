@@ -1,3 +1,18 @@
+#ZoomImageFigure {
+  width: 400px;
+  background-image: no-repeat;
+}
+
+/* #ZoomImageFigure:hover img {
+  opacity: 0;
+} */
+
+#ZoomImage {
+  display: block;
+  width: 100%;
+  pointer-events: none;
+}
+
 .modal {
   position: fixed;
   top: 0;
@@ -13,6 +28,7 @@
   cursor: crosshair;
   object-fit: cover;
 }
+
 
 .imgWrapper {
   display: inline-block;
