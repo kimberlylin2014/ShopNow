@@ -3,26 +3,21 @@ import Styles from './Modal.css';
 import LeftArrow from '../Arrows/LeftArrow.jsx';
 import RightArrow from '../Arrows/RightArrow.jsx';
 import Indicators from './Indicators.jsx';
+import ZoomImage from './ZoomImage.jsx';
 
 const Modal = ({
   handleClose, show, currIndex, updateIndex, photos,
 }) => {
-  const expandedImg = useRef(null);
+  // const expandedImg = useRef(null);
   const [onZoom, setOnZoom] = useState(false);
-  const [x, setX] = useState(0);
-  const [y, setY] = useState(0);
+  // const [x, setX] = useState(0);
+  // const [y, setY] = useState(0);
   const showHideClassName = show ? Styles.displayBlock : Styles.displayNone;
 
-  const divStyle = {
-    // backgroundPosition: '100px 100px',
-    // backgroundPosition: `${x} ${y}`,
-  };
-
-  const imagePanning = (e) => {
-    const elementNewX = expandedImg.current.clientWidth;
-    console.log(e.pageX, elementNewX, e.deltaX);
-    // console.log((e.pageX / expandedImg.current.clientWidth) * 100);
-  };
+  // const divStyle = {
+  //   // backgroundPosition: '100px 100px',
+  //   // backgroundPosition: `${x} ${y}`,
+  // };
 
   return (
     <div className={showHideClassName}>
@@ -35,8 +30,6 @@ const Modal = ({
           onClick={() => handleClose(false)}
         />
 
-
-
         <LeftArrow
           currIndex={currIndex}
           updateIndex={updateIndex}
@@ -45,14 +38,14 @@ const Modal = ({
 
         <div className={Styles.imgWrapper}>
           <img
-            ref={expandedImg}
-            className={onZoom ? Styles.onZoom : Styles.image}
+            className={Styles.image}
             src={photos[currIndex].url}
             alt="expandedDefaultImage"
-            onMouseDown={() => setOnZoom(!onZoom)}
-            onMouseMove={imagePanning}
-            style={onZoom ? divStyle : {}}
+            onClick={() => { setOnZoom(!onZoom); }}
           />
+
+          { onZoom
+            && <ZoomImage src={photos[currIndex].url} />}
 
           <Indicators
             currIndex={currIndex}

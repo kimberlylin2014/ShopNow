@@ -41,15 +41,14 @@ a {
   }
 }
 
-
-@media (min-width: 640px) and (max-width: 767px) {
+@media (min-width: 320px) and (max-width: 479px) {
   .rowcontainer {
     display: flex;
     flex-direction: column;
   }
 }
 
-@media (min-width: 320px) and (max-width: 479px) {
+@media (min-width: 480px) and (max-width: 575px) {
   .rowcontainer {
     display: flex;
     flex-direction: column;
@@ -62,7 +61,7 @@ a {
     flex-direction: column;
   }
 }
-/* 
+/*
 @media (min-width: 1200px) {
   .rowcontainer {
     width: 35%;

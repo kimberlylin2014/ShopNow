@@ -51,6 +51,16 @@
   }
 }
 
+@media (min-width: 480px) and (max-width: 575px) {
+  .images {
+    object-fit: cover;
+    cursor: zoom-in;
+  }
+  .gallery {
+    width:100%;
+  }
+}
+
 
 @media (min-width: 576px) {
   .gallery {
