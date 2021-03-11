@@ -89,8 +89,8 @@ class Related extends React.Component {
   loadRelatedItems(productID) {
     axios.get(`/api/products/${productID}/related`)
       .then((resp) => {
-        console.log(resp.data);
-        return resp.data;
+        const array = [...new Set(resp.data)];
+        return array;
       })
       .then((array) => Promise.all(array.map((itemID) => this.loadProduct(itemID))))
       .then((relatedItems) => {
