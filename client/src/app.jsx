@@ -24,10 +24,8 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getItemInCart();
-    // figure out how to get product id from url
-    const queryString = window.location.search;
-    console.log(window.location);
-    // console.log(queryString);
+    const productID = window.location.pathname.replace('/', '');
+    this.setState({ productID });
   }
 
   changeAverageRating(averageRating) {
@@ -64,7 +62,6 @@ class App extends React.Component {
 
   render() {
     const { productID, styleIndex, averageRating, itemCount } = this.state;
-    console.log(styleIndex);
     return (
       <div className={styles.app}>
         <Header itemCount={itemCount} />
@@ -76,7 +73,7 @@ class App extends React.Component {
         {/* <div className={styles.section}>
           <RelatedItemsAndComparison
             productID={productID}
-            styleID={styleIndex}
+            styleIndex={styleIndex}
             changeCurrentProduct={this.changeCurrentProduct}
           />
         </div> */}
