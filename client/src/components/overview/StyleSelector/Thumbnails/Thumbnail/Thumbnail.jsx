@@ -15,7 +15,7 @@ class Thumbnail extends React.Component {
   render() {
     return (
       <img
-        src={this.props.url}
+        src={this.props.url ? this.props.url : 'icons/no-image.png'}
         className={this.props.styleId === this.props.currentStyle ? Styles.selected : Styles.thumbnail}
         id ={this.props.imageThumbnail ? Styles.box : ''}
         alt={this.props.alt}
