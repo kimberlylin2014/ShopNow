@@ -45,10 +45,10 @@
     "axios": "^0.21.1",
     "css-loader": "^5.1.0",
     "express": "^4.17.1",
+    "prop-types": "^15.7.2",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "style-loader": "^2.0.0",
-    "yarn": "^1.22.10",
-    "prop-types": "^15.7.2"
+    "yarn": "^1.22.10"
   }
 }
