@@ -24,8 +24,8 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getItemInCart();
-    const productID = window.location.pathname.replace('/', '').replace('/', '');
-    this.setState({ productID });
+    // const productID = window.location.pathname.replace('/', '').replace('/', '');
+    // this.setState({ productID });
   }
 
   changeAverageRating(averageRating) {
