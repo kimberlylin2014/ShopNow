@@ -1,4 +1,14 @@
 .userName {
   font-weight: 600;
   margin-right: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.verified {
+  margin-right: 0px;
+}
+
+.text {
+  margin: 5px;
 }
