@@ -12,12 +12,12 @@ class App extends React.Component {
     super(props);
     this.state = {
       productID: 14038,
-      styleID: 70565,
+      styleIndex: 0,
       averageRating: 3.5,
       itemCount: 0,
     };
     this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
-    this.changeStyleId = this.changeStyleId.bind(this);
+    this.changeStyleIndex = this.changeStyleIndex.bind(this);
     this.changeAverageRating = this.changeAverageRating.bind(this);
     this.onAddToCart = this.onAddToCart.bind(this);
   }
@@ -38,8 +38,8 @@ class App extends React.Component {
     this.setState({ productID });
   }
 
-  changeStyleId(styleID) {
-    this.setState({ styleID });
+  changeStyleIndex(styleIndex) {
+    this.setState({ styleIndex });
   }
 
   getItemInCart() {
@@ -63,22 +63,23 @@ class App extends React.Component {
   }
 
   render() {
-    const { productID, styleID, averageRating, itemCount } = this.state;
+    const { productID, styleIndex, averageRating, itemCount } = this.state;
+    console.log(styleIndex);
     return (
       <div className={styles.app}>
         <Header itemCount={itemCount} />
         <Overview
-          changeStyleId={this.changeStyleId}
+          changeStyleIndex={this.changeStyleIndex}
           productID={productID}
           onAddToCart={this.onAddToCart}
         />
-        <div className={styles.section}>
+        {/* <div className={styles.section}>
           <RelatedItemsAndComparison
             productID={productID}
-            styleID={styleID}
+            styleID={styleIndex}
             changeCurrentProduct={this.changeCurrentProduct}
           />
-        </div>
+        </div> */}
         <Reviews
           productID={productID}
           changeAverageRating={this.changeAverageRating}
