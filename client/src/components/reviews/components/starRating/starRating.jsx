@@ -15,11 +15,11 @@ class StarRating extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      star1: '/stars/emptyStar.png',
-      star2: '/stars/emptyStar.png',
-      star3: '/stars/emptyStar.png',
-      star4: '/stars/emptyStar.png',
-      star5: '/stars/emptyStar.png',
+      star1: 'stars/emptyStar.png',
+      star2: 'stars/emptyStar.png',
+      star3: 'stars/emptyStar.png',
+      star4: 'stars/emptyStar.png',
+      star5: 'stars/emptyStar.png',
       persist: false,
       opacity: 0.5,
       selected: ''
@@ -34,45 +34,45 @@ class StarRating extends React.Component {
     const {id} = e.target.dataset;
     if (id === 'star1') {
       this.setState({
-        star1: '/stars/filledStar.png',
+        star1: 'stars/filledStar.png',
         persist: false,
         opacity: 0.5,
         selected: `1 Star: ${rating['star1'].descrip}`,
       });
     } else if (id === 'star2') {
       this.setState({
-        star1: '/stars/filledStar.png',
-        star2: '/stars/filledStar.png',
+        star1: 'stars/filledStar.png',
+        star2: 'stars/filledStar.png',
         persist: false,
         opacity: 0.5,
         selected: `2 Stars: ${rating['star2'].descrip}`,
       });
     } else if (id === 'star3') {
       this.setState({
-        star1: '/stars/filledStar.png',
-        star2: '/stars/filledStar.png',
-        star3: '/stars/filledStar.png',
+        star1: 'stars/filledStar.png',
+        star2: 'stars/filledStar.png',
+        star3: 'stars/filledStar.png',
         persist: false,
         opacity: 0.6,
         selected: `3 Stars: ${rating['star3'].descrip}`,
       });
     } else if (id === 'star4') {
       this.setState({
-        star1: '/stars/filledStar.png',
-        star2: '/stars/filledStar.png',
-        star3: '/stars/filledStar.png',
-        star4: '/stars/filledStar.png',
+        star1: 'stars/filledStar.png',
+        star2: 'stars/filledStar.png',
+        star3: 'stars/filledStar.png',
+        star4: 'stars/filledStar.png',
         persist: false,
         opacity: 0.5,
         selected: `4 Stars: ${rating['star4'].descrip}`,
       });
     } else if (id === 'star5') {
       this.setState({
-        star1: '/stars/filledStar.png',
-        star2: '/stars/filledStar.png',
-        star3: '/stars/filledStar.png',
-        star4: '/stars/filledStar.png',
-        star5: '/stars/filledStar.png',
+        star1: 'stars/filledStar.png',
+        star2: 'stars/filledStar.png',
+        star3: 'stars/filledStar.png',
+        star4: 'stars/filledStar.png',
+        star5: 'stars/filledStar.png',
         persist: false,
         opacity: 0.5,
         selected: `5 Stars: ${rating['star5'].descrip}`,
@@ -84,17 +84,13 @@ class StarRating extends React.Component {
     e.stopPropagation();
     if (this.state.persist === false) {
       this.setState({
-        star1: '/stars/emptyStar.png',
-        star2: '/stars/emptyStar.png',
-        star3: '/stars/emptyStar.png',
-        star4: '/stars/emptyStar.png',
-        star5: '/stars/emptyStar.png',
+        star1: 'stars/emptyStar.png',
+        star2: 'stars/emptyStar.png',
+        star3: 'stars/emptyStar.png',
+        star4: 'stars/emptyStar.png',
+        star5: 'stars/emptyStar.png',
         selected: '',
       });
-    } else {
-      // this.setState({
-      //   persist: false,
-      // });
     }
   }
 
@@ -104,18 +100,18 @@ class StarRating extends React.Component {
     const { handleStarRatingClick } = this.props;
 
     this.setState({
-      star1: '/stars/emptyStar.png',
-      star2: '/stars/emptyStar.png',
-      star3: '/stars/emptyStar.png',
-      star4: '/stars/emptyStar.png',
-      star5: '/stars/emptyStar.png',
+      star1: 'stars/emptyStar.png',
+      star2: 'stars/emptyStar.png',
+      star3: 'stars/emptyStar.png',
+      star4: 'stars/emptyStar.png',
+      star5: 'stars/emptyStar.png',
       persist: false,
     }, () => {
       if (id === 'star1') {
         // handleStarRatingClick(id);
         handleStarRatingClick(rating['star1'].rating)
         this.setState({
-          star1: '/stars/filledStar.png',
+          star1: 'stars/filledStar.png',
           persist: true,
           opacity: 1,
           selected: `1 Star: ${rating['star1'].descrip}`,
@@ -123,8 +119,8 @@ class StarRating extends React.Component {
       } else if (id === 'star2') {
         handleStarRatingClick(rating['star2'].rating)
         this.setState({
-          star1: '/stars/filledStar.png',
-          star2: '/stars/filledStar.png',
+          star1: 'stars/filledStar.png',
+          star2: 'stars/filledStar.png',
           persist: true,
           opacity: 1,
           selected: `2 Stars: ${rating['star2'].descrip}`,
@@ -132,9 +128,9 @@ class StarRating extends React.Component {
       } else if (id === 'star3') {
         handleStarRatingClick(rating['star3'].rating)
         this.setState({
-          star1: '/stars/filledStar.png',
-          star2: '/stars/filledStar.png',
-          star3: '/stars/filledStar.png',
+          star1: 'stars/filledStar.png',
+          star2: 'stars/filledStar.png',
+          star3: 'stars/filledStar.png',
           persist: true,
           opacity: 1,
           selected: `3 Stars: ${rating['star3'].descrip}`,
@@ -142,10 +138,10 @@ class StarRating extends React.Component {
       } else if (id === 'star4') {
         handleStarRatingClick(rating['star4'].rating)
         this.setState({
-          star1: '/stars/filledStar.png',
-          star2: '/stars/filledStar.png',
-          star3: '/stars/filledStar.png',
-          star4: '/stars/filledStar.png',
+          star1: 'stars/filledStar.png',
+          star2: 'stars/filledStar.png',
+          star3: 'stars/filledStar.png',
+          star4: 'stars/filledStar.png',
           persist: true,
           opacity: 1,
           selected: `4 Stars: ${rating['star4'].descrip}`,
@@ -153,11 +149,11 @@ class StarRating extends React.Component {
       } else if (id === 'star5') {
         handleStarRatingClick(rating['star5'].rating)
         this.setState({
-          star1: '/stars/filledStar.png',
-          star2: '/stars/filledStar.png',
-          star3: '/stars/filledStar.png',
-          star4: '/stars/filledStar.png',
-          star5: '/stars/filledStar.png',
+          star1: 'stars/filledStar.png',
+          star2: 'stars/filledStar.png',
+          star3: 'stars/filledStar.png',
+          star4: 'stars/filledStar.png',
+          star5: 'stars/filledStar.png',
           persist: true,
           opacity: 1,
           selected: `5 Stars: ${rating['star5'].descrip}`,

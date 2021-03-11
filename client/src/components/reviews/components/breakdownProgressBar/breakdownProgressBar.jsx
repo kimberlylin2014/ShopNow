@@ -12,7 +12,7 @@ const BreakdownProgressBar = ({label, box, data}) => {
   return (
     <div className={styles.breakdownProgressBar}>
       <div className={styles.breakdownProgressBarFrame}>
-        <img src="/icons/arrow-point-to-down.png" className={styles.progressBar} style={styleObj} alt="upside-down-triangle" />
+        <img src="icons/arrow-point-to-down.png" className={styles.progressBar} style={styleObj} alt="upside-down-triangle" />
       </div>
       <div className={styles.breakdownProgressBarLabel}>
         {label}

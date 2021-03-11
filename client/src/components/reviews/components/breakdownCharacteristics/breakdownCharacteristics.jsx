@@ -56,7 +56,7 @@ const BreakdownCharacteristics = ({metaReview, totalReviews}) => {
     list = entries.map((entry) => {
       let data = calculateCharacteristicBreakdown(parseFloat(entry[1].value).toFixed(1));
       return (
-        <div className={styles.breakdownCharacteristic}>
+        <div className={styles.breakdownCharacteristic} key={entry[1].id}>
           <BreakdownOneCharacteristic
             key={entry[1].id}
             name={entry[0]}

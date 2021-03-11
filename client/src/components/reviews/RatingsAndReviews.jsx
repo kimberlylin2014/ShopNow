@@ -18,7 +18,7 @@ class RatingsAndReviews extends React.Component {
     this.state = {
       reviews: [],
       metaReview: null,
-      sortBy: 'newest',
+      sortBy: 'relevance',
       productInfo: null,
       totalReviews: 0,
       numOfRecommendation: null,
@@ -46,7 +46,7 @@ class RatingsAndReviews extends React.Component {
         this.setState({
           reviews: [],
           metaReview: null,
-          sortBy: 'newest',
+          sortBy: 'relevance',
           productInfo: null,
           totalReviews: 0,
           numOfRecommendation: null,
@@ -83,7 +83,6 @@ class RatingsAndReviews extends React.Component {
         const totalReviews = getTotalReviews(recommended.false, recommended.true);
         const numOfRecommendation = getNumOfRecommendation(recommended.false, recommended.true);
         const numOfReviewsToLoad = determineNumReviewsToLoad(totalReviews, reviewCount);
-        console.log(resp.data.ratings)
         const averageRating = calculateAverageRating(resp.data.ratings);
         if (numOfReviewsToLoad) {
           this.setState({
@@ -106,7 +105,7 @@ class RatingsAndReviews extends React.Component {
       .catch((err) => console.log(err));
   }
 
-  getAllReviews(reviewCount) {
+  getAllReviews(reviewCount = this.state.reviewCount ) {
     const { sortBy } = this.state;
     const { productID } = this.props;
     axios.get(`/api/reviews?product_id=${productID}&count=${reviewCount}&sort=${sortBy}`)
@@ -157,9 +156,10 @@ class RatingsAndReviews extends React.Component {
   }
 
   updateHelpfulByReviewID(reviewID) {
-    axios.put(`api/reviews/${reviewID}/helpful`)
+    axios.put(`/api/reviews/${reviewID}/helpful`)
       .then((resp) => {
-        this.getMetaReview();
+        // this.getMetaReview();
+        this.getAllReviews();
       })
       .catch((err) => {
         console.log(err);

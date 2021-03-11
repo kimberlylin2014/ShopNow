@@ -24,7 +24,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getItemInCart();
-    // const productID = window.location.pathname.replace('/', '').replace('/', '');
+    // const productID = window.location.pathname.replace('/', '');
     // this.setState({ productID });
   }
 
@@ -41,7 +41,7 @@ class App extends React.Component {
   }
 
   getItemInCart() {
-    axios.get('/api/cart').then((data) => {
+    axios.get('api/cart').then((data) => {
       let totalItem = 0;
       for (const keys in data.data) {
         totalItem += Number(data.data[keys].count);
@@ -70,13 +70,13 @@ class App extends React.Component {
           productID={productID}
           onAddToCart={this.onAddToCart}
         />
-        <div className={styles.section}>
+        {/* <div className={styles.section}>
           <RelatedItemsAndComparison
             productID={productID}
             styleIndex={styleIndex}
             changeCurrentProduct={this.changeCurrentProduct}
           />
-        </div>
+        </div> */}
         <Reviews
           productID={productID}
           changeAverageRating={this.changeAverageRating}

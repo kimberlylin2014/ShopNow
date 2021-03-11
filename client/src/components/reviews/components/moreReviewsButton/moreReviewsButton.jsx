@@ -9,7 +9,6 @@ class MoreReviewsButton extends React.Component {
 
   handleMoreReviewClick() {
     const {loadMoreReviews} = this.props;
-    console.log('clicked load more')
     loadMoreReviews();
   }
 
