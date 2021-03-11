@@ -8,7 +8,7 @@ import RelatedItemsAndComparison from './components/related/RelatedItemsAndCompa
 describe('<App />', () => {
   it('passes productID and styleID to <RelatedItemsAndComparison /> component', () => {
     const wrapper = shallow(<App />);
-    // expect(wrapper.find(RelatedItemsAndComparison)).toHaveProp('productID');
-    // expect(wrapper.find(RelatedItemsAndComparison)).toHaveProp('styleID');
+    expect(wrapper.find(RelatedItemsAndComparison)).toHaveProp('productID');
+    expect(wrapper.find(RelatedItemsAndComparison)).toHaveProp('styleIndex');
   });
 });

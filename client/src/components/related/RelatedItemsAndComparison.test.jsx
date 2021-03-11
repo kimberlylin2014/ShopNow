@@ -21,7 +21,6 @@ describe('<RelatedItemsAndComparison />', () => {
   it('has required pieces of state', () => {
     const wrapper = shallow(<RelatedItemsAndComparison />);
     expect(wrapper).toHaveState('currentProduct');
-    expect(wrapper).toHaveState('styleIndex');
     expect(wrapper).toHaveState('relatedItems');
     expect(wrapper).toHaveState('outfitItems');
     expect(wrapper).toHaveState('showModal');
