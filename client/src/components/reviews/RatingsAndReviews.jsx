@@ -105,7 +105,7 @@ class RatingsAndReviews extends React.Component {
       .catch((err) => console.log(err));
   }
 
-  getAllReviews(reviewCount) {
+  getAllReviews(reviewCount = this.state.reviewCount ) {
     const { sortBy } = this.state;
     const { productID } = this.props;
     axios.get(`/api/reviews?product_id=${productID}&count=${reviewCount}&sort=${sortBy}`)
@@ -158,7 +158,8 @@ class RatingsAndReviews extends React.Component {
   updateHelpfulByReviewID(reviewID) {
     axios.put(`/api/reviews/${reviewID}/helpful`)
       .then((resp) => {
-        this.getMetaReview();
+        // this.getMetaReview();
+        this.getAllReviews();
       })
       .catch((err) => {
         console.log(err);
