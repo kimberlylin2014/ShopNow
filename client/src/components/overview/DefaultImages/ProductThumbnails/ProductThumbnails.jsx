@@ -9,7 +9,7 @@ const ProductThumbnails = ({ productThumbnails, currIndex, updateIndex }) => {
     if (tracker >= 0 && tracker < length) {
       return (
         <img
-          src={productThumbnails[tracker].thumbnail_url}
+          src={productThumbnails[tracker].thumbnail_url ? productThumbnails[tracker].thumbnail_url : 'icons/no-image.png'}
           alt="product thumbnail"
           className={Styles.productThumbnail}
           id={currIndex === tracker ? Styles.Selected : ''}
@@ -20,11 +20,15 @@ const ProductThumbnails = ({ productThumbnails, currIndex, updateIndex }) => {
   };
 
   const previousThumbnails = () => {
-    setTracker(tracker === 0 ? 0 : tracker - 1);
+    if (length > 7) {
+      setTracker(tracker === 0 ? 0 : tracker - 1);
+    }
   };
 
   const nextThumbnails = () => {
-    setTracker(tracker + 7 === length ? tracker : tracker + 1);
+    if (length > 7) {
+      setTracker(tracker + 7 === length ? tracker : tracker + 1);
+    }
   };
 
   return productThumbnails.length > 0 && (
