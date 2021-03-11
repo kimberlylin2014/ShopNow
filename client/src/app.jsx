@@ -70,13 +70,13 @@ class App extends React.Component {
           productID={productID}
           onAddToCart={this.onAddToCart}
         />
-        {/* <div className={styles.section}>
+        <div className={styles.section}>
           <RelatedItemsAndComparison
             productID={productID}
             styleIndex={styleIndex}
             changeCurrentProduct={this.changeCurrentProduct}
           />
-        </div> */}
+        </div>
         <Reviews
           productID={productID}
           changeAverageRating={this.changeAverageRating}

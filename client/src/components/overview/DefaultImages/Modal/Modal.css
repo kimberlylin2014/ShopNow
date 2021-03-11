@@ -123,6 +123,12 @@
   }
 }
 
+@media (min-width: 480px) and (max-width: 575px) {
+  .close {
+    left: 93.5%;
+  }
+}
+
 @media (min-width: 576px) {
   .modalMain {
     width: 91%;
