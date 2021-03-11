@@ -23,10 +23,8 @@ class StyleSelector extends React.Component {
       />
     ));
 
-    const isImageGallery = this.props.imageThumbnail ? Styles.imageGallery : Styles.thumbnails;
-
     return (
-      <div className={isImageGallery} ref={this.imageNav}>
+      <div className={Styles.thumbnails}>
         {displayThumbnails}
       </div>
     );
