@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">54.55% </span>
+                <span class="strong">47.62% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>12/22</span>
+                <span class='fraction'>10/21</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">54.55% </span>
+                <span class="strong">47.62% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>12/22</span>
+                <span class='fraction'>10/21</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -148,18 +148,15 @@
 <a name='L89'></a><a href='#L89'>89</a>
 <a name='L90'></a><a href='#L90'>90</a>
 <a name='L91'></a><a href='#L91'>91</a>
-<a name='L92'></a><a href='#L92'>92</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -167,6 +164,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -174,8 +178,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -185,6 +187,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -214,6 +217,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -240,34 +244,34 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
+import LazyLoad from 'react-lazyload';
 import axios from 'axios';
 import Overview from './components/overview/Overview.jsx';
 import RelatedItemsAndComparison from './components/related/RelatedItemsAndComparison.jsx';
 import Reviews from './components/reviews/RatingsAndReviews.jsx';
 import Header from './components/header/Header.jsx';
 import styles from './appStyle.css';
+import Footer from './components/footer/footer.jsx';
 &nbsp;
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productID: 14038,
-      styleID: 70565,
+      productID: 14039,
+      styleIndex: 0,
       averageRating: 3.5,
       itemCount: 0,
     };
     this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
-    this.changeStyleId = this.changeStyleId.bind(this);
+    this.changeStyleIndex = this.changeStyleIndex.bind(this);
     this.changeAverageRating = this.changeAverageRating.bind(this);
     this.onAddToCart = this.onAddToCart.bind(this);
   }
 &nbsp;
   componentDidMount() {
     this.getItemInCart();
-    // figure out how to get product id from url
-    const queryString = window.location.search;
-    console.log(window.location);
-    // console.log(queryString);
+    // const productID = window.location.pathname.replace('/', '');
+    // this.setState({ productID });
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  ch</span>angeAverageRating(averageRating) {
@@ -276,10 +280,11 @@ class App extends React.Component {
 &nbsp;
 <span class="fstat-no" title="function not covered" >  ch</span>angeCurrentProduct(productID) {
 <span class="cstat-no" title="statement not covered" >    this.setState({ productID });</span>
+<span class="cstat-no" title="statement not covered" >    this.setState({ styleIndex: 0 });</span>
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  ch</span>angeStyleId(styleID) {
-<span class="cstat-no" title="statement not covered" >    this.setState({ styleID });</span>
+<span class="fstat-no" title="function not covered" >  ch</span>angeStyleIndex(styleIndex) {
+<span class="cstat-no" title="statement not covered" >    this.setState({ styleIndex });</span>
   }
 &nbsp;
   getItemInCart() {
@@ -303,19 +308,19 @@ class App extends React.Component {
   }
 &nbsp;
   render() {
-    const { productID, styleID, averageRating, itemCount } = this.state;
+    const { productID, styleIndex, itemCount } = this.state;
     return (
       &lt;div className={styles.app}&gt;
         &lt;Header itemCount={itemCount} /&gt;
         &lt;Overview
-          changeStyleId={this.changeStyleId}
+          changeStyleIndex={this.changeStyleIndex}
           productID={productID}
           onAddToCart={this.onAddToCart}
         /&gt;
         &lt;div className={styles.section}&gt;
           &lt;RelatedItemsAndComparison
             productID={productID}
-            styleID={styleID}
+            styleIndex={styleIndex}
             changeCurrentProduct={this.changeCurrentProduct}
           /&gt;
         &lt;/div&gt;
@@ -323,6 +328,7 @@ class App extends React.Component {
           productID={productID}
           changeAverageRating={this.changeAverageRating}
         /&gt;
+        &lt;Footer /&gt;
       &lt;/div&gt;
 &nbsp;
     );
@@ -337,7 +343,7 @@ export default App;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Mar 09 2021 23:23:59 GMT-0800 (Pacific Standard Time)
+                at Thu Mar 11 2021 21:22:02 GMT-0800 (Pacific Standard Time)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

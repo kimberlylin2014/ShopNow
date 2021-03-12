@@ -239,11 +239,7 @@
 <a name='L180'></a><a href='#L180'>180</a>
 <a name='L181'></a><a href='#L181'>181</a>
 <a name='L182'></a><a href='#L182'>182</a>
-<a name='L183'></a><a href='#L183'>183</a>
-<a name='L184'></a><a href='#L184'>184</a>
-<a name='L185'></a><a href='#L185'>185</a>
-<a name='L186'></a><a href='#L186'>186</a>
-<a name='L187'></a><a href='#L187'>187</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L183'></a><a href='#L183'>183</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -329,10 +325,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -446,11 +438,11 @@ class StarRating extends React.Component {
 <span class="fstat-no" title="function not covered" >  co</span>nstructor(props) {
 <span class="cstat-no" title="statement not covered" >    super(props);</span>
 <span class="cstat-no" title="statement not covered" >    this.state = {</span>
-      star1: '/stars/emptyStar.png',
-      star2: '/stars/emptyStar.png',
-      star3: '/stars/emptyStar.png',
-      star4: '/stars/emptyStar.png',
-      star5: '/stars/emptyStar.png',
+      star1: 'stars/emptyStar.png',
+      star2: 'stars/emptyStar.png',
+      star3: 'stars/emptyStar.png',
+      star4: 'stars/emptyStar.png',
+      star5: 'stars/emptyStar.png',
       persist: false,
       opacity: 0.5,
       selected: ''
@@ -465,45 +457,45 @@ class StarRating extends React.Component {
     const {id} = <span class="cstat-no" title="statement not covered" >e.target.dataset;</span>
 <span class="cstat-no" title="statement not covered" >    if (id === 'star1') {</span>
 <span class="cstat-no" title="statement not covered" >      this.setState({</span>
-        star1: '/stars/filledStar.png',
+        star1: 'stars/filledStar.png',
         persist: false,
         opacity: 0.5,
         selected: `1 Star: ${rating['star1'].descrip}`,
       });
     } else <span class="cstat-no" title="statement not covered" >if (id === 'star2') {</span>
 <span class="cstat-no" title="statement not covered" >      this.setState({</span>
-        star1: '/stars/filledStar.png',
-        star2: '/stars/filledStar.png',
+        star1: 'stars/filledStar.png',
+        star2: 'stars/filledStar.png',
         persist: false,
         opacity: 0.5,
         selected: `2 Stars: ${rating['star2'].descrip}`,
       });
     } else <span class="cstat-no" title="statement not covered" >if (id === 'star3') {</span>
 <span class="cstat-no" title="statement not covered" >      this.setState({</span>
-        star1: '/stars/filledStar.png',
-        star2: '/stars/filledStar.png',
-        star3: '/stars/filledStar.png',
+        star1: 'stars/filledStar.png',
+        star2: 'stars/filledStar.png',
+        star3: 'stars/filledStar.png',
         persist: false,
         opacity: 0.6,
         selected: `3 Stars: ${rating['star3'].descrip}`,
       });
     } else <span class="cstat-no" title="statement not covered" >if (id === 'star4') {</span>
 <span class="cstat-no" title="statement not covered" >      this.setState({</span>
-        star1: '/stars/filledStar.png',
-        star2: '/stars/filledStar.png',
-        star3: '/stars/filledStar.png',
-        star4: '/stars/filledStar.png',
+        star1: 'stars/filledStar.png',
+        star2: 'stars/filledStar.png',
+        star3: 'stars/filledStar.png',
+        star4: 'stars/filledStar.png',
         persist: false,
         opacity: 0.5,
         selected: `4 Stars: ${rating['star4'].descrip}`,
       });
     } else <span class="cstat-no" title="statement not covered" >if (id === 'star5') {</span>
 <span class="cstat-no" title="statement not covered" >      this.setState({</span>
-        star1: '/stars/filledStar.png',
-        star2: '/stars/filledStar.png',
-        star3: '/stars/filledStar.png',
-        star4: '/stars/filledStar.png',
-        star5: '/stars/filledStar.png',
+        star1: 'stars/filledStar.png',
+        star2: 'stars/filledStar.png',
+        star3: 'stars/filledStar.png',
+        star4: 'stars/filledStar.png',
+        star5: 'stars/filledStar.png',
         persist: false,
         opacity: 0.5,
         selected: `5 Stars: ${rating['star5'].descrip}`,
@@ -515,17 +507,13 @@ class StarRating extends React.Component {
 <span class="cstat-no" title="statement not covered" >    e.stopPropagation();</span>
 <span class="cstat-no" title="statement not covered" >    if (this.state.persist === false) {</span>
 <span class="cstat-no" title="statement not covered" >      this.setState({</span>
-        star1: '/stars/emptyStar.png',
-        star2: '/stars/emptyStar.png',
-        star3: '/stars/emptyStar.png',
-        star4: '/stars/emptyStar.png',
-        star5: '/stars/emptyStar.png',
+        star1: 'stars/emptyStar.png',
+        star2: 'stars/emptyStar.png',
+        star3: 'stars/emptyStar.png',
+        star4: 'stars/emptyStar.png',
+        star5: 'stars/emptyStar.png',
         selected: '',
       });
-    } else {
-      // this.setState({
-      //   persist: false,
-      // });
     }
   }
 &nbsp;
@@ -535,18 +523,18 @@ class StarRating extends React.Component {
     const { handleStarRatingClick } = <span class="cstat-no" title="statement not covered" >this.props;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    this.setState({</span>
-      star1: '/stars/emptyStar.png',
-      star2: '/stars/emptyStar.png',
-      star3: '/stars/emptyStar.png',
-      star4: '/stars/emptyStar.png',
-      star5: '/stars/emptyStar.png',
+      star1: 'stars/emptyStar.png',
+      star2: 'stars/emptyStar.png',
+      star3: 'stars/emptyStar.png',
+      star4: 'stars/emptyStar.png',
+      star5: 'stars/emptyStar.png',
       persist: false,
     }, <span class="fstat-no" title="function not covered" >()</span> =&gt; {
 <span class="cstat-no" title="statement not covered" >      if (id === 'star1') {</span>
         // handleStarRatingClick(id);
 <span class="cstat-no" title="statement not covered" >        handleStarRatingClick(rating['star1'].rating)</span>
 <span class="cstat-no" title="statement not covered" >        this.setState({</span>
-          star1: '/stars/filledStar.png',
+          star1: 'stars/filledStar.png',
           persist: true,
           opacity: 1,
           selected: `1 Star: ${rating['star1'].descrip}`,
@@ -554,8 +542,8 @@ class StarRating extends React.Component {
       } else <span class="cstat-no" title="statement not covered" >if (id === 'star2') {</span>
 <span class="cstat-no" title="statement not covered" >        handleStarRatingClick(rating['star2'].rating)</span>
 <span class="cstat-no" title="statement not covered" >        this.setState({</span>
-          star1: '/stars/filledStar.png',
-          star2: '/stars/filledStar.png',
+          star1: 'stars/filledStar.png',
+          star2: 'stars/filledStar.png',
           persist: true,
           opacity: 1,
           selected: `2 Stars: ${rating['star2'].descrip}`,
@@ -563,9 +551,9 @@ class StarRating extends React.Component {
       } else <span class="cstat-no" title="statement not covered" >if (id === 'star3') {</span>
 <span class="cstat-no" title="statement not covered" >        handleStarRatingClick(rating['star3'].rating)</span>
 <span class="cstat-no" title="statement not covered" >        this.setState({</span>
-          star1: '/stars/filledStar.png',
-          star2: '/stars/filledStar.png',
-          star3: '/stars/filledStar.png',
+          star1: 'stars/filledStar.png',
+          star2: 'stars/filledStar.png',
+          star3: 'stars/filledStar.png',
           persist: true,
           opacity: 1,
           selected: `3 Stars: ${rating['star3'].descrip}`,
@@ -573,10 +561,10 @@ class StarRating extends React.Component {
       } else <span class="cstat-no" title="statement not covered" >if (id === 'star4') {</span>
 <span class="cstat-no" title="statement not covered" >        handleStarRatingClick(rating['star4'].rating)</span>
 <span class="cstat-no" title="statement not covered" >        this.setState({</span>
-          star1: '/stars/filledStar.png',
-          star2: '/stars/filledStar.png',
-          star3: '/stars/filledStar.png',
-          star4: '/stars/filledStar.png',
+          star1: 'stars/filledStar.png',
+          star2: 'stars/filledStar.png',
+          star3: 'stars/filledStar.png',
+          star4: 'stars/filledStar.png',
           persist: true,
           opacity: 1,
           selected: `4 Stars: ${rating['star4'].descrip}`,
@@ -584,11 +572,11 @@ class StarRating extends React.Component {
       } else <span class="cstat-no" title="statement not covered" >if (id === 'star5') {</span>
 <span class="cstat-no" title="statement not covered" >        handleStarRatingClick(rating['star5'].rating)</span>
 <span class="cstat-no" title="statement not covered" >        this.setState({</span>
-          star1: '/stars/filledStar.png',
-          star2: '/stars/filledStar.png',
-          star3: '/stars/filledStar.png',
-          star4: '/stars/filledStar.png',
-          star5: '/stars/filledStar.png',
+          star1: 'stars/filledStar.png',
+          star2: 'stars/filledStar.png',
+          star3: 'stars/filledStar.png',
+          star4: 'stars/filledStar.png',
+          star5: 'stars/filledStar.png',
           persist: true,
           opacity: 1,
           selected: `5 Stars: ${rating['star5'].descrip}`,
@@ -622,7 +610,7 @@ export default StarRating;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Mar 09 2021 23:23:59 GMT-0800 (Pacific Standard Time)
+                at Thu Mar 11 2021 21:22:02 GMT-0800 (Pacific Standard Time)
             </div>
         </div>
         <script src="../../../../../../../prettify.js"></script>

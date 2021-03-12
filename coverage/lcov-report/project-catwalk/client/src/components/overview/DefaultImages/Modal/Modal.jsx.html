@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">7.69% </span>
+                <span class="strong">16.67% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>1/13</span>
+                <span class='fraction'>1/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">7.69% </span>
+                <span class="strong">16.67% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>1/13</span>
+                <span class='fraction'>1/6</span>
             </div>
         
             
@@ -129,11 +129,8 @@
 <a name='L70'></a><a href='#L70'>70</a>
 <a name='L71'></a><a href='#L71'>71</a>
 <a name='L72'></a><a href='#L72'>72</a>
-<a name='L73'></a><a href='#L73'>73</a>
-<a name='L74'></a><a href='#L74'>74</a>
-<a name='L75'></a><a href='#L75'>75</a>
-<a name='L76'></a><a href='#L76'>76</a>
-<a name='L77'></a><a href='#L77'>77</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L73'></a><a href='#L73'>73</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -142,20 +139,15 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -180,8 +172,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -214,25 +206,21 @@ import Styles from './Modal.css';
 import LeftArrow from '../Arrows/LeftArrow.jsx';
 import RightArrow from '../Arrows/RightArrow.jsx';
 import Indicators from './Indicators.jsx';
+import ZoomImage from './ZoomImage.jsx';
 &nbsp;
 const Modal = <span class="fstat-no" title="function not covered" >({</span>
   handleClose, show, currIndex, updateIndex, photos,
 }) =&gt; {
-  const expandedImg = <span class="cstat-no" title="statement not covered" >useRef(null);</span>
+  // const expandedImg = useRef(null);
   const [onZoom, setOnZoom] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
-  const [x, setX] = <span class="cstat-no" title="statement not covered" >useState(0);</span>
-  const [y, setY] = <span class="cstat-no" title="statement not covered" >useState(0);</span>
+  // const [x, setX] = useState(0);
+  // const [y, setY] = useState(0);
   const showHideClassName = <span class="cstat-no" title="statement not covered" >show ? Styles.displayBlock : Styles.displayNone;</span>
 &nbsp;
-  const divStyle = <span class="cstat-no" title="statement not covered" >{</span>
-    backgroundPosition: '100px 100px',
-    // backgroundPosition: `${x} ${y}`,
-  };
-&nbsp;
-  const imagePanning = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>) =&gt; {</span>
-    const elementNewX = <span class="cstat-no" title="statement not covered" >expandedImg.current.clientWidth;</span>
-<span class="cstat-no" title="statement not covered" >    console.log((e.pageX / expandedImg.current.clientWidth) * 100);</span>
-  };
+  // const divStyle = {
+  //   // backgroundPosition: '100px 100px',
+  //   // backgroundPosition: `${x} ${y}`,
+  // };
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;div className={showHideClassName}&gt;
@@ -253,14 +241,14 @@ const Modal = <span class="fstat-no" title="function not covered" >({</span>
 &nbsp;
         &lt;div className={Styles.imgWrapper}&gt;
           &lt;img
-            ref={expandedImg}
-            className={onZoom ? Styles.onZoom : Styles.image}
+            className={Styles.image}
             src={photos[currIndex].url}
             alt="expandedDefaultImage"
-            onMouseDown={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setOnZoom(!onZoom)}</span>
-            onMouseMove={imagePanning}
-            style={onZoom ? divStyle : {}}
+            onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; { <span class="cstat-no" title="statement not covered" >setOnZoom(!onZoom); </span>}}
           /&gt;
+&nbsp;
+          { onZoom
+            &amp;&amp; &lt;ZoomImage src={photos[currIndex].url} /&gt;}
 &nbsp;
           &lt;Indicators
             currIndex={currIndex}
@@ -292,7 +280,7 @@ export default Modal;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Mar 09 2021 23:23:59 GMT-0800 (Pacific Standard Time)
+                at Thu Mar 11 2021 21:22:02 GMT-0800 (Pacific Standard Time)
             </div>
         </div>
         <script src="../../../../../../../prettify.js"></script>
