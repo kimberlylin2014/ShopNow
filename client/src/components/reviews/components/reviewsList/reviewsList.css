@@ -5,7 +5,7 @@
 }
 
 
-::-webkit-scrollbar {
+.reviewsList::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 15px;
 }
