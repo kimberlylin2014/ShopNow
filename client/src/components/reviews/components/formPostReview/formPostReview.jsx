@@ -31,21 +31,21 @@ class FormPostReview extends React.Component {
   handleInputChange(e) {
     let { name, value } = e.target;
     if (Number.isNaN(parseInt(name))) {
-      if (name === 'rating') {
-        value = parseInt(value);
+      if (name === 'body') {
+        this.setState({
+          body: value,
+          bodyCounter: 50 - value.length,
+        });
       } else if (name === 'recommend') {
-        value = value === 'true';
-      } else if (name === 'body') {
-       this.setState({
-         body: value,
-         bodyCounter: 50 - value.length,
-       });
+        value = value === true;
+        this.setState({
+          [name]: value,
+        });
       } else {
         this.setState({
           [name]: value,
         });
       }
-
     } else {
       const { characteristics } = this.state;
       this.setState({
@@ -104,7 +104,7 @@ class FormPostReview extends React.Component {
                   htmlFor="yesRecommend"
                   type="radio"
                   name="recommend"
-                  value="true"
+                  value={true}
                   handleInputChange={this.handleInputChange}
                   label="Yes"
                 />
@@ -114,7 +114,7 @@ class FormPostReview extends React.Component {
                   htmlFor="noRecommend"
                   type="radio"
                   name="recommend"
-                  value="false"
+                  value={false}
                   handleInputChange={this.handleInputChange}
                   label="No"
                 />

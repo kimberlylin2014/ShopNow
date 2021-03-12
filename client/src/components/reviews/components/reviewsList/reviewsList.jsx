@@ -15,8 +15,7 @@ import styles from './reviewsList.css';
 // );
 
 const ReviewsList = ({ reviews, updateHelpfulByReviewID }) => {
-  const filteredReviews = reviews.filter((review) => (review.display))
-  const reviewsList = filteredReviews.map((review) => (
+  const reviewsList = reviews.map((review) => (
     <ReviewTile
       key={review.review_id}
       review={review}
