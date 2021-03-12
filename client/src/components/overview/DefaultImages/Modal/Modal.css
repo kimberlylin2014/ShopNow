@@ -1,17 +1,28 @@
 #ZoomImageFigure {
-  width: 400px;
   background-image: no-repeat;
 }
 
-/* #ZoomImageFigure:hover img {
+#ZoomImageFigure:hover img {
   opacity: 0;
-} */
+}
 
 #ZoomImage {
   display: block;
   width: 100%;
   pointer-events: none;
 }
+
+.panningWrapper {
+  width: 100%;
+}
+/*
+#onZoom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+} */
 
 .modal {
   position: fixed;

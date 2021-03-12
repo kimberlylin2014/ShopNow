@@ -8,16 +8,27 @@ import ZoomImage from './ZoomImage.jsx';
 const Modal = ({
   handleClose, show, currIndex, updateIndex, photos,
 }) => {
-  // const expandedImg = useRef(null);
   const [onZoom, setOnZoom] = useState(false);
-  // const [x, setX] = useState(0);
-  // const [y, setY] = useState(0);
   const showHideClassName = show ? Styles.displayBlock : Styles.displayNone;
 
-  // const divStyle = {
-  //   // backgroundPosition: '100px 100px',
-  //   // backgroundPosition: `${x} ${y}`,
-  // };
+  const zoomImage = onZoom
+    ? (
+      <div
+      className={Styles.panningWrapper}
+      onClick={() => { setOnZoom(!onZoom); }}>
+        <ZoomImage
+          src={photos[currIndex].url}
+        />
+      </div>
+    )
+    : (
+      <img
+        className={Styles.image}
+        src={photos[currIndex].url}
+        alt="expandedDefaultImage"
+        onClick={() => { setOnZoom(!onZoom); }}
+      />
+    );
 
   return (
     <div className={showHideClassName}>
@@ -37,7 +48,8 @@ const Modal = ({
         />
 
         <div className={Styles.imgWrapper}>
-          <img
+          {zoomImage}
+          {/* <img
             className={Styles.image}
             src={photos[currIndex].url}
             alt="expandedDefaultImage"
@@ -45,7 +57,13 @@ const Modal = ({
           />
 
           { onZoom
-            && <ZoomImage src={photos[currIndex].url} />}
+            && (
+            <div id={Styles.onZoom}>
+              {' '}
+              <ZoomImage src={photos[currIndex].url} />
+              {' '}
+            </div>
+            )} */}
 
           <Indicators
             currIndex={currIndex}
