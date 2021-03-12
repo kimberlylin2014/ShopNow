@@ -32,6 +32,7 @@ class RatingsAndReviews extends React.Component {
     this.toggleSortBy = this.toggleSortBy.bind(this);
     this.loadMoreReviews = this.loadMoreReviews.bind(this);
     this.resetModuleState = this.resetModuleState.bind(this);
+    this.filterReviewsByRating = this.filterReviewsByRating.bind(this);
   }
 
   componentDidMount() {
@@ -170,6 +171,14 @@ class RatingsAndReviews extends React.Component {
     this.getMetaReview();
   }
 
+  filterReviewsByRating(rating) {
+    console.log(rating);
+    const { reviews } = this.state;
+    let currentDisplayedReviews = [...reviews];
+    console.log(currentDisplayedReviews);
+    // let filteredReviews =
+  }
+
   render() {
     const {
       reviews,
@@ -178,7 +187,8 @@ class RatingsAndReviews extends React.Component {
       totalReviews,
       numOfRecommendation,
       displayMoreReviewsButton,
-      averageRating
+      averageRating,
+      filterReviewsByRating
     } = this.state;
     return (
       <section className={styles.ratingsAndReviews}>
@@ -190,6 +200,7 @@ class RatingsAndReviews extends React.Component {
               numOfRecommendation={numOfRecommendation}
               totalReviews={totalReviews}
               averageRating={averageRating}
+              filterReviewsByRating={this.filterReviewsByRating}
             />
           </div>
           <div className={styles.containerList} id="reviews">
