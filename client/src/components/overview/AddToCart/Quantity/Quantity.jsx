@@ -7,8 +7,8 @@ const Quantity = ({ inventory }) => {
   const availability = quantity.map((num, index) => <option key={index} value={num}>{num}</option>);
 
   return (
-    <div>
-      <p><b>QTY</b></p>
+    <div className={Styles.qtyContainter}>
+      <label className={Styles.label}>QTY</label>
       <select
         name="quantity"
         className={Styles.Quantity}

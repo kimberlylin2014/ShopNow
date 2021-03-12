@@ -33,7 +33,12 @@ const ProductThumbnails = ({ productThumbnails, currIndex, updateIndex }) => {
 
   return productThumbnails.length > 0 && (
     <div className={Styles.thumbnails}>
-      <img src="icons/up-arrow.svg" className={Styles.upArrow} onClick={previousThumbnails} />
+      <img
+        src="icons/up-arrow.svg"
+        className={Styles.upArrow}
+        onClick={previousThumbnails}
+        alt="up arrow"
+      />
       { createThumbnail(tracker)}
       { createThumbnail(tracker + 1)}
       { createThumbnail(tracker + 2)}
@@ -41,7 +46,12 @@ const ProductThumbnails = ({ productThumbnails, currIndex, updateIndex }) => {
       { createThumbnail(tracker + 4)}
       { createThumbnail(tracker + 5)}
       { createThumbnail(tracker + 6)}
-      <img src="icons/down-arrow.svg" className={Styles.downArrow} onClick={nextThumbnails} />
+      <img
+        src="icons/down-arrow.svg"
+        className={Styles.downArrow}
+        onClick={nextThumbnails}
+        alt="down arrow"
+      />
     </div>
   );
 };

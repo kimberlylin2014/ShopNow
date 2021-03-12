@@ -1,7 +1,17 @@
+.qtyContainter {
+  display: flex;
+  flex-direction: column;
+}
+
 .Quantity {
   width: 50px;
   height: 50px;
   align-items: center;
   border-radius: 10%;
   text-align-last:center;
+}
+
+.label {
+  font-weight: bold;
+  font-size: .9rem;
 }
