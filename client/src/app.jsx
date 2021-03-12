@@ -75,10 +75,13 @@ class App extends React.Component {
 
         {/* social media icons! */}
         <a href="https://www.facebook.com">
-          <ion-icon name="logo-facebook" id="fb" />
+          <ion-icon name="logo-facebook" />
         </a>
-        <a href="https://www.instagram.com">
-          <ion-icon name="logo-instagram" id="ig" />
+        <a href="https://www.twitter.com">
+          <ion-icon name="logo-twitter" />
+        </a>
+        <a href="https://www.pinterest.com">
+          <ion-icon name="logo-pinterest" />
         </a>
 
         <div className={styles.section}>
