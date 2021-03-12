@@ -1,11 +1,13 @@
 import React from 'react';
 import Styles from './Modal.css';
 
-class ZoomImage extends React.Component {
+const { Component } = React;
+
+class ZoomImage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      backgroundImage: this.props.src,
+      backgroundImage: `url(${this.props.src})`,
       backgroundPosition: '0% 0%',
     };
     this.handleMouseMove = this.handleMouseMove.bind(this);

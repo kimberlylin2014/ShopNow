@@ -1,17 +1,31 @@
 #ZoomImageFigure {
-  width: 400px;
-  background-image: no-repeat;
+  background-repeat:no-repeat;
+  cursor: zoom-out;
 }
 
-/* #ZoomImageFigure:hover img {
+#ZoomImageFigure:hover img {
   opacity: 0;
-} */
+}
 
 #ZoomImage {
   display: block;
   width: 100%;
   pointer-events: none;
+  cursor: zoom-out;
 }
+
+.panningWrapper {
+  width:175vh;
+  max-height: 100vh;
+}
+/*
+#onZoom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+} */
 
 .modal {
   position: fixed;
@@ -25,7 +39,7 @@
 .image {
   width: 100%;
   height: 80vh;
-  cursor: crosshair;
+  cursor: zoom-in;
   object-fit: cover;
 }
 
@@ -38,6 +52,12 @@
 
 .imgWrapper img{
   transition: all .2s ease;
+}
+
+.expandedView {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .onZoom {
@@ -76,6 +96,7 @@
 .displayNone {
   display: none;
 }
+
 
 .Indicators {
   display: flex;

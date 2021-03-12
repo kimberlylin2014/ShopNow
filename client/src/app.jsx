@@ -12,7 +12,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productID: 14039,
+      productID: 14041,
       styleIndex: 0,
       averageRating: 3.5,
       itemCount: 0,
@@ -74,7 +74,7 @@ class App extends React.Component {
         />
 
         {/* social media icons! */}
-        <a href="https://www.facebook.com">
+        {/* <a href="https://www.facebook.com">
           <ion-icon name="logo-facebook" />
         </a>
         <a href="https://www.twitter.com">
@@ -82,7 +82,7 @@ class App extends React.Component {
         </a>
         <a href="https://www.pinterest.com">
           <ion-icon name="logo-pinterest" />
-        </a>
+        </a> */}
 
         <div className={styles.section}>
           <RelatedItemsAndComparison

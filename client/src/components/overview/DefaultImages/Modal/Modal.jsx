@@ -8,16 +8,28 @@ import ZoomImage from './ZoomImage.jsx';
 const Modal = ({
   handleClose, show, currIndex, updateIndex, photos,
 }) => {
-  // const expandedImg = useRef(null);
   const [onZoom, setOnZoom] = useState(false);
-  // const [x, setX] = useState(0);
-  // const [y, setY] = useState(0);
   const showHideClassName = show ? Styles.displayBlock : Styles.displayNone;
 
-  // const divStyle = {
-  //   // backgroundPosition: '100px 100px',
-  //   // backgroundPosition: `${x} ${y}`,
-  // };
+  const zoomImage = onZoom
+    ? (
+      <div
+        className={Styles.panningWrapper}
+        onClick={() => { setOnZoom(!onZoom); }}
+      >
+        <ZoomImage
+          src={photos[currIndex].url}
+        />
+      </div>
+    )
+    : (
+      <img
+        className={Styles.image}
+        src={photos[currIndex].url}
+        alt="expandedDefaultImage"
+        onClick={() => { setOnZoom(!onZoom); }}
+      />
+    );
 
   return (
     <div className={showHideClassName}>
@@ -29,15 +41,44 @@ const Modal = ({
           className={Styles.close}
           onClick={() => handleClose(false)}
         />
-
+        <div className={onZoom ? Styles.displayNone : Styles.displayBlock}>
         <LeftArrow
           currIndex={currIndex}
           updateIndex={updateIndex}
           length={photos.length}
         />
+        </div>
+        {/*
+      <div className={Styles.imgWrapper}>
+      <img
+        className={Styles.image}
+        src={photos[currIndex].url}
+        alt="expandedDefaultImage"
+        onClick={() => { setOnZoom(!onZoom); }}
+      />
+
+      <Indicators
+        currIndex={currIndex}
+        updateIndex={updateIndex}
+        photos={photos}
+      />
+    </div>
+
+    <RightArrow
+      currIndex={currIndex}
+      updateIndex={updateIndex}
+      length={photos.length}
+    />
+
+        <LeftArrow
+          currIndex={currIndex}
+          updateIndex={updateIndex}
+          length={photos.length}
+        /> */}
 
         <div className={Styles.imgWrapper}>
-          <img
+          {zoomImage}
+          {/* <img
             className={Styles.image}
             src={photos[currIndex].url}
             alt="expandedDefaultImage"
@@ -45,20 +86,31 @@ const Modal = ({
           />
 
           { onZoom
-            && <ZoomImage src={photos[currIndex].url} />}
-
+            && (
+            <div id={Styles.onZoom}>
+              {' '}
+              <ZoomImage src={photos[currIndex].url} />
+              {' '}
+            </div>
+            )} */}
+          <div className={onZoom ? Styles.displayNone : Styles.displayBlock}>
           <Indicators
             currIndex={currIndex}
             updateIndex={updateIndex}
             photos={photos}
+            className={onZoom ? Styles.displayNone : Styles.displayBlock}
           />
+          </div>
         </div>
 
+        <div className={onZoom ? Styles.displayNone : Styles.displayBlock}>
         <RightArrow
           currIndex={currIndex}
           updateIndex={updateIndex}
           length={photos.length}
+          className={onZoom ? Styles.displayNone : Styles.displayBlock}
         />
+        </div>
 
       </section>
     </div>
