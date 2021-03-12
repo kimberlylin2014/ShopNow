@@ -14,8 +14,9 @@ const Modal = ({
   const zoomImage = onZoom
     ? (
       <div
-      className={Styles.panningWrapper}
-      onClick={() => { setOnZoom(!onZoom); }}>
+        className={Styles.panningWrapper}
+        onClick={() => { setOnZoom(!onZoom); }}
+      >
         <ZoomImage
           src={photos[currIndex].url}
         />
@@ -40,12 +41,40 @@ const Modal = ({
           className={Styles.close}
           onClick={() => handleClose(false)}
         />
-
+        <div className={onZoom ? Styles.displayNone : Styles.displayBlock}>
         <LeftArrow
           currIndex={currIndex}
           updateIndex={updateIndex}
           length={photos.length}
         />
+        </div>
+        {/*
+      <div className={Styles.imgWrapper}>
+      <img
+        className={Styles.image}
+        src={photos[currIndex].url}
+        alt="expandedDefaultImage"
+        onClick={() => { setOnZoom(!onZoom); }}
+      />
+
+      <Indicators
+        currIndex={currIndex}
+        updateIndex={updateIndex}
+        photos={photos}
+      />
+    </div>
+
+    <RightArrow
+      currIndex={currIndex}
+      updateIndex={updateIndex}
+      length={photos.length}
+    />
+
+        <LeftArrow
+          currIndex={currIndex}
+          updateIndex={updateIndex}
+          length={photos.length}
+        /> */}
 
         <div className={Styles.imgWrapper}>
           {zoomImage}
@@ -64,19 +93,24 @@ const Modal = ({
               {' '}
             </div>
             )} */}
-
+          <div className={onZoom ? Styles.displayNone : Styles.displayBlock}>
           <Indicators
             currIndex={currIndex}
             updateIndex={updateIndex}
             photos={photos}
+            className={onZoom ? Styles.displayNone : Styles.displayBlock}
           />
+          </div>
         </div>
 
+        <div className={onZoom ? Styles.displayNone : Styles.displayBlock}>
         <RightArrow
           currIndex={currIndex}
           updateIndex={updateIndex}
           length={photos.length}
+          className={onZoom ? Styles.displayNone : Styles.displayBlock}
         />
+        </div>
 
       </section>
     </div>
