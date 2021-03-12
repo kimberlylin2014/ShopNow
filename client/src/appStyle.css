@@ -15,6 +15,18 @@
   margin: 5% 0;
 }
 
+/* styling for social media icons! */
+a {
+  color: #373833;
+  font-size: 2rem;
+}
+
+a:hover {
+  color: #C6AD8F;
+}
+
+
+
 /* colors!
 
 background color: #FEFEFE

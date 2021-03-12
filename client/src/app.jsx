@@ -72,6 +72,15 @@ class App extends React.Component {
           productID={productID}
           onAddToCart={this.onAddToCart}
         />
+
+        {/* social media icons! */}
+        <a href="https://www.facebook.com">
+          <ion-icon name="logo-facebook" id="fb" />
+        </a>
+        <a href="https://www.instagram.com">
+          <ion-icon name="logo-instagram" id="ig" />
+        </a>
+
         <div className={styles.section}>
           <RelatedItemsAndComparison
             productID={productID}
