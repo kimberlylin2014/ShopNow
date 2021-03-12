@@ -25,6 +25,7 @@ class RatingsAndReviews extends React.Component {
       reviewCount: 0,
       displayMoreReviewsButton: false,
       averageRating: 0,
+      filterTracker: [],
     };
     this.addReview = this.addReview.bind(this);
     this.getProductInfo = this.getProductInfo.bind(this);
@@ -111,8 +112,9 @@ class RatingsAndReviews extends React.Component {
     const { productID } = this.props;
     axios.get(`/api/reviews?product_id=${productID}&count=${reviewCount}&sort=${sortBy}`)
       .then((resp) => {
+        const reviews = resp.data.results.map((review) => ({...review, display: true }));
         this.setState({
-          reviews: [...resp.data.results],
+          reviews: reviews,
         });
       })
       .catch((err) => {
@@ -171,12 +173,17 @@ class RatingsAndReviews extends React.Component {
     this.getMetaReview();
   }
 
-  filterReviewsByRating(rating) {
-    console.log(rating);
+  filterReviewsByRating(rating, displayStatus) {
     const { reviews } = this.state;
-    let currentDisplayedReviews = [...reviews];
-    console.log(currentDisplayedReviews);
-    // let filteredReviews =
+    const filteredReviews = reviews.map((review) => {
+      if (review.rating !== rating) {
+        review.display = !displayStatus;
+      }
+      return review;
+    });
+    this.setState({
+      reviews: filteredReviews,
+    });
   }
 
   render() {
@@ -188,7 +195,6 @@ class RatingsAndReviews extends React.Component {
       numOfRecommendation,
       displayMoreReviewsButton,
       averageRating,
-      filterReviewsByRating
     } = this.state;
     return (
       <section className={styles.ratingsAndReviews}>

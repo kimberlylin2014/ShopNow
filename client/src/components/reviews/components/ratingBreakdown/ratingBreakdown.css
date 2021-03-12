@@ -2,16 +2,9 @@
   display: flex;
   margin-top: 2%;
   align-items: center;
-  /* justify-content: space-around; */
-  /* margin: 10px; */
-  /* width: 100%; */
 }
 
 .starNum {
   text-decoration: underline;
   width: 100px;
-}
-
-.starText {
-  /* margin-left: 10px; */
 }

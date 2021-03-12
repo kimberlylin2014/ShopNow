@@ -17,12 +17,14 @@ class RatingBreakdown extends React.Component {
   handleRatingClick(e) {
     e.stopPropagation();
     const { disable } = this.state;
-    const { filterReviewsByRating, count } = this.props;
+    const { filterReviewsByRating, count, starNum } = this.props;
     if (count) {
       this.setState({
         disable: !disable,
+      }, () => {
+        filterReviewsByRating(parseInt(starNum), this.state.disable);
       });
-      filterReviewsByRating(parseInt(count));
+
     }
   }
 
@@ -53,7 +55,7 @@ class RatingBreakdown extends React.Component {
       <div
         className={styles.ratingBreakdown}
         onClick={this.handleRatingClick}
-        style={{opacity: opacity, cursor: displayBorder ? "pointer": "not-allowed"}}
+        style={{opacity: opacity, cursor: displayBorder ? "pointer": "auto"}}
       >
         <div className={styles.starNum}>{starNum} stars</div>
         <ProgressBar

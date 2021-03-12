@@ -9,14 +9,20 @@ import Response from '../response/response.jsx';
 import Helpfulness from '../helpfulness/helpfulness.jsx';
 
 const ReviewTile = ({review, updateHelpfulByReviewID}) => (
-  <div className={styles.reviewTile}>
-    <ReviewHeader review={review} />
-    <Summary summary={review.summary} />
-    <Body body={review.body} />
-    <IRecommend review={review} />
-    {/* <Response /> */}
-    <Helpfulness review={review} updateHelpfulByReviewID={updateHelpfulByReviewID} />
-  </div>
+  <React.Fragment>
+    {review.display ? (
+      <div className={styles.reviewTile}>
+        <ReviewHeader review={review} />
+        <Summary summary={review.summary} />
+        <Body body={review.body} />
+        <IRecommend review={review} />
+        {/* <Response /> */}
+        <Helpfulness review={review} updateHelpfulByReviewID={updateHelpfulByReviewID} />
+      </div>
+    ) : null}
+  </React.Fragment>
+
+
 );
 
 export default ReviewTile;
