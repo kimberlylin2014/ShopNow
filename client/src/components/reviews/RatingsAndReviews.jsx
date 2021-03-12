@@ -236,7 +236,7 @@ class RatingsAndReviews extends React.Component {
     } = this.state;
     return (
       <section className={styles.ratingsAndReviews}>
-        <h2>Ratings & Reviews</h2>
+        <h2 className={styles.sectionTitle}>Ratings & Reviews</h2>
         <div className={styles.moduleColumns}>
           <div className={styles.containerBreakdown}>
             <ContainerBreakdown

@@ -6,11 +6,19 @@
 .helpfulButton {
   text-decoration: underline;
   border: none;
-  background-color: #f4f4f2;
+  /* background-color: #a9a9a9; */
   /* font-size: 2rem; */
   margin: 0 5px 0 5px;
 }
 
 .helpfulButton:hover {
   cursor: pointer;
+  color: #f4f4f2;
+  background-color: #373833;
+}
+
+.helpfulButton:disabled {
+  cursor: auto;
+  color: #373833;
+  background-color: #f4f4f2;
 }
