@@ -25,6 +25,13 @@ class RatingsAndReviews extends React.Component {
       reviewCount: 0,
       displayMoreReviewsButton: false,
       averageRating: 0,
+      filterTracker: {
+        5: true,
+        4: true,
+        3: true,
+        2: true,
+        1: true,
+      },
     };
     this.addReview = this.addReview.bind(this);
     this.getProductInfo = this.getProductInfo.bind(this);
@@ -32,6 +39,7 @@ class RatingsAndReviews extends React.Component {
     this.toggleSortBy = this.toggleSortBy.bind(this);
     this.loadMoreReviews = this.loadMoreReviews.bind(this);
     this.resetModuleState = this.resetModuleState.bind(this);
+    this.filterReviewsByRating = this.filterReviewsByRating.bind(this);
   }
 
   componentDidMount() {
@@ -106,12 +114,15 @@ class RatingsAndReviews extends React.Component {
   }
 
   getAllReviews(reviewCount = this.state.reviewCount ) {
-    const { sortBy } = this.state;
+    const { sortBy, filterTracker } = this.state;
     const { productID } = this.props;
     axios.get(`/api/reviews?product_id=${productID}&count=${reviewCount}&sort=${sortBy}`)
       .then((resp) => {
+        const reviews = resp.data.results.map((review) => {
+          return {...review, display: filterTracker[review.rating] }
+        });
         this.setState({
-          reviews: [...resp.data.results],
+          reviews: reviews,
         });
       })
       .catch((err) => {
@@ -170,6 +181,49 @@ class RatingsAndReviews extends React.Component {
     this.getMetaReview();
   }
 
+  filterReviewsByRating(rating, displayStatus) {
+    // const { reviews } = this.state;
+    // const filteredReviews = reviews.map((review) => {
+    //   if (review.rating !== rating) {
+    //     review.display = !displayStatus;
+    //   }
+    //   return review;
+    // });
+    // this.setState({
+    //   reviews: filteredReviews,
+    // });
+    const { reviews, filterTracker } = this.state;
+    let filterValues = Object.values(filterTracker);
+    if (filterValues.every((val) => val === true)) {
+      console.log('first');
+      for (let prop in filterTracker) {
+        if (parseInt(prop) !== rating) {
+          filterTracker[prop] = false;
+        }
+      }
+    } else {
+      filterTracker[rating] = !filterTracker[rating];
+      console.log(filterTracker);
+    }
+    filterValues = Object.values(filterTracker);
+    if (filterValues.every((val) => val === false)) {
+      console.log('no filters on')
+      for (let prop in filterTracker) {
+          filterTracker[prop] = true;
+      }
+    }
+
+    let filteredReviews = reviews.map((review) => {
+      review.display = filterTracker[review.rating];
+      return review;
+    });
+
+    this.setState({
+      reviews: filteredReviews,
+    })
+
+  }
+
   render() {
     const {
       reviews,
@@ -178,7 +232,7 @@ class RatingsAndReviews extends React.Component {
       totalReviews,
       numOfRecommendation,
       displayMoreReviewsButton,
-      averageRating
+      averageRating,
     } = this.state;
     return (
       <section className={styles.ratingsAndReviews}>
@@ -190,6 +244,7 @@ class RatingsAndReviews extends React.Component {
               numOfRecommendation={numOfRecommendation}
               totalReviews={totalReviews}
               averageRating={averageRating}
+              filterReviewsByRating={this.filterReviewsByRating}
             />
           </div>
           <div className={styles.containerList} id="reviews">
