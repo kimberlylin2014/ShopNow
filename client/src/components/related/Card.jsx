@@ -5,6 +5,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
+import LazyLoad from 'react-lazyload';
 import PropTypes from 'prop-types';
 import styles from './cardStyle.css';
 import Stars from '../Stars.jsx';
@@ -34,11 +35,7 @@ class Card extends React.Component {
 
   getPrice() {
     const { product, type } = this.props;
-    let { styleIndex } = product;
-    // remove!
-    if (!styleIndex) {
-      styleIndex = 0;
-    }
+    const { styleIndex } = product;
     const index = type === 'related' ? 0 : styleIndex;
     if (product.styles[index].sale_price) {
       return (
@@ -76,11 +73,13 @@ class Card extends React.Component {
     return (
       <div className={styles.card} onClick={() => this.onCardClick(product.id)}>
         <div className={styles.cardTop}>
-          <img
-            className={styles.image}
-            alt={product.name}
-            src={product.styles[product.styleIndex].photos[0].url || 'photos/noImage.png'}
-          />
+          <LazyLoad height={330}>
+            <img
+              className={styles.image}
+              alt={product.name}
+              src={product.styles[product.styleIndex].photos[0].url || 'photos/noImage.png'}
+            />
+          </LazyLoad>
           { type === 'related'
             ? (
               <div className={styles.icon} onClick={(event) => this.onStarClick(event)}>

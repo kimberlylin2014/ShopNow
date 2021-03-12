@@ -3,7 +3,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-restricted-syntax */
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import styles from './comparisonStyle.css';
 
 class Comparison extends React.Component {
@@ -75,9 +75,9 @@ class Comparison extends React.Component {
   }
 }
 
-Comparison.propTypes = {
-  current: PropTypes.isRequired,
-  selected: PropTypes.isRequired,
-};
+// Comparison.propTypes = {
+//   current: PropTypes.isRequired,
+//   selected: PropTypes.isRequired,
+// };
 
 export default Comparison;
