@@ -5,3 +5,10 @@
   border-radius: 10%;
   text-align-last:center;
 }
+
+.label {
+  font-weight: bold;
+  font-size: .9rem;
+  display: flex;
+  flex-direction: column;
+}

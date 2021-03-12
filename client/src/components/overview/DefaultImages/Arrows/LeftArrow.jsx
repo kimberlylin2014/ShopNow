@@ -9,7 +9,12 @@ const LeftArrow = ({ length, currIndex, updateIndex }) => {
   return (
     <div className={Styles.arrow}>
       { currIndex > 0 && (
-        <img src="icons/leftCaret.png" className={Styles.LeftArrow} onClick={previousPic} />
+        <img
+          src="icons/leftCaret.png"
+          className={Styles.LeftArrow}
+          onClick={previousPic}
+          alt="left arrow"
+        />
       )}
     </div>
   );
