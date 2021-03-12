@@ -35,7 +35,7 @@ class Related extends React.Component {
         this.setStyleIndex(styleIndex);
       });
     this.loadRelatedItems(productID);
-    this.setState({ outfitItems: JSON.parse(localStorage.getItem('outfitItems') || '[]') });
+    this.setState({ outfitItems: JSON.parse(sessionStorage.getItem('outfitItems') || '[]') });
   }
 
   componentDidUpdate(prevProps) {
@@ -101,12 +101,16 @@ class Related extends React.Component {
 
   addToOutfit() {
     const { currentProduct } = this.state;
-    const outfitItems = JSON.parse(localStorage.getItem('outfitItems'));
-    const ids = outfitItems.map((item) => item.id);
-    if (!ids.includes(currentProduct.id)) {
-      outfitItems.push(currentProduct);
+    let outfitItems = JSON.parse(sessionStorage.getItem('outfitItems'));
+    if (outfitItems) {
+      const ids = outfitItems.map((item) => item.id);
+      if (!ids.includes(currentProduct.id)) {
+        outfitItems.push(currentProduct);
+      }
+    } else {
+      outfitItems = [currentProduct];
     }
-    localStorage.setItem('outfitItems', JSON.stringify(outfitItems));
+    sessionStorage.setItem('outfitItems', JSON.stringify(outfitItems));
     this.setState({ outfitItems });
   }
 
@@ -116,7 +120,7 @@ class Related extends React.Component {
     if (index >= 0) {
       outfitItems.splice(index, 1);
       this.setState({ outfitItems });
-      localStorage.setItem('outfitItems', JSON.stringify(outfitItems));
+      sessionStorage.setItem('outfitItems', JSON.stringify(outfitItems));
     }
   }
 
