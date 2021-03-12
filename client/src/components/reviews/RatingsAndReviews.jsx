@@ -182,16 +182,6 @@ class RatingsAndReviews extends React.Component {
   }
 
   filterReviewsByRating(rating, displayStatus) {
-    // const { reviews } = this.state;
-    // const filteredReviews = reviews.map((review) => {
-    //   if (review.rating !== rating) {
-    //     review.display = !displayStatus;
-    //   }
-    //   return review;
-    // });
-    // this.setState({
-    //   reviews: filteredReviews,
-    // });
     const { reviews, filterTracker } = this.state;
     let filterValues = Object.values(filterTracker);
     if (filterValues.every((val) => val === true)) {
