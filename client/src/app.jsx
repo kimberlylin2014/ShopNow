@@ -1,4 +1,5 @@
 import React from 'react';
+import LazyLoad from 'react-lazyload';
 import axios from 'axios';
 import Overview from './components/overview/Overview.jsx';
 import RelatedItemsAndComparison from './components/related/RelatedItemsAndComparison.jsx';
@@ -62,7 +63,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { productID, styleIndex, averageRating, itemCount } = this.state;
+    const { productID, styleIndex, itemCount } = this.state;
     return (
       <div className={styles.app}>
         <Header itemCount={itemCount} />
