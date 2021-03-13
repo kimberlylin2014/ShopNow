@@ -27,7 +27,6 @@ class Overview extends React.Component {
       styles: [],
       originalPrice: '',
       salePrice: '',
-      photos: [],
       numReviews: 0,
       avgRating: 0,
     };
@@ -131,14 +130,14 @@ class Overview extends React.Component {
           styleId: this.state.styles[i].style_id,
           currentStyleObj: this.state.styles[i],
         });
-        this.getPrice(this.state.styleId);
-        this.getPhotos(this.state.styleId);
+        this.getPrice();
+        this.getPhotos();
       }
     }
   }
 
   updateStyleId(id, index) {
-    const promise = new Promise((resolve) => {
+    return new Promise((resolve) => {
       this.props.changeStyleIndex(index);
       this.setState({
         styleId: id,
@@ -157,7 +156,6 @@ class Overview extends React.Component {
   render() {
     const {
       styleId,
-      styleIndex,
       currentStyleObj,
       title,
       category,
@@ -167,7 +165,6 @@ class Overview extends React.Component {
       styles,
       originalPrice,
       salePrice,
-      photos,
       numReviews,
       avgRating,
     } = this.state;
@@ -176,7 +173,7 @@ class Overview extends React.Component {
     const hideRating = !numReviews ? Styles.hidden : '';
 
     return (
-      <div className={Styles.parent}>
+      <div>
         <div className={Styles.rowcontainer}>
           <DefaultImages photos={currentStyleObj.photos} />
 

@@ -10,10 +10,6 @@ a {
   font-size: .7rem;
 }
 
-.parent {
-  font-family: p22-underground, sans-serif;
-}
-
 .colcontainer {
   display: flex;
   flex-direction: column;
@@ -61,9 +57,3 @@ a {
     flex-direction: column;
   }
 }
-/*
-@media (min-width: 1200px) {
-  .rowcontainer {
-    width: 35%;
-  }
-} */
