@@ -19,7 +19,7 @@ This project modernizes a customer's retail web portal by designing a new user i
 
 
 ### Related Products
-
+[related products module]
 
 
 ### Ratings and Reviews
@@ -49,3 +49,6 @@ npm start
 3. Kimberly Lin (Developer)
 
 ### Resources
+
+
+[related products module]: RelatedItemsAndComparison.gif
