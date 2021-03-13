@@ -62,7 +62,7 @@ class Card extends React.Component {
     const { product, type } = this.props;
     if (type === 'add') {
       return (
-        <div className={styles.card}>
+        <div className={styles.addCard}>
           <div className={styles.addText}>Add to Outfit</div>
           <div className={styles.addIcon} onClick={() => this.onAddClick(product)}>
             <img src="icons/add.png" alt="add" />
