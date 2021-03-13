@@ -28,7 +28,39 @@ The related products section displays cards in a carousel. These cards represent
 The outfit items section also displays cards in a carousel, beginning with a special "Add to Outfit" card which the user can click in order to add the currently selected style of the current product to their outfit list. The outfit list persists after page reload. The user can remove an outfit item by clicking its close button.
 
 ### Ratings and Reviews
+#### Feature 1 : Post a New Review
+- Users are able to write a new review on the Product Details Page
+- The form validates user inputs and gives warning messages if there are invalid entries
+- If the review is validated, the review will be submitted succeasfully to the API and the total reviews and average rating will be updated on the Product Details Page.
+<img src="http://g.recordit.co/6Yp3tuhmVY.gif" width = '500px'/>
 
+#### Feature 2 : Load More Rand Sort Reviews
+- Users are able to click on 'More Reviews' button if there are more reviews to load. Once all reviews are loaded, 'More Reviews' button will no longer be available.
+- Users can sort the current list of reviews by 'relevance', 'helpful', and 'newest'
+<!-- <img src="http://g.recordit.co/ik5JeapTeY.gif" width = '500px'/> -->
+
+#### Feature 3: Vote Helpful Reviews
+-  Users are able to vote if a review is helpful or not.
+-  When the user has not voted for a review, the button background color will toggle during mouse hover.
+-  Once the user has voted, both buttons will become disabled. User will no longer be able to vote again for the same review.
+
+Feature 2        |  Feature 3
+:-------------------------:|:-------------------------:
+<img src="http://g.recordit.co/ik5JeapTeY.gif" width = '300px'/> |  <img src="http://g.recordit.co/4pF32kzgcz.gif" width = '200px'/>
+
+<!-- <img src="http://g.recordit.co/4pF32kzgcz.gif" width = '400px'/> -->
+
+#### Feature 4 : Filter Reviews By Star Ratings
+-  Users are able to filter the current list of displayed reviews by star ratings
+-  The filters can be toggled on and off with each click
+-  The filters are additive.  If the list has already been filtered for '5' star reviews, clicking on the “4 star” filter will update the reviews list to display '4' and '5' star reviews.
+<img src="http://g.recordit.co/wv7FqbuP25.gif" width = '500px'/>
+
+
+#### Feature 5: Application is Fully Responsive and Mobile Friendly
+Browser          |  Mobile
+:-------------------------:|:-------------------------:
+<img src="http://g.recordit.co/rzvrfRdkYu.gif" width = '300px' />  |  <img src="http://g.recordit.co/u3UeRiIDl9.gif" width = '200px' />
 
 
 ## Installation
@@ -51,7 +83,7 @@ npm start
 ### Team Members
 1. Carman Leung (Scrum Master, Developer)
 2. Maggie Aytac (Developer)
-3. Kimberly Lin (Developer)
+3. Kimberly Lin (Developer for Ratings and Reviews Module)
 
 ### Resources
 
