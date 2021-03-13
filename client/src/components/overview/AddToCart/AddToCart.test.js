@@ -23,29 +23,4 @@ describe('AddToCart', () => {
     expect(text.length).toBe(1);
   });
 
-  // it('should reset size selector after Add to Click is clicked', () => {
-  //   console.log(wrapper.debug());
-  //   wrapper.setState({needSize : false});
-  //   const button = wrapper.find('button');
-  //   button.simulate('click');
-  //   expect(wrapper.state('reset')).toEqual(true);
-  // })
-
-  // it('should update the item in cart when clicking Add to Cart', () => {
-  //   const wrapper = shallow(<AddToCart />);
-  //   const button = wrapper.find('button');
-
-  //   const shoppingBag = shallow(<Header />);
-  //   const count = shoppingBag.find('p');
-  //   console.log(count.debug());
-
-  //   button.simulate('click');
-
-  //   const newCount = shoppingBag.find('p');
-
-  //   console.log(shoppingBag.html());
-
-  //   expect(newCount.text).toBe(count.text);
-  // });
-
 });

@@ -6,9 +6,9 @@ const Indicators = ({ currIndex, updateIndex, photos }) => {
     <div
       className={currIndex === index ? Styles.indicator : Styles.notSelected}
       onClick={() => updateIndex(index)}
+      key={index}
     />
   );
-
 
   return photos.length > 0 && (
     <div className={Styles.Indicators}>

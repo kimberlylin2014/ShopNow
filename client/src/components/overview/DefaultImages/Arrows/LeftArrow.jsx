@@ -1,7 +1,7 @@
 import React from 'react';
 import Styles from './Arrows.css';
 
-const LeftArrow = ({ length, currIndex, updateIndex }) => {
+const LeftArrow = ({ currIndex, updateIndex }) => {
   const previousPic = () => {
     updateIndex(currIndex - 1);
   };

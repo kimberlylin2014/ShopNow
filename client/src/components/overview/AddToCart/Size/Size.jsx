@@ -1,6 +1,5 @@
 import React from 'react';
 import Styles from './Size.css';
-// import PropTypes from 'prop-types';
 
 class Size extends React.Component {
   constructor(props) {
@@ -13,6 +12,7 @@ class Size extends React.Component {
 
   handleOnChange(e) {
     this.props.changeSKU(e.target.value);
+    this.props.changeReset();
     this.setState({
       SKU: e.target.getAttribute('SKU'),
     });
@@ -21,8 +21,8 @@ class Size extends React.Component {
   render() {
     const { skus, reset } = this.props;
     const { SKU } = this.state;
-
     const sizes = Object.entries(skus);
+
     const displaySize = sizes.map((size, index) => {
       if (size[1].quantity > 0) {
         const selected = size[0] === SKU ? Styles.selected : '';
@@ -39,9 +39,20 @@ class Size extends React.Component {
           </button>
         );
       }
+
+      if (!size[1].quantity) {
+        return (
+          <button
+            SKU={null}
+            value={null}
+            className={Styles.OOS}
+          >
+            N/A
+          </button>
+        );
+      }
       return (
         <button
-          key={index}
           SKU={size[0]}
           value={size[0]}
           className={Styles.OOS}

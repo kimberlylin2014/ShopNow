@@ -14,25 +14,26 @@ class AddToCart extends React.Component {
       reset: false,
     };
     this.changeSKU = this.changeSKU.bind(this);
-    this.changeQuantity = this.changeQuantity.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.changeReset = this.changeReset.bind(this);
   }
 
   changeSKU(currentSKU) {
     this.setState({ currentSKU, needSize: false });
   }
 
-  changeQuantity(quantitySelected) {
-    this.setState({ quantitySelected });
+  changeReset() {
+    this.setState({ reset: false });
   }
 
   addToCart() {
-    if (this.state.needSize) {
+    const { needSize, currentSKU } = this.state;
+    if (needSize) {
       this.setState({
         selectSizeMessage: true,
       });
     } else {
-      this.props.onAddToCart(this.state.currentSKU);
+      this.props.onAddToCart(currentSKU);
       this.setState({
         needSize: true,
         selectSizeMessage: false,
@@ -52,6 +53,7 @@ class AddToCart extends React.Component {
             ? currentStyleObj.skus : ''}
           changeSKU={this.changeSKU}
           reset={reset}
+          changeReset={this.changeReset}
         />
 
         <p
