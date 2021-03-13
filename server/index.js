@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const compression = require('express');
+const compression = require('compression');
 const productRouter = require('./router/productRouter.js');
 const reviewRouter = require('./router/reviewsRouter.js');
 const cartRouter = require('./router/cartRouter.js');
