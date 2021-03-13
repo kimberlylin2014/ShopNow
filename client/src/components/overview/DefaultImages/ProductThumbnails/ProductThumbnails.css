@@ -12,6 +12,7 @@
   height: 50px;
   margin: 5px;;
   cursor: pointer;
+  object-fit: center;
 }
 
 #Selected {

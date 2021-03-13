@@ -1,9 +1,12 @@
 const express = require('express');
 const path = require('path');
+const compression = require('express');
 const productRouter = require('./router/productRouter.js');
 const reviewRouter = require('./router/reviewsRouter.js');
 const cartRouter = require('./router/cartRouter.js');
+
 const app = express();
+app.use(compression());
 
 app.use(express.json());
 
