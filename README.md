@@ -19,7 +19,7 @@ This project modernizes a customer's retail web portal by designing a new user i
 
 
 ### Related Products
-[related products module]: RelatedItemsAndComparison.gif
+![related module][related products module]
 
 This module consists of a related products section and an outfit items section.
 
@@ -69,11 +69,11 @@ Browser          |  Mobile
 ```bash
 npm install
 ```
-3. Run
+3. Run in one terminal
 ```bash
 npm run react-dev
 ```
-4. Run
+4. Run in another terminal
 ```bash
 npm start
 ```
@@ -88,3 +88,5 @@ npm start
 ### Resources
 
 
+
+[related products module]: RelatedItemsAndComparison.gif
