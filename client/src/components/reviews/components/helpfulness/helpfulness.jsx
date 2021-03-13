@@ -14,7 +14,7 @@ class Helpfulness extends React.Component {
   }
 
   handleHelpfulClick() {
-    const {review : {review_id}, updateHelpfulByReviewID } = this.props;
+    const { review: { review_id }, updateHelpfulByReviewID } = this.props;
     this.setState({
       disabledYes: true,
       disabledNo: true,
@@ -32,7 +32,9 @@ class Helpfulness extends React.Component {
   }
 
   render() {
-    const { disabledYes, disabledNo, notHelpfulCount } = this.state;
+    const {
+      disabledYes, disabledNo, notHelpfulCount,
+    } = this.state;
     const { review } = this.props;
     return (
       <p className={styles.helpful}>
@@ -43,21 +45,26 @@ class Helpfulness extends React.Component {
           onClick={this.handleNotHelpfulClick}
           disabled={disabledNo}
         >
-         No
+          No
         </button>
         <span>
-          ({notHelpfulCount})
+          (
+          {notHelpfulCount}
+          )
         </span>
         <button
           type="button"
           className={styles.helpfulButton}
           onClick={this.handleHelpfulClick}
           disabled={disabledYes}
+          // style={{ backgroundColor, color: textColor, cursor }}
         >
           Yes
         </button>
         <span>
-          ({review.helpfulness})
+          (
+          {review.helpfulness}
+          )
         </span>
       </p>
     );

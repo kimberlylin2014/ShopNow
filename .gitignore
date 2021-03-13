@@ -3,4 +3,4 @@ coverage
 config.js
 bundle.js
 *.pem
-
+.DS_*

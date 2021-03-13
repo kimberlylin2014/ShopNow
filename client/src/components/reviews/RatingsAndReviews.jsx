@@ -4,7 +4,7 @@ import axios from 'axios';
 import styles from './RatingsAndReviews.css';
 import ContainerBreakdown from './components/containerBreakdown/containerBreakdown.jsx';
 import ContainerList from './components/containerList/containerList.jsx';
-import { getTotalReviews, getNumOfRecommendation, determineNumReviewsToLoad, calculateAverageRating } from './utils/rating.js';
+import { getTotalReviews, getNumOfRecommendation, determineNumReviewsToLoad, calculateAverageRating} from './utils/rating.js';
 // 14040 (little reviwes)
 // 14937
 //  14807 (NO REVIEWS)
@@ -12,13 +12,15 @@ import { getTotalReviews, getNumOfRecommendation, determineNumReviewsToLoad, cal
 // const productID = '14937';
 const productID = '14807';
 
+const sortBy = 'relevance';
+
 class RatingsAndReviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       reviews: [],
       metaReview: null,
-      sortBy: 'relevance',
+      sortBy: sortBy,
       productInfo: null,
       totalReviews: 0,
       numOfRecommendation: null,
@@ -54,7 +56,7 @@ class RatingsAndReviews extends React.Component {
         this.setState({
           reviews: [],
           metaReview: null,
-          sortBy: 'relevance',
+          sortBy: sortBy,
           productInfo: null,
           totalReviews: 0,
           numOfRecommendation: null,
@@ -182,20 +184,9 @@ class RatingsAndReviews extends React.Component {
   }
 
   filterReviewsByRating(rating, displayStatus) {
-    // const { reviews } = this.state;
-    // const filteredReviews = reviews.map((review) => {
-    //   if (review.rating !== rating) {
-    //     review.display = !displayStatus;
-    //   }
-    //   return review;
-    // });
-    // this.setState({
-    //   reviews: filteredReviews,
-    // });
     const { reviews, filterTracker } = this.state;
     let filterValues = Object.values(filterTracker);
     if (filterValues.every((val) => val === true)) {
-      console.log('first');
       for (let prop in filterTracker) {
         if (parseInt(prop) !== rating) {
           filterTracker[prop] = false;
@@ -203,25 +194,23 @@ class RatingsAndReviews extends React.Component {
       }
     } else {
       filterTracker[rating] = !filterTracker[rating];
-      console.log(filterTracker);
     }
     filterValues = Object.values(filterTracker);
     if (filterValues.every((val) => val === false)) {
-      console.log('no filters on')
       for (let prop in filterTracker) {
           filterTracker[prop] = true;
       }
     }
 
-    let filteredReviews = reviews.map((review) => {
-      review.display = filterTracker[review.rating];
-      return review;
+    let filteredReviews = reviews.map((item) => {
+      let reviewData = {...item}
+      reviewData.display = filterTracker[reviewData.rating];
+      return reviewData;
     });
 
     this.setState({
       reviews: filteredReviews,
-    })
-
+    });
   }
 
   render() {
@@ -233,10 +222,11 @@ class RatingsAndReviews extends React.Component {
       numOfRecommendation,
       displayMoreReviewsButton,
       averageRating,
+      sortBy
     } = this.state;
     return (
       <section className={styles.ratingsAndReviews}>
-        <h2>Ratings & Reviews</h2>
+        <h2 className={styles.sectionTitle}>Ratings & Reviews</h2>
         <div className={styles.moduleColumns}>
           <div className={styles.containerBreakdown}>
             <ContainerBreakdown
@@ -258,6 +248,7 @@ class RatingsAndReviews extends React.Component {
               toggleSortBy={this.toggleSortBy}
               displayMoreReviewsButton={displayMoreReviewsButton}
               loadMoreReviews={this.loadMoreReviews}
+              sortBy={sortBy}
             />
           </div>
         </div>

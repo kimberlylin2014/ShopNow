@@ -1,6 +1,17 @@
 .reviewsList {
   margin-top: 40px;
-  max-height: 90vh;
-  overflow: scroll;
-  padding: 0 30px 0 0;
+  max-height: 85vh;
+  overflow-y: scroll;
+}
+
+
+.reviewsList::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 15px;
+}
+
+.reviewsList::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #e4d5c3;
+  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
 }
