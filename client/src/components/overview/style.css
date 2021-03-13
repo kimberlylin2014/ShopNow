@@ -27,7 +27,7 @@ a {
 
 .Price {
   height: 90px;
-  font-size: 1.7rem;
+  font-size: 1.3rem;
 }
 
 @media (max-width: 320px) {
