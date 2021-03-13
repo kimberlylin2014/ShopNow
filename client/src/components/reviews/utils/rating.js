@@ -124,17 +124,7 @@ export function determineNumReviewsToLoad(totalReviews, reviewCount) {
   return result;
 }
 
-
-export function handleFilterTrackerIfAllValuesTrue() {
-
-}
-
 export function updateFilterTracker(filterTracker, rating, status) {
-  // for (let prop in filterTracker) {
-  //   if (parseInt(prop) !== rating) {
-  //     filterTracker[prop] = false;
-  //   }
-  // }
   const filterData = { ...filterTracker};
   if (status) {
     const keys = Object.keys(filterTracker);
