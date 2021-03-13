@@ -62,7 +62,7 @@ class Comparison extends React.Component {
           </div>
           <div className={styles.table}>
             {Object.keys(features).map((key) => (
-              <div className={styles.featureRow}>
+              <div key={key} className={styles.featureRow}>
                 <div className={styles.currentColumn}>{features[key].currentVal}</div>
                 <div className={styles.featureColumn}>{key}</div>
                 <div className={styles.selectedColumn}>{features[key].selectedVal}</div>

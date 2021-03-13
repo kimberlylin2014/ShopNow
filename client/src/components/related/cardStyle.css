@@ -1,4 +1,4 @@
-.card {
+.card, .addCard {
   display: inline-grid;
   grid-template-rows: 2fr 1fr;
   background-color: #EAEAEA;
@@ -8,6 +8,13 @@
   position: relative;
   flex-shrink: 0;
   cursor: pointer;
+  border: 1px solid transparent;
+  transition: border 0.2s ease-in-out;
+}
+
+.card:hover {
+  border: 1px solid #373833;
+  /* box-shadow: inset 0 0 0 25px rgba(55, 56, 51, 0.5) ; */
 }
 
 /* CARD TOP */
