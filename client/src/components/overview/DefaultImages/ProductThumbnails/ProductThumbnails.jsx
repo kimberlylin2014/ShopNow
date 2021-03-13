@@ -5,15 +5,17 @@ const ProductThumbnails = ({ productThumbnails, currIndex, updateIndex }) => {
   const [tracker, setTracker] = useState(0);
   const { length } = productThumbnails;
 
-  const createThumbnail = (tracker) => {
+  const createThumbnail = (index) => {
     if (tracker >= 0 && tracker < length) {
       return (
         <img
-          src={productThumbnails[tracker].thumbnail_url ? productThumbnails[tracker].thumbnail_url : 'icons/no-image.png'}
+          src={productThumbnails[index].thumbnail_url
+            ? productThumbnails[index].thumbnail_url
+            : 'icons/no-image.png'}
           alt="product thumbnail"
           className={Styles.productThumbnail}
-          id={currIndex === tracker ? Styles.Selected : ''}
-          onClick={() => updateIndex(tracker)}
+          id={currIndex === index ? Styles.Selected : ''}
+          onClick={() => updateIndex(index)}
         />
       );
     }

@@ -52,10 +52,6 @@
   align-items: center;
 }
 
-.onZoom {
-  transform: scale(2.5);
-}
-
 .close {
   width: 25px;
   height: 25px;

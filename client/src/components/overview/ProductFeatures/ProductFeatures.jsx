@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Feature from './Feature/Feature.jsx';
 import Styles from './ProductFeatures.css';
 
@@ -11,9 +10,5 @@ function ProductFeatures({ features }) {
     </ul>
   );
 }
-
-// ProductFeatures.propTypes = {
-//  features: PropTypes.object.isRequired,
-// };
 
 export default ProductFeatures;

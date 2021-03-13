@@ -29,7 +29,11 @@ class ZoomImage extends Component {
         style={this.state}
         id={Styles.ZoomImageFigure}
       >
-        <img src={this.props.src} id={Styles.ZoomImage}/>
+        <img
+          src={this.props.src}
+          id={Styles.ZoomImage}
+          alt="Zoom in product pic"
+        />
       </figure>
     );
   }

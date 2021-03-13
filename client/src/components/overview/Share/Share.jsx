@@ -5,16 +5,12 @@ import Twitter from './Twitter/Twitter.jsx';
 import Pinterest from './Pinterest/Pinterest.jsx';
 import Styles from './Share.css';
 
-const Share = ({ product_id }) => (
+const Share = () => (
   <div className={Styles.Share}>
     <Facebook />
     <Twitter />
     <Pinterest />
   </div>
 );
-
-// Share.propTypes = {
-//   product_id: PropTypes.string.isRequired,
-// };
 
 export default Share;

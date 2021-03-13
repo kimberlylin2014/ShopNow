@@ -27,12 +27,13 @@ class AddToCart extends React.Component {
   }
 
   addToCart() {
-    if (this.state.needSize) {
+    const { needSize, currentSKU } = this.state;
+    if (needSize) {
       this.setState({
         selectSizeMessage: true,
       });
     } else {
-      this.props.onAddToCart(this.state.currentSKU);
+      this.props.onAddToCart(currentSKU);
       this.setState({
         needSize: true,
         selectSizeMessage: false,

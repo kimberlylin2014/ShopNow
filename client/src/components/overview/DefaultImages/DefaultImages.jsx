@@ -53,8 +53,4 @@ const DefaultImages = ({ photos }) => {
   return <div />;
 };
 
-// DefaultImages.propTypes = {
-//   photos: PropTypes.string.isRequired,
-// };
-
 export default DefaultImages;
