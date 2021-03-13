@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Thumbnails from './Thumbnails/Thumbnails.jsx';
 import Styles from './StyleSelector.css';
 
@@ -31,8 +30,5 @@ class StyleSelector extends React.Component {
   }
 }
 
-// StyleSelector.propTypes = {
-//   styles: PropTypes.string.isRequired,
-// };
 
 export default StyleSelector;

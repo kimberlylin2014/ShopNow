@@ -14,16 +14,16 @@ class AddToCart extends React.Component {
       reset: false,
     };
     this.changeSKU = this.changeSKU.bind(this);
-    this.changeQuantity = this.changeQuantity.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.changeReset = this.changeReset.bind(this);
   }
 
   changeSKU(currentSKU) {
     this.setState({ currentSKU, needSize: false });
   }
 
-  changeQuantity(quantitySelected) {
-    this.setState({ quantitySelected });
+  changeReset() {
+    this.setState({ reset: false });
   }
 
   addToCart() {
@@ -52,6 +52,7 @@ class AddToCart extends React.Component {
             ? currentStyleObj.skus : ''}
           changeSKU={this.changeSKU}
           reset={reset}
+          changeReset={this.changeReset}
         />
 
         <p

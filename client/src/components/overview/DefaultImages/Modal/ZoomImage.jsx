@@ -24,7 +24,11 @@ class ZoomImage extends Component {
 
   render() {
     return (
-      <figure onMouseMove={this.handleMouseMove} style={this.state} id={Styles.ZoomImageFigure}>
+      <figure
+        onMouseMove={this.handleMouseMove}
+        style={this.state}
+        id={Styles.ZoomImageFigure}
+      >
         <img src={this.props.src} id={Styles.ZoomImage}/>
       </figure>
     );
