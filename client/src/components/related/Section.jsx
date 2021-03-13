@@ -25,7 +25,7 @@ const Section = (props) => {
     cards = outfitItems.map((product) => (
       <Card key={product.id} product={product} type="outfit" removeFromOutfit={removeFromOutfit} changeCurrentProduct={changeCurrentProduct} />
     ));
-    cards.unshift(<Card product={null} type="add" addToOutfit={addToOutfit} />);
+    cards.unshift(<Card key="add" product={null} type="add" addToOutfit={addToOutfit} />);
   }
 
   const container = useRef(container);

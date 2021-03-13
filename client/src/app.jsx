@@ -35,7 +35,6 @@ class App extends React.Component {
 
   changeCurrentProduct(productID) {
     this.setState({ productID });
-    this.setState({ styleIndex: 0 });
   }
 
   changeStyleIndex(styleIndex) {
