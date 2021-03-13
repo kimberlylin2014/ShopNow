@@ -121,6 +121,28 @@ export function determineNumReviewsToLoad(totalReviews, reviewCount) {
       result.reviewCount += 2;
     }
   }
-
   return result;
+}
+
+
+export function handleFilterTrackerIfAllValuesTrue() {
+
+}
+
+export function updateFilterTracker(filterTracker, rating, status) {
+  // for (let prop in filterTracker) {
+  //   if (parseInt(prop) !== rating) {
+  //     filterTracker[prop] = false;
+  //   }
+  // }
+  const filterData = { ...filterTracker};
+  if (status) {
+    const keys = Object.keys(filterTracker);
+    for (let i = 0; i < keys.length; i++) {
+      if (Number(keys[i]) !== rating) {
+        filterData[keys[i]] = false;
+      }
+    }
+  }
+  return filterData;
 }

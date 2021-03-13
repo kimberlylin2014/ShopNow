@@ -4,7 +4,9 @@ import axios from 'axios';
 import styles from './RatingsAndReviews.css';
 import ContainerBreakdown from './components/containerBreakdown/containerBreakdown.jsx';
 import ContainerList from './components/containerList/containerList.jsx';
-import { getTotalReviews, getNumOfRecommendation, determineNumReviewsToLoad, calculateAverageRating } from './utils/rating.js';
+import { getTotalReviews, getNumOfRecommendation, determineNumReviewsToLoad, calculateAverageRating, handleFilterTrackerIfAllValuesTrue,
+  updateFilterTracker
+} from './utils/rating.js';
 // 14040 (little reviwes)
 // 14937
 //  14807 (NO REVIEWS)
