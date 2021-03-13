@@ -171,7 +171,7 @@ class Overview extends React.Component {
 
     const { onAddToCart } = this.props;
     const hideRating = !numReviews ? Styles.hidden : '';
-
+    console.log(styleId);
     return (
       <div>
         <div className={Styles.rowcontainer}>

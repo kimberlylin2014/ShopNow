@@ -6,7 +6,7 @@ import RightArrow from './Arrows/RightArrow.jsx';
 import ProductThumbnails from './ProductThumbnails/ProductThumbnails.jsx';
 import Modal from './Modal/Modal.jsx';
 
-const DefaultImages = ({ photos }) => {
+const DefaultImages = ({ photos, defaultImage }) => {
   const [index, setIndex] = useState(0);
   const [modal, setModal] = useState(false);
 
