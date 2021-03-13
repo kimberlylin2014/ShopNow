@@ -9,7 +9,7 @@ const ProductThumbnails = ({ productThumbnails, currIndex, updateIndex }) => {
     if (tracker >= 0 && tracker < length) {
       return (
         <img
-          src={productThumbnails[index].thumbnail_url
+          src={productThumbnails[index] && productThumbnails[index].thumbnail_url
             ? productThumbnails[index].thumbnail_url
             : 'icons/no-image.png'}
           alt="product thumbnail"

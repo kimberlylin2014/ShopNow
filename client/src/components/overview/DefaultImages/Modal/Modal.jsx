@@ -25,7 +25,10 @@ const Modal = ({
     : (
       <img
         className={Styles.image}
-        src={photos[currIndex].url}
+        src={photos[currIndex]
+          && photos[currIndex].url
+          ? photos[currIndex].url
+          : 'icons/no-image.png'}
         alt="expandedDefaultImage"
         onClick={() => { setOnZoom(!onZoom); }}
       />

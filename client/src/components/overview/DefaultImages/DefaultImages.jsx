@@ -23,7 +23,7 @@ const DefaultImages = ({ photos }) => {
         <div className={Styles.imagesAndThumbnails}>
           <img
             className={Styles.images}
-            src={photos[index].url ? photos[index].url : 'icons/no-image.png'}
+            src={ photos[index] && photos[index].url ? photos[index].url : 'icons/no-image.png'}
             alt="defaultImage"
             onClick={() => { setModal(true); }}
           />

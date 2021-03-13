@@ -19,10 +19,10 @@ class Size extends React.Component {
   }
 
   render() {
-    const { skus,reset } = this.props;
+    const { skus, reset } = this.props;
     const { SKU } = this.state;
     const sizes = Object.entries(skus);
-    
+
     const displaySize = sizes.map((size, index) => {
       if (size[1].quantity > 0) {
         const selected = size[0] === SKU ? Styles.selected : '';
@@ -36,6 +36,18 @@ class Size extends React.Component {
             id={reset ? '' : selected}
           >
             {size[1].size}
+          </button>
+        );
+      }
+
+      if (!size[1].quantity) {
+        return (
+          <button
+            SKU={null}
+            value={null}
+            className={Styles.OOS}
+          >
+            N/A
           </button>
         );
       }
