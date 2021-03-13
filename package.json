@@ -43,6 +43,7 @@
   "dependencies": {
     "@babel/plugin-syntax-jsx": "^7.12.13",
     "axios": "^0.21.1",
+    "compression": "^1.7.4",
     "css-loader": "^5.1.0",
     "express": "^4.17.1",
     "prop-types": "^15.7.2",
