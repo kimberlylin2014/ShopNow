@@ -19,8 +19,13 @@ This project modernizes a customer's retail web portal by designing a new user i
 
 
 ### Related Products
+[related products module]: RelatedItemsAndComparison.gif
 
+This module consists of a related products section and an outfit items section.
 
+The related products section displays cards in a carousel. These cards represent items related to the product currently displayed in the above Overview module. The user can click the star on one of these cards in order to compare features of the current product and the one selected. The comparison modal can be closed using the Esc key or simply by clicking outside of it.
+
+The outfit items section also displays cards in a carousel, beginning with a special "Add to Outfit" card which the user can click in order to add the currently selected style of the current product to their outfit list. The outfit list persists after page reload. The user can remove an outfit item by clicking its close button.
 
 ### Ratings and Reviews
 
@@ -49,3 +54,5 @@ npm start
 3. Kimberly Lin (Developer)
 
 ### Resources
+
+
