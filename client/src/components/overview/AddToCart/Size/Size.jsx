@@ -40,7 +40,7 @@ class Size extends React.Component {
         );
       }
 
-      if (!size[1].quantity) {
+      if (size[1].quantity === null) {
         return (
           <button
             SKU={null}
