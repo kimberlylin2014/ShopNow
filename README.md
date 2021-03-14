@@ -7,7 +7,7 @@ This project modernizes a customer's retail web portal by designing a new user i
 ## Table of Contents
 - Description
    - Overview
-   - Related Products
+   - Related Items And Comparison
    - Ratings and Reviews
 - Installation
 - Usage
@@ -18,8 +18,8 @@ This project modernizes a customer's retail web portal by designing a new user i
 
 
 
-### Related Products
-![related module][related products module]
+### Related Items And Comparison
+![related module][related module]
 
 This module consists of a related products section and an outfit items section.
 
@@ -89,4 +89,4 @@ npm start
 
 
 
-[related products module]: RelatedItemsAndComparison.gif
+[related module]: RelatedItemsAndComparison.gif
