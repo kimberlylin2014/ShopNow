@@ -8,7 +8,8 @@ const ReviewsList = ({ reviews, updateHelpfulByReviewID }) => {
     <ReviewTile
       key={review.review_id}
       review={review}
-      updateHelpfulByReviewID={updateHelpfulByReviewID} />
+      updateHelpfulByReviewID={updateHelpfulByReviewID}
+    />
   ));
   return (
     <div className={styles.reviewsList}>
