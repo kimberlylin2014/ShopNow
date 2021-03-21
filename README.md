@@ -53,10 +53,9 @@ The outfit items section also displays cards in a carousel, beginning with a spe
 - If the review is validated, the review will be submitted succeasfully to the API and the total reviews and average rating will be updated on the Product Details Page.
 <img src="http://g.recordit.co/6Yp3tuhmVY.gif" width = '500px'/>
 
-#### Feature 2 : Load More Rand Sort Reviews
+#### Feature 2 : Load More and Sort Reviews
 - Users are able to click on 'More Reviews' button if there are more reviews to load. Once all reviews are loaded, 'More Reviews' button will no longer be available.
 - Users can sort the current list of reviews by 'relevance', 'helpful', and 'newest'
-<!-- <img src="http://g.recordit.co/ik5JeapTeY.gif" width = '500px'/> -->
 
 #### Feature 3: Vote Helpful Reviews
 -  Users are able to vote if a review is helpful or not.
@@ -105,7 +104,7 @@ npm start
 3. Kimberly Lin (Developer for Ratings and Reviews Module)
 
 ### Resources
-
+1. Icons made by Freepik from (www.flaticon.com)
 
 
 [related module]: RelatedItemsAndComparison.gif
