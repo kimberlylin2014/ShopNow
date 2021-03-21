@@ -5,10 +5,6 @@ import Stars from '../../../Stars.jsx';
 import { calculateAverageRating } from '../../utils/rating.js';
 
 const BreakdownHeader = ({metaReview, totalReviews, averageRating}) => {
-  // let rating = null;
-  // if (metaReview) {
-  //   rating = calculateAverageRating(metaReview.ratings);
-  // }
   return (
     <div className={styles.breakdownHeader}>
       {totalReviews ? (<AverageRating rating={averageRating} />) : null}
