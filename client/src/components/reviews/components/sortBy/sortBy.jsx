@@ -5,7 +5,7 @@ class SortBy extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sortByValue: props.sortBy,
+      sortByValue: 'relevance',
     };
     this.handleSelect = this.handleSelect.bind(this);
   }
