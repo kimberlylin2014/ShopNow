@@ -1,4 +1,4 @@
-# Holistic Hawks
+# ShopNow
 
 ## Overview
 This project modernizes a customer's retail web portal by designing a new user interface that resembles top of the line retail websites.
