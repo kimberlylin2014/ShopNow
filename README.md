@@ -46,7 +46,7 @@ The related products section displays cards in a carousel. These cards represent
 
 The outfit items section also displays cards in a carousel, beginning with a special "Add to Outfit" card which the user can click in order to add the currently selected style of the current product to their outfit list. The outfit list persists after page reload. The user can remove an outfit item by clicking its close button.
 
-### Reviews
+### Ratings and Reviews
 #### Feature 1 : Post a New Review
 - Users are able to write a new review on the Product Details Page
 - The form validates user inputs and gives warning messages if there are invalid entries
