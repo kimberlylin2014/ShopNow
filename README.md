@@ -16,10 +16,9 @@ This project modernizes a customer's retail web portal by designing a new user i
 ### Overview
 This module provides an overview of the product, including product title, price, description, features, styles, sizes, and quantity that render dynamically based on the selected product.
 
-Browser
-<img src="https://github.com/cleung0112/ReadMeGifhy/blob/master/aLvVxu5ZQm.gif?raw=true" width = '600px'/>
-Mobile
-<img src="http://g.recordit.co/RLZ8Ak894L.gif" width = '300px' />
+- Browser
+<img src="https://github.com/cleung0112/ReadMeGifhy/blob/master/aLvVxu5ZQm.gif?raw=true" width = '500px'/>
+
 
 #### Feature : Expanded View with Zoom and Pan
 - Click on an image brings user to the expanded view
