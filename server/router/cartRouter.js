@@ -1,8 +1,7 @@
-var express = require('express');
-var router = express.Router();
-const cartController = require('../controllers/cartController.js');
+const express = require('express');
 
-// base endpoint: 'api/cart'
+const router = express.Router();
+const cartController = require('../controllers/cartController.js');
 
 router.get('/', cartController.getCart);
 

@@ -1,3 +1,12 @@
-const KEY = require('../../config.js');
+const { API_KEY } = require('../../config.js');
+const { API_URL } = require('../../config.js');
 
-module.exports.KEY = KEY;
+const authorizationHeader = {
+  headers: { Authorization: `${API_KEY}` },
+};
+
+module.exports = {
+  API_KEY,
+  API_URL,
+  authorizationHeader,
+};

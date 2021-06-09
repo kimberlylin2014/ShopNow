@@ -1,64 +1,48 @@
-const KEY = require('./index.js').KEY;
 const axios = require('axios');
+const { API_URL, authorizationHeader } = require('./index.js');
 
 const getAllProducts = (req, res) => {
-  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products', {
-    headers:
-      { 'Authorization' : `${KEY}` }
-  }).then((resp) => {
-    res.send(resp.data);
-  }).catch((err) => {
-    console.log('ERR', err);
-  })
+  axios.get(`${API_URL}/products`, authorizationHeader)
+    .then((resp) => {
+      res.send(resp.data);
+    }).catch(() => {
+      res.status(400).send('Can not get all products.');
+    });
 };
 
-// getOneProduct func
 const getOneProduct = (req, res) => {
-  var id = req.params.product_id;
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${id}`, {
-    headers:
-      { 'Authorization' : `${KEY}` }
-  }).then((resp) => {
-    res.send(resp.data);
-  }).catch((err) => {
-    console.log('Err', err);
-    res.status(400).send(err)
-  })
-}
-
-
-
-// getProductStyles funcs
-const getProductStyles = (req, res) => {
-  let id = req.params.product_id;
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${id}/styles`, {
-    headers:
-      { 'Authorization' : `${KEY}` }
-  }).then((resp) => {
-    res.send(resp.data);
-  }).catch((err) => {
-    console.log('ERR', err);
-  })
-}
-
-
-// getRelatedProducts funcs
-const getRelatedProducts = (req, res) => {
-  let id = req.params.product_id;
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${id}/related`, {
-    headers:
-      { 'Authorization' : `${KEY}` }
-  }).then((resp) => {
-    res.send(resp.data);
-  }).catch((err) => {
-    console.log('ERR', err);
-  })
+  const id = req.params.product_id;
+  axios.get(`${API_URL}/products/${id}`, authorizationHeader)
+    .then((resp) => {
+      res.send(resp.data);
+    }).catch(() => {
+      res.status(400).send('Can not get product.');
+    });
 };
 
+const getProductStyles = (req, res) => {
+  const id = req.params.product_id;
+  axios.get(`${API_URL}/products/${id}/styles`, authorizationHeader)
+    .then((resp) => {
+      res.send(resp.data);
+    }).catch(() => {
+      res.status(400).send('Can not get product styles.');
+    });
+};
+
+const getRelatedProducts = (req, res) => {
+  const id = req.params.product_id;
+  axios.get(`${API_URL}/products/${id}/related`, authorizationHeader)
+    .then((resp) => {
+      res.send(resp.data);
+    }).catch(() => {
+      res.status(400).send('Can not get related products.');
+    });
+};
 
 module.exports = {
   getAllProducts,
   getOneProduct,
   getProductStyles,
-  getRelatedProducts
+  getRelatedProducts,
 };
