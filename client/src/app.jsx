@@ -14,7 +14,7 @@ class App extends React.Component {
     this.state = {
       productID: 13023,
       styleIndex: 0,
-      averageRating: 3.5,
+      averageRating: 0,
       itemCount: 0,
     };
     this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
@@ -29,8 +29,25 @@ class App extends React.Component {
     // this.setState({ productID });
   }
 
-  changeAverageRating(averageRating) {
-    this.setState({ averageRating });
+  onAddToCart(skuId) {
+    axios.post('/api/cart', {
+      sku_id: skuId,
+    }).then(() => {
+      this.getItemInCart();
+    }).catch((e) => console.log('Error', e));
+  }
+
+  getItemInCart() {
+    axios.get('api/cart').then((data) => {
+      let totalItem = 0;
+      const dataValues = Object.values(data.data);
+      for (let i = 0; i < dataValues.length; i += 1) {
+        totalItem += Number(dataValues[i].count);
+      }
+      this.setState({
+        itemCount: totalItem,
+      });
+    });
   }
 
   changeCurrentProduct(productID) {
@@ -41,24 +58,8 @@ class App extends React.Component {
     this.setState({ styleIndex });
   }
 
-  getItemInCart() {
-    axios.get('api/cart').then((data) => {
-      let totalItem = 0;
-      for (const keys in data.data) {
-        totalItem += Number(data.data[keys].count);
-      }
-      this.setState({
-        itemCount: totalItem,
-      });
-    });
-  }
-
-  onAddToCart(skuId) {
-    axios.post('/api/cart', {
-      sku_id: skuId,
-    }).then(() => {
-      this.getItemInCart();
-    }).catch((e) => console.log('Error', e));
+  changeAverageRating(averageRating) {
+    this.setState({ averageRating });
   }
 
   render() {
@@ -72,17 +73,6 @@ class App extends React.Component {
           onAddToCart={this.onAddToCart}
         />
 
-        {/* social media icons! */}
-        {/* <a href="https://www.facebook.com">
-          <ion-icon name="logo-facebook" />
-        </a>
-        <a href="https://www.twitter.com">
-          <ion-icon name="logo-twitter" />
-        </a>
-        <a href="https://www.pinterest.com">
-          <ion-icon name="logo-pinterest" />
-        </a> */}
-
         <div className={styles.section}>
           <RelatedItemsAndComparison
             productID={productID}
@@ -90,6 +80,7 @@ class App extends React.Component {
             changeCurrentProduct={this.changeCurrentProduct}
           />
         </div>
+
         <Reviews
           productID={productID}
           changeAverageRating={this.changeAverageRating}

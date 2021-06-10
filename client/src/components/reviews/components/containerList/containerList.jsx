@@ -68,6 +68,7 @@ class ContainerList extends React.Component {
             handleOpenModalButtonClick={this.handleOpenModalButtonClick}
           />
           <MoreReviewsButton
+            metaReview={metaReview}
             displayMoreReviewsButton={displayMoreReviewsButton}
             loadMoreReviews={loadMoreReviews}
           />

@@ -8,8 +8,8 @@ class MoreReviewsButton extends React.Component {
   }
 
   handleMoreReviewClick() {
-    const {loadMoreReviews} = this.props;
-    loadMoreReviews();
+    const { loadMoreReviews, metaReview } = this.props;
+    loadMoreReviews(Number(metaReview.product_id));
   }
 
   render() {

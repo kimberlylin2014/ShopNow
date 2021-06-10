@@ -4,10 +4,7 @@ import axios from 'axios';
 import styles from './RatingsAndReviews.css';
 import ContainerBreakdown from './components/containerBreakdown/containerBreakdown.jsx';
 import ContainerList from './components/containerList/containerList.jsx';
-import { getTotalReviews, getNumOfRecommendation, determineNumReviewsToLoad, calculateAverageRating} from './utils/rating.js';
-
-// const productID = '14807';
-const sortBy = 'relevance';
+import { getTotalReviews, getNumOfRecommendation, determineNumReviewsToLoad, calculateAverageRating } from './utils/rating.js';
 
 class RatingsAndReviews extends React.Component {
   constructor(props) {
@@ -15,7 +12,7 @@ class RatingsAndReviews extends React.Component {
     this.state = {
       reviews: [],
       metaReview: null,
-      sortBy: sortBy,
+      sortBy: 'relevance',
       productInfo: null,
       totalReviews: 0,
       numOfRecommendation: null,
@@ -35,43 +32,28 @@ class RatingsAndReviews extends React.Component {
     this.updateHelpfulByReviewID = this.updateHelpfulByReviewID.bind(this);
     this.toggleSortBy = this.toggleSortBy.bind(this);
     this.loadMoreReviews = this.loadMoreReviews.bind(this);
-    this.resetModuleState = this.resetModuleState.bind(this);
     this.filterReviewsByRating = this.filterReviewsByRating.bind(this);
   }
 
   componentDidMount() {
-    this.getMetaReview();
-    this.getProductInfo();
+    const { productID } = this.props;
+    this.getMetaReview(productID);
+    this.getProductInfo(productID);
   }
 
   componentDidUpdate(prevProps) {
     const { productID } = this.props;
     if (prevProps.productID !== productID) {
-      this.resetModuleState(() => {
-        this.setState({
-          reviews: [],
-          metaReview: null,
-          sortBy: sortBy,
-          productInfo: null,
-          totalReviews: 0,
-          numOfRecommendation: null,
-          reviewCount: 0,
-          displayMoreReviewsButton: false,
-          averageRating: 0,
-        }, () => {
-          this.getProductInfo();
-          this.getMetaReview();
-        });
-      });
+      this.getMetaReview(productID);
+      this.getProductInfo(productID);
     }
   }
 
-  getProductInfo() {
-    const { productID } = this.props;
+  getProductInfo(productID) {
     axios.get(`/api/products/${productID}`)
       .then((resp) => {
         this.setState({
-          productInfo: {...resp.data}
+          productInfo: resp.data,
         });
       })
       .catch((err) => {
@@ -79,47 +61,48 @@ class RatingsAndReviews extends React.Component {
       });
   }
 
-  getMetaReview() {
-    const { productID } = this.props;
-    const { reviewCount } = this.state;
+  getMetaReview(productID) {
+
     axios.get(`/api/reviews/meta/${productID}`)
       .then((resp) => {
+        let { reviewCount } = this.state;
         const { data: { recommended } } = resp;
+        let displayButton = true;
         const totalReviews = getTotalReviews(recommended.false, recommended.true);
         const numOfRecommendation = getNumOfRecommendation(recommended.false, recommended.true);
-        const numOfReviewsToLoad = determineNumReviewsToLoad(totalReviews, reviewCount);
         const averageRating = calculateAverageRating(resp.data.ratings);
-        if (numOfReviewsToLoad) {
-          this.setState({
-            metaReview: { ...resp.data },
-            reviewCount: numOfReviewsToLoad.reviewCount,
-            displayMoreReviewsButton: numOfReviewsToLoad.displayButton,
-            numOfRecommendation,
-            totalReviews,
-            averageRating,
-          }, () => {
-            this.getAllReviews(numOfReviewsToLoad.reviewCount);
-          });
-        } else {
-          // If No Reviews
-          this.setState({
-            metaReview: { ...resp.data },
-          });
+        const numOfReviewsToLoad = determineNumReviewsToLoad(totalReviews, reviewCount);
+        reviewCount += numOfReviewsToLoad;
+        if ((totalReviews - reviewCount) === 0) {
+          displayButton = false;
         }
+
+        this.setState({
+          metaReview: { ...resp.data },
+          reviewCount,
+          displayMoreReviewsButton: displayButton,
+          numOfRecommendation,
+          totalReviews,
+          averageRating,
+        }, () => {
+          const { reviewCount } = this.state;
+          this.getAllReviews(reviewCount);
+        });
       })
       .catch((err) => console.log(err));
   }
 
   getAllReviews(reviewCount = this.state.reviewCount ) {
+    console.log(reviewCount)
     const { sortBy, filterTracker } = this.state;
     const { productID } = this.props;
     axios.get(`/api/reviews?product_id=${productID}&count=${reviewCount}&sort=${sortBy}`)
       .then((resp) => {
-        const reviews = resp.data.results.map((review) => {
-          return {...review, display: filterTracker[review.rating] }
-        });
+        const reviews = resp.data.results.map((review) => (
+          { ...review, display: filterTracker[review.rating] }
+        ));
         this.setState({
-          reviews: reviews,
+          reviews,
         });
       })
       .catch((err) => {
@@ -127,15 +110,12 @@ class RatingsAndReviews extends React.Component {
       });
   }
 
-  resetModuleState(callback) {
-    callback();
-  }
-
   toggleSortBy(sortBy) {
     this.setState({
-      sortBy: sortBy
+      sortBy,
     }, () => {
-      this.getAllReviews(this.state.reviewCount);
+      const { reviewCount } = this.state;
+      this.getAllReviews(reviewCount);
     });
   }
 
@@ -165,8 +145,7 @@ class RatingsAndReviews extends React.Component {
 
   updateHelpfulByReviewID(reviewID) {
     axios.put(`/api/reviews/${reviewID}/helpful`)
-      .then((resp) => {
-        // this.getMetaReview();
+      .then(() => {
         this.getAllReviews();
       })
       .catch((err) => {
@@ -174,8 +153,8 @@ class RatingsAndReviews extends React.Component {
       });
   }
 
-  loadMoreReviews(e) {
-    this.getMetaReview();
+  loadMoreReviews(productID) {
+    this.getMetaReview(productID);
   }
 
   filterReviewsByRating(rating, displayStatus) {
@@ -197,8 +176,8 @@ class RatingsAndReviews extends React.Component {
       }
     }
 
-    let filteredReviews = reviews.map((item) => {
-      let reviewData = {...item}
+    const filteredReviews = reviews.map((item) => {
+      const reviewData = { ...item };
       reviewData.display = filterTracker[reviewData.rating];
       return reviewData;
     });
@@ -217,7 +196,7 @@ class RatingsAndReviews extends React.Component {
       numOfRecommendation,
       displayMoreReviewsButton,
       averageRating,
-      sortBy
+      sortBy,
     } = this.state;
     return (
       <section className={styles.ratingsAndReviews}>

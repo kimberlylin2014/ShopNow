@@ -69,17 +69,19 @@ export function calculateCharacteristicBreakdown(score) {
 }
 
 export function getTotalReviews(numOfFalse, numOfTrue) {
-  if (isNaN(parseInt(numOfFalse))) {
-    numOfFalse = 0;
+  let falseNum;
+  let trueNum;
+  if (Number.isNaN(parseInt(numOfFalse))) {
+    falseNum = 0;
   }
-  if (isNaN(parseInt(numOfTrue))) {
-    numOfTrue = 0;
+  if (Number.isNaN(parseInt(numOfTrue))) {
+    trueNum = 0;
   }
-  return parseInt(numOfFalse) + parseInt(numOfTrue);
+  return parseInt(falseNum) + parseInt(trueNum);
 }
 
 export function getNumOfRecommendation(numOfFalse, numOfTrue) {
-  if (isNaN(parseInt(numOfFalse))) {
+  if (Number.isNaN(parseInt(numOfFalse))) {
     numOfFalse = 0;
   }
   if (isNaN(parseInt(numOfTrue))) {
@@ -91,37 +93,17 @@ export function getNumOfRecommendation(numOfFalse, numOfTrue) {
 }
 
 export function determineNumReviewsToLoad(totalReviews, reviewCount) {
-  if (totalReviews === 0) {
+  const remainingReviews = totalReviews - reviewCount;
+
+  if (remainingReviews === 0) {
     return 0;
   }
-  const result = {
-    reviewCount: reviewCount,
-    displayButton: true,
-  };
-  let difference;
-  // check if totalReviews is now even/odd
-  if (totalReviews % 2 === 0) {
-    difference = 2;
-  } else {
-    difference = 1;
+
+  if (remainingReviews === 1) {
+    return 1;
   }
 
-  if (totalReviews % 2 !== 0) {
-    if (totalReviews - reviewCount === difference || (totalReviews - reviewCount === 0)) {
-      result.reviewCount += 1;
-      result.displayButton = false;
-    } else {
-      result.reviewCount += 2;
-    }
-  } else {
-    if (totalReviews - reviewCount === difference) {
-      result.reviewCount += 2;
-      result.displayButton = false;
-    } else {
-      result.reviewCount += 2;
-    }
-  }
-  return result;
+  return 2;
 }
 
 export function updateFilterTracker(filterTracker, rating, status) {

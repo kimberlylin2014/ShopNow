@@ -38,7 +38,7 @@ const postReview = (req, res) => {
     characteristics,
   } = req.body;
 
-  let post = {
+  const post = {
     product_id,
     rating,
     summary,
