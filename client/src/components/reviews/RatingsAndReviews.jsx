@@ -65,7 +65,6 @@ class RatingsAndReviews extends React.Component {
   getAllReviews(reviewCount = this.state.reviewCount ) {
     const { sortBy, filterTracker } = this.state;
     const { productID } = this.props;
-    console.log(productID);
     axios.get(`/api/reviews?product_id=${productID}&count=${reviewCount}&sort=${sortBy}`)
       .then((resp) => {
         const reviews = resp.data.results.map((review) => (
@@ -131,21 +130,22 @@ class RatingsAndReviews extends React.Component {
     const { productID, changeAverageRating } = this.props;
     axios.post('/api/reviews', review)
       .then((resp) => {
-        return axios.get(`/api/reviews/meta/${productID}`)
+        this.getMetaReview(productID);
+        // return axios.get(`/api/reviews/meta/${productID}`)
       })
-      .then((metaData) => {
-        const { data: { recommended, ratings } } = metaData;
-        const averageRating = calculateAverageRating(ratings);
-        const numOfRecommendation = getNumOfRecommendation(recommended.false, recommended.true);
-        const totalReviews = getTotalReviews(recommended.false, recommended.true);
-        changeAverageRating(parseFloat(averageRating));
-        this.setState({
-          metaReview: { ...metaData.data },
-          numOfRecommendation,
-          totalReviews,
-          averageRating,
-        });
-      })
+      // .then((metaData) => {
+      //   const { data: { recommended, ratings } } = metaData;
+      //   const averageRating = calculateAverageRating(ratings);
+      //   const numOfRecommendation = getNumOfRecommendation(recommended.false, recommended.true);
+      //   const totalReviews = getTotalReviews(recommended.false, recommended.true);
+      //   changeAverageRating(parseFloat(averageRating));
+      //   this.setState({
+      //     metaReview: { ...metaData.data },
+      //     numOfRecommendation,
+      //     totalReviews,
+      //     averageRating,
+      //   });
+      // })
       .catch((err) => {
         console.log(err);
       });
