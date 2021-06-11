@@ -69,19 +69,17 @@ export function calculateCharacteristicBreakdown(score) {
 }
 
 export function getTotalReviews(numOfFalse, numOfTrue) {
-  let falseNum;
-  let trueNum;
-  if (Number.isNaN(parseInt(numOfFalse))) {
-    falseNum = 0;
+  if (isNaN(parseInt(numOfFalse))) {
+    numOfFalse = 0;
   }
-  if (Number.isNaN(parseInt(numOfTrue))) {
-    trueNum = 0;
+  if (isNaN(parseInt(numOfTrue))) {
+    numOfTrue = 0;
   }
-  return parseInt(falseNum) + parseInt(trueNum);
+  return parseInt(numOfFalse) + parseInt(numOfTrue);
 }
 
 export function getNumOfRecommendation(numOfFalse, numOfTrue) {
-  if (Number.isNaN(parseInt(numOfFalse))) {
+  if (isNaN(parseInt(numOfFalse))) {
     numOfFalse = 0;
   }
   if (isNaN(parseInt(numOfTrue))) {
@@ -102,7 +100,6 @@ export function determineNumReviewsToLoad(totalReviews, reviewCount) {
   if (remainingReviews === 1) {
     return 1;
   }
-
   return 2;
 }
 
