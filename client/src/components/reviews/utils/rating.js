@@ -1,12 +1,14 @@
 export function calculateAverageRating(ratings) {
   const entries = Object.entries(ratings);
   let total = 0;
-  let numOfRatings = 0;
+  let totalRatings = 0;
   for (let i = 0; i < entries.length; i++) {
-    total += parseInt(entries[i][0]) * parseInt(entries[i][1]);
-    numOfRatings += parseInt(entries[i][1])
+    const rating = entries[i][0];
+    const numOfRating = entries[i][1];
+    total += Number(rating) * Number(numOfRating);
+    totalRatings += Number(numOfRating);
   }
-  const average = parseFloat(total / numOfRatings).toFixed(2);
+  const average = Number(total / totalRatings).toFixed(2);
   return average;
 }
 
@@ -15,15 +17,13 @@ export function calculatePercentageOfRating(metaReview, rating) {
   const ratingCounts = Object.values(ratings);
   let totalRatingCounts = 0;
   ratingCounts.forEach((count) => {
-    totalRatingCounts += parseInt(count);
+    totalRatingCounts += Number(count);
   });
-  const percentageOfRating = ((parseInt(ratings[rating])/(totalRatingCounts)) * 100).toFixed(0);
-  if(isNaN(percentageOfRating)) {
+  const percentageOfRating = ((Number(ratings[rating]) / (totalRatingCounts)) * 100);
+  if (Number.isNaN(percentageOfRating)) {
     return 0;
-  } else {
-    return percentageOfRating;
   }
-
+  return percentageOfRating.toFixed(0);
 }
 
 export function calculateCharacteristicBreakdown(score) {
@@ -69,34 +69,44 @@ export function calculateCharacteristicBreakdown(score) {
 }
 
 export function getTotalReviews(numOfFalse, numOfTrue) {
-  if (isNaN(parseInt(numOfFalse))) {
-    numOfFalse = 0;
+  let falseNum;
+  let trueNum;
+  if (Number.isNaN(numOfFalse)) {
+    falseNum = 0;
+  } else {
+    falseNum = numOfFalse;
   }
-  if (isNaN(parseInt(numOfTrue))) {
-    numOfTrue = 0;
+  if (Number.isNaN(numOfTrue)) {
+    trueNum = 0;
+  } else {
+    trueNum = numOfTrue;
   }
-  return parseInt(numOfFalse) + parseInt(numOfTrue);
+  return Number(falseNum) + Number(trueNum);
 }
 
 export function getNumOfRecommendation(numOfFalse, numOfTrue) {
-  if (isNaN(parseInt(numOfFalse))) {
-    numOfFalse = 0;
+  let falseNum;
+  let trueNum;
+  if (Number.isNaN(numOfFalse)) {
+    falseNum = 0;
+  } else {
+    falseNum = numOfFalse;
   }
-  if (isNaN(parseInt(numOfTrue))) {
-    numOfTrue = 0;
+  if (Number.isNaN(numOfTrue)) {
+    trueNum = 0;
+  } else {
+    trueNum = numOfTrue;
   }
-  const total = parseInt(numOfFalse) + parseInt(numOfTrue);
-  const precentageOfRec = (parseInt(numOfTrue) / total) * 100;
+  const total = Number(falseNum) + Number(trueNum);
+  const precentageOfRec = (Number(trueNum) / total) * 100;
   return precentageOfRec.toFixed(0);
 }
 
 export function determineNumReviewsToLoad(totalReviews, reviewCount) {
   const remainingReviews = totalReviews - reviewCount;
-
   if (remainingReviews === 0) {
     return 0;
   }
-
   if (remainingReviews === 1) {
     return 1;
   }
@@ -104,7 +114,7 @@ export function determineNumReviewsToLoad(totalReviews, reviewCount) {
 }
 
 export function updateFilterTracker(filterTracker, rating, status) {
-  const filterData = { ...filterTracker};
+  const filterData = { ...filterTracker };
   if (status) {
     const keys = Object.keys(filterTracker);
     for (let i = 0; i < keys.length; i++) {
