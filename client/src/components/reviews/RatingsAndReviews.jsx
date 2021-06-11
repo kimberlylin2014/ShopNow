@@ -33,6 +33,7 @@ class RatingsAndReviews extends React.Component {
     this.toggleSortBy = this.toggleSortBy.bind(this);
     this.loadMoreReviews = this.loadMoreReviews.bind(this);
     this.filterReviewsByRating = this.filterReviewsByRating.bind(this);
+    this.determineNumReviewsToLoad = this.determineNumReviewsToLoad.bind(this);
   }
 
   componentDidMount() {
@@ -61,41 +62,10 @@ class RatingsAndReviews extends React.Component {
       });
   }
 
-  getMetaReview(productID) {
-
-    axios.get(`/api/reviews/meta/${productID}`)
-      .then((resp) => {
-        let { reviewCount } = this.state;
-        const { data: { recommended } } = resp;
-        let displayButton = true;
-        const totalReviews = getTotalReviews(recommended.false, recommended.true);
-        const numOfRecommendation = getNumOfRecommendation(recommended.false, recommended.true);
-        const averageRating = calculateAverageRating(resp.data.ratings);
-        const numOfReviewsToLoad = determineNumReviewsToLoad(totalReviews, reviewCount);
-        reviewCount += numOfReviewsToLoad;
-        if ((totalReviews - reviewCount) === 0) {
-          displayButton = false;
-        }
-
-        this.setState({
-          metaReview: { ...resp.data },
-          reviewCount,
-          displayMoreReviewsButton: displayButton,
-          numOfRecommendation,
-          totalReviews,
-          averageRating,
-        }, () => {
-          const { reviewCount } = this.state;
-          this.getAllReviews(reviewCount);
-        });
-      })
-      .catch((err) => console.log(err));
-  }
-
   getAllReviews(reviewCount = this.state.reviewCount ) {
-    console.log(reviewCount)
     const { sortBy, filterTracker } = this.state;
     const { productID } = this.props;
+    console.log(productID);
     axios.get(`/api/reviews?product_id=${productID}&count=${reviewCount}&sort=${sortBy}`)
       .then((resp) => {
         const reviews = resp.data.results.map((review) => (
@@ -108,6 +78,44 @@ class RatingsAndReviews extends React.Component {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  getMetaReview(productID) {
+    axios.get(`/api/reviews/meta/${productID}`)
+      .then((resp) => {
+        const { recommended, ratings } = resp.data;
+        this.determineNumReviewsToLoad(recommended, ratings);
+        this.setState({
+          metaReview: { ...resp.data },
+        });
+      })
+      .catch((err) => console.log(err));
+  }
+
+  determineNumReviewsToLoad(recommended, ratings) {
+    let { reviewCount } = this.state;
+    let displayButton = true;
+
+    const totalReviews = getTotalReviews(recommended.false, recommended.true);
+    const numOfRecommendation = getNumOfRecommendation(recommended.false, recommended.true);
+    const averageRating = calculateAverageRating(ratings);
+    const numOfReviewsToLoad = determineNumReviewsToLoad(totalReviews, reviewCount);
+
+    reviewCount += numOfReviewsToLoad;
+    if ((totalReviews - reviewCount) === 0) {
+      displayButton = false;
+    }
+
+    this.setState({
+      reviewCount,
+      displayMoreReviewsButton: displayButton,
+      numOfRecommendation,
+      totalReviews,
+      averageRating,
+    }, () => {
+      const { reviewCount } = this.state;
+      this.getAllReviews(reviewCount);
+    });
   }
 
   toggleSortBy(sortBy) {

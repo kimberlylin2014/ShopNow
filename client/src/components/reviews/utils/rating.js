@@ -21,7 +21,7 @@ export function calculatePercentageOfRating(metaReview, rating) {
   });
   const percentageOfRating = ((Number(ratings[rating]) / (totalRatingCounts)) * 100);
   if (Number.isNaN(percentageOfRating)) {
-    return 0;
+    return '0';
   }
   return percentageOfRating.toFixed(0);
 }
