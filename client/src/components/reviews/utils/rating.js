@@ -113,15 +113,37 @@ export function determineNumReviewsToLoad(totalReviews, reviewCount) {
   return 2;
 }
 
-export function updateFilterTracker(filterTracker, rating, status) {
-  const filterData = { ...filterTracker };
-  if (status) {
-    const keys = Object.keys(filterTracker);
+export function getUpdatedReviewsAndFilterTracker(reviews, filterTracker, rating) {
+  const updatedFilterTracker = { ...filterTracker };
+  let updatedReviews;
+  let filterValues;
+
+  filterValues = Object.values(updatedFilterTracker);
+
+  if (filterValues.every((val) => val === true)) {
+    const keys = Object.keys(updatedFilterTracker);
     for (let i = 0; i < keys.length; i++) {
       if (Number(keys[i]) !== rating) {
-        filterData[keys[i]] = false;
+        updatedFilterTracker[keys[i]] = false;
       }
     }
+  } else {
+    updatedFilterTracker[rating] = !updatedFilterTracker[rating];
   }
-  return filterData;
+
+  filterValues = Object.values(updatedFilterTracker);
+  if (filterValues.every((val) => val === false)) {
+    const keys = Object.keys(updatedFilterTracker);
+    for (let i = 0; i < keys.length; i++) {
+      updatedFilterTracker[keys[i]] = true;
+    }
+  }
+
+  updatedReviews = reviews.map((review) => {
+    const reviewData = { ...review };
+    reviewData.display = updatedFilterTracker[reviewData.rating];
+    return reviewData;
+  });
+
+  return { updatedFilterTracker, updatedReviews };
 }

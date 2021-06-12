@@ -1,10 +1,15 @@
-/* eslint-disable import/extensions */
 import React from 'react';
 import axios from 'axios';
 import styles from './RatingsAndReviews.css';
 import ContainerBreakdown from './components/containerBreakdown/containerBreakdown.jsx';
 import ContainerList from './components/containerList/containerList.jsx';
-import { getTotalReviews, getNumOfRecommendation, determineNumReviewsToLoad, calculateAverageRating } from './utils/rating.js';
+import {
+  getTotalReviews,
+  getNumOfRecommendation,
+  determineNumReviewsToLoad,
+  calculateAverageRating,
+  getUpdatedReviewsAndFilterTracker,
+} from './utils/rating.js';
 
 class RatingsAndReviews extends React.Component {
   constructor(props) {
@@ -62,7 +67,7 @@ class RatingsAndReviews extends React.Component {
       });
   }
 
-  getAllReviews(reviewCount = this.state.reviewCount ) {
+  getAllReviews(reviewCount = this.state.reviewCount) {
     const { sortBy, filterTracker } = this.state;
     const { productID } = this.props;
     axios.get(`/api/reviews?product_id=${productID}&count=${reviewCount}&sort=${sortBy}`)
@@ -131,21 +136,7 @@ class RatingsAndReviews extends React.Component {
     axios.post('/api/reviews', review)
       .then((resp) => {
         this.getMetaReview(productID);
-        // return axios.get(`/api/reviews/meta/${productID}`)
       })
-      // .then((metaData) => {
-      //   const { data: { recommended, ratings } } = metaData;
-      //   const averageRating = calculateAverageRating(ratings);
-      //   const numOfRecommendation = getNumOfRecommendation(recommended.false, recommended.true);
-      //   const totalReviews = getTotalReviews(recommended.false, recommended.true);
-      //   changeAverageRating(parseFloat(averageRating));
-      //   this.setState({
-      //     metaReview: { ...metaData.data },
-      //     numOfRecommendation,
-      //     totalReviews,
-      //     averageRating,
-      //   });
-      // })
       .catch((err) => {
         console.log(err);
       });
@@ -165,33 +156,16 @@ class RatingsAndReviews extends React.Component {
     this.getMetaReview(productID);
   }
 
-  filterReviewsByRating(rating, displayStatus) {
+  filterReviewsByRating(rating) {
     const { reviews, filterTracker } = this.state;
-    let filterValues = Object.values(filterTracker);
-    if (filterValues.every((val) => val === true)) {
-      for (let prop in filterTracker) {
-        if (parseInt(prop) !== rating) {
-          filterTracker[prop] = false;
-        }
-      }
-    } else {
-      filterTracker[rating] = !filterTracker[rating];
-    }
-    filterValues = Object.values(filterTracker);
-    if (filterValues.every((val) => val === false)) {
-      for (let prop in filterTracker) {
-          filterTracker[prop] = true;
-      }
-    }
-
-    const filteredReviews = reviews.map((item) => {
-      const reviewData = { ...item };
-      reviewData.display = filterTracker[reviewData.rating];
-      return reviewData;
-    });
+    const {
+      updatedReviews,
+      updatedFilterTracker,
+    } = getUpdatedReviewsAndFilterTracker(reviews, filterTracker, rating);
 
     this.setState({
-      reviews: filteredReviews,
+      reviews: updatedReviews,
+      filterTracker: updatedFilterTracker,
     });
   }
 
