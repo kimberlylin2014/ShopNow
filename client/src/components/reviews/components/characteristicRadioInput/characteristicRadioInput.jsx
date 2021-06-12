@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from './characteristicRadioInput.css';
 
-const CharacteristicRadioInput = ({htmlFor, type, name, handleInputChange, value, label}) => (
+const CharacteristicRadioInput = ({htmlFor, type, name, handleCharacteristicInputChange, value, label}) => (
   <div className={styles.flexColumn}>
     <input
       type={type}
       id={htmlFor}
       name={name}
-      onChange={handleInputChange}
+      onChange={handleCharacteristicInputChange}
       value={value}
       className={styles.charRadio}
     />

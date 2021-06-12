@@ -48,7 +48,7 @@ const characteristicChart = {
   },
 };
 
-const CharacteristInputs = ({ characteristics, handleInputChange }) => {
+const CharacteristInputs = ({ characteristics, handleCharacteristicInputChange }) => {
   const entries = Object.entries(characteristics);
   const info = [];
 
@@ -67,7 +67,7 @@ const CharacteristInputs = ({ characteristics, handleInputChange }) => {
           htmlFor={`${entries[i][0]}${j + 1}`}
           type="radio"
           name={`${entries[i][1].id}`}
-          handleInputChange={handleInputChange}
+          handleCharacteristicInputChange={handleCharacteristicInputChange}
           value={j + 1}
           label={characteristicChart[entries[i][0]][j + 1]}
         />,

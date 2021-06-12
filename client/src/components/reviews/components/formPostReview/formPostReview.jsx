@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './formPostReview.css';
 import FormInput from '../formInput/formInput.jsx';
+import RadioInput from '../radioInput/radioInput.jsx';
 import FormTextArea from '../formTextArea/formTextArea.jsx';
 import CharacteristicInputs from '../characteristicInputs/characteristicInputs.jsx';
 import StarRating from '../starRating/starRating.jsx';
@@ -26,35 +27,46 @@ class FormPostReview extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleStarRatingClick = this.handleStarRatingClick.bind(this);
+    this.handleRadioInputChange = this.handleRadioInputChange.bind(this);
+    this.handleBodyInputChange = this.handleBodyInputChange.bind(this);
+    this.handleCharacteristicInputChange = this.handleCharacteristicInputChange.bind(this);
+  }
+
+  handleRadioInputChange(e) {
+    let { name, value } = e.target;
+    let selected = false;
+    if (value === 'true') {
+      selected = true;
+    }
+    this.setState({
+      [name]: selected,
+    });
+  }
+
+  handleBodyInputChange(e) {
+    let { value } = e.target;
+    this.setState({
+      body: value,
+      bodyCounter: 50 - value.length,
+    });
   }
 
   handleInputChange(e) {
     let { name, value } = e.target;
-    if (Number.isNaN(parseInt(name))) {
-      if (name === 'body') {
-        this.setState({
-          body: value,
-          bodyCounter: 50 - value.length,
-        });
-      } else if (name === 'recommend') {
-        value = value === true;
-        this.setState({
-          [name]: value,
-        });
-      } else {
-        this.setState({
-          [name]: value,
-        });
-      }
-    } else {
-      const { characteristics } = this.state;
-      this.setState({
-        characteristics: {
-          ...characteristics,
-          [name]: parseInt(value),
-        },
-      });
-    }
+    this.setState({
+      [name]: value,
+    });
+  }
+
+  handleCharacteristicInputChange(e) {
+    let { name, value } = e.target;
+    const { characteristics } = this.state;
+    this.setState({
+      characteristics: {
+        ...characteristics,
+        [name]: parseInt(value),
+      },
+    });
   }
 
   handleStarRatingClick(starId) {
@@ -71,7 +83,7 @@ class FormPostReview extends React.Component {
     if (!values.includes(false)) {
       addReview({
         ...this.state,
-        product_id: parseInt(metaReview.product_id)
+        product_id: Number(metaReview.product_id),
       });
       handleCloseModalButtonClick();
     } else {
@@ -84,7 +96,6 @@ class FormPostReview extends React.Component {
   render() {
     const { summary, body, name, email, validatedResult, bodyCounter } = this.state;
     const { metaReview, productInfo } = this.props;
-
     return (
       <div className={styles.formPostReview}>
         <h3>
@@ -98,23 +109,23 @@ class FormPostReview extends React.Component {
             </div>
             <div className={styles.recommendInputs}>
               <div>
-                <FormInput
+                <RadioInput
                   htmlFor="yesRecommend"
                   type="radio"
                   name="recommend"
-                  value={true}
-                  handleInputChange={this.handleInputChange}
+                  handleRadioInputChange={this.handleRadioInputChange}
                   label="Yes"
+                  value
                 />
               </div>
               <div>
-                <FormInput
+                <RadioInput
                   htmlFor="noRecommend"
                   type="radio"
                   name="recommend"
-                  value={false}
-                  handleInputChange={this.handleInputChange}
+                  handleRadioInputChange={this.handleRadioInputChange}
                   label="No"
+                  value={false}
                 />
               </div>
             </div>
@@ -128,9 +139,8 @@ class FormPostReview extends React.Component {
               value={summary}
               handleInputChange={this.handleInputChange}
               label="Summary"
-              required={true}
             />
-             <p className={styles.disclaimer}>[60 characters max] </p>
+            <p className={styles.disclaimer}>[60 characters max] </p>
           </div>
           <div className={styles.formGroup}>
             <FormTextArea
@@ -138,12 +148,14 @@ class FormPostReview extends React.Component {
               htmlFor="body"
               name="body"
               value={body}
-              handleInputChange={this.handleInputChange}
+              handleBodyInputChange={this.handleBodyInputChange}
               label="Review"
-              required={true}
             />
             <div className={styles.bodyDisclaimer}>
-              <span>[50-1000 characters]</span> <span className={styles.counter}>{bodyCounter <= 0 ? 'Minimum Reached' : `Minimum required characters left: ${bodyCounter}`}</span>
+              <span>[50-1000 characters]</span>
+              <span className={styles.counter}>
+                {bodyCounter <= 0 ? 'Minimum Reached' : `Minimum required characters left: ${bodyCounter}`}
+              </span>
             </div>
           </div>
           <div className={styles.formGroup}>
@@ -155,9 +167,10 @@ class FormPostReview extends React.Component {
               value={name}
               handleInputChange={this.handleInputChange}
               label="Username"
-              required={true}
             />
-            <p className={styles.disclaimer}>[60 characters max] For privacy reasons, do not use your full name or email address. </p>
+            <p className={styles.disclaimer}>
+              [60 characters max] For privacy reasons, do not use your full name or email address.
+            </p>
           </div>
           <div className={styles.formGroup}>
             <FormInput
@@ -168,18 +181,19 @@ class FormPostReview extends React.Component {
               value={email}
               handleInputChange={this.handleInputChange}
               label="Email"
-              required={true}
             />
-            <p className={styles.disclaimer}>[60 characters max] For authentication reaesons, you will not be emailed.</p>
+            <p className={styles.disclaimer}>
+              [60 characters max] For authentication reasons, you will not be emailed.
+            </p>
           </div>
           {metaReview ? (
             <CharacteristicInputs
               characteristics={metaReview.characteristics}
-              handleInputChange={this.handleInputChange}
+              handleCharacteristicInputChange={this.handleCharacteristicInputChange}
             />
           ) : null}
-          <FormValidationMessage text={validatedResult}/>
-          <input type="submit" value="SUBMIT" className={styles.buttonStyle}/>
+          <FormValidationMessage text={validatedResult} />
+          <input type="submit" value="SUBMIT" className={styles.buttonStyle} />
         </form>
       </div>
     );

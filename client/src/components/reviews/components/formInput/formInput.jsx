@@ -9,13 +9,12 @@ const FormInput = ({
   value,
   label,
   placeholder='...',
-  required
 }) => (
   <label htmlFor={htmlFor}>
-    <span className={required ? styles.requiredField : ''}>{label}</span>
+    <span className={styles.requiredField}>{label}</span>
     <input
       placeholder={placeholder}
-      className={type === 'text' ? styles.textInput : styles.radioInput}
+      className={styles.textInput}
       type={type}
       id={htmlFor}
       name={name}
