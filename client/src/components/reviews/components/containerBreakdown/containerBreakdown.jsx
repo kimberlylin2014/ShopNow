@@ -4,7 +4,7 @@ import BreakdownHeader from '../breakdownHeader/breakdownHeader.jsx';
 import TotalRecommendation from '../totalRecommendation/totalRecommendation.jsx';
 import RatingBreakdown from '../ratingBreakdown/ratingBreakdown.jsx';
 import BreakdownCharacteristics from '../breakdownCharacteristics/breakdownCharacteristics.jsx';
-import {calculatePercentageOfRating} from '../../utils/rating.js';
+import { calculatePercentageOfRating } from '../../utils/rating.js';
 
 const ContainerBreakdown = ({
   metaReview,
@@ -15,7 +15,6 @@ const ContainerBreakdown = ({
 }) => (
   <div className={styles.containerBreakdown}>
     <BreakdownHeader
-      metaReview={metaReview}
       totalReviews={totalReviews}
       averageRating={averageRating}
     />
