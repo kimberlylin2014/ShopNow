@@ -13,17 +13,24 @@ class MoreReviewsButton extends React.Component {
   }
 
   render() {
-    const {displayMoreReviewsButton} = this.props;
-    let styleObj = {
+    const { displayMoreReviewsButton } = this.props;
+    const styleObj = {
       visibility: 'visible',
     };
     if (!displayMoreReviewsButton) {
       styleObj.visibility = 'hidden';
     }
     return (
-      <React.Fragment>
-         <button className={styles.buttonStyle} onClick={this.handleMoreReviewClick} style={styleObj}>MORE REVIEWS</button>
-      </React.Fragment>
+      <>
+        <button
+          type="button"
+          className={styles.buttonStyle}
+          onClick={this.handleMoreReviewClick}
+          style={styleObj}
+        >
+          MORE REVIEWS
+        </button>
+      </>
     );
   }
 }

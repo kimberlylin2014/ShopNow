@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './addReviewButton.css';
 
-const AddReviewButton = ({handleOpenModalButtonClick}) => (
+const AddReviewButton = ({ handleOpenModalButtonClick }) => (
   <button
     type="button"
     className={styles.buttonStyle}

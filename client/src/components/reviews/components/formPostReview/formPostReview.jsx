@@ -88,9 +88,7 @@ class FormPostReview extends React.Component {
     return (
       <div className={styles.formPostReview}>
         <h3>
-          Write Your Review about
-          {' '}
-          {productInfo ? productInfo.name : null}
+          {productInfo ? `Write Your Review about ${productInfo.name}` : null}
         </h3>
         <form onSubmit={this.handleFormSubmit}>
           <StarRating handleStarRatingClick={this.handleStarRatingClick} />
