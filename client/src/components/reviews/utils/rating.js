@@ -32,28 +32,28 @@ export function calculateCharacteristicBreakdown(score) {
   let box3 = false;
   let marginLeft = '5%';
 
-  if (parseFloat(score) < 1.5) {
+  if (score < 1.5) {
     box1 = true;
-  } else if (parseFloat(score) === 1.5) {
+  } else if (score === 1.5) {
     box1 = true;
     marginLeft = '40%';
-  } else if (parseFloat(score) > 1.5 && parseFloat(score) <= 2.9) {
+  } else if (score > 1.5 && score <= 2.9) {
     box1 = true;
     marginLeft = '80%';
-  } else if (parseFloat(score) < 3.5) {
+  } else if (score < 3.5) {
     box2 = true;
-  } else if (parseFloat(score) === 3.5) {
+  } else if (score === 3.5) {
     box2 = true;
     marginLeft = '40%';
-  } else if (parseFloat(score) > 3.5 && parseFloat(score) < 4) {
+  } else if (score > 3.5 && score < 4) {
     box2 = true;
     marginLeft = '80%';
-  } else if (parseFloat(score) < 4.5) {
+  } else if (score < 4.5) {
     box3 = true;
-  } else if (parseFloat(score) === 4.5) {
+  } else if (score === 4.5) {
     box3 = true;
     marginLeft = '40%';
-  } else if (parseFloat(score) > 4.5 && parseFloat(score) <= 5) {
+  } else if (score > 4.5 && score <= 5) {
     box3 = true;
     marginLeft = '80%';
   }

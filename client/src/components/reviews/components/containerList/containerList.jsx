@@ -46,7 +46,6 @@ class ContainerList extends React.Component {
       toggleSortBy,
       displayMoreReviewsButton,
       loadMoreReviews,
-      sortBy
     } = this.props;
     return (
       <div className={styles.containerList}>
@@ -54,7 +53,6 @@ class ContainerList extends React.Component {
           <SortBy
             totalReviews={totalReviews}
             toggleSortBy={toggleSortBy}
-            sortBy={sortBy}
           />
         ) : null}
         <ReviewsList

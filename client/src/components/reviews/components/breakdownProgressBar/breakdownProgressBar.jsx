@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './breakdownProgressBar.css';
+
 const BreakdownProgressBar = ({label, box, data}) => {
   const styleObj = {
     display: 'none',
@@ -18,8 +19,7 @@ const BreakdownProgressBar = ({label, box, data}) => {
         {label}
       </div>
     </div>
-  )
-
+  );
 };
 
 export default BreakdownProgressBar;

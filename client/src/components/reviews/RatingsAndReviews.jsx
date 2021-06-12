@@ -17,7 +17,6 @@ class RatingsAndReviews extends React.Component {
     this.state = {
       reviews: [],
       metaReview: null,
-      sortBy: 'relevance',
       productInfo: null,
       totalReviews: 0,
       numOfRecommendation: null,

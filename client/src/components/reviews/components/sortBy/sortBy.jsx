@@ -12,7 +12,6 @@ class SortBy extends React.Component {
 
   handleSelect(e) {
     const { toggleSortBy } = this.props;
-    const { sortByValue } = this.state;
     const { name, value } = e.target;
     this.setState({
       [name]: value,
@@ -23,11 +22,15 @@ class SortBy extends React.Component {
 
   render() {
     const { totalReviews } = this.props;
-    const {sortByValue} = this.state;
+    const { sortByValue } = this.state;
     return (
       <div className={styles.sortBy}>
         <form>
-          <label htmlFor="sortList" ><span className={styles.sortByLabel}>{totalReviews ? totalReviews : null} reviews</span>, sorted by: </label>
+          <label htmlFor="sortList">
+            <span className={styles.sortByLabel}>
+              { totalReviews ? `${totalReviews} reviews, sorted by: ` : null }
+            </span>
+          </label>
           <select name="sortByValue" id="sortList" onChange={this.handleSelect} value={sortByValue} className={styles.sortBySelect}>
             <option value="relevance">Relevance</option>
             <option value="helpful"> Helpful</option>
@@ -37,6 +40,6 @@ class SortBy extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default SortBy;

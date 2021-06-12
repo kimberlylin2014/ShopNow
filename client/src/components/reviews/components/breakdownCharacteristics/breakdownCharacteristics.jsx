@@ -54,19 +54,22 @@ const BreakdownCharacteristics = ({metaReview, totalReviews}) => {
   if (metaReview) {
     const entries = Object.entries(metaReview.characteristics);
     list = entries.map((entry) => {
-      let data = calculateCharacteristicBreakdown(parseFloat(entry[1].value).toFixed(1));
+      const characteristicID = entry[1].id;
+      const characteristicName = entry[0];
+      const characteristicScore = Number(parseFloat(entry[1].value).toFixed(1));
+      const data = calculateCharacteristicBreakdown(characteristicScore);
       return (
-        <div className={styles.breakdownCharacteristic} key={entry[1].id}>
+        <div className={styles.breakdownCharacteristic} key={characteristicID}>
           <BreakdownOneCharacteristic
-            key={entry[1].id}
-            name={entry[0]}
-            value={parseFloat(entry[1].value).toFixed(1)}
+            key={characteristicID}
+            name={characteristicName}
+            value={characteristicScore}
             totalReviews={totalReviews}
           />
           <div className={styles.breakdownProgressBarSection}>
-            <BreakdownProgressBar label={characteristicChart[entry[0]][1]} box="box1" data={data}/>
-            <BreakdownProgressBar label={characteristicChart[entry[0]][3]} box="box2" data={data}/>
-            <BreakdownProgressBar label={characteristicChart[entry[0]][5]} box="box3" data={data}/>
+            <BreakdownProgressBar label={characteristicChart[entry[0]][1]} box="box1" data={data} />
+            <BreakdownProgressBar label={characteristicChart[entry[0]][3]} box="box2" data={data} />
+            <BreakdownProgressBar label={characteristicChart[entry[0]][5]} box="box3" data={data} />
           </div>
         </div>
       );
